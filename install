@@ -7,6 +7,7 @@ mkdir -p ~/.tmp
 
 sudo apt install -y neofetch \
     xclip \
+    exa \
     tmux \
     stow \
     curl \

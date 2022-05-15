@@ -10,20 +10,26 @@ if command -v expressvpn > /dev/null; then
 fi
 
 # docker
-alias dcup='sudo docker-compose -f ~/Docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
-alias dcdown='sudo docker-compose -f ~/Docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
-alias dcbuild='sudo docker-compose build'
-alias dcpull='sudo docker-compose -f ~/Docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
-alias dclogs='sudo docker-compose -f ~/Docker/docker-compose.yml logs -tf --tail="50" '  
-alias dtail='sudo docker logs -tf --tail="50" "$@"'
+if command -v docker-compose > /dev/null; then
+    alias dcup='sudo docker-compose -f ~/Docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+    alias dcdown='sudo docker-compose -f ~/Docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+    alias dcbuild='sudo docker-compose build'
+    alias dcpull='sudo docker-compose -f ~/Docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
+    alias dclogs='sudo docker-compose -f ~/Docker/docker-compose.yml logs -tf --tail="50" '  
+    alias dtail='sudo docker logs -tf --tail="50" "$@"'
+fi
 
 # composer
-alias cu="composer update"
-alias cr="composer require"
+if command -v composer > /dev/null; then
+    alias cu="composer update"
+    alias cr="composer require"
+fi
 
 # tmux
-alias tmux="tmux -u"
-alias mux="tmuxinator"
+if command -v tmux > /dev/null; then
+    alias tmux="tmux -u"
+    alias mux="tmuxinator"
+fi
 
 # text to speech
 alias say='echo "$1" | espeak -s 120 2>/dev/null'
@@ -90,29 +96,35 @@ alias uninstall='remove'
 alias search='sudo apt search'
 
 # nvim
-alias v='nvim'
+if command -v nvim > /dev/null; then
+    alias v='nvim'
+fi
 
 # transf files / folders
-alias rs='rsync -rzvhP' 
+if command -v rsync > /dev/null; then
+    alias rs='rsync -rzvhP' 
+fi
 
 # quick edit
 alias nvim-config="cd $HOME/.config/nvim && v"
 
 # list directories
 if command -v exa > /dev/null; then
-    alias l='ls -l'
-    alias la='ls -a'
-    alias ll='ls -la'
-else
+    alias ls="exa"
     alias l='exa -l'
     alias la='exa -al'
     alias ll='exa -alh'
     alias tree='exa --tree'
+else
+    alias l='ls -l'
+    alias la='ls -a'
+    alias ll='ls -la'
 fi
 
 # bat cat
 if command -v bat > /dev/null; then
     alias cat="bat"
-elif comman -v batcat > /dev/null; then
+    alias bd="batdiff"
+elif command -v batcat > /dev/null; then
     alias cat="batcat"
 fi

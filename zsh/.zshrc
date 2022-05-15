@@ -10,11 +10,9 @@ else
 fi
 
 if type rg &> /dev/null; then
-  # Setting rg as the default source for fzf
-  export FZF_DEFAULT_COMMAND='rg  --files --no-ignore --hidden --follow -g "!{.svn,.git,node_modules,vendor}/*" 2> /dev/null'
-  export FZF_DEFAULT_OPTS='-m --height 80% --border --bind up:preview-up,down:preview-down'
-  # To apply the command to CTRL-T as well
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_DEFAULT_OPTS="--height 50% --ansi --border --bind up:preview-up,down:preview-down"
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
 # Caps lock is not needed.. 
