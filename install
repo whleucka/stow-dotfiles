@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+printf "Installing system packages...\n"
+
+# Create directories
+mkdir -p ~/.local/bin
+mkdir -p ~/.tmp
+
+sudo apt install -y neofetch \
+    xclip \
+    tmux \
+    stow \
+    curl \
+    gcc \
+    zsh \
+    npm \
+    nodejs \
+    git \
+    ripgrep \
+    python3-pip \
+    bat \
+    prettier \
+    php \
+    gopls \
+    kitty \
+    python3
+
+# Install fzf
+printf "Installing FZF...\n"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Bat
+printf "Configuring bat...\n"
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
+# Install rustlang
+printf "Installing rust\n"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+printf "Installing rust-analyzer\n"
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
+
+# Install grip
+pip install grip
+
+# Install tuir
+pip install tuir
+
+# Hackernews tui
+printf "Installing hackernews\n"
+cargo install hackernews_tui
+
+# Neovim
+printf "Installing neovim\n"
+sudo add-apt-repository ppa:neovim-ppa/stable -y
+sudo apt update && sudo apt upgrade -y
+
+# Vim plugged
+#printf "Installing vim plugged\n"
+#printf "Installing VIM Plugged...\n"
+#sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    #https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# Vim Packer
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# Ms-jpq lsp stuff
+#printf "Installing coq-nvim\n"
+#sudo apt install --yes -- python3-venv
+#sudo apt purge ctags
+#sudo apt install universal-ctags
+
+# Update plugins / lsp stuff
+pip3 install -U pynvim
+pip3 install -U jedi-language-server
+pip3 install -U python-lsp-server
+sudo npm install -g neovim \
+    typescript \
+    typescript-language-server \
+    vscode-langservers-extracted \
+    bash-language-server \
+    intelephense prettier \
+    @prettier/plugin-php \
+    prettier-plugin-sh
+
+# Install Oh My Zsh
+printf "Installing Oh my zsh...\n"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Zsh plugins
+printf "Installing zsh plugins...\n"
+git clone https://github.com/Aloxaf/fzf-tab.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/softmoth/zsh-vim-mode.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vim-mode
+git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color
+git clone git://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump/install.py
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# Kitty theme
+printf "Configuring kitty\n"
+THEME=https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Monokai_Soda.conf
+wget "$THEME" -P ~/.config/kitty/kitty-themes/themes
+# Add include ./theme.conf to bottom of kitty.conf
+
+# Tmux plugin manager
+printf "Installing tmux plugin manager\n"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+neofetch
+cd ~ && echo "With great power comes great responsibility"
