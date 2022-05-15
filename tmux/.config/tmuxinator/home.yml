@@ -49,8 +49,8 @@ windows:
     - neofetch 
   - nvim:
     - nvim
-  - dotfiles:
-    - cd ~/.dotfiles
+  - stow-dotfiles:
+    - cd ~/stow-dotfiles
   - bpytop:
     - bpytop
   - journalctl:
