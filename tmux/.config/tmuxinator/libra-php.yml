@@ -1,0 +1,29 @@
+# /home/whleucka/.config/tmuxinator/libra-php.yml
+
+name: libra-php
+root: ~/Projects/libra-php
+
+windows:
+  - libra:
+      layout: 8ad2,174x44,0,0{106x44,0,0,4,67x44,107,0,7}
+      panes:
+        - development:
+            - cd framework
+            - nvim
+        - tests:
+            - cd framework
+            - ./libra -t
+  - celestial:
+      layout: d3e3,174x44,0,0[174x30,0,0,5,174x13,0,31{86x13,0,31,8,87x13,87,31,9}]
+      panes:
+        - development:
+            - cd celestial
+            - nvim
+        - server:
+            - cd celestial
+            - ./celestial -s
+        - npm:
+            - cd celestial
+            - nrw
+  - database:
+      - sudo mysql celestial

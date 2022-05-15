@@ -1,0 +1,96 @@
+#!/bin/bash
+#
+# Will Hleucka william.hleucka@gmail.com
+# Aliases
+# Arch Linux
+
+#expressvpn
+alias eup="expressvpn connect"
+alias edown="expressvpn disconnect"
+
+# docker
+alias dcup='sudo docker-compose -f ~/Docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+alias dcdown='sudo docker-compose -f ~/Docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+alias dcbuild='sudo docker-compose build'
+alias dcpull='sudo docker-compose -f ~/Docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
+alias dclogs='sudo docker-compose -f ~/Docker/docker-compose.yml logs -tf --tail="50" '  
+alias dtail='sudo docker logs -tf --tail="50" "$@"'
+
+# composer
+alias cu="composer update"
+alias cr="composer require"
+
+# tmux
+alias tmux="tmux -u"
+alias mux="tmuxinator"
+
+# text to speech
+alias say='echo "$1" | espeak -s 120 2>/dev/null'
+
+# npm
+alias naf="npm audit fix"
+alias npi="npm install"
+alias npu="npm update"
+alias nrw="npm run watch"
+alias nrb="npm run build"
+alias nrd="npm run dev"
+alias nrp="npm run prod"
+alias nrh="npm run hot"
+
+# prettier
+alias pw='prettier --write --ignore-unknown "{app,resources,src}/**/*"'
+
+# md files
+alias serve-md="grip -b "
+
+# tuir
+alias reddit='tuir --enable-media'
+
+# hacker news
+alias hackernews="hackernews_tui"
+
+# ssh
+#alias ssh="kitty +kitten ssh"
+
+# libra-php
+alias cs="./celestial -s"
+alias lt="./libra -t"
+
+# laravel
+alias pa="php artisan"
+alias pas="php artisan serve"
+alias pat="php artisan test"
+
+# git
+alias gl="glola"
+alias gs="git status"
+alias gitstore="git config credential.helper store"
+
+# yay
+#alias upg='yay -Syu'
+#alias upd='yay -Sy'
+#alias install='yay -S'
+#alias remove='yay -Rs'
+#alias uninstall='yay -R'
+#alias search='yay -Ss'
+alias upg='sudo apt update && sudo apt upgrade -y'
+alias upd='sudo apt update'
+alias install='sudo apt install'
+alias remove='sudo apt remove'
+alias uninstall='remove'
+alias search='sudo apt search'
+
+# nvim
+alias v='nvim'
+
+# transf files / folders
+alias tfile='rsync -zvhP'
+alias tdir='rsync -rzvhP' 
+
+# quick edit
+alias neorc="cd $HOME/.dotfiles/nvim/.config/nvim && v"
+
+# list directories
+alias l='ls -l'
+alias la='ls -a'
+alias ll='ls -la'
