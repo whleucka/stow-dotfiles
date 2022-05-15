@@ -1,12 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Will Hleucka william.hleucka@gmail.com
-# Aliases
-# Arch Linux
+#
 
 #expressvpn
-alias eup="expressvpn connect"
-alias edown="expressvpn disconnect"
+if command -v expressvpn > /dev/null; then
+    alias vpn-up="expressvpn connect"
+    alias vpn-down="expressvpn disconnect"
+fi
 
 # docker
 alias dcup='sudo docker-compose -f ~/Docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
@@ -38,16 +39,24 @@ alias nrp="npm run prod"
 alias nrh="npm run hot"
 
 # prettier
-alias pw='prettier --write --ignore-unknown "{app,resources,src}/**/*"'
+if command -v prettier > /dev/null; then
+    alias pw='prettier --write --ignore-unknown "{app,resources,src}/**/*"'
+fi
 
 # md files
-alias serve-md="grip -b "
+if command -v grip > /dev/null; then
+    alias serve-md="grip -b "
+fi
 
 # tuir
-alias reddit='tuir --enable-media'
+if command -v tuir > /dev/null; then
+    alias reddit='tuir --enable-media'
+fi
 
 # hacker news
-alias hackernews="hackernews_tui"
+if command -v hackernews_tui > /dev/null; then
+    alias hackernews="hackernews_tui"
+fi
 
 # ssh
 #alias ssh="kitty +kitten ssh"
@@ -84,13 +93,26 @@ alias search='sudo apt search'
 alias v='nvim'
 
 # transf files / folders
-alias tfile='rsync -zvhP'
-alias tdir='rsync -rzvhP' 
+alias rs='rsync -rzvhP' 
 
 # quick edit
-alias neorc="cd $HOME/.dotfiles/nvim/.config/nvim && v"
+alias nvim-config="cd $HOME/.config/nvim && v"
 
 # list directories
-alias l='ls -l'
-alias la='ls -a'
-alias ll='ls -la'
+if command -v exa > /dev/null; then
+    alias l='ls -l'
+    alias la='ls -a'
+    alias ll='ls -la'
+else
+    alias l='exa -l'
+    alias la='exa -al'
+    alias ll='exa -alh'
+    alias tree='exa --tree'
+fi
+
+# bat cat
+if command -v bat > /dev/null; then
+    alias cat="bat"
+elif comman -v batcat > /dev/null; then
+    alias cat="batcat"
+fi
