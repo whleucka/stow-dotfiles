@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+fg() { 
+    if [[ $# -eq 1 && $1 = - ]]; then
+        builtin fg %-;
+    elif [[ "$*" =~ ^[0-9]+$ ]]; then
+        builtin fg %"$*";
+    else
+        builtin fg "$@";
+    fi
+}
