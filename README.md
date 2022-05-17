@@ -6,10 +6,10 @@ Use <a href='https://www.gnu.org/software/stow/' title='Stow - GNU Project'>stow
 ### Aliases
 Requires ~/.aliasrc
 
-`stow-init` configure all symlinks
-`stow-dotfiles` change directory to stow-dotfiles
-`stow-update` update stow-dotfiles repository
-`stow-remove` remove all symlinks
+- `stow-init` configure all symlinks
+- `stow-dotfiles` change directory to stow-dotfiles
+- `stow-update` update stow-dotfiles repository
+- `stow-remove` remove all symlinks
 
 ### Install script
 Installs all programs and plugins
