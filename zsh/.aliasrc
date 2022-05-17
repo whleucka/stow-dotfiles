@@ -3,7 +3,10 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
-#expressvpn
+# quick update dotfiles
+alias stow-update="cd ~/stow-dotfiles && g pull && cd -"
+
+# expressvpn
 if command -v expressvpn > /dev/null; then
     alias vpn-up="expressvpn connect"
     alias vpn-down="expressvpn disconnect"
