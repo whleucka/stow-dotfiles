@@ -10,7 +10,7 @@ else
 fi
 
 if type rg &> /dev/null; then
-    export FZF_DEFAULT_OPTS="--height 50% --ansi --border --bind up:preview-up,down:preview-down"
+    export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi

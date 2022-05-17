@@ -105,5 +105,5 @@ vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'kj', '<Esc>')
 
 -- BOL/EOL 
-vim.keymap.set('n', 'H', '0')
+vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'L', '$')
