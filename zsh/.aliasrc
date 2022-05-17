@@ -4,9 +4,11 @@
 #
 
 # quick dotfiles
-alias stow-init="cd ~/stow-dotfiles && find . -maxdepth 1 -not -path './.git' -not -path '.' -type d -printf '%f\n' | xargs -n1 stow && cd -"
-alias stow-update="cd ~/stow-dotfiles && g pull && cd -"
-alias stow-dotfiles="cd ~/stow-dotfiles"
+if command -v stow > /dev/null; then
+    alias stow-init="cd ~/stow-dotfiles && find . -maxdepth 1 -not -path './.git' -not -path '.' -type d -printf '%f\n' | xargs -n1 stow && cd -"
+    alias stow-update="cd ~/stow-dotfiles && g pull && cd -"
+    alias stow-dotfiles="cd ~/stow-dotfiles"
+fi
 
 # expressvpn
 if command -v expressvpn > /dev/null; then
