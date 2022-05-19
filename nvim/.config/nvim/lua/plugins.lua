@@ -69,11 +69,11 @@ use 'tpope/vim-repeat'
 use 'tpope/vim-sensible'
 use 'tpope/vim-surround'
 -- autopairs
-use {'windwp/nvim-autopairs',
-    config = function()
-        require('nvim-autopairs').setup{}
-    end
-}
+--use {'windwp/nvim-autopairs',
+--    config = function()
+--        require('nvim-autopairs').setup{}
+--    end
+--}
 -- better tab management
 use {
   'romgrk/barbar.nvim',
