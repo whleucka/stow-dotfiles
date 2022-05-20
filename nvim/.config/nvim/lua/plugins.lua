@@ -68,12 +68,6 @@ use 'tpope/vim-fugitive'
 use 'tpope/vim-repeat'
 use 'tpope/vim-sensible'
 use 'tpope/vim-surround'
--- autopairs
---use {'windwp/nvim-autopairs',
---    config = function()
---        require('nvim-autopairs').setup{}
---    end
---}
 -- better tab management
 use {
   'romgrk/barbar.nvim',
@@ -92,7 +86,7 @@ use 'rayburgemeestre/phpfolding.vim'
 use({
     "hrsh7th/nvim-cmp",
     requires = {
-        "L3MON4D3/LuaSnip",
+        "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-emoji",
@@ -100,11 +94,9 @@ use({
         "hrsh7th/cmp-nvim-lsp-signature-help",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-vsnip",
-        "hrsh7th/nvim-cmp",
         "hrsh7th/vim-vsnip",
         "hrsh7th/vim-vsnip-integ",
         "onsails/lspkind-nvim",
-        "saadparwaiz1/cmp_luasnip",
     },
     config = function()
         require("config.cmp")

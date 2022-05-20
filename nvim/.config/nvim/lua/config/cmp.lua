@@ -1,12 +1,10 @@
 local cmp = require("cmp")         -- The complete engine
-local luasnip = require("luasnip") -- The snippet engine
 local lspkind = require("lspkind") -- Pretty icons on the automplete list
 
 cmp.setup({
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
-            luasnip.lsp_expand(args.body)
         end,
     },
     window = {
@@ -30,8 +28,6 @@ cmp.setup({
         ["<Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
             else
                 fallback()
             end
@@ -39,8 +35,6 @@ cmp.setup({
         ["<S-Tab>"] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
             else
                 fallback()
             end
@@ -49,8 +43,6 @@ cmp.setup({
     -- Where to look for auto-complete items.
     sources = {
         { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "vsnip" },
         { name = "path" },
         { name = "cmdline" },
         { name = "buffer" },
@@ -67,10 +59,7 @@ cmp.setup({
                 path = "[Path]",
                 cmdline = "[Cmd]",
                 nvim_lsp = "[Lsp]",
-                luasnip = "[LuaSnip]",
-                vsnip = "[VSnip]",
                 nvim_lua = "[Lua]",
-                latex_symbols = "[Lat]",
                 emoji = "[Emoji]",
             },
         }),
