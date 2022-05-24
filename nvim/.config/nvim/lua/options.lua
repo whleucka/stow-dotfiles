@@ -7,7 +7,7 @@ local opt = vim.opt  -- to set options
 -- General
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.guicursor=''
---cmd 'set mouse+=a'
+cmd 'set mouse+=a'
 opt.hidden = true
 opt.errorbells = false
 
