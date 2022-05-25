@@ -25,12 +25,21 @@ pacman -S neofetch \
     kitty \
     python3 \
     fzf \
-    wireguard-tools
+    wireguard-tools \
+    evolution \
+    nvidia-settings \
+    fd \
+    gnome-bluetooth \
+    noto-fonts
+
+pacman -R epiphany
 
 # Install yay
+cd ~
 git clone https://aur.archlinux.org/yay.github
 cd yay
 makepkg -si
+cd -
 
 # Install fzf
 printf "Installing FZF...\n"
@@ -77,9 +86,11 @@ printf "Installing tmux plugin manager\n"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Gnome extensions
+cd ~
 git clone https://aur.archlinux.org/chrome-gnome-shell.git
 cd chrome-gnome-shell
 makepkg -si
+cd -
 
 
 neofetch
