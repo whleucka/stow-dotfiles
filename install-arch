@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+printf "Installing system packages...\n"
+
+# Create directories
+mkdir -p ~/.local/bin
+mkdir -p ~/.tmp
+
+pacman -S neofetch \
+    xclip \
+    exa \
+    tmux \
+    stow \
+    curl \
+    gcc \
+    zsh \
+    npm \
+    nodejs \
+    git \
+    ripgrep \
+    python-pip \
+    bat \
+    prettier \
+    php \
+    gopls \
+    kitty \
+    python3 \
+    fzf \
+    wireguard-tools
+
+# Install yay
+git clone https://aur.archlinux.org/yay.github
+cd yay
+makepkg -si
+
+# Install fzf
+printf "Installing FZF...\n"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Vim Packer
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# Update plugins / lsp stuff
+pip3 install -U pynvim
+pip3 install -U jedi-language-server
+pip3 install -U python-lsp-server
+sudo npm install -g neovim \
+    typescript \
+    typescript-language-server \
+    vscode-langservers-extracted \
+    bash-language-server \
+    intelephense @prettier/plugin-php \
+    prettier-plugin-sh
+
+# Install Oh My Zsh
+printf "Installing Oh my zsh...\n"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Zsh plugins
+printf "Installing zsh plugins...\n"
+git clone https://github.com/Aloxaf/fzf-tab.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color
+git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# Kitty theme
+printf "Configuring kitty\n"
+THEME=https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Monokai_Soda.conf
+wget "$THEME" -P ~/.config/kitty/kitty-themes/themes
+# Add include ./theme.conf to bottom of kitty.conf
+
+# Tmux plugin manager
+printf "Installing tmux plugin manager\n"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Gnome extensions
+git clone https://aur.archlinux.org/chrome-gnome-shell.git
+cd chrome-gnome-shell
+makepkg -si
+
+
+neofetch
+cd ~ && printf "With great power comes great responsibility\n"

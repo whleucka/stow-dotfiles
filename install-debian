@@ -97,7 +97,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/softmoth/zsh-vim-mode.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vim-mode
 git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color
-git clone git://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump/install.py
+git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # Kitty theme
@@ -111,4 +111,4 @@ printf "Installing tmux plugin manager\n"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 neofetch
-cd ~ && echo "With great power comes great responsibility"
+cd ~ && printf "With great power comes great responsibility\n"
