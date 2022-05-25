@@ -1,0 +1,11 @@
+# /home/whleucka/.config/tmuxinator/home.yml
+
+name: home
+root: ~
+
+windows:
+  - home:
+      layout: main-vertical
+      panes:
+        - home:
+            - neofetch
