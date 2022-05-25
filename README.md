@@ -11,3 +11,5 @@ Requires ~/.aliasrc
 - `stow-dotfiles` change directory to stow-dotfiles
 - `stow-update` update stow-dotfiles repository
 - `stow-remove` remove all symlinks
+
+Copyright (c) 2022 William Hleucka. All Rights Reserved.
