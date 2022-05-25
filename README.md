@@ -1,5 +1,5 @@
 # Dotfiles
-My personal dotfiles for neovim, tmux, zsh, and kitty.
+My personal dotfiles for neovim, tmux, zsh, kitty, and more.
 
 ### Stow
 Use <a href='https://www.gnu.org/software/stow/' title='Stow - GNU Project'>stow</a> to create/manage the symlinks.
