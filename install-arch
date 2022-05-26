@@ -30,7 +30,8 @@ pacman -S neofetch \
     nvidia-settings \
     fd \
     gnome-bluetooth \
-    noto-fonts
+    noto-fonts \
+    composer
 
 pacman -R epiphany
 
