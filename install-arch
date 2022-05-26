@@ -51,9 +51,9 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Update plugins / lsp stuff
-pip3 install -U pynvim
-pip3 install -U jedi-language-server
-pip3 install -U python-lsp-server
+pip install -U pynvim
+pip install -U jedi-language-server
+pip install -U python-lsp-server
 sudo npm install -g neovim \
     typescript \
     typescript-language-server \
