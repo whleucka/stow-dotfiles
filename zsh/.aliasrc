@@ -73,7 +73,7 @@ if command -v hackernews_tui > /dev/null; then
 fi
 
 # ssh
-#alias ssh="kitty +kitten ssh"
+alias s="kitty +kitten ssh"
 
 # libra-php
 alias cs="./celestial -s"
