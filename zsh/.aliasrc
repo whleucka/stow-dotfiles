@@ -3,7 +3,11 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
-alias cls="clear; tmux clear-history"
+if command -v tmux > /dev/null; then
+    alias cls="clear; tmux clear-history"
+else
+    alias cls="clear;"
+fi
 
 # quick dotfiles
 if command -v stow > /dev/null; then
