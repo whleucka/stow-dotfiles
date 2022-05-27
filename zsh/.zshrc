@@ -24,6 +24,7 @@ if type rg &> /dev/null; then
     #FZF_DEFAULT_OPTS+=" --border"
     export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_TMUX=1
 fi
 
 # Caps lock is not needed.. 
