@@ -10,8 +10,18 @@ else
 fi
 
 if type rg &> /dev/null; then
-    export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
+    #export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
+    #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
+    #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_DEFAULT_OPTS="-m"
+    FZF_DEFAULT_OPTS+=" --color='dark'"
+    FZF_DEFAULT_OPTS+=" --bind 'ctrl-/:toggle-preview'"
+    FZF_DEFAULT_OPTS+=" --preview 'bat --style=numbers --color=always --line-range :500 {}' --height 80%"
+    FZF_DEFAULT_OPTS+=" --preview-window=up:40%:hidden"
+    FZF_DEFAULT_OPTS+=" --height=80%"
+    FZF_DEFAULT_OPTS+=" --layout=reverse"
+    #FZF_DEFAULT_OPTS+=" --border"
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
