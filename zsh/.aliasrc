@@ -4,9 +4,13 @@
 #
 
 if command -v tmux > /dev/null; then
-    alias cls="clear; tmux clear-history"
+    if tmux info &> /dev/null; then
+        alias cls="clear; tmux clear-history"
+    else
+        alias cls="clear"
+    fi
 else
-    alias cls="clear;"
+    alias cls="clear"
 fi
 
 # quick dotfiles
