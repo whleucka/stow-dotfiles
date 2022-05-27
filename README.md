@@ -5,7 +5,7 @@ My personal dotfiles for neovim, tmux, zsh, kitty, and more.
 Use <a href='https://www.gnu.org/software/stow/' title='Stow - GNU Project'>stow</a> to create/manage the symlinks.
 
 ### Aliases
-Requires ~/.aliasrc
+Requires `stow zsh` for `~/.aliasrc` symlink
 
 - `stow-init` configure all symlinks
 - `stow-dotfiles` change directory to stow-dotfiles
