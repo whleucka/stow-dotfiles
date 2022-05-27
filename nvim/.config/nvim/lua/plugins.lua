@@ -80,6 +80,8 @@ use {
         require('leap').set_default_keymaps()
     end
 }
+-- vim and tmux, together in harmony
+use 'christoomey/vim-tmux-navigator'
 -- folds
 use 'rayburgemeestre/phpfolding.vim'
 -- nvim cmp
