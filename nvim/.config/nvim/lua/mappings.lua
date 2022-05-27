@@ -7,7 +7,6 @@ vim.keymap.set('n', '<C-c>', ':qall!<CR>')
 
 -- Quick save
 vim.keymap.set('n', '<leader>w', ':update!<CR>')
-vim.keymap.set('n', '<C-s>', ':update!<CR>')
 
 -- Clipboard
 vim.keymap.set('n', '<leader>p', '"*p')
@@ -80,17 +79,17 @@ vim.keymap.set('n', '<leader>7', ':BufferGoto 7<CR>')
 vim.keymap.set('n', '<leader>8', ':BufferGoto 8<CR>')
 vim.keymap.set('n', '<leader>9', ':BufferGoto 9<CR>')
 vim.keymap.set('n', '<leader>0', ':BufferLast<CR>')
-vim.keymap.set('n', '<C-h>', ':BufferPrevious<CR>')
-vim.keymap.set('n', '<C-l>', ':BufferNext<CR>')
+vim.keymap.set('n', '<C-j>', ':BufferPrevious<CR>')
+vim.keymap.set('n', '<C-k>', ':BufferNext<CR>')
 vim.keymap.set('n', '<C-Left>', ':BufferMovePrevious<CR>')
 vim.keymap.set('n', '<C-Right>', ':BufferMoveNext<CR>')
 vim.keymap.set('n', '<leader>x', ':BufferClose<CR>')
 vim.keymap.set('n', '<leader>xx', ':BufferCloseAllButCurrent<CR>')
 -- Splits
-vim.keymap.set('n', '<leader>h', '<C-W><C-H>')
-vim.keymap.set('n', '<leader>j', '<C-W><C-J>')
-vim.keymap.set('n', '<leader>k', '<C-W><C-K>')
-vim.keymap.set('n', '<leader>l', '<C-W><C-L>')
+--vim.keymap.set('n', '<leader>h', '<C-W><C-H>')
+--vim.keymap.set('n', '<leader>j', '<C-W><C-J>')
+--vim.keymap.set('n', '<leader>k', '<C-W><C-K>')
+--vim.keymap.set('n', '<leader>l', '<C-W><C-L>')
 -- Resize
 vim.keymap.set("n", "<S-Down>", ":resize +2<CR>")
 vim.keymap.set("n", "<S-Up>", ":resize -2<CR>")
