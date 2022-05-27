@@ -88,6 +88,20 @@ local handlers = {
 local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+lspconfig.jsonls.setup {
+    on_attach = on_attach,
+    flags = flags,
+    settings = settings,
+    handlers = handlers,
+    capabilities = capabilities,
+}
+lspconfig.bashls.setup {
+    on_attach = on_attach,
+    flags = flags,
+    settings = settings,
+    handlers = handlers,
+    capabilities = capabilities,
+}
 lspconfig.intelephense.setup {
     on_attach = on_attach,
     flags = flags,
