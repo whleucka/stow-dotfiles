@@ -17,11 +17,11 @@ if type rg &> /dev/null; then
     FZF_DEFAULT_OPTS+=" --color='dark'"
     FZF_DEFAULT_OPTS+=" --bind 'ctrl-/:toggle-preview'"
     FZF_DEFAULT_OPTS+=" --preview 'bat --style=numbers --color=always --line-range :500 {}' --height 80%"
-    FZF_DEFAULT_OPTS+=" --preview-window=right:50%:hidden"
+    FZF_DEFAULT_OPTS+=" --preview-window=right:60%:hidden"
     FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
     FZF_DEFAULT_OPTS+=" --height=80%"
     FZF_DEFAULT_OPTS+=" --layout=reverse"
-    FZF_DEFAULT_OPTS+=" --border"
+    #FZF_DEFAULT_OPTS+=" --border"
     export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
