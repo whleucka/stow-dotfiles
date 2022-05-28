@@ -5,42 +5,14 @@ printf "Installing system packages...\n"
 mkdir -p ~/.local/bin
 mkdir -p ~/.tmp
 
-pacman -S neofetch \
-    xclip \
-    exa \
-    tmux \
-    stow \
-    curl \
-    gcc \
-    zsh \
-    npm \
-    nodejs \
-    git \
-    ripgrep \
-    python-pip \
-    bat \
-    prettier \
-    php \
-    gopls \
-    kitty \
-    python3 \
-    fzf \
-    wireguard-tools \
-    evolution \
-    nvidia-settings \
-    fd \
-    gnome-bluetooth \
-    noto-fonts \
-    composer
-
-pacman -R epiphany
+sudo pacman -S neofetch xclip exa tmux stow curl gcc zsh npm nodejs git ripgrep python-pip bat prettier php gopls kitty python3 fzf wireguard-tools evolution nvidia-settings fd gnome-bluetooth noto-fonts composer
+sudo pacman -R epiphany
 
 # Install yay
-cd ~
-git clone https://aur.archlinux.org/yay.github
-cd yay
-makepkg -si
-cd -
+printf "Installing yay...\n"
+git clone https://aur.archlinux.org/yay.git ~/yay
+cd ~/yay && makepkg -si
+cd ~/stow-dotfiles
 
 # Install fzf
 printf "Installing FZF...\n"
@@ -48,10 +20,12 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 # Vim Packer
+printf "Vim Packer...\n"
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Update plugins / lsp stuff
+printf "Configure deps...\n"
 pip install -U pynvim
 pip install -U jedi-language-server
 pip install -U python-lsp-server
@@ -76,23 +50,34 @@ git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my
 git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# Kitty theme
-printf "Configuring kitty\n"
-THEME=https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Monokai_Soda.conf
-wget "$THEME" -P ~/.config/kitty/kitty-themes/themes
-# Add include ./theme.conf to bottom of kitty.conf
-
 # Tmux plugin manager
 printf "Installing tmux plugin manager\n"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Gnome extensions
-cd ~
-git clone https://aur.archlinux.org/chrome-gnome-shell.git
-cd chrome-gnome-shell
-makepkg -si
-cd -
+printf "Installing gnome-extensions...\n"
+git clone https://aur.archlinux.org/chrome-gnome-shell.git ~/chrome-gnome-shell
+cd ~/chrome-gnome-shell && makepkg -si
+cd ~/stow-dotfiles
 
+# Install google chrome
+printf "Installing Google Chrome...\n"
+yay -S google-chrome
+
+# Installing neovim
+printf "Installing Neovim...\n"
+yay -S neovim
+
+# Running stow
+printf "Updating dotfiles...\n"
+cd ~/stow-dotfiles
+stow bat
+stow kitty
+stow nvim
+stow tmux
+rm ~/.zshrc
+stow zsh
+stow wallpapers
 
 neofetch
 cd ~ && printf "With great power comes great responsibility\n"
