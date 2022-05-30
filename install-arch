@@ -5,7 +5,10 @@ printf "Installing system packages...\n"
 mkdir -p ~/.local/bin
 mkdir -p ~/.tmp
 
-sudo pacman -S neofetch xclip exa tmux stow curl gcc zsh npm nodejs git ripgrep python-pip bat prettier php gopls kitty python3 fzf wireguard-tools evolution nvidia-settings fd gnome-bluetooth noto-fonts composer
+sudo pacman -S neofetch xclip exa tmux stow curl gcc zsh npm nodejs git \
+    ripgrep python-pip bat prettier php gopls kitty python3 fzf \
+    wireguard-tools evolution nvidia-settings fd gnome-bluetooth \
+    noto-fonts composer
 sudo pacman -R epiphany
 
 # Install yay
@@ -25,10 +28,9 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Update plugins / lsp stuff
-printf "Configure deps...\n"
-pip install -U pynvim
-pip install -U jedi-language-server
-pip install -U python-lsp-server
+sudo pip install -U pynvim
+sudo pip install -U jedi-language-server
+sudo pip install -U python-lsp-server
 sudo npm install -g neovim \
     typescript \
     typescript-language-server \
@@ -78,6 +80,13 @@ stow tmux
 rm ~/.zshrc
 stow zsh
 stow wallpapers
+
+# Install tuir
+sudo pip install tuir
+
+# Install rust & hackernews
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install hackernews_tui
 
 neofetch
 cd ~ && printf "With great power comes great responsibility\n"
