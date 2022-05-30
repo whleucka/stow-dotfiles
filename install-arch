@@ -87,6 +87,7 @@ sudo pip install tuir
 # Install rust & hackernews
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install hackernews_tui
+sudo npm -g i article_md
 
 neofetch
 cd ~ && printf "With great power comes great responsibility\n"
