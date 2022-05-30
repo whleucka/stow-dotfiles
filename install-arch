@@ -83,6 +83,7 @@ stow wallpapers
 
 # Install tuir
 sudo pip install tuir
+yay -S w3m feh
 
 # Install rust & hackernews
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
