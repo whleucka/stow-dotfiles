@@ -141,7 +141,7 @@ bindkey '^[OB'  down-line-or-beginning-search
 # Preferred editor for local and remote sessions
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export BROWSER="google-chrome"
+export BROWSER="google-chrome-stable"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

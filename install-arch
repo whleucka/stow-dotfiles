@@ -81,13 +81,12 @@ rm ~/.zshrc
 stow zsh
 stow wallpapers
 
-# Install tuir
-sudo pip install tuir
+# Install tuir (reddit tui)
+yay -S tuir
 yay -S w3m feh
 
-# Install rust & hackernews
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cargo install hackernews_tui
+# Install hackernews_tui
+yay -S hackernews_tui
 sudo npm -g i article_md
 
 neofetch
