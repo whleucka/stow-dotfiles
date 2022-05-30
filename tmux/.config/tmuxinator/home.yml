@@ -9,3 +9,12 @@ windows:
       panes:
         - home:
             - neofetch
+  - hackernews/reddit:
+      layout: even-horizontal
+      panes:
+        - hackernews
+        - reddit
+  - dotfiles:
+      - cd ~/stow-dotfiles
+  - system:
+      - bpytop
