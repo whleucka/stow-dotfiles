@@ -15,7 +15,7 @@ if type rg &> /dev/null; then
     #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_DEFAULT_OPTS="-m"
     FZF_DEFAULT_OPTS+=" --color='dark'"
-    FZF_DEFAULT_OPTS+=" --bind 'ctrl-/:toggle-preview'"
+    #FZF_DEFAULT_OPTS+=" --bind 'ctrl-/:toggle-preview'"
     FZF_DEFAULT_OPTS+=" --preview 'bat --style=numbers --color=always --line-range :500 {}' --height 80%"
     FZF_DEFAULT_OPTS+=" --preview-window=right:60%:hidden"
     FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
