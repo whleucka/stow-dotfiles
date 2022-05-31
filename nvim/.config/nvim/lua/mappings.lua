@@ -19,10 +19,10 @@ vim.keymap.set('v', '<leader><space>', 'zf')
 
 -- Telescope
 vim.keymap.set('n', '<C-p>', ':Telescope git_files<CR>')
-vim.keymap.set('n', '<C-\\>', ':Telescope oldfiles<CR>')
-vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>')
-vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>')
-vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>')
+vim.keymap.set('n', '<Enter><Enter>', ':Telescope oldfiles<CR>')
+vim.keymap.set('n', '<C-f>', ':Telescope find_files<CR>')
+vim.keymap.set('n', '<C-b>', ':Telescope buffers<CR>')
+vim.keymap.set('n', '<C-g>', ':Telescope live_grep<CR>')
 
 -- FuGITive
 vim.keymap.set('n', '<leader>gs', ':G<CR>')
