@@ -5,10 +5,10 @@ root: ~
 
 windows:
   - home:
-      layout: main-vertical
+      layout: even-vertical
       panes:
-        - home:
-            - neofetch
+        - neofetch
+        - bpytop
   - hackernews/reddit:
       layout: even-horizontal
       panes:
@@ -16,5 +16,3 @@ windows:
         - reddit
   - dotfiles:
       - cd ~/stow-dotfiles
-  - system:
-      - bpytop
