@@ -8,6 +8,10 @@ vim.keymap.set('n', '<C-c>', ':qall!<CR>')
 -- Quick save
 vim.keymap.set('n', '<leader>w', ':update!<CR>')
 
+
+-- Tests
+vim.keymap.set('n', '<leader>t', ':make --bootstrap vendor/autoload.php --testdox tests<CR>')
+
 -- Clipboard
 vim.keymap.set('n', '<leader>p', '"*p')
 vim.keymap.set('n', '<leader>y', '"*y')
