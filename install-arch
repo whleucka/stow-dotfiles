@@ -92,5 +92,9 @@ yay -S w3m feh
 yay -S hackernews_tui
 sudo npm -g i article_md
 
+# Install rusty-rain
+yay -S adobe-source-han-sans-jp-fonts
+cargo install rusty-rain
+
 neofetch
 cd ~ && printf "With great power comes great responsibility\n"
