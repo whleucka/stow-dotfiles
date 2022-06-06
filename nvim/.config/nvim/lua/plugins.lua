@@ -63,6 +63,8 @@ use({
         require("config.lsp")
     end,
 })
+-- PHP unit compiler
+use 'afternoon/vim-phpunit'
 -- tpope the god
 use 'tpope/vim-fugitive'
 use 'tpope/vim-repeat'
