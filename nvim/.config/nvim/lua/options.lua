@@ -42,7 +42,7 @@ opt.backup = false
 opt.undodir= fn.stdpath('config') .. '/undodir'
 
 -- CMD / Sign column
-opt.cmdheight = 2
+opt.cmdheight = 1
 opt.signcolumn = 'yes:1'
 opt.updatetime = 750
 opt.shortmess:append("c")
@@ -86,6 +86,7 @@ g.gruvbox_italicize_comments = 1
 --g.gruvbox_italicize_strings = 1
 cmd 'colorscheme gruvbox'
 cmd 'hi Normal guibg=NONE ctermbg=NONE guisp=#ff3030'
+cmd 'hi VertSplit guibg=NONE guifg=#141414'
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd([[
