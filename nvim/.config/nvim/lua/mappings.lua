@@ -8,9 +8,28 @@ vim.keymap.set('n', '<C-c>', ':qall!<CR>')
 -- Quick save
 vim.keymap.set('n', '<leader>w', ':update!<CR>')
 
+-- Trouble
+vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>Trouble<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "<leader>tw", "<cmd>Trouble workspace_diagnostics<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "<leader>td", "<cmd>Trouble document_diagnostics<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>Trouble loclist<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "<leader>tq", "<cmd>Trouble quickfix<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>",
+  {silent = true, noremap = true}
+)
 
 -- Tests
-vim.keymap.set('n', '<leader>t', ':make --bootstrap vendor/autoload.php --testdox tests<CR>')
+vim.keymap.set('n', '<C-\\>', ':make --bootstrap vendor/autoload.php --testdox tests<CR>')
 
 -- Clipboard
 vim.keymap.set('n', '<leader>p', '"*p')
