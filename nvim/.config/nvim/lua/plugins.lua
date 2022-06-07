@@ -63,6 +63,14 @@ use({
         require("config.lsp")
     end,
 })
+-- Trouble diagnostics
+use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+      require("config.trouble")
+  end
+}
 -- PHP unit compiler
 use 'afternoon/vim-phpunit'
 -- tpope the god
