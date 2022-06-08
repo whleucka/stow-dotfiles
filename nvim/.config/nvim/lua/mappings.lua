@@ -8,6 +8,9 @@ vim.keymap.set('n', '<C-c>', ':qall!<CR>')
 -- Quick save
 vim.keymap.set('n', '<leader>w', ':update!<CR>')
 
+-- Cheat.sh
+vim.keymap.set('n', '<C-y>', ':CheatSH<CR>A')
+
 -- Trouble
 vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>Trouble<cr>",
   {silent = true, noremap = true}
@@ -105,8 +108,8 @@ vim.keymap.set('n', '<leader>7', ':BufferGoto 7<CR>')
 vim.keymap.set('n', '<leader>8', ':BufferGoto 8<CR>')
 vim.keymap.set('n', '<leader>9', ':BufferGoto 9<CR>')
 vim.keymap.set('n', '<leader>0', ':BufferLast<CR>')
-vim.keymap.set('n', '<C-j>', ':BufferPrevious<CR>')
-vim.keymap.set('n', '<C-k>', ':BufferNext<CR>')
+vim.keymap.set('n', '<C-PageDown>', ':BufferPrevious<CR>')
+vim.keymap.set('n', '<C-PageUp>', ':BufferNext<CR>')
 vim.keymap.set('n', '<C-Left>', ':BufferMovePrevious<CR>')
 vim.keymap.set('n', '<C-Right>', ':BufferMoveNext<CR>')
 vim.keymap.set('n', '<leader>x', ':BufferClose<CR>')
