@@ -29,7 +29,7 @@ vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>",
 )
 
 -- Tests
-vim.keymap.set('n', '<C-\\>', ':make --bootstrap vendor/autoload.php --testdox tests<CR>')
+vim.keymap.set('n', '<C-t>', ':make --bootstrap vendor/autoload.php --testdox tests<CR>')
 
 -- Clipboard
 vim.keymap.set('n', '<leader>p', '"*p')
