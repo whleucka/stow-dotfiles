@@ -64,6 +64,7 @@ use({
     end,
 })
 -- Trouble diagnostics
+use 'whleucka/cheat-sheet'
 use {
   "folke/trouble.nvim",
   requires = "kyazdani42/nvim-web-devicons",
