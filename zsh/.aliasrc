@@ -115,15 +115,13 @@ alias uninstall='yay -R'
 # nvim
 if command -v nvim > /dev/null; then
     alias v='nvim'
+    alias update-nvim="cd ~/.config/nvim/lua/user && git pull && nvim +PackerSync +qall && cd -"
 fi
 
 # transf files / folders
 if command -v rsync > /dev/null; then
     alias rs='rsync -rzvhP' 
 fi
-
-# quick edit
-alias nvim-config="cd $HOME/.config/nvim && v"
 
 # list directories
 if command -v exa > /dev/null; then
