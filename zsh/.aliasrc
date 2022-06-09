@@ -115,6 +115,7 @@ alias uninstall='yay -R'
 # nvim
 if command -v nvim > /dev/null; then
     alias v='nvim'
+    alias setup-nvim="git clone https://github.com/whleucka/astronvim_config.git ~/.config/nvim/lua/user"
     alias update-nvim="cd ~/.config/nvim/lua/user && git pull && nvim +PackerSync +qall && cd -"
 fi
 
