@@ -29,14 +29,9 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 # Update plugins / lsp stuff
 sudo pip install -U pynvim
-sudo pip install -U jedi-language-server
-sudo pip install -U python-lsp-server
 sudo npm install -g neovim \
     typescript \
-    typescript-language-server \
-    vscode-langservers-extracted \
-    bash-language-server \
-    intelephense @prettier/plugin-php \
+    @prettier/plugin-php \
     prettier-plugin-sh
 
 # Install Oh My Zsh
@@ -80,6 +75,10 @@ stow tmux
 rm ~/.zshrc
 stow zsh
 stow wallpapers
+
+# Install nvim plugins
+nvim +PackerSync
+update-nvim
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
