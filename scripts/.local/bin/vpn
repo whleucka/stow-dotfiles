@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+if [ $1 = "up" ]; then
+  echo "Connecting..."
+  expressvpn connect
+elif [ $1 = "down" ]; then
+  echo "Disconnecting..."
+  expressvpn disconnect
+else
+  echo "Eh?"
+fi
