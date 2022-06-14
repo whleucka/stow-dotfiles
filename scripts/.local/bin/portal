@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ $1 = 'up' ]; then
+  wg-quick up Will_P43s
+else
+  wg-quick down Will_P43s
+fi;

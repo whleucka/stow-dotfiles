@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pip install -U `pip list --outdated | awk 'NR>2 {print $1}'`
