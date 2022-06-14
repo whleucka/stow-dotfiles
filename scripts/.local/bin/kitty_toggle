@@ -4,7 +4,7 @@ TOGGLE=$HOME/.kitty_toggle
 
 if [ ! -e $TOGGLE ]; then
     touch $TOGGLE
-    kitty tmuxinator start home
+    kitty --start-as=fullscreen tmuxinator start home
 else
     rm $TOGGLE
     killall kitty
