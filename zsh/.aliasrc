@@ -115,8 +115,8 @@ alias uninstall='yay -R'
 # nvim
 if command -v nvim > /dev/null; then
     alias v='nvim'
-    alias setup-nvim="git clone https://github.com/whleucka/astronvim_config.git ~/.config/nvim/lua/user"
-    alias update-nvim="cd ~/.config/nvim/lua/user && git pull && nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && cd -"
+    alias nvim-setup="git clone https://github.com/whleucka/astronvim_config.git ~/.config/nvim/lua/user"
+    alias nvim-update="cd ~/.config/nvim/lua/user && git pull && nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && cd -"
 fi
 
 # transf files / folders
