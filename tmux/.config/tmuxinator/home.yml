@@ -8,7 +8,6 @@ windows:
       layout: even-vertical
       panes:
         - neofetch
-        - bpytop
   - hackernews/reddit:
       layout: even-horizontal
       panes:
