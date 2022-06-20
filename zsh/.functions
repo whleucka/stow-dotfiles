@@ -10,5 +10,9 @@ fg() {
 }
 
 batdiff() {
-    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff;
+}
+
+dy() {
+    $(which dig) +noall +answer +additional "$1" @dns.toys; 
 }
