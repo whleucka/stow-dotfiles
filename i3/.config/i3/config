@@ -186,6 +186,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3blocks
         mode hide
+        hidden_state hide
         position top
         output primary
         tray_output none
