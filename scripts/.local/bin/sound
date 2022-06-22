@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+LIST=`pactl list sinks | grep node.name | awk '{ print $3 }' | sed 's/"//g'`
+SELECTED=`printf "$LIST" | fzf-tmux --header "Select an output source..."`
+pactl set-default-sink "$SELECTED"
+printf "Done!\n"
