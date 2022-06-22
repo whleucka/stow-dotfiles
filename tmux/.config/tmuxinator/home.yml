@@ -8,10 +8,9 @@ windows:
       layout: even-vertical
       panes:
         - neofetch
-  - hackernews/reddit:
-      layout: even-horizontal
-      panes:
-        - hackernews
-        - reddit
+  - hackernews:
+      - hackernews
+  - reddit:
+      - reddit
   - dotfiles:
       - cd ~/stow-dotfiles
