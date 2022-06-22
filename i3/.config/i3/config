@@ -185,12 +185,12 @@ bindsym $mod+r mode "resize"
 # Press Mod1 to show status
 bar {
         status_command i3blocks
-        mode hide
-        hidden_state hide
+        #mode hide
+        #hidden_state hide
         position top
         output primary
         tray_output none
-        font pango:FiraCode Nerd Font Mono 10
+        font pango:FiraCode Nerd Font Mono 9
 }
 
 
@@ -201,7 +201,7 @@ exec kitty tmuxinator start home
 #exec_always --no-startup-id ~/.config/polybar/launch.sh --forest &
 
 # Gaps
-gaps inner 10
+gaps inner 8
 
 # Remove decorations
 default_border none
