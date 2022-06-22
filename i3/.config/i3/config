@@ -34,6 +34,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# For transparent backgrounds
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # Use pactl to adjust volume in PulseAudio.
@@ -187,9 +188,9 @@ bindsym $mod+r mode "resize"
 # Press Mod1 to show status
 bar {
         status_command i3blocks
-        #mode hide
-        #hidden_state hide
-        position top
+        mode hide
+        hidden_state hide
+        position bottom
         output primary
         tray_output none
         font pango:FiraCode Nerd Font Mono 9
