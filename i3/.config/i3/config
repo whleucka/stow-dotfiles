@@ -185,20 +185,20 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-bar {
-        status_command polybar
-       # mode hide
-       # hidden_state hide
-       # position bottom
-       # output primary
-       # tray_output none
-}
+#bar {
+#       # status_command polybar
+#       # mode hide
+#       # hidden_state hide
+#       # position bottom
+#       # output primary
+#       # tray_output none
+#}
 
 # Start kitty tmux session
 exec kitty tmuxinator start home
 
 # Polybar
-#exec_always --no-startup-id ~/.config/polybar/forest/launch.sh &
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Gaps
 gaps inner 8
