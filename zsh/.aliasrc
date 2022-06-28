@@ -3,6 +3,10 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
+if command -v ncdu > /dev/null; then
+    alias diskusage="ncdu -x /"
+fi
+
 if command -v tmux > /dev/null; then
     if tmux info &> /dev/null; then
         alias cls="clear; tmux clear-history"
