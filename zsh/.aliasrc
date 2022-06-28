@@ -4,7 +4,7 @@
 #
 
 if command -v ncdu > /dev/null; then
-    alias diskusage="ncdu -x /"
+    alias du="ncdu -x "
 fi
 
 if command -v tmux > /dev/null; then
