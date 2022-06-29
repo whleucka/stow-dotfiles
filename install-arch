@@ -8,7 +8,7 @@ mkdir -p ~/.tmp
 sudo pacman -S neofetch xclip exa tmux stow curl gcc zsh npm nodejs git \
     ripgrep python-pip bat prettier php gopls kitty python3 fzf \
     wireguard-tools evolution nvidia-settings fd gnome-bluetooth \
-    noto-fonts composer
+    noto-fonts composer lazygit
 sudo pacman -R epiphany
 
 # Install yay
