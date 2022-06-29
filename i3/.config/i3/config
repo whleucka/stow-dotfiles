@@ -202,7 +202,8 @@ bindsym $mod+r mode "resize"
 #}
 
 # Start kitty tmux session
-exec kitty tmuxinator start home
+#exec kitty tmuxinator start home
+exec kitty
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
