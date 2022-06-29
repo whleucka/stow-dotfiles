@@ -9,6 +9,10 @@ fg() {
     fi
 }
 
+function kt() {
+  kitty --session ~/.kitty-sessions/$1.conf
+}
+
 batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff;
 }
