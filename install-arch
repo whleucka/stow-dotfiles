@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Test
 printf "Installing system packages...\n"
 
 # Create directories
