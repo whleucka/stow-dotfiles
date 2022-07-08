@@ -9,8 +9,8 @@ fg() {
     fi
 }
 
-function kt() {
-  kitty --session ~/.kitty-sessions/$1.conf
+kt() {
+  kitty --session ~/.kitty-sessions/$1.conf &
 }
 
 batdiff() {
