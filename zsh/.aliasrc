@@ -89,7 +89,8 @@ fi
 # ssh
 alias s="kitty +kitten ssh"
 alias d="kitty +kitten diff"
-alias t="kitty +kitten transfer"
+alias tf="kitty +kitten transfer"
+alias rf="kitty +kitten transfer --direction=receive"
 alias icat="kitty +kitten icat"
 
 # libra-php
