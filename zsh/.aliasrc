@@ -88,6 +88,9 @@ fi
 
 # ssh
 alias s="kitty +kitten ssh"
+alias d="kitty +kitten diff"
+alias t="kitty +kitten transfer"
+alias icat="kitty +kitten icat"
 
 # libra-php
 alias cs="./celestial -s"
