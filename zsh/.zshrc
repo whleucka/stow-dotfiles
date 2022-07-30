@@ -115,6 +115,7 @@ plugins=(
     zsh-syntax-highlighting
     docker-compose
     autojump
+    vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -156,6 +157,9 @@ export BROWSER="google-chrome-stable"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliasrc
 source $HOME/.functions
+
+# Rust
+source "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
