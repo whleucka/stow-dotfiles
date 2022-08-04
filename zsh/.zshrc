@@ -116,7 +116,6 @@ plugins=(
     zsh-syntax-highlighting
     docker-compose
     autojump
-    vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
