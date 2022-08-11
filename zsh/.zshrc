@@ -9,6 +9,8 @@ else
     export TERM="xterm-256color"
 fi
 
+xset r rate 250 30
+
 if type rg &> /dev/null; then
     #export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
     #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
