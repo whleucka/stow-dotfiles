@@ -3,8 +3,6 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
-alias sudo="sudo -v; sudo "
-
 if command -v ncdu > /dev/null; then
     alias du="ncdu -x "
 fi
