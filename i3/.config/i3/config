@@ -215,6 +215,8 @@ bindsym $mod+r mode "resize"
 #exec kitty tmuxinator start home
 exec kitty
 
+exec xset r rate 250 45
+
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
