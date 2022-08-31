@@ -1,44 +1,21 @@
 #!/usr/bin/env bash
 printf "Installing system packages...\n"
 
-# Create directories
-mkdir -p ~/.local/bin
-mkdir -p ~/.tmp
-
-sudo pacman -S neofetch xclip exa tmux stow curl gcc zsh npm nodejs git \
-    ripgrep python-pip bat prettier php gopls kitty python3 fzf \
-    wireguard-tools evolution nvidia-settings fd gnome-bluetooth \
-    noto-fonts composer lazygit
-sudo pacman -R epiphany
-
 # Install yay
-printf "Installing yay...\n"
 git clone https://aur.archlinux.org/yay.git ~/yay
 cd ~/yay && makepkg -si
 cd ~/stow-dotfiles
+rm -rf ~/yay
 
-# Install fzf
-printf "Installing FZF...\n"
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-# Vim Packer
-printf "Vim Packer...\n"
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-# Update plugins / lsp stuff
-sudo pip install -U pynvim
-sudo npm install -g neovim \
-    typescript \
-    @prettier/plugin-php \
-    prettier-plugin-sh
+sudo yay -S zsh google-chrome neofetch xclip exa tmux stow curl gcc zsh npm nodejs git \
+    ripgrep python-pip bat prettier php gopls kitty python3 fzf wireguard-tools \
+    evolution nvidia-settings fd noto-fonts composer picom polybar w3m feh \
+    python-dbus neovim fzf
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Zsh plugins
 printf "Installing zsh plugins...\n"
 git clone https://github.com/Aloxaf/fzf-tab.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -46,54 +23,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HO
 git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color
 git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autoupdate
 
-# Tmux plugin manager
-printf "Installing tmux plugin manager\n"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+printf "Installing Packer...\n"
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Gnome extensions
-printf "Installing gnome-extensions...\n"
-git clone https://aur.archlinux.org/chrome-gnome-shell.git ~/chrome-gnome-shell
-cd ~/chrome-gnome-shell && makepkg -si
-cd ~/stow-dotfiles
-
-# Install google chrome
-printf "Installing Google Chrome...\n"
-yay -S google-chrome
-
-# Installing neovim
-printf "Installing Neovim...\n"
-yay -S neovim
-
-# Running stow
-printf "Updating dotfiles...\n"
-cd ~/stow-dotfiles
-stow bat
-stow kitty
-stow nvim
-stow tmux
-rm ~/.zshrc
-stow zsh
-stow wallpapers
-
-# Install nvim plugins
-nvim +PackerSync
-update-nvim
-
-# Install rust
+printf "Installing Rust...\n"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Install tuir (reddit tui)
-yay -S tuir
-yay -S w3m feh
-
-# Install hackernews_tui
-yay -S hackernews_tui
-sudo npm -g i article_md
-
-# Install rusty-rain
-yay -S adobe-source-han-sans-jp-fonts
-cargo install rusty-rain
-
-neofetch
 cd ~ && printf "With great power comes great responsibility\n"
