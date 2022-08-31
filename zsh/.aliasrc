@@ -3,6 +3,8 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
+alias sudo="sudo -v; sudo "
+
 if command -v ncdu > /dev/null; then
     alias du="ncdu -x "
 fi
@@ -44,7 +46,7 @@ fi
 # composer
 if command -v composer > /dev/null; then
     alias cu="composer update"
-    alias cr="composer require"
+    alias cr="composer require "
 fi
 
 # tmux
@@ -110,9 +112,10 @@ alias gitstore="git config credential.helper store"
 # yay
 alias upg='yay -Syu'
 alias upd='yay -Sy'
-alias install='yay -S'
-alias remove='yay -Rs'
-alias uninstall='yay -R'
+alias install='yay -S '
+alias remove='yay -Rs '
+alias purge='yay -Rcns '
+alias uninstall='yay -R '
 #alias upg='sudo apt update && sudo apt upgrade -y'
 #alias upd='sudo apt update'
 #alias install='sudo apt install'
@@ -122,7 +125,7 @@ alias uninstall='yay -R'
 
 # nvim
 if command -v nvim > /dev/null; then
-    alias v='nvim'
+    alias v='nvim '
     alias astro-setup="git clone https://github.com/whleucka/astronvim_config.git ~/.config/nvim/lua/user"
     alias astro-update="cd ~/.config/nvim/lua/user && git pull && nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && cd -"
     alias nvim-update="cd ~/neovim-config/ && git pull && cd -"
@@ -130,7 +133,7 @@ fi
 
 # transf files / folders
 if command -v rsync > /dev/null; then
-    alias rs='rsync -rzvhP' 
+    alias rs='rsync -rzvhP ' 
 fi
 
 # list directories
@@ -148,8 +151,8 @@ fi
 
 # bat cat
 if command -v bat > /dev/null; then
-    alias cat="bat"
-    alias bd="batdiff"
+    alias cat="bat "
+    alias bd="batdiff "
 elif command -v batcat > /dev/null; then
-    alias cat="batcat"
+    alias cat="batcat "
 fi
