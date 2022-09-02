@@ -7,10 +7,11 @@ cd ~/yay && makepkg -si
 cd ~/stow-dotfiles
 rm -rf ~/yay
 
-sudo yay -S zsh google-chrome neofetch xclip exa tmux stow curl gcc zsh npm nodejs git \
+sudo yay -S zsh google-chrome neofetch xclip exa tmux stow curl gcc zsh npm nodejs \
     ripgrep python-pip bat prettier php gopls kitty python3 fzf wireguard-tools \
     evolution nvidia-settings fd noto-fonts composer picom polybar w3m feh \
-    python-dbus neovim fzf playerctl rsync
+    python-dbus neovim fzf playerctl rsync pywal calc bpytop pv rofi gnome-keyring \
+    maim
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
@@ -31,5 +32,8 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 printf "Installing Rust...\n"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Download font from nerdfonts.com - UbuntuMono
+# Unzip to .local/share/fonts
 
 cd ~ && printf "With great power comes great responsibility\n"
