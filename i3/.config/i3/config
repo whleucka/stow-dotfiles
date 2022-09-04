@@ -229,6 +229,6 @@ default_border none
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# Start kitty tmux session
+# Launch apps
 # exec kitty tmuxinator start home
-# exec kitty
+exec kitty
