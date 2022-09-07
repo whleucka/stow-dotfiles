@@ -10,7 +10,8 @@ rm -rf ~/yay
 sudo yay -S zsh google-chrome neofetch xclip exa tmux stow curl gcc zsh npm nodejs \
     ripgrep python-pip bat prettier php gopls kitty python3 fzf wireguard-tools \
     evolution nvidia-settings fd noto-fonts composer picom polybar w3m feh \
-    maim imagemagik timeshift expressvpn-gui-gtk transmission-gtk
+    maim imagemagik timeshift expressvpn-gui-gtk transmission-gtk \
+    systemd-resolvconf
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
