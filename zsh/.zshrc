@@ -118,6 +118,8 @@ plugins=(
     zsh-syntax-highlighting
     docker-compose
     autojump
+    rsync
+    sudo
 )
 
 source $ZSH/oh-my-zsh.sh
