@@ -37,7 +37,7 @@ if command -v docker-compose > /dev/null; then
     alias dcdown='sudo docker-compose -f ~/Docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
     alias dcbuild='sudo docker-compose build'
     alias dcpull='sudo docker-compose -f ~/Docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
-    alias dclogs='sudo docker-compose -f ~/Docker/docker-compose.yml logs -tf --tail="50" '  
+    alias dclogs='sudo docker-compose -f ~/Docker/docker-compose.yml logs -tf --tail="50" '
     alias dtail='sudo docker logs -tf --tail="50" "$@"'
 fi
 
@@ -104,6 +104,7 @@ alias pat="php artisan test"
 
 # git
 alias gl="glola"
+alias gld="git log --pretty=format:"%ad %h by %an, %s" --date=iso --no-merges | sort -r | less"
 alias gs="git status"
 alias gitstore="git config credential.helper store"
 
@@ -131,7 +132,7 @@ fi
 
 # transf files / folders
 if command -v rsync > /dev/null; then
-    alias rs='rsync -rzvhP ' 
+    alias rs='rsync -rzvhP '
 fi
 
 # list directories
