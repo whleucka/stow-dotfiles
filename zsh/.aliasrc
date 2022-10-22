@@ -33,12 +33,15 @@ fi
 
 # docker
 if command -v docker-compose > /dev/null; then
-    alias dcup='sudo docker-compose -f ~/Docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
-    alias dcdown='sudo docker-compose -f ~/Docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+    alias dcup='sudo docker-compose -f docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+    alias dcdown='sudo docker-compose -f docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
     alias dcbuild='sudo docker-compose build'
-    alias dcpull='sudo docker-compose -f ~/Docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
-    alias dclogs='sudo docker-compose -f ~/Docker/docker-compose.yml logs -tf --tail="50" '
+    alias dcpull='sudo docker-compose -f docker-compose.yml pull' #pulls all new images is specified after dcpull
+    alias dclogs='sudo docker-compose -f docker-compose.yml logs -tf --tail="50" '
     alias dtail='sudo docker logs -tf --tail="50" "$@"'
+    alias dcdb='sudo docker-compose exec database mysql -p'
+    alias dcphp='sudo docker-compose exec php zsh'
+    alias dccron='sudo docker-compose exec cron zsh'
 fi
 
 # composer
