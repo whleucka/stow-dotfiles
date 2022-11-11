@@ -227,7 +227,7 @@ bindsym $mod+r mode "resize"
 
 # Keyboard repeat
 #exec xset r rate 250 45
-exec xset r rate 300 60
+exec xset r rate 250 60
 
 # Set gaps
 gaps inner 6
