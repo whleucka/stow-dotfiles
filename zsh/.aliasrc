@@ -81,9 +81,6 @@ alias cp="cp -ivr"
 # mkdir
 alias mkdir="mkdir -pv"
 
-# jobs
-alias j="jobs -l"
-
 # do not delete / or prompt if deleting more than 3 files at a time #
 alias rm='rm -I --preserve-root'
 
