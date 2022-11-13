@@ -29,7 +29,7 @@ if type rg &> /dev/null; then
     export FZF_TMUX=1
 fi
 
-# Caps lock is not needed.. 
+# Caps lock is not needed..
 # xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -172,7 +172,3 @@ source "$HOME/.cargo/env"
 
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
 [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
-
-# Tab completion
-bindkey '^I'   complete-word       # tab          | complete
-bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
