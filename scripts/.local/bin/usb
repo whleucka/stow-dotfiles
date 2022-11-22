@@ -54,7 +54,7 @@ unbind_usb() {
 }
 
 reset_usb() {
-    su - root -c "echo $1 > $_bind && sleep 1 && echo $1 > $_unbind"
+    su - root -c "echo $1 > $_unbind && sleep 1 && echo $1 > $_bind"
 }
 
 ARGS=()
