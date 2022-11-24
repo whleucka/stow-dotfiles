@@ -226,17 +226,34 @@ bindsym $mod+r mode "resize"
 #}
 
 # Keyboard repeat
-#exec xset r rate 250 45
 exec xset r rate 250 60
 
 # Set gaps
 gaps inner 6
+gaps outer 0
 
-# Remove decorations
-# default_border none
-default_border pixel 1
-default_floating_border pixel 1
-for_window [class="^.*"] border pixel 1
+gaps inner 20
+gaps outer -20
+focus_follows_mouse no
+
+new_window pixel 0
+smart_gaps on
+smart_borders on
+
+# Window specific
+for_window [class=".*"] title_format <b>%class → </b>%title
+for_window [class="^.*"] border pixel 2
+for_window [class="feh"] floating enable
+for_window [class="XsnoW"] , move scratchpad
+
+# Make the currently focused window a scratchpad
+bindsym $mod+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+equal scratchpad show
+
+# class                 border  backgr. text    indicator child_border
+#                       purple  purple  white   purple    purple
+client.focused          #530093 #530093 #eeeeee #8b00dd   #8b00dd
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
