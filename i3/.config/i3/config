@@ -110,7 +110,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Enter split toggle
+bindsym $mod+m split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -119,7 +119,7 @@ bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 
 # change focus between tiling / floating windows
-bindsym $mod+m focus mode_toggle
+#bindsym $mod+m focus mode_toggle
 
 # Change orientation
 bindsym $mod+o layout toggle split
@@ -228,11 +228,8 @@ bindsym $mod+r mode "resize"
 exec xset r rate 250 60
 
 # Set gaps
-gaps inner 6
-gaps outer 0
-
 gaps inner 20
-gaps outer -20
+gaps outer -10
 focus_follows_mouse no
 
 new_window pixel 0
