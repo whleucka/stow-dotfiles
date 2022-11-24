@@ -36,7 +36,7 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id sleep 4 && expressvpn-gui-gtk
 
 # For transparent backgrounds
-exec --no-startup-id picom --experimental-backends --config ~/.config/picom/picom.conf
+exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 
 # Keyring
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
