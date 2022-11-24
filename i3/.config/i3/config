@@ -110,23 +110,22 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Tab split toggle
+bindsym $mod+Enter split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
+
+# change focus between tiling / floating windows
+bindsym $mod+m focus mode_toggle
 
 # Change orientation
 bindsym $mod+o layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Tab floating toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -244,12 +243,12 @@ smart_borders on
 for_window [class=".*"] title_format <b>%class → </b>%title
 for_window [class="^.*"] border pixel 2
 for_window [class="feh"] floating enable
-for_window [class="XsnoW"] , move scratchpad
+for_window [class="google-chrome"] border none
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
 # Show the first scratchpad window
-bindsym $mod+equal scratchpad show
+bindsym $mod+equal scratchpad show; focus tiling;
 
 # class                 border  backgr. text    indicator child_border
 #                       purple  purple  white   purple    purple
