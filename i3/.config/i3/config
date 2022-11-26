@@ -6,6 +6,21 @@ set $mod Mod1
 # Super mod
 #set $mod Mod4
 
+# Set gaps
+gaps inner 15
+gaps outer -15
+focus_follows_mouse no
+
+hide_edge_borders both
+smart_gaps on
+smart_borders on
+
+# Window specific
+for_window [class="^.*"] border pixel 2
+for_window [class="feh"] floating enable
+#for_window [class="(G|g)oogle-chrome"] border none
+
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:FiraCode Nerd Font Mono 10
@@ -41,6 +56,21 @@ exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 # Keyring
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
+# Keyboard repeat
+exec xset r rate 250 60
+
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# class                 border  backgr. text    indicator child_border
+#                       purple  purple  white   purple    purple
+client.focused          #530093 #530093 #eeeeee #8b00dd   #8b00dd
+
+# Make the currently focused window a scratchpad
+bindsym $mod+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+equal scratchpad show; focus tiling;
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
@@ -55,17 +85,22 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Other buttons
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Screenshots
+# Screen to Picutures dir
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
+# Active window to Pictures dir
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
+# Selection to Pictures dir
 bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
 
-## Clipboard Screenshots
+# Screen to CLIPBOARD
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+# Active Window TO CLIPBOARD
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+# Selection TO CLIPBOARD
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -173,10 +208,11 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
-# ctrl+alt+l = lock
+# super+l = lock
 bindsym Mod4+l exec --no-startup-id dm-tool lock
-# ctrl+alt+delete = logout
+# Ctrl+Alt+Delete = suspend
 bindsym $mod+Ctrl+Delete exec --no-startup-id systemctl suspend
+# Ctrl+Alt+Backspace = logout
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -223,35 +259,6 @@ bindsym $mod+r mode "resize"
 #       # output primary
 #       # tray_output none
 #}
-
-# Keyboard repeat
-exec xset r rate 250 60
-
-# Set gaps
-gaps inner 20
-gaps outer -10
-focus_follows_mouse no
-
-hide_edge_borders both
-smart_gaps on
-smart_borders on
-
-# Window specific
-for_window [class="^.*"] border pixel 2
-for_window [class="feh"] floating enable
-#for_window [class="(G|g)oogle-chrome"] border none
-
-# Make the currently focused window a scratchpad
-bindsym $mod+minus move scratchpad
-# Show the first scratchpad window
-bindsym $mod+equal scratchpad show; focus tiling;
-
-# class                 border  backgr. text    indicator child_border
-#                       purple  purple  white   purple    purple
-client.focused          #530093 #530093 #eeeeee #8b00dd   #8b00dd
-
-# Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Launch apps
 # exec kitty tmuxinator start home
