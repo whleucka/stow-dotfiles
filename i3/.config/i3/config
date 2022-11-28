@@ -7,8 +7,8 @@ set $mod Mod1
 #set $mod Mod4
 
 # Set gaps
-gaps inner 15
-gaps outer -15
+gaps inner 5
+gaps outer 0
 focus_follows_mouse no
 
 hide_edge_borders both
