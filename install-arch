@@ -7,11 +7,15 @@ cd ~/yay && makepkg -si
 cd ~/stow-dotfiles
 rm -rf ~/yay
 
-sudo yay -S zsh google-chrome neofetch xclip exa tmux stow curl gcc zsh npm nodejs \
-    ripgrep python-pip bat prettier php gopls kitty python3 fzf wireguard-tools \
-    evolution nvidia-settings fd noto-fonts composer picom polybar w3m feh \
-    maim imagemagik timeshift expressvpn-gui-gtk transmission-gtk \
-    systemd-resolvconf ncdu ttf-weather-icons ttf-material-icons jq bc
+# Main packages
+sudo yay -S zsh google-chrome neofetch xclip exa stow curl gcc zsh npm nodejs \
+    ripgrep python-pip bat php gopls kitty python3 fzf wireguard-tools \
+    evolution nvidia-settings fd noto-fonts composer picom polybar w3m \
+    maim imagemagik timeshift systemd-resolvconf jq bc
+
+# Extras
+sudo yay -S ttf-weather-icons ttf-material-icons ncdu expressvpn-gui-gtk \
+    transmission-gtk prettier nomacs thunar feh
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
