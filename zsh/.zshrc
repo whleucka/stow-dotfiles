@@ -1,5 +1,4 @@
 export TMPDIR="/tmp"
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # SSH gpg key
 export GPG_TTY=$(tty)
@@ -184,3 +183,4 @@ ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-ch
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
