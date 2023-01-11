@@ -269,6 +269,3 @@ bindsym Mod4+b exec --no-startup-id barrier
 
 # Launch apps
 for_window [class="fs"] fullscreen enable
-exec --no-startup-id i3-msg 'workspace 1:Terminal; exec /usr/bin/kitty'
-exec --no-startup-id i3-msg 'workspace 2:Email; exec /usr/bin/evolution'
-exec --no-startup-id i3-msg 'workspace 3:Web; exec /usr/bin/google-chrome-stable'
