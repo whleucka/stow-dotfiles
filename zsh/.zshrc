@@ -1,4 +1,5 @@
 export TMPDIR="/tmp"
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # SSH gpg key
 export GPG_TTY=$(tty)
