@@ -9,7 +9,7 @@ rm -rf ~/yay
 
 # Main packages
 sudo yay -S zsh google-chrome neofetch xclip exa stow curl gcc zsh npm nodejs \
-    ripgrep python-pip bat php gopls kitty python3 fzf wireguard-tools \
+    ripgrep python-pip bat bat-extras php gopls kitty python3 fzf wireguard-tools \
     evolution nvidia-settings fd noto-fonts composer picom polybar w3m \
     maim imagemagik timeshift systemd-resolvconf jq bc
 
