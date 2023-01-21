@@ -57,7 +57,10 @@ exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Keyboard repeat
-exec xset r rate 250 60
+exec xset r rate 250 80
+
+# Good kitty
+exec kitty
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
