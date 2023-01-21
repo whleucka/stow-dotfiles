@@ -94,15 +94,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # Screenshots
 # Screen to Picutures dir
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
-# Active window to Pictures dir
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
-# Selection to Pictures dir
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
-
 # Screen to CLIPBOARD
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-# Active Window TO CLIPBOARD
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+# Selection to Pictures dir
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
 # Selection TO CLIPBOARD
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
@@ -166,7 +161,7 @@ bindsym $mod+o layout toggle split
 bindsym $mod+Tab floating toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
