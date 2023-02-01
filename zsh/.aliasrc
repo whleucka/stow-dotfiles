@@ -3,7 +3,7 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
-alias history="history -E"
+alias hist="history -E"
 
 if command -v ncdu > /dev/null; then
     alias du="ncdu -x "
