@@ -177,6 +177,10 @@ if command -v nvim > /dev/null; then
     alias astro-setup="git clone https://github.com/whleucka/astronvim_config.git ~/.config/nvim/lua/user"
     alias astro-update="cd ~/.config/nvim/lua/user && git pull && nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && cd -"
     alias nvim-update="cd ~/neovim-config/ && git pull && cd -"
+else
+    if command -v vim > /dev/null; then
+        alias v='vim'
+    fi
 fi
 
 # transf files / folders
