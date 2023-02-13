@@ -208,7 +208,6 @@ bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
 # super+l = lock
-exec xautolock -time 5 -locker "i3lock -c 000000 -i $HOME/Pictures/Wallpapers/neb.jpg"
 bindsym Mod4+l exec i3lock
 bindsym Ctrl+$mod+l exec i3lock
 # Ctrl+Alt+Delete = suspend
