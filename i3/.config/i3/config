@@ -208,7 +208,7 @@ bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
 # super+l = lock
-bindsym Mod4+l exec i3lock
+bindsym Mod4+l exec i3lock -i ~/Pictures/Wallpapers/lock.png
 # Ctrl+Alt+Delete = suspend
 bindsym Ctrl+$mod+Delete exec --no-startup-id systemctl suspend
 # Ctrl+Alt+Backspace = logout
