@@ -213,6 +213,9 @@ bindsym Mod4+l exec i3lock -i ~/.i3/lock.png
 bindsym Ctrl+$mod+Delete exec --no-startup-id systemctl suspend
 # Ctrl+Alt+Backspace = logout
 
+# Wallpaper
+exec --no-startup-id feh --bg-scale ~/.i3/night.webp
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
