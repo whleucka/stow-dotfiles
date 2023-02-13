@@ -209,7 +209,6 @@ bindsym $mod+Ctrl+Right workspace next
 
 # super+l = lock
 bindsym Mod4+l exec i3lock
-bindsym Ctrl+$mod+l exec i3lock
 # Ctrl+Alt+Delete = suspend
 bindsym Ctrl+$mod+Delete exec --no-startup-id systemctl suspend
 # Ctrl+Alt+Backspace = logout
