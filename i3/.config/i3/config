@@ -214,7 +214,7 @@ bindsym Ctrl+$mod+Delete exec --no-startup-id systemctl suspend
 # Ctrl+Alt+Backspace = logout
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale ~/.i3/night.webp
+exec --no-startup-id feh --bg-fill ~/.i3/night.webp
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
