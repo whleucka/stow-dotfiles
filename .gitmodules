@@ -1,0 +1,3 @@
+[submodule "scripts/.local/bin/ChatGPTerminator"]
+	path = scripts/.local/bin/ChatGPTerminator
+	url = https://github.com/AineeJames/ChatGPTerminator

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+export OPENAI_API_KEY="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"
+cd /home/whleucka/.local/bin/ChatGPTerminator || return
+$(which python3) ChatGPTerminator.py
