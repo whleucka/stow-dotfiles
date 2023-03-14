@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 export OPENAI_API_KEY="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"
+if [[ ! -d "/home/whleucka/.local/bin/ChatGPTerminator" ]]; then
+    cd /home/whleucka/stow-dotfiles/scripts/.local/bin || return
+    git clone https://github.com/AineeJames/ChatGPTerminator || return
+fi
 cd /home/whleucka/.local/bin/ChatGPTerminator || return
 $(which python3) ChatGPTerminator.py
