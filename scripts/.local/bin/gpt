@@ -3,7 +3,7 @@ export OPENAI_API_KEY="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"
 PWD=$(pwd)
 if [[ ! -d "/home/whleucka/.local/bin/ChatGPTerminator" ]]; then
     cd /home/whleucka/stow-dotfiles/scripts/.local/bin || return
-    git clone https://github.com/AineeJames/https://github.com/AineeJames/ChatGPTerminator || return
+    git clone https://github.com/AineeJames/ChatGPTerminator || return
     cd ChatGPTerminator && python3 -m venv venv && pip install -r requirements.txt
 
 fi
