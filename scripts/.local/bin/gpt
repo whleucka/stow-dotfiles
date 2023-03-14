@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export OPENAI_API_KEY="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"
+set -o allexport; source .env; set +o allexport
 PWD=$(pwd)
 if [[ ! -d "/home/whleucka/.local/bin/ChatGPTerminator" ]]; then
     cd /home/whleucka/stow-dotfiles/scripts/.local/bin || return
