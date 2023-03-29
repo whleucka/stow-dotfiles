@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+input=$1
+output=$2
+blocksize=${3:-4M}
+
+pv -tpreb "$input" | sudo dd of="$output" bs="$blocksize" conv=notrunc,noerror

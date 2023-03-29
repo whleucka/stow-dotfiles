@@ -11,7 +11,7 @@ rm -rf ~/yay
 sudo yay -S zsh google-chrome neofetch xclip exa stow curl gcc zsh npm nodejs \
     ripgrep python-pip bat bat-extras php gopls kitty python3 fzf wireguard-tools \
     evolution nvidia-settings fd noto-fonts composer picom polybar w3m \
-    maim imagemagik timeshift systemd-resolvconf jq bc
+    maim imagemagik timeshift systemd-resolvconf jq bc dialog pv
 
 # Extras
 sudo yay -S ttf-weather-icons ttf-material-icons ncdu expressvpn-gui-gtk \
@@ -29,10 +29,6 @@ git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my
 git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autoupdate
-
-printf "Installing Packer...\n"
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 printf "Installing Rust...\n"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
