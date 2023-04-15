@@ -7,6 +7,8 @@ if [ $1 = "up" ]; then
 elif [ $1 = "down" ]; then
   echo "Disconnecting..."
   expressvpn disconnect
+elif [ $1 = "status" ]; then
+  expressvpn status
 else
   echo "Eh?"
 fi
