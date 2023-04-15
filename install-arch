@@ -11,6 +11,7 @@ then
 fi
 
 # Main packages
+yay -Syu
 yay -S $(cat ./packages)
 
 # Install Oh My Zsh
