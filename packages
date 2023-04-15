@@ -113,6 +113,7 @@ plex-media-server
 polybar
 postman-bin
 prettier
+prettier-plugin-php
 pulseaudio-control
 python
 python-pip
