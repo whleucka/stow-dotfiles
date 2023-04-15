@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+case "${1}" in
+    now)
+        xautolock -locknow
+        ;;
+    server)
+        xautolock -corners 000- -time 1 -detectsleep -locker "'$0' outer"
+        exec $0 server
+        ;;
+    outer)
+        exec -a locksaver kitty -e bash -c "'$0' inner"
+        ;;
+    inner)
+        i3-msg fullscreen &>/dev/null
+        sleep 0.1 # need to wait a bit to get the fullscreen size
+        cmatrix -C green &
+        xtrlock-pam -b none
+        pkill -f locksaver
+        i3-msg fullscreen
+        i3-msg restart
+        ;;
+    *)
+        2>&1 echo "Usage: $0 now|server"
+        2>&1 echo "  now    - lock the screen (a running server instance is required)"
+        2>&1 echo "  server - start a lock server"
+        ;;
+esac

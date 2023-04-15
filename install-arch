@@ -11,7 +11,7 @@ rm -rf ~/yay
 sudo yay -S zsh google-chrome neofetch xclip exa stow curl gcc zsh npm nodejs \
     ripgrep python-pip bat bat-extras php gopls kitty python3 fzf wireguard-tools \
     evolution nvidia-settings fd noto-fonts composer picom polybar w3m \
-    maim imagemagik timeshift systemd-resolvconf jq bc dialog pv
+    maim imagemagik timeshift systemd-resolvconf jq bc dialog pv xautolock i3lock-fancy-git
 
 # Extras
 sudo yay -S ttf-weather-icons ttf-material-icons ncdu expressvpn-gui-gtk \
