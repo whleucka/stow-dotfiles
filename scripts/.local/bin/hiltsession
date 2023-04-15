@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-FINGERPRINT=$1
-SESSION_ID=$2
-
-ssh hilt-cms "pssh $1 'sed -n \"/Started tx: $SESSION_ID/,/Started tx/p\" /var/log/supervisor/lamassu-machine.err.log'" > $HOME/Work/hilt-$SESSION_ID-$(date +%s).txt
