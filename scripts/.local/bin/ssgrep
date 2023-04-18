@@ -4,4 +4,4 @@ HOST=$1
 FINGERPRINT=$2
 SESSION_ID=$3
 
-ssh $HOST "pssh $1 'sed -n \"/Started tx: $SESSION_ID/,/Started tx/p\" /var/log/supervisor/lamassu-machine.err.log'" > $HOME/$SESSION_ID-$(date +%s).txt
+ssh $HOST "pssh $FINGERPRINT 'sed -n \"/Started tx: $SESSION_ID/,/Started tx/p\" /var/log/supervisor/lamassu-machine.err.log'" > $HOME/$SESSION_ID-$(date +%s).txt
