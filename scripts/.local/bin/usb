@@ -1,28 +1,36 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 list() {
-    local manu_len=0
-    local prod_len=0
-    local serial_len=0
+    local bp_len=4
+    local manu_len=5
+    local prod_len=5
+    local serial_len=6
     local valid_buses=()
 
     # preprocess for pretty printing
     for i in /sys/bus/usb/drivers/usb/*-*; do
         [ -e "$i" ] || continue
+        bus_port=${i##*/}
 
         manu=`cat $i/manufacturer 2>/dev/null`
         prod=`cat $i/product 2>/dev/null`
         serial=`cat $i/serial 2>/dev/null`
 
+        [ $bp_len -lt ${#bus_port} ] && bp_len=${#bus_port}
         [ $manu_len -lt ${#manu} ] && manu_len=${#manu}
         [ $prod_len -lt ${#prod} ] && prod_len=${#prod}
         [ $serial_len -lt ${#serial} ] && serial_len=${#serial}
     done
 
+    ((bp_len+=1))
     ((manu_len+=1))
     ((prod_len+=1))
     ((serial_len+=1))
-    format="%-5s| %-10s| %-${manu_len}s| %-${prod_len}s| %-${serial_len}s| %-4s\n"
+    format="%-${bp_len}s| %-10s| %-${manu_len}s| %-${prod_len}s| %-${serial_len}s| %-4s\n"
+
+    printf "$format" "B-P" "VEND:PROD" "MANU" "PROD" "SERIAL" "BLOCK"
+    total_len=$((bp_len + 1 + 1 + 9 + 1 + 1 + manu_len + 1 + 1 + prod_len + 1 + 1 + serial_len + 1 + 1 + 6))
+    printf -- "-%.0s" $(seq 1 $total_len); printf "\n"
 
     for i in /sys/bus/usb/drivers/usb/*-*; do
         [ -e "$i" ] || continue
@@ -46,15 +54,15 @@ _bind="/sys/bus/usb/drivers/usb/bind"
 _unbind="/sys/bus/usb/drivers/usb/unbind"
 
 bind_usb() {
-    su - root -c "echo $1 > $_bind"
+    sudo su - root -c "echo $1 > $_bind"
 }
 
 unbind_usb() {
-    su - root -c "echo $1 > $_unbind"
+    sudo su - root -c "echo $1 > $_unbind"
 }
 
 reset_usb() {
-    su - root -c "echo $1 > $_unbind && sleep 1 && echo $1 > $_bind"
+    sudo su - root -c "echo $1 > $_unbind && sleep 1 && echo $1 > $_bind"
 }
 
 ARGS=()

@@ -1,0 +1,63 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import subprocess
+from iterfzf import iterfzf
+
+hosts = {
+        "hilt-cms": {'mysql': 'cms'},
+        "chainlogic": {'mysql': 'chainlogic_cms'},
+        "getcoin": {'mysql': 'cms'},
+        }
+host = ''
+name = ''
+selected = ''
+fingerprints = []
+
+def get_host():
+    global host
+    while True:
+        key_list = list(hosts.keys())
+        choices = ", ".join(key_list)
+        question = f"Please select a connection [{choices}]: "
+        host = input(question)
+        if host != '' and host in key_list:
+            break
+    return host
+
+def get_fingerprints(server):
+    global fingerprints
+    cmd = ""
+    sql = """SELECT LEFT(Tablet.fingerprint,5) as fingerprint, Location.name
+    FROM Location INNER JOIN BTM ON BTM.location_id = Location.id
+    INNER JOIN Tablet ON Tablet.btm_id = BTM.id
+    WHERE Location.status = 1
+    ORDER BY Location.name"""
+    lines = []
+    mysql_cmd = hosts[server]['mysql']
+    cmd = f"mysql {mysql_cmd} -e '{sql}'"
+    lines = subprocess.run(["/usr/bin/ssh", server, cmd], encoding='utf-8', stdout=subprocess.PIPE).stdout.splitlines()
+    # Excluding the header
+    for line in lines[1:]:
+        fingerprint, name = line.split('\t')
+        fingerprints.append(f"{fingerprint} - {name}")
+    return fingerprints
+
+def select_fingerprint(fingerprints):
+    global selected, name
+    selected = iterfzf(fingerprints, multi=False)
+    selected, name = selected.split(" - ")
+    return selected
+
+def connect(fingerprint):
+    print(f"Now connecting to {name} -- {host}@{fingerprint}")
+    cmd = f"/usr/bin/ssh {host} -t 'pssh {fingerprint}'"
+    os.system(cmd)
+
+if __name__ == '__main__':
+    fingerprints = get_fingerprints(get_host())
+    fingerprint = select_fingerprint(fingerprints)
+    connect(fingerprint)
+    sys.exit()
