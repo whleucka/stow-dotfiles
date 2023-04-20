@@ -12,7 +12,7 @@ fi
 
 # Main packages
 yay -Syu
-yay -S $(cat ./packages)
+yay -S $(cat ./packages) --needed
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
