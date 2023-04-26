@@ -126,6 +126,7 @@ bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 #bindsym $mod+l focus right
 
 # Move focus
+# cargo install easy-i3-neovim-nav
 bindsym $mod+h exec --no-startup-id easy-i3-neovim-nav focus left
 bindsym $mod+j exec --no-startup-id easy-i3-neovim-nav focus down
 bindsym $mod+k exec --no-startup-id easy-i3-neovim-nav focus up
