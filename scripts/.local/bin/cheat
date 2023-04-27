@@ -1,4 +1,1 @@
-#!/usr/bin/env bash
-read -p "Command: " query 
-printf "Showing results for command $query\n"
-curl cheat.sh/$query
+rust/cheat
