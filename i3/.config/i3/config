@@ -284,7 +284,7 @@ for_window [class="fs"] fullscreen enable
 # Good kitty
 #exec kitty --start-as=fullscreen bpytop
 # Work stuff
-exec i3-msg 'workspace $ws1; exec kitty -o --start-as=fullscreen --allow-remote-control=yes --single-instance --~/.kity-sessions/session work.conf'
+exec i3-msg 'workspace $ws1; exec kitty -o --start-as=fullscreen --allow-remote-control=yes --single-instance --session ~/.kitty-sessions/work.kitty'
 exec i3-msg 'workspace $ws10; exec mattermost'
 exec i3-msg 'workspace $ws10; exec zoiper'
 exec i3-msg 'workspace $ws10; exec evolution'
