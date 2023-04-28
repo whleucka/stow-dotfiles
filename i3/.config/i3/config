@@ -59,10 +59,6 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secr
 # Keyboard repeat
 exec_always --no-startup-id "xset r rate 250 80"
 
-# Good kitty
-exec kitty --start-as=fullscreen bpytop
-#exec kitty -o --allow-remote-control=yes --single-instance --session work.conf
-
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
@@ -284,3 +280,12 @@ bindsym Mod4+b exec --no-startup-id barrier
 
 # Launch apps
 for_window [class="fs"] fullscreen enable
+
+# Good kitty
+#exec kitty --start-as=fullscreen bpytop
+# Work stuff
+exec i3-msg 'workspace $ws1; exec kitty -o --start-as=fullscreen --allow-remote-control=yes --single-instance --~/.kity-sessions/session work.conf'
+exec i3-msg 'workspace $ws10; exec mattermost'
+exec i3-msg 'workspace $ws10; exec zoiper'
+exec i3-msg 'workspace $ws10; exec evolution'
+
