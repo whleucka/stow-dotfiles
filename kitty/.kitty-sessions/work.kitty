@@ -1,0 +1,80 @@
+
+
+new_tab BpyTOP
+layout fat
+cd /home/whleucka
+title BpyTOP
+launch --env KITTY_WINDOW_ID=1 python3 /usr/bin/bpytop
+focus
+
+
+new_tab Home
+layout fat
+cd /home/whleucka
+title kitty @ ls > kitty-dump.json
+launch --env KITTY_WINDOW_ID=22 kitten @ ls
+focus
+
+
+new_tab Chainlogic [alpha]
+layout fat
+cd /home/whleucka
+title whleucka@alpha:~
+launch --env KITTY_WINDOW_ID=3 kitten ssh cl-alpha
+focus
+
+
+new_tab Chainlogic [dev]
+layout fat
+cd /home/whleucka
+title no: /mnt/enc/home/whleucka
+launch --env KITTY_WINDOW_ID=5 kitten ssh chainlogic
+focus
+
+
+new_tab Instacoin ATM
+layout fat
+cd /home/whleucka
+title whleucka@a:~
+launch --env KITTY_WINDOW_ID=7 kitten ssh ic-atm
+focus
+
+
+new_tab Hilt Ventures
+layout fat
+cd /home/whleucka
+title HiltVentures: ~
+launch --env KITTY_WINDOW_ID=9 kitten ssh hilt-cms
+focus
+
+
+new_tab Hilt App
+layout fat
+cd /home/whleucka
+title app: ~
+launch --env KITTY_WINDOW_ID=12 kitten ssh hilt-app
+focus
+
+
+new_tab Pharma Web
+layout fat
+cd /home/whleucka
+title pharmawebcanada: /var/www/pharmawebnetwork.com/web/cfdev
+launch --env KITTY_WINDOW_ID=15 kitten ssh pwn
+focus
+
+
+new_tab Pharma Web 2
+layout fat
+cd /home/whleucka
+title digitalocean-amsterdam: ~
+launch --env KITTY_WINDOW_ID=17 kitten ssh pwn2
+focus
+
+
+new_tab GetCoin
+layout fat
+cd /home/whleucka
+title getcoins: ~
+launch --env KITTY_WINDOW_ID=19 kitten ssh getcoin
+focus
