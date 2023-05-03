@@ -178,9 +178,6 @@ alias uninstall='yay -R '
 # nvim
 if command -v nvim > /dev/null; then
     alias v='nvim '
-    export NVIM_CONFIG=$HOME/.neovim-config/
-    export NVIM_USER=$HOME/.neovim-config/astro/.config/nvim/lua/user/
-    alias nvim-update="cd $NVIM_CONFIG && git pull && cd $NVIM_USER && git pull"
 else
     if command -v vim > /dev/null; then
         alias v='vim'

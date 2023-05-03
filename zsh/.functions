@@ -9,18 +9,21 @@ fg() {
     fi
 }
 
-kt() {
-  kitty --session ~/.kitty-sessions/$1.conf &
-}
-
 batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff;
 }
 
-dy() {
-    $(which dig) +noall +answer +additional "$1" @dns.toys; 
-}
+nvim-update() {
+    current=$(pwd)
+    neovim_dir=$HOME/.neovim-config/astro/
+    user_dir=$HOME/.neovim-config/astro/.config/nvim/lua/user/
 
-wallpaper() {
-    feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+    cd $neovim_dir;
+    git pull -v;
+
+    cd $user_dir;
+    git pull -v;
+
+    cd $current;
+    printf "Done!\n"
 }
