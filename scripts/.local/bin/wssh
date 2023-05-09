@@ -48,7 +48,7 @@ def get_fingerprints(server):
 def select_fingerprint(fingerprints):
     global selected, name
     selected = iterfzf(fingerprints, multi=False)
-    selected, name = selected.split(" - ")
+    selected, btm_id, name = selected.split(" | ")
     return selected
 
 def connect(fingerprint):
