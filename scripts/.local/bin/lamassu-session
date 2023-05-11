@@ -57,7 +57,7 @@ def connect(session_id, fingerprint, log_type):
     print(f"Now connecting -- {host}@{fingerprint}")
     pattern = f"/Started tx: {session_id}/,/Started tx/p"
     sed = f"sed -n \\\"{pattern}\\\" /var/log/upstart/lamassu-machine.log"
-    if log_type == 6 or log_type == 7:
+    if log_type == "6" or log_type == "7":
         sed = f"sed -n \\\"{pattern}\\\" /var/log/supervisor/lamassu-machine.err.log"
     cmd = f"/usr/bin/ssh {host} -C \"pssh {fingerprint} '{sed}'\""
     os.system(cmd)
