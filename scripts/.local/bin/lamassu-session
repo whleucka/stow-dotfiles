@@ -1,0 +1,69 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import subprocess
+from iterfzf import iterfzf
+
+hosts = {
+        "hilt-cms": {'mysql': 'cms'},
+        "chainlogic": {'mysql': 'chainlogic_cms'},
+        "getcoin": {'mysql': 'cms'},
+        }
+host = ''
+selected_session = ''
+sessions = []
+
+def get_host():
+    global host
+    while True:
+        key_list = list(hosts.keys())
+        choices = ", ".join(key_list)
+        question = f"Please select a connection [{choices}]: "
+        host = input(question)
+        if host != '' and host in key_list:
+            break
+    return host
+
+def get_sessions(server):
+    global sessions
+    sql = """SELECT txs.session_id, LEFT(Tablet.fingerprint, 5) as fingerprint, txs.created, Tablet.type as log_id
+    FROM txs 
+    INNER JOIN Tablet ON txs.tablet_id = Tablet.id 
+    WHERE txs.created BETWEEN NOW() - INTERVAL 1 WEEK AND NOW() 
+    ORDER BY txs.created DESC"""
+    lines = []
+    mysql_cmd = hosts[server]['mysql']
+    cmd = f"mysql {mysql_cmd} -e '{sql}'"
+    lines = subprocess.run(["/usr/bin/ssh", server, cmd], encoding='utf-8', stdout=subprocess.PIPE).stdout.splitlines()
+    # Excluding the header
+    for line in lines[1:]:
+        session_id, fingerprint, created, log_type = line.split('\t')
+        sessions.append(f"{session_id} | {fingerprint} | {created} | {log_type}")
+    return sessions
+
+def select_session_fingerprint(sessions):
+    global selected_session
+    if not len(sessions):
+        print("There are no sessions available\n")
+        sys.exit()
+    selected_session = iterfzf(sessions, multi=False)
+    session_id, fingerprint, created, log_type = selected_session.split(" | ")
+    return (session_id, fingerprint, log_type)
+
+def connect(session_id, fingerprint, log_type):
+    global selected_session
+    print(f"Now connecting -- {host}@{fingerprint}")
+    pattern = f"/Started tx: {session_id}/,/Started tx/p"
+    sed = f"sed -n \\\"{pattern}\\\" /var/log/upstart/lamassu-machine.log"
+    if log_type == 6 or log_type == 7:
+        sed = f"sed -n \\\"{pattern}\\\" /var/log/supervisor/lamassu-machine.err.log"
+    cmd = f"/usr/bin/ssh {host} -C \"pssh {fingerprint} '{sed}'\""
+    os.system(cmd)
+
+if __name__ == '__main__':
+    sessions = get_sessions(get_host())
+    session_id, fingerprint, log_type = select_session_fingerprint(sessions)
+    connect(session_id, fingerprint, log_type)
+    sys.exit()
