@@ -5,10 +5,12 @@ import os
 import sys
 import subprocess
 from iterfzf import iterfzf
+import datetime
+from datetime import date
 
 hosts = {
-        "hilt-cms": {'mysql': 'cms'},
         "chainlogic": {'mysql': 'chainlogic_cms'},
+        "hilt-cms": {'mysql': 'cms'},
         "getcoin": {'mysql': 'cms'},
         }
 host = ''
@@ -20,9 +22,12 @@ def get_host():
     while True:
         key_list = list(hosts.keys())
         choices = ", ".join(key_list)
-        question = f"Please select a connection [{choices}]: "
+        question = f"Please select a connection (default=chainlogic) [{choices}]: "
         host = input(question)
         if host != '' and host in key_list:
+            break
+        else:
+            host = 'chainlogic'
             break
     return host
 
@@ -50,13 +55,19 @@ def select_session_fingerprint(sessions):
         sys.exit()
     selected_session = iterfzf(sessions, multi=False)
     session_id, fingerprint, created, log_type = selected_session.split(" | ")
-    return (session_id, fingerprint, log_type)
+    return (session_id, fingerprint, created, log_type)
 
-def connect(session_id, fingerprint, log_type):
+def connect(session_id, fingerprint, created, log_type):
     global selected_session
     print(f"Now connecting -- {host}@{fingerprint}")
     pattern = f"/Started tx: {session_id}/,/Started tx/p"
-    sed = f"sed -n \\\"{pattern}\\\" /var/log/upstart/lamassu-machine.log"
+    today = date.today()
+    dt1 = today.strftime("%Y-%m-%d 12:00:00");
+    dt2 = datetime.datetime.strptime(created, "%Y-%m-%d %H:%M:%S");
+    if dt2.strftime("%Y-%m-%d %H:%M:%S") > dt1:
+        sed = f"sed -n \\\"{pattern}\\\" /var/log/upstart/lamassu-machine.log"
+    else:
+        sed = f"zcat /var/log/upstart/lamassu-machine.log.* | sed -n \\\"{pattern}\\\""
     if log_type == "6" or log_type == "7":
         sed = f"sed -n \\\"{pattern}\\\" /var/log/supervisor/lamassu-machine.err.log"
     cmd = f"/usr/bin/ssh {host} -C \"pssh {fingerprint} '{sed}'\""
@@ -64,6 +75,6 @@ def connect(session_id, fingerprint, log_type):
 
 if __name__ == '__main__':
     sessions = get_sessions(get_host())
-    session_id, fingerprint, log_type = select_session_fingerprint(sessions)
-    connect(session_id, fingerprint, log_type)
+    session_id, fingerprint, created, log_type = select_session_fingerprint(sessions)
+    connect(session_id, fingerprint, created, log_type)
     sys.exit()

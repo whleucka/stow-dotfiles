@@ -7,8 +7,8 @@ import subprocess
 from iterfzf import iterfzf
 
 hosts = {
-        "hilt-cms": {'mysql': 'cms'},
         "chainlogic": {'mysql': 'chainlogic_cms'},
+        "hilt-cms": {'mysql': 'cms'},
         "getcoin": {'mysql': 'cms'},
         }
 host = ''
@@ -21,9 +21,12 @@ def get_host():
     while True:
         key_list = list(hosts.keys())
         choices = ", ".join(key_list)
-        question = f"Please select a connection [{choices}]: "
+        question = f"Please select a connection (default=chainlogic) [{choices}]: "
         host = input(question)
         if host != '' and host in key_list:
+            break
+        else:
+            host = 'chainlogic'
             break
     return host
 
