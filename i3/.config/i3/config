@@ -282,7 +282,7 @@ bindsym Mod4+b exec --no-startup-id barrier
 for_window [class="fs"] fullscreen enable
 
 # Good kitty
-exec kitty --start-as=fullscreen bpytop
+exec kitty bpytop
 # Work stuff
 #exec i3-msg 'workspace $ws1; exec kitty -o --start-as=fullscreen --single-instance --session ~/.kitty-sessions/work.kitty'
 #exec i3-msg 'workspace $ws2; exec sleep 3 && mattermost-desktop'
