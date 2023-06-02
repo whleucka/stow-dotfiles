@@ -118,7 +118,7 @@ print(bcolors.BOLD + bcolors.OKGREEN + "Running speed test...\n" + bcolors.ENDC)
 """
 print(f"🏠 Local IP: {get_ip()}")
 speed_test = speedtest.Speedtest(secure=True)
-speed_test.get_servers(["46407", "17399"])
+speed_test.get_servers(["46407", "17399", "28801", "31362", "4142"])
 
 done = False
 
