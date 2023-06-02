@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+
+import itertools
+import subprocess
+import sys
+import threading
+import time
+
+
+class bcolors:
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+
+import speedtest
+
+
+def bytes_to_mb(bytes):
+    kb = 1024
+    mb = kb * 1024
+    return int(bytes / mb)
+
+
+def get_google_ping():
+    run = 4
+    cmd = f"sudo ping -c {run} google.ca | grep -o 'time=[0-9.]* ms'"
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    lines = result.stdout.strip().split("\n")
+    sum = 0.0
+    for line in lines:
+        response = line.replace("time=", "").replace(" ms", "")
+        sum = sum + float(response)
+    sys.stdout.write("\r")
+    sys.stdout.flush()
+    sys.stdout.write("✅")
+    return round(sum / run, 3) if sum > 0 else 0
+
+
+def get_download_speed(speed_test):
+    speed = speed_test.download()
+    sys.stdout.write("\r")
+    sys.stdout.flush()
+    sys.stdout.write("✅")
+    return bytes_to_mb(speed)
+
+
+def get_upload_speed(speed_test):
+    speed = speed_test.upload()
+    sys.stdout.write("\r")
+    sys.stdout.flush()
+    sys.stdout.write("✅")
+    return bytes_to_mb(speed)
+
+
+def animate():
+    for c in itertools.cycle(["⢿", "⣻", "⣽", "⣾", "⣷", "⣯", "⣟", "⡿"]):
+        if done:
+            break
+        sys.stdout.write("\r" + bcolors.BOLD + bcolors.OKGREEN + c + bcolors.ENDC)
+        sys.stdout.flush()
+        time.sleep(0.25)
+
+
+print(bcolors.BOLD + bcolors.OKGREEN + "Running speed test...\n" + bcolors.ENDC)
+speed_test = speedtest.Speedtest()
+
+done = False
+
+t = threading.Thread(target=animate)
+t.start()
+print(f" Ping: {get_google_ping()} ms")
+print(f" Download: {get_download_speed(speed_test)} Mbps")
+print(f" Upload: {get_upload_speed(speed_test)} Mbps")
+
+done = True
