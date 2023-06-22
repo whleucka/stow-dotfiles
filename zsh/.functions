@@ -25,5 +25,8 @@ nvim-update() {
     git pull -v;
 
     cd $current;
+
+    nvim +AstroUpdate +qa
+
     printf "Done!\n"
 }
