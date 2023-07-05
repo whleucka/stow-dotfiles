@@ -7,7 +7,7 @@ set $mod Mod1
 #set $mod Mod4
 
 # Set gaps
-gaps inner 5
+gaps inner 10
 gaps outer 0
 focus_follows_mouse yes
 
@@ -16,18 +16,22 @@ smart_gaps on
 smart_borders on
 
 # Window specific
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
+for_window [window_role="pop-up"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
 #for_window [class="(G|g)oogle-chrome"] border none
 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FiraCode Nerd Font Mono 10
+#font pango:FiraCode Nerd Font Mono 10
+font pango:Ubuntu Mono Nerd Font Complete Mono 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+#font pango:FiraCode Nerd Font Mono 10
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -64,7 +68,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # class                 border  backgr. text    indicator child_border
 #                       purple  purple  white   purple    purple
-client.focused          #530093 #530093 #eeeeee #8b00dd   #8b00dd
+client.focused          #530093 #530093 #eeeeee #8b00dd   #0099ff
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
@@ -165,16 +169,19 @@ bindsym $mod+t layout tabbed
 #bindsym $mod+m focus mode_toggle
 
 # Change orientation
-bindsym $mod+o layout toggle split
+bindsym $mod+o layout toggle all
 
 # toggle tiling / floating
 bindsym $mod+Tab floating toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
+
+# Popups during fullscreen
+popup_during_fullscreen smart
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -216,11 +223,10 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
-# super+l = lock
-#bindsym Mod4+l exec i3lock -i ~/.i3/lock.png
+# Super+L = lock
+bindsym Mod4+L exec i3lock --no-unlock-indicator --color 000000
 # Ctrl+Alt+Delete = suspend
 bindsym Ctrl+$mod+Delete exec --no-startup-id systemctl suspend
-# Ctrl+Alt+Backspace = logout
 
 # Wallpaper
 exec --no-startup-id feh --bg-fill ~/.i3/night.webp
@@ -260,32 +266,17 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Shortcuts
-bindsym Mod4+f exec --no-startup-id thunar ~
-bindsym Mod4+e exec --no-startup-id evolution
+bindsym Mod4+e exec --no-startup-id kitty ranger ~
+bindsym Mod4+m exec --no-startup-id evolution
 bindsym Mod4+w exec --no-startup-id google-chrome-stable
-bindsym Mod4+n exec --no-startup-id kitty nvim
 bindsym Mod4+b exec --no-startup-id barrier
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
-#bar {
-#       # status_command polybar
-#       # mode hide
-#       # hidden_state hide
-#       # position bottom
-#       # output primary
-#       # tray_output none
-#}
-
-# Launch apps
-for_window [class="fs"] fullscreen enable
+bindsym Mod4+c exec --no-startup-id gnome-calculator
 
 # Good kitty
 exec kitty bpytop
+
 # Work stuff
 #exec i3-msg 'workspace $ws1; exec kitty -o --start-as=fullscreen --single-instance --session ~/.kitty-sessions/work.kitty'
 #exec i3-msg 'workspace $ws2; exec sleep 3 && mattermost-desktop'
 #exec i3-msg 'workspace $ws2; exec sleep 3 && zoiper'
 #exec i3-msg 'workspace $ws2; exec sleep 3 && evolution'
-
