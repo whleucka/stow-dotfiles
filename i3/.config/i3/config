@@ -68,7 +68,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # class                 border  backgr. text    indicator child_border
 #                       purple  purple  white   purple    purple
-client.focused          #530093 #530093 #eeeeee #8b00dd   #0099ff
+client.focused          #006eff #006eff #eeeeee #00a9dd   #0099ff
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
