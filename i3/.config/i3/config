@@ -8,18 +8,18 @@
 #########################################################################################
 # Leader key
 #########################################################################################
-# Mod1 = Alt
+# Alt key
 set $mod Mod1
 
 
 #########################################################################################
 # Apperance
 #########################################################################################
-#                        border  bg      text    indicator child_border
-#client.focused          #bd93f9 #282a36 #f8f8f2 #bd93f9   #0099ff
-client.focused           #9aa5ce #16161d #c0caf5 #9aa5ce   #9aa5ce
-client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
-client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
+# tokyonight            border  backgr. text    indic.  c. border
+client.focused          #61afef #1a1b26 #d8dee9 #61afef #61afef
+client.focused_inactive #61afef #1a1b26 #565c64 #565c64 #565c64
+client.unfocused        #1a1b26 #1a1b26 #565c64 #565c64 #565c64
+client.urgent           #bf616a #1a1b26 #d8dee9 #bf616a #bf616a
 
 # Font for window titles (currently hidden)
 font pango:FiraCode Nerd Font Mono 10
