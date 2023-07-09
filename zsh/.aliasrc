@@ -151,10 +151,23 @@ alias pas="php artisan serve"
 alias pat="php artisan test"
 
 # git
-alias gl="glola"
-alias gld="git log --pretty=format:"%ad %h by %an, %s" --date=iso --no-merges | sort -r | less"
-alias gs="git status"
-alias gd="git diff --ignore-all-space"
+alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gcam='git commit -a -m'
+alias gb='git branch'
+alias gbd='git branch -d'
+alias gco='git checkout'
+alias gcb="git checkout -b"
+alias gf='git fetch'
+alias gm='git merge'
+alias gp='git pull'
+alias gpl='git pull origin'
+alias gps='git push'
+alias gpsu='git push -u origin'
 alias gitstore="git config credential.helper store"
 
 # yay
