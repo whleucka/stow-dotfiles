@@ -5,41 +5,25 @@
 
 alias hist="history -E"
 
+# ncdu
 if command -v ncdu > /dev/null; then
     alias du="ncdu -x "
 fi
 
+# tmux
 if command -v tmux > /dev/null; then
-    if tmux info &> /dev/null; then
-        alias cls="clear; tmux clear-history"
-    else
-        alias cls="clear"
-    fi
-else
-    alias cls="clear"
-fi
-
-# quick dotfiles
-if command -v stow > /dev/null; then
-    alias stow-dotfiles="cd ~/stow-dotfiles"
-    alias stow-init="cd ~/stow-dotfiles && find . -maxdepth 1 -not -path './.git' -not -path '.' -type d -printf '%f\n' | xargs -n1 stow && cd -"
-    alias stow-update="cd ~/stow-dotfiles && g pull && cd - && zsh"
-    alias stow-remove="cd ~/stow-dotfiles && find . -maxdepth 1 -not -path './.git' -not -path '.' -type d -printf '%f\n' | xargs -n1 stow -D && cd -"
-fi
-
-# expressvpn
-if command -v expressvpn > /dev/null; then
-    alias vpn-up="expressvpn connect"
-    alias vpn-down="expressvpn disconnect"
+    alias tmux="tmux -u"
+    alias mux="tmuxinator"
+    alias cls="clear; tmux clear-history"
 fi
 
 # docker
 if command -v docker-compose > /dev/null; then
-    alias dcup='sudo docker-compose -f docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
-    alias dcdown='sudo docker-compose -f docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
-    alias dcbuild='sudo docker-compose build'
-    alias dcpull='sudo docker-compose -f docker-compose.yml pull' #pulls all new images is specified after dcpull
-    alias dclogs='sudo docker-compose -f docker-compose.yml logs -tf --tail="50" '
+    alias dcup='sudo docker-compose -f ~/docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+    alias dcdown='sudo docker-compose -f ~/docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+    alias dcbuild='sudo docker-compose -f ~/docker/docker-compose.yml build'
+    alias dcpull='sudo docker-compose -f ~/docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
+    alias dclogs='sudo docker-compose -f ~/docker/docker-compose.yml logs -tf --tail="50" '
 fi
 
 # composer
@@ -47,15 +31,6 @@ if command -v composer > /dev/null; then
     alias cu="composer update"
     alias cr="composer require "
 fi
-
-# tmux
-if command -v tmux > /dev/null; then
-    alias tmux="tmux -u"
-    alias mux="tmuxinator"
-fi
-
-# text to speech
-alias say='echo "$1" | espeak -s 120 2>/dev/null'
 
 # npm
 alias naf="npm audit fix"

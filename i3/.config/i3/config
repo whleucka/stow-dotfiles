@@ -10,6 +10,7 @@
 #########################################################################################
 # Alt key
 set $mod Mod1
+set $super Mod4
 
 
 #########################################################################################
@@ -34,9 +35,6 @@ exec --no-startup-id feh --bg-fill ~/.i3/night.webp
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -59,11 +57,11 @@ exec kitty bpytop
 #########################################################################################
 # Shortcuts
 #########################################################################################
-bindsym Mod4+e exec --no-startup-id kitty ranger ~
-bindsym Mod4+m exec --no-startup-id evolution
-bindsym Mod4+w exec --no-startup-id google-chrome-stable
-bindsym Mod4+b exec --no-startup-id barrier
-bindsym Mod4+c exec --no-startup-id gnome-calculator
+bindsym $super+e exec --no-startup-id kitty ranger ~
+bindsym $super+m exec --no-startup-id evolution
+bindsym $super+w exec --no-startup-id google-chrome-stable
+bindsym $super+b exec --no-startup-id barrier
+bindsym $super+c exec --no-startup-id gnome-calculator
 
 
 #########################################################################################
@@ -116,10 +114,16 @@ bindsym $mod+q kill
 # Kitty (terminal)
 bindsym $mod+Return exec kitty
 
+# Note: i3-exit is a script in ~/bin/scripts
 # Lock the screen
-bindsym Mod4+L exec i3lock --no-unlock-indicator --color 000000
+bindsym $super+L exec --no-startup-id $HOME/bin/scripts/i3-exit lock
 # Suspend the computer
-bindsym Ctrl+$mod+Delete exec --no-startup-id systemctl suspend
+bindsym Ctrl+$mod+Delete exec --no-startup-id $HOME/bin/scripts/i3-exit suspend
+# Shutdown
+bindsym Ctrl+$mod+Escape exec --no-startup-id $HOME/bin/scripts/i3-exit shutdown
+# NOP
+bindsym Ctrl+$mod+Backspace exec --no-startup-id NOP
+
 
 # Make the currently focused window a scratchpad
 bindsym $mod+minus move scratchpad
@@ -164,16 +168,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Window Key Bindings
 #########################################################################################
 # Move focus
-bindsym $mod+h exec --no-startup-id easy-i3-neovim-nav focus left
-bindsym $mod+j exec --no-startup-id easy-i3-neovim-nav focus down
-bindsym $mod+k exec --no-startup-id easy-i3-neovim-nav focus up
-bindsym $mod+l exec --no-startup-id easy-i3-neovim-nav focus right
+bindsym $mod+h exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus left
+bindsym $mod+j exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus down
+bindsym $mod+k exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus up
+bindsym $mod+l exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus right
 
 # Resizing windows
-bindsym $mod+Shift+Left  exec --no-startup-id easy-i3-neovim-nav resize shrink width  5 10 5
-bindsym $mod+Shift+Down  exec --no-startup-id easy-i3-neovim-nav resize shrink height 5 10 5
-bindsym $mod+Shift+Up    exec --no-startup-id easy-i3-neovim-nav resize grow   height 5 10 5
-bindsym $mod+Shift+Right exec --no-startup-id easy-i3-neovim-nav resize grow   width  5 10 5
+bindsym $mod+Shift+Left  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink width  5 10 5
+bindsym $mod+Shift+Down  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink height 5 10 5
+bindsym $mod+Shift+Up    exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   height 5 10 5
+bindsym $mod+Shift+Right exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   width  5 10 5
 
 # Move focused window
 bindsym $mod+Shift+h move left
