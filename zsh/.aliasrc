@@ -152,11 +152,13 @@ alias pat="php artisan test"
 
 # git
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+alias gcm='git checkout master'
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit -v'
-alias gcm='git commit -m'
-alias gca='git commit -av'
+alias gc='git commit'
+alias gc!="gc -v"
+alias gca='git commit -a'
+alias gca!='gca -v'
 alias gcam='git commit -a -m'
 alias gcaa='git commit --amend'
 alias gb='git branch'
