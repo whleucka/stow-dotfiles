@@ -13,6 +13,10 @@ batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff;
 }
 
+what() {
+    curl cheat.sh/$1;
+}
+
 nvim-update() {
     current=$(pwd)
     neovim_dir=$HOME/.neovim-config/astro/

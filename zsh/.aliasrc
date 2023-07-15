@@ -113,9 +113,6 @@ alias tf="kitty +kitten transfer"
 alias rf="kitty +kitten transfer --direction=receive"
 alias icat="kitty +kitten icat"
 
-# cheat.sh
-alias what="cheat"
-
 # libra-php
 alias cs="./celestial -s"
 alias lt="./libra -t"
