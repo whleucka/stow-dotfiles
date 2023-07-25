@@ -34,3 +34,22 @@ nvim-update() {
 
     printf "Done!\n"
 }
+
+music() {
+    music_list=/tmp/music-list
+
+    if [ ! -f "$music_list" ]; then
+        printf "Fetching music list...\n"
+        ssh fsociety -- "find /mnt/data/Music -type f \( -name \"*.mp3\" -o -name \"*.flac\" -o -name \"*.ogg\" -o -name \"*.wav\" -o -name \"*.m4a\" \)" > "$music_list"
+        printf "Done...\n"
+    fi;
+
+    selected=$(cat "$music_list" | fzf)
+
+    if [ ! -z "$selected" ]; then
+        mpv "sftp://fsociety:$selected"
+    else:
+        printf "See you next time!"
+    fi;
+    
+}
