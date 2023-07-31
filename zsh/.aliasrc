@@ -33,14 +33,16 @@ if command -v composer > /dev/null; then
 fi
 
 # npm
-alias naf="npm audit fix"
-alias npi="npm install"
-alias npu="npm update"
-alias nrw="npm run watch"
-alias nrb="npm run build"
-alias nrd="npm run dev"
-alias nrp="npm run prod"
-alias nrh="npm run hot"
+if command -v npm > /dev/null; then
+    alias naf="npm audit fix"
+    alias npi="npm install"
+    alias npu="npm update"
+    alias nrw="npm run watch"
+    alias nrb="npm run build"
+    alias nrd="npm run dev"
+    alias nrp="npm run prod"
+    alias nrh="npm run hot"
+fi
 
 # clear
 alias c="clear"
@@ -103,11 +105,6 @@ alias tf="kitty +kitten transfer"
 alias rf="kitty +kitten transfer --direction=receive"
 alias icat="kitty +kitten icat"
 
-# laravel
-alias pa="php artisan"
-alias pas="php artisan serve"
-alias pat="php artisan test"
-
 # git
 alias g="git"
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
@@ -167,7 +164,9 @@ if command -v exa > /dev/null; then
     alias l='exa -l'
     alias la='exa -al'
     alias ll='exa -alh'
-    alias tree='exa --tree'
+    if command -v tree > /dev/null; then
+        alias tree='exa --tree'
+    fi
 else
     alias l='ls -l'
     alias la='ls -a'

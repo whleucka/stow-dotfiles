@@ -9,6 +9,49 @@ fg() {
     fi
 }
 
+# Custom search using fd
+f() {
+    if ! command -v fd > /dev/null; then
+        printf "f alias: fd must be installed\n"
+        return 0
+    fi
+    if command -v tree > /dev/null; then
+        preview_cmd="tree -C {}"
+    else
+        preview_cmd="ls -ls"
+    fi
+    # Store the STDOUT of fzf in a variable
+    selection=$(fd --type=directory | fzf --multi --height=80% --border=sharp \
+        --preview=$preview_cmd --preview-window='45%,border-sharp' \
+        --prompt='Dirs > ' \
+        --bind='del:execute(rm -ri {+})' \
+        --bind='ctrl-p:toggle-preview' \
+        --bind='ctrl-d:change-prompt(Dirs > )' \
+        --bind='ctrl-d:+reload(fd --type=directory)' \
+        --bind='ctrl-d:+change-preview(tree -C {})' \
+        --bind='ctrl-d:+refresh-preview' \
+        --bind='ctrl-f:change-prompt(Files > )' \
+        --bind='ctrl-f:+reload(fd --type=file)' \
+        --bind='ctrl-f:+change-preview(cat {})' \
+        --bind='ctrl-f:+refresh-preview' \
+        --bind='ctrl-a:select-all' \
+        --bind='ctrl-x:deselect-all' \
+        --header '
+            CTRL-D to display directories | CTRL-F to display files
+            CTRL-A to select all | CTRL-x to deselect all
+            ENTER to edit | DEL to delete
+            CTRL-P to toggle preview
+            '
+        )
+
+    # Determine what to do depending on the selection
+    if [ -d "$selection" ]; then
+        cd "$selection" || exit
+    else
+        eval "$EDITOR $selection"
+    fi
+}
+
 batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff;
 }
