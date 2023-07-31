@@ -3,7 +3,7 @@
 # Will Hleucka william.hleucka@gmail.com
 #
 
-alias hist="history -E"
+alias h="history -E"
 
 # ncdu
 if command -v ncdu > /dev/null; then
@@ -96,16 +96,6 @@ if command -v grip > /dev/null; then
     alias serve-md="grip -b "
 fi
 
-# tuir
-if command -v tuir > /dev/null; then
-    alias reddit='tuir --enable-media'
-fi
-
-# hacker news
-if command -v hackernews_tui > /dev/null; then
-    alias hackernews="hackernews_tui"
-fi
-
 # ssh
 alias s="kitty +kitten ssh"
 alias d="kitty +kitten diff"
@@ -113,18 +103,17 @@ alias tf="kitty +kitten transfer"
 alias rf="kitty +kitten transfer --direction=receive"
 alias icat="kitty +kitten icat"
 
-# libra-php
-alias cs="./celestial -s"
-alias lt="./libra -t"
-
 # laravel
 alias pa="php artisan"
 alias pas="php artisan serve"
 alias pat="php artisan test"
 
 # git
+alias g="git"
 alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 alias gcm='git checkout master'
+alias gco='git checkout'
+alias gcb="git checkout -b"
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
@@ -135,15 +124,14 @@ alias gcam='git commit -a -m'
 alias gcaa='git commit --amend'
 alias gb='git branch'
 alias gbd='git branch -d'
-alias gco='git checkout'
-alias gcb="git checkout -b"
+alias gbD='git branch -D'
 alias gf='git fetch'
 alias gm='git merge'
 alias gp='git pull'
 alias gpl='git pull origin'
-alias gps='git push'
+alias gpu='git push'
 alias gpsu='git push -u origin'
-alias gitstore="git config credential.helper store"
+alias gstore="git config credential.helper store"
 
 # yay
 alias upg='yay -Syu'
@@ -187,12 +175,12 @@ else
 fi
 
 # bat cat
-if command -v bat > /dev/null; then
-    alias cat="bat -p "
-    alias bd="batdiff"
-elif command -v batcat > /dev/null; then
-    alias cat="batcat -p"
-fi
-if command -v batgrep > /dev/null; then
-    alias grep="batgrep "
-fi
+# if command -v bat > /dev/null; then
+#     alias cat="bat -p "
+#     alias bd="batdiff"
+# elif command -v batcat > /dev/null; then
+#     alias cat="batcat -p"
+# fi
+# if command -v batgrep > /dev/null; then
+#     alias grep="batgrep "
+# fi

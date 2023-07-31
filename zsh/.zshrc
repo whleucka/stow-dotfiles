@@ -18,15 +18,13 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_OPTS="-m"
     FZF_DEFAULT_OPTS+=" --color='dark'"
     FZF_DEFAULT_OPTS+=" --bind 'ctrl-i:toggle-preview'"
-    FZF_DEFAULT_OPTS+=" --preview 'bat --style=numbers --color=always --line-range :500 {}' --height 80%"
-    FZF_DEFAULT_OPTS+=" --preview-window=right:60%:hidden"
     FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
-    FZF_DEFAULT_OPTS+=" --height=80%"
+    FZF_DEFAULT_OPTS+=" --height=50%"
     FZF_DEFAULT_OPTS+=" --layout=reverse"
     #FZF_DEFAULT_OPTS+=" --border"
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow -g "!{.git,vendor,node_modules}/*"'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_TMUX=1
+    #export FZF_TMUX=1
 fi
 
 # Caps lock is not needed..
@@ -163,7 +161,9 @@ source $HOME/.aliasrc
 source $HOME/.functions
 
 # Rust
-source "$HOME/.cargo/env"
+if [ -x "$(command -v rustc)" ]; then
+    source "$HOME/.cargo/env"
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
