@@ -46,9 +46,11 @@ f() {
 
     # Determine what to do depending on the selection
     if [ -d "$selection" ]; then
+        # Change directories
         cd "$selection" || exit
     else
-        eval "$EDITOR $selection"
+        # If the selection is not empty string, open with editor
+        [[ ! -z $selection ]] && eval "$EDITOR $selection"
     fi
 }
 
