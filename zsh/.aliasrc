@@ -5,6 +5,8 @@
 
 alias h="history -E"
 
+alias fdfind="fd"
+
 # ncdu
 if command -v ncdu > /dev/null; then
     alias du="ncdu -x "
