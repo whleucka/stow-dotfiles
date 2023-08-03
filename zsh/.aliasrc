@@ -24,6 +24,7 @@ if command -v docker-compose > /dev/null; then
     alias dcbuild='sudo docker-compose -f ~/docker/docker-compose.yml build'
     alias dcpull='sudo docker-compose -f ~/docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
     alias dclogs='sudo docker-compose -f ~/docker/docker-compose.yml logs -tf --tail="50" '
+    alias dcapp='sudo docker-compose -f ~/docker/docker-compose.yml exec php zsh'
 fi
 
 # composer
@@ -126,6 +127,7 @@ alias gf='git fetch'
 alias gm='git merge'
 alias gp='git pull'
 alias gpl='git pull origin'
+alias gps='git push'
 alias gpu='git push'
 alias gpsu='git push -u origin'
 alias gstore="git config credential.helper store"
