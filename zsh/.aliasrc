@@ -24,6 +24,7 @@ if command -v docker-compose > /dev/null; then
     alias dcbuild='sudo docker-compose -f ~/docker/docker-compose.yml build'
     alias dcpull='sudo docker-compose -f ~/docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
     alias dclogs='sudo docker-compose -f ~/docker/docker-compose.yml logs -tf --tail="50" '
+    alias dcapp='sudo docker-compose -f ~/docker/docker-compose.yml exec php zsh'
 fi
 
 # composer
