@@ -186,7 +186,7 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # if type "neofetch" > /dev/null; then
 #     neofetch 
