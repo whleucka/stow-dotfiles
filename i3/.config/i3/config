@@ -133,6 +133,11 @@ for_window [class="Pavucontrol"] floating enable
 #########################################################################################
 # Misc Key Bindings
 #########################################################################################
+# Keyboard repeat rate
+exec --no-startup-id xset r rate 300 50
+# Touchpad speed
+exec --no-startup-id xset m 26/10 4
+
 # Dmenu
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # Kill focused window
