@@ -10,7 +10,7 @@ vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
 vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
 -- Buffer
-vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true})
+vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true })
 
 -- File tree
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true })
@@ -21,7 +21,7 @@ vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { silent = 
 vim.keymap.set('n', '<leader>th', ':ToggleTerm size=10 direction=horizontal<CR>', { silent = true })
 vim.keymap.set('n', '<leader>tv', ':ToggleTerm size=70 direction=vertical<CR>', { silent = true })
 function _G.set_terminal_keymaps()
-  local opts = {buffer = 0}
+  local opts = { buffer = 0 }
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
   vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
@@ -33,19 +33,20 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-
 -- Splits
 vim.keymap.set('n', '|', '<C-w>v', { silent = true })
 vim.keymap.set('n', '\\', '<C-w>s', { silent = true })
-vim.keymap.set('n', '<C-h>', '<C-w>h', {silent = true })
-vim.keymap.set('n', '<C-j>', '<C-w>j', {silent = true })
-vim.keymap.set('n', '<C-k>', '<C-w>k', {silent = true })
-vim.keymap.set('n', '<C-l>', '<C-w>l', {silent = true })
+vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
 
 -- Buffer navigation
-vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>', {silent = true })
-vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>', {silent = true })
+vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>', { silent = true })
+vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>', { silent = true })
 
+-- Formatting
+vim.keymap.set('n', '<leader>lf', ':Format<CR>', { silent = true })
 
 -- Leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
