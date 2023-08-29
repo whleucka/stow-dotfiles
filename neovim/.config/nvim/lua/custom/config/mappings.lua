@@ -8,6 +8,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 -- Quit
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
 -- Buffer
 vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true})
 
