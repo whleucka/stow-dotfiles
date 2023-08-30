@@ -1,19 +1,42 @@
 -- [[ Basic Keymaps ]]
-
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Save
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
+
 -- Quit
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
 vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+--vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+--vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
 -- Buffer
 vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true })
 
 -- File tree
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true })
+
+-- Telescope
+-- See `:help telescope.builtin`
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = 'Fuzzy find in buffer' })
+vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files() hidden=true<cr>", { desc = 'Find recently opened files' })
+vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = 'Find recently opened files' })
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find existing buffers' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = 'Find by Grep' })
+vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find diagnostic' })
 
 -- Terminal
 vim.keymap.set('n', '<C-\\>', ':ToggleTerm dir=.<CR>', { silent = true })
@@ -30,8 +53,7 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
   vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
 end
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.cmd('autocmd! TermOpen term://toggleterm#* lua set_terminal_keymaps()')
 
 -- Splits
 vim.keymap.set('n', '|', '<C-w>v', { silent = true })
