@@ -8,6 +8,7 @@ vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 
 -- Quit
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+vim.keymap.set('n', '<leader>qq', ':q!<CR>', { silent = true })
 vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
 
 -- Diagnostic keymaps
@@ -31,12 +32,14 @@ vim.keymap.set('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = 'Fuzzy find in buffer' })
-vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files() hidden=true<cr>", { desc = 'Find recently opened files' })
-vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = 'Find recently opened files' })
-vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find existing buffers' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = 'Find by Grep' })
-vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find diagnostic' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Find finds in current working directory' })
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, { desc = 'Find git files' })
+vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = 'Find previously opened files' })
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find open buffers' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help tags' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = 'Find a string in your current working directory' })
+vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find diagnostic list' })
+vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find quickfix list' })
 
 -- Terminal
 vim.keymap.set('n', '<C-\\>', ':ToggleTerm dir=.<CR>', { silent = true })
