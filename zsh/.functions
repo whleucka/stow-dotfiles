@@ -62,15 +62,12 @@ what() {
     curl cheat.sh/$1;
 }
 
-nvim-update() {
+stow-update() {
     current=$(pwd)
-    neovim_dir=$HOME/.neovim-config/astro/
-    user_dir=$HOME/.neovim-config/astro/.config/nvim/lua/user/
+    stow_dir=$HOME/stow-dotfiles
 
-    cd $neovim_dir;
-    git pull -v;
+    cd $stow_dir;
 
-    cd $user_dir;
     git pull -v;
 
     cd $current;
