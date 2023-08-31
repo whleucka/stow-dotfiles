@@ -170,19 +170,16 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
-[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
-
 # ctrl+n ctrl+p move through list
 bindkey '^n' expand-or-complete
 bindkey '^p' reverse-menu-complete
 # Press ctrl+e to complete autosuggest
 # Disable arrow completion
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+#ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 #bindkey '^I'      autosuggest-accept
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_USE_ASYNC=true
+#ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
+#ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#ZSH_AUTOSUGGEST_USE_ASYNC=true
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 
