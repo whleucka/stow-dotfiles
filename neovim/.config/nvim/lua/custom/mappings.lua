@@ -24,6 +24,9 @@ vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true })
 -- File tree
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true })
 
+-- Neogit
+vim.keymap.set('n', '<C-g>', ':Neogit kind=auto<CR>', { silent = true })
+
 -- Telescope
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>/', function()
@@ -35,6 +38,7 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = 'Fuzzy find in buffer' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Find finds in current working directory' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, { desc = 'Find git files' })
+vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files, { desc = 'Find git files' })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = 'Find previously opened files' })
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find open buffers' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help tags' })
