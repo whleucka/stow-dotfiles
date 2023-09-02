@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-HOST=$1
-FINGERPRINT=$2
-SESSION_ID=$3
-
-ssh $HOST "pssh $FINGERPRINT 'sed -n \"/Started tx: $SESSION_ID/,/Started tx/p\" /var/log/supervisor/lamassu-machine.err.log'"

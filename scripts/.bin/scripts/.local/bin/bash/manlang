@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-languages=`echo "php typescript nodejs cpp python bash lua" | tr ' ' '\n'`
-selected=`printf "$languages" | fzf`
-read -p "Query: " query
-curl cht.sh/$selected/$query
