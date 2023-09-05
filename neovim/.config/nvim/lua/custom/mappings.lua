@@ -8,7 +8,15 @@ vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 vim.keymap.set('n', '<leader><space>', ':update<CR>', { silent = true })
 
 -- Quit
-vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+vim.keymap.set('n', '<leader>q', function()
+  if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+    vim.cmd([[close]])
+  elseif #vim.api.nvim_list_tabpages() > 1 then
+    vim.cmd([[tabclose]])
+  else
+    vim.cmd([[qa]])
+  end
+end, { silent = true })
 vim.keymap.set('n', '<leader>qq', ':q!<CR>', { silent = true })
 vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
 
