@@ -8,7 +8,7 @@ vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 vim.keymap.set('n', '<leader><space>', ':update<CR>', { silent = true })
 
 -- Quit
-vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true })
+vim.keymap.set('n', '<leader>q', ':bd<CR>', { silent = true })
 vim.keymap.set('n', '<leader>qq', ':q!<CR>', { silent = true })
 vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
 
@@ -24,9 +24,6 @@ vim.keymap.set('n', '[q', ":cprev<CR>", { desc = 'Go to previous quickfix list',
 vim.keymap.set('n', ']q', ":cnext<CR>", { desc = 'Go to next quickfix list', silent = true })
 --vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 --vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- Buffer
-vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true })
 
 -- File tree
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true })
