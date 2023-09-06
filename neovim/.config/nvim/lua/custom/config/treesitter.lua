@@ -9,6 +9,10 @@ require('nvim-treesitter.configs').setup {
   auto_install = false,
 
   highlight = { enable = true },
+  parsers = {
+    latte = 'latte',  -- Use the 'latte' parser for Latte templates
+    -- Add parsers for other filetypes as needed
+  },
   indent = { enable = true },
   textobjects = {
     select = {
