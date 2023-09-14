@@ -161,19 +161,13 @@ if command -v rsync > /dev/null; then
 fi
 
 # list directories
-if command -v exa > /dev/null; then
-    alias ls="exa"
-    alias l='exa -l'
-    alias la='exa -al'
-    alias ll='exa -alh'
-    if command -v tree > /dev/null; then
-        alias tree='exa --tree'
-    fi
-else
-    alias l='ls -l'
-    alias la='ls -a'
-    alias ll='ls -la'
+if command -v lsd > /dev/null; then
+    alias ls='lsd'
 fi
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 
 # bat cat
 # if command -v bat > /dev/null; then
