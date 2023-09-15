@@ -8,9 +8,9 @@ vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 vim.keymap.set('n', '<leader><space>', ':update<CR>', { silent = true })
 
 -- Quit
-vim.keymap.set('n', '<leader>q', ':bd<CR>', { silent = true })
-vim.keymap.set('n', '<leader>qq', ':q!<CR>', { silent = true })
-vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
+vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true, desc = "Close buffer" })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, desc = "Close window" })
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { silent = true })
 
 -- Lazy
 vim.keymap.set('n', '<leader>pu', ':Lazy update<CR>', { desc = "Lazy update", silent = true })
