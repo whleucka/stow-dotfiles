@@ -8,9 +8,9 @@ vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
 vim.keymap.set('n', '<leader><space>', ':update<CR>', { silent = true })
 
 -- Quit
-vim.keymap.set('n', '<leader>q', ':bd<CR>', { silent = true })
-vim.keymap.set('n', '<leader>qq', ':q!<CR>', { silent = true })
-vim.keymap.set('n', '<C-q>', ':qa!<CR>', { silent = true })
+vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true, desc = "Close buffer" })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, desc = "Close window" })
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { silent = true })
 
 -- Lazy
 vim.keymap.set('n', '<leader>pu', ':Lazy update<CR>', { desc = "Lazy update", silent = true })
@@ -40,13 +40,15 @@ vim.keymap.set('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = 'Fuzzy find in buffer' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Find finds in current working directory' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files,
+  { desc = 'Find finds in current working directory' })
 vim.keymap.set('n', '<leader>fg', require('telescope.builtin').git_files, { desc = 'Find git files' })
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files, { desc = 'Find git files' })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = 'Find previously opened files' })
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find open buffers' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find help tags' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = 'Find a string in your current working directory' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep,
+  { desc = 'Find a string in your current working directory' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find diagnostic list' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find quickfix list' })
 
@@ -67,6 +69,7 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
   vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
 end
+
 vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 
 -- Splits
@@ -82,7 +85,7 @@ vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>', { silent = true })
 vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>', { silent = true })
 
 -- Formatting
-vim.keymap.set('n', '<leader>lf', ':Format<CR>', { silent = true })
+vim.keymap.set('n', '<leader>lf', ':Format<CR>', { silent = true, desc = "Format buffer" })
 
 -- Leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
