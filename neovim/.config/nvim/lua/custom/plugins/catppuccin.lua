@@ -3,6 +3,9 @@ return {
   name = "catppuccin",
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme 'catppuccin-mocha'
+    require("catppuccin").setup({
+      transparent_background = true
+    })
+    vim.cmd.colorscheme 'catppuccin-macchiato'
   end
 }
