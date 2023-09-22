@@ -58,7 +58,7 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'latte', 'hbs'} },
+  html = { filetypes = { 'html', 'twig', 'latte', 'hbs' } },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -96,6 +96,7 @@ mason_lspconfig.setup_handlers {
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local lspkind = require('lspkind')
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
@@ -110,13 +111,28 @@ cmp.setup {
     documentation = true
   },
   window = {
-    documentation = {
-      border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
-    },
-    completion = {
-      border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
-      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
-    }
+    completion = cmp.config.window.bordered({
+      col_offset = -3,
+      side_padding = 0,
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    }),
+    documentation = cmp.config.window.bordered({
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    }),
+  },
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      local kind = lspkind.cmp_format({
+        mode = "symbol_text",
+        maxwidth = 50,
+      })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. strings[1] .. " "
+      kind.menu = "    (" .. strings[2] .. ")"
+
+      return kind
+    end,
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -147,11 +163,19 @@ cmp.setup {
       end
     end, { 'i', 's' }),
   },
+  view = {
+    entries = { name = "custom", selection_order = "near_cursor" },
+  },
+  experimental = {
+    ghost_text = true,
+  },
   sources = {
     { name = "nvim_lsp", priority = 1000 },
-    { name = "luasnip", priority = 750 },
-    { name = "buffer", priority = 500 },
-    { name = "path", priority = 250 },
-    { name = "emoji", priority = 700 },
+    { name = "luasnip",  priority = 750 },
+    { name = "buffer",   priority = 500,    keyword_length = 4 },
+    { name = "path",     priority = 250 },
+    { name = "emoji",    priority = 700 },
+    { name = "spell",    keyword_length = 4 },
+    { name = "rg",       dup = 0 },
   },
 }
