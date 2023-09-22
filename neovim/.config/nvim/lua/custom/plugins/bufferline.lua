@@ -13,7 +13,7 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = " WILL HLEUCKA",
+            text = "🇺🇦~*! Слава Україні !*~ 🇨🇦",
             separator = true,
             text_align = "center"
           }
