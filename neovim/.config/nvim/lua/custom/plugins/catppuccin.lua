@@ -4,6 +4,7 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
+      floating_border = "on",
       on_highlights = function(hl, c)
         hl.DiagnosticErrorVirtualText = {
           bg = c.none,
@@ -17,9 +18,8 @@ return {
         notify = true,
         noice = true,
         mason = true,
-
       },
-      transparent_background = true
+      transparent_background = true,
     })
     vim.cmd.colorscheme 'catppuccin-macchiato'
   end

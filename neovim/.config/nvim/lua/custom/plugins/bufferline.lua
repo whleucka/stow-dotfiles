@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   'akinsho/bufferline.nvim',
   after = "catppuccin",
@@ -7,7 +8,16 @@ return {
     vim.opt.termguicolors = true
     require("bufferline").setup {
       options = {
-        diagnostics = "nvim_lsp"
+        diagnostics = "nvim_lsp",
+        separator_style = 'thin',
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = " WILL HLEUCKA",
+            separator = true,
+            text_align = "center"
+          }
+        },
       },
       highlights = require("catppuccin.groups.integrations.bufferline").get()
     }
