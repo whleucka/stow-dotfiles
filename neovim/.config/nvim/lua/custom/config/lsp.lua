@@ -174,7 +174,7 @@ cmp.setup {
     { name = "luasnip",  priority = 750 },
     { name = "buffer",   priority = 500,    keyword_length = 4 },
     { name = "path",     priority = 250 },
-    { name = "emoji",    priority = 700 },
+    { name = "emoi",    priority = 700 },
     { name = "spell",    keyword_length = 4 },
     { name = "rg",       dup = 0 },
   },
@@ -182,10 +182,10 @@ cmp.setup {
 
 -- Diagnostics styles
 local signs = {
-    Error = " ",
-    Warning = " ",
-    Hint = " ",
-    Information = " "
+    Error = "🤬",
+    Warn = "⚠️ ",
+    Hint = "💡",
+    Info = "ℹ️ "
 }
 
 for type, icon in pairs(signs) do
