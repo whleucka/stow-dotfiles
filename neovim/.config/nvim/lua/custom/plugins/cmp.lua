@@ -7,6 +7,9 @@ return {
     'saadparwaiz1/cmp_luasnip',
 
     -- Adds LSP completion capabilities
+    "hrsh7th/cmp-emoji",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
     'hrsh7th/cmp-nvim-lsp',
 
     -- Adds a number of user-friendly snippets
