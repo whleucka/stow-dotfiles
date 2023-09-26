@@ -1,29 +1,28 @@
 return {
   "catppuccin/nvim",
+  name = "catppuccin",
   lazy = false,
   priority = 1000,
-  name = "catppuccin",
-  opts = {
-    flavour = "mocha",
-    transparent_background = true,
-    styles = {
-      keywords = { "bold" },
-      functions = { "italic" },
-    },
-    integrations = {
-      mason = true,
-      neotree = true,
-      neotest = true,
-      which_key = true,
-      neogit = false,
-      nvimtree = false,
-      dashboard = false,
-      rainbow_delimiters = false,
-      dap = { enabled = true, enable_ui = true },
-      telescope = { enabled = true, style = nil },
-    },
-  },
   config = function()
-    vim.cmd.colorscheme 'catppuccin'
+    require("catppuccin").setup({
+      flavour = "mocha",
+      on_highlights = function(hl, c)
+        hl.DiagnosticErrorVirtualText = {
+          bg = c.none,
+          fg = c.error,
+        }
+      end,
+      floating_border = "on",
+      integrations = {
+        cmp = true,
+        which_key = true,
+        neotree = true,
+        notify = true,
+        noice = true,
+        mason = true,
+      },
+      transparent_background = true,
+    })
+    vim.cmd.colorscheme 'catppuccin-mocha'
   end
 }
