@@ -81,12 +81,19 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
+-- LSP settings (for overriding per client)
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
 mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
+      handlers = handlers,
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end
@@ -194,20 +201,6 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
-vim.diagnostic.config({
-    severity_sort = true,
-    virtual_text = {
-      source = false,
-      severity = vim.diagnostic.severity.ERROR,
-      spacing = 1,
-    },
-    float = {
-      header = "",
-      source = false,
-      border = "rounded",
-    },
-  })
 
 -- Border on LSPInfo window
 require('lspconfig.ui.windows').default_options.border = 'rounded'
