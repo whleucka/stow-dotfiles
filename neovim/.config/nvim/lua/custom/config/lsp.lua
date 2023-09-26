@@ -208,3 +208,6 @@ vim.diagnostic.config({
       border = "rounded",
     },
   })
+
+-- Border on LSPInfo window
+require('lspconfig.ui.windows').default_options.border = 'rounded'

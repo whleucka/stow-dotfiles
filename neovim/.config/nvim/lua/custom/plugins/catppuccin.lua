@@ -22,6 +22,14 @@ return {
         mason = true,
       },
       transparent_background = true,
+      custom_highlights = function(colors)
+        return {
+          FloatBorder = { fg = colors.blue },
+          LineNr = { fg = colors.peach },
+          Pmenu = { fg = colors.blue },
+          PmenuSel = { bg = colors.surface0, fg = colors.blue },
+        }
+      end,
     })
     vim.cmd.colorscheme 'catppuccin-mocha'
   end
