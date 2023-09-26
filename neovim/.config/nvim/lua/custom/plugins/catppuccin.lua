@@ -25,7 +25,7 @@ return {
       custom_highlights = function(colors)
         return {
           FloatBorder = { fg = colors.blue },
-          LineNr = { fg = colors.peach },
+          LineNr = { fg = "#888888" },
           Pmenu = { fg = colors.blue },
           PmenuSel = { bg = colors.surface0, fg = colors.blue },
         }
