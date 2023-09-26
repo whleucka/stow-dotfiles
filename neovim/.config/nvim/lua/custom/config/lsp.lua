@@ -114,10 +114,12 @@ cmp.setup {
     completion = cmp.config.window.bordered({
       col_offset = -3,
       side_padding = 0,
+      border = "rounded",
       winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
     }),
     documentation = cmp.config.window.bordered({
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      border = "rounded",
+      winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
     }),
   },
   formatting = {
@@ -174,7 +176,7 @@ cmp.setup {
     { name = "luasnip",  priority = 750 },
     { name = "buffer",   priority = 500,    keyword_length = 4 },
     { name = "path",     priority = 250 },
-    { name = "emoi",    priority = 700 },
+    { name = "emoi",     priority = 700 },
     { name = "spell",    keyword_length = 4 },
     { name = "rg",       dup = 0 },
   },
@@ -182,13 +184,27 @@ cmp.setup {
 
 -- Diagnostics styles
 local signs = {
-    Error = "🤬",
-    Warn = "⚠️ ",
-    Hint = "💡",
-    Info = "ℹ️ "
+  Error = "🤬",
+  Warn = "⚠️ ",
+  Hint = "💡",
+  Info = "ℹ️ "
 }
 
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+vim.diagnostic.config({
+    severity_sort = true,
+    virtual_text = {
+      source = false,
+      severity = vim.diagnostic.severity.ERROR,
+      spacing = 1,
+    },
+    float = {
+      header = "",
+      source = false,
+      border = "rounded",
+    },
+  })
