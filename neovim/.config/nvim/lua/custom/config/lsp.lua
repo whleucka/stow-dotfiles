@@ -183,9 +183,9 @@ cmp.setup {
     { name = "luasnip",  priority = 750 },
     { name = "buffer",   priority = 500,    keyword_length = 4 },
     { name = "path",     priority = 250 },
-    { name = "emoi",     priority = 700 },
-    { name = "spell",    keyword_length = 4 },
-    { name = "rg",       dup = 0 },
+    { name = "emoji",    priority = 700 },
+    { name = "spell",    priority = 100 },
+    { name = "rg",       priority  = 150, dup = 0 },
   },
 }
 
