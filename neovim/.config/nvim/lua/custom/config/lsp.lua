@@ -81,12 +81,19 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
+-- LSP settings (for overriding per client)
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
 mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
+      handlers = handlers,
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end
@@ -114,10 +121,12 @@ cmp.setup {
     completion = cmp.config.window.bordered({
       col_offset = -3,
       side_padding = 0,
+      border = "rounded",
       winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
     }),
     documentation = cmp.config.window.bordered({
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      border = "rounded",
+      winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
     }),
   },
   formatting = {
@@ -174,7 +183,7 @@ cmp.setup {
     { name = "luasnip",  priority = 750 },
     { name = "buffer",   priority = 500,    keyword_length = 4 },
     { name = "path",     priority = 250 },
-    { name = "emoi",    priority = 700 },
+    { name = "emoi",     priority = 700 },
     { name = "spell",    keyword_length = 4 },
     { name = "rg",       dup = 0 },
   },
@@ -182,13 +191,16 @@ cmp.setup {
 
 -- Diagnostics styles
 local signs = {
-    Error = "🤬",
-    Warn = "⚠️ ",
-    Hint = "💡",
-    Info = "ℹ️ "
+  Error = "🤬",
+  Warn = "⚠️ ",
+  Hint = "💡",
+  Info = "ℹ️ "
 }
 
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+-- Border on LSPInfo window
+require('lspconfig.ui.windows').default_options.border = 'rounded'
