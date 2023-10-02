@@ -6,4 +6,6 @@
     'tpope/vim-sleuth',
     -- Useful common sense mappings
     'tpope/vim-unimpaired',
+    -- Repeat
+    'tpope/vim-repeat',
   }
