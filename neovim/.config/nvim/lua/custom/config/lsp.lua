@@ -183,9 +183,9 @@ cmp.setup {
     { name = "luasnip",  priority = 750 },
     { name = "buffer",   priority = 500,    keyword_length = 4 },
     { name = "path",     priority = 250 },
-    { name = "emoi",     priority = 700 },
-    { name = "spell",    keyword_length = 4 },
-    { name = "rg",       dup = 0 },
+    { name = "emoji",    priority = 700 },
+    { name = "spell",    priority = 100 },
+    { name = "rg",       priority  = 150, dup = 0 },
   },
 }
 
@@ -204,3 +204,11 @@ end
 
 -- Border on LSPInfo window
 require('lspconfig.ui.windows').default_options.border = 'rounded'
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
