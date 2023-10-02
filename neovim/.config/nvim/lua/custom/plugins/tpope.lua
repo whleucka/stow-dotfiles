@@ -8,4 +8,6 @@
     'tpope/vim-unimpaired',
     -- Repeat
     'tpope/vim-repeat',
+    -- Date manipulation
+    'tpope/vim-speeddating',
   }

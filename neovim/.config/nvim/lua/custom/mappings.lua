@@ -20,8 +20,6 @@ vim.keymap.set('n', '<leader>pc', ':Lazy clean<CR>', { desc = "Lazy clean", sile
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '[q', ":cprev<CR>", { desc = 'Go to previous quickfix list', silent = true })
-vim.keymap.set('n', ']q', ":cnext<CR>", { desc = 'Go to next quickfix list', silent = true })
 --vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 --vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
@@ -75,14 +73,10 @@ vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
 -- Splits
 vim.keymap.set('n', '|', '<C-w>v', { silent = true })
 vim.keymap.set('n', '\\', '<C-w>s', { silent = true })
-vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
 
 -- Buffer navigation
-vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>', { silent = true })
-vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>', { silent = true })
+vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>', { silent = true, desc = "Previous buffer" })
+vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>', { silent = true, desc = "Next buffer" })
 
 -- Formatting
 vim.keymap.set('n', '<leader>lf', ':Format<CR>', { silent = true, desc = "Format buffer" })
@@ -94,3 +88,7 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- BOL/EOL
+vim.keymap.set('n', '<C-j>', '_', { silent = true, desc = "Jump to beginning of line" })
+vim.keymap.set('n', '<C-k>', '$', { silent = true, desc = "Jump to end of line" })
