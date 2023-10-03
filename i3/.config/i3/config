@@ -28,7 +28,8 @@ set $teal      #94e2d5
 set $sky       #89dceb
 set $sapphire  #74c7ec
 set $blue      #89b4fa
-set $lavender  #b4befe
+#set $lavender  #b4befe
+set $lavender  #9098CB
 set $text      #cdd6f4
 set $subtext1  #bac2de
 set $subtext0  #a6adc8
