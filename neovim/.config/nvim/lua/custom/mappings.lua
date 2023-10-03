@@ -4,8 +4,9 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Neogit
-vim.keymap.set('n', '<leader>gs', ':Neogit kind=auto<CR>', { silent = true })
-vim.keymap.set('n', '<leader>gb', ":BlameLineToggle<CR>", { silent = true })
+vim.keymap.set('n', '<leader>gs', ':Neogit kind=auto<CR>', { silent = true, desc = "Neogit" })
+vim.keymap.set('n', '<leader>gb', ":G blame<CR>", { silent = true, desc = "Git blame" })
+vim.keymap.set('n', '<leader>gl', ":BlameLineToggle<CR>", { silent = true, desc = "Git blame (virtual text)" })
 
 -- Save
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
