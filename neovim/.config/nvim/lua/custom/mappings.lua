@@ -2,7 +2,10 @@
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<Esc>', ':noh<CR>', { silent = true })
+
+-- Neogit
+vim.keymap.set('n', '<leader>gs', ':Neogit kind=auto<CR>', { silent = true })
+vim.keymap.set('n', '<leader>gb', ":BlameLineToggle<CR>", { silent = true })
 
 -- Save
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
@@ -28,9 +31,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 
 -- File tree
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true })
-
--- Neogit
-vim.keymap.set('n', '<C-g>', ':Neogit kind=auto<CR>', { silent = true })
 
 -- Telescope
 -- See `:help telescope.builtin`
