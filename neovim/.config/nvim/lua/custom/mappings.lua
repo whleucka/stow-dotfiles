@@ -94,8 +94,8 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- BOL/EOL
-vim.keymap.set('n', '<C-j>', '_', { silent = true, desc = "Jump to beginning of line" })
-vim.keymap.set('n', '<C-k>', '$', { silent = true, desc = "Jump to end of line" })
+vim.keymap.set('n', '<C-h>', '_', { silent = true, desc = "Jump to beginning of line" })
+vim.keymap.set('n', '<C-l>', '$', { silent = true, desc = "Jump to end of line" })
 
 -- Moving lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
