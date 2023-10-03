@@ -2,10 +2,13 @@
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Esc>', ':noh<CR>', { silent = true })
 
 -- Save
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true })
-vim.keymap.set('n', '<leader><space>', ':update<CR>', { silent = true })
+vim.keymap.set('n', '<leader><space>', function()
+  vim.cmd("so")
+end, { silent = true })
 
 -- Quit
 vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true, desc = "Close buffer" })
@@ -92,3 +95,15 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- BOL/EOL
 vim.keymap.set('n', '<C-j>', '_', { silent = true, desc = "Jump to beginning of line" })
 vim.keymap.set('n', '<C-k>', '$', { silent = true, desc = "Jump to end of line" })
+
+-- Moving lines around
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Primeagen remaps
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "Q", "<nop>")
