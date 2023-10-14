@@ -100,8 +100,8 @@ vim.keymap.set('n', '<leader>l', '$', { silent = true, desc = "Jump to end of li
 --vim.keymap.set('n', '<leader>k', 'gg', { silent = true, desc = "Jump to top of file" })
 
 -- Moving lines around
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Primeagen remaps
 vim.keymap.set("n", "J", "mzJ`z")
