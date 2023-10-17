@@ -25,8 +25,8 @@ vim.keymap.set('n', '<leader>ps', ':Lazy sync<CR>', { desc = "Lazy sync", silent
 vim.keymap.set('n', '<leader>pc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true })
 
 -- Quickfix
-vim.keymap.set('n', '[q', ':cn<CR>', { desc = 'Go to previous quickfix' })
-vim.keymap.set('n', ']q', ':cp<CR>', { desc = 'Go to next quickfix' })
+vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix' })
+vim.keymap.set('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
