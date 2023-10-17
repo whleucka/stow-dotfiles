@@ -19,11 +19,13 @@ fi
 
 # docker
 if command -v docker-compose > /dev/null; then
-    alias dcup='sudo docker-compose -f ~/docker/docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
-    alias dcdown='sudo docker-compose -f ~/docker/docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
-    alias dcbuild='sudo docker-compose -f ~/docker/docker-compose.yml build'
-    alias dcpull='sudo docker-compose -f ~/docker/docker-compose.yml pull' #pulls all new images is specified after dcpull
-    alias dclogs='sudo docker-compose -f ~/docker/docker-compose.yml logs -tf --tail="50" '
+    # these are common commands
+    alias dcup='sudo docker-compose -f ./docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+    alias dcdown='sudo docker-compose -f ./docker-compose.yml stop' #brings down all containers if one is not defined after dcdown
+    alias dcbuild='sudo docker-compose -f ./docker-compose.yml build'
+    alias dcpull='sudo docker-compose -f ./docker-compose.yml pull' #pulls all new images is specified after dcpull
+    alias dclogs='sudo docker-compose -f ./docker-compose.yml logs -tf --tail="50" '
+    # this one is special
     alias dcapp='sudo docker-compose -f ~/docker/docker-compose.yml exec php zsh'
 fi
 
