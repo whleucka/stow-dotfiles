@@ -2,6 +2,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.cmd[[
+call serverstart(tempname())
+let &titlestring="nvim %F -- [" . v:servername . "]"
+set title
+]]
+
 require "custom.config.lazy"
 require "custom.config.telescope"
 require "custom.config.treesitter"
