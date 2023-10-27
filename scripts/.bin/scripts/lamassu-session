@@ -38,7 +38,12 @@ def get_sessions(server):
     FROM txs 
     INNER JOIN Tablet ON txs.tablet_id = Tablet.id 
     WHERE txs.created BETWEEN NOW() - INTERVAL 1 WEEK AND NOW() 
-    ORDER BY txs.created DESC"""
+    UNION
+    SELECT incomplete_txs.session_id, LEFT(Tablet.fingerprint, 5) as fingerprint
+    FROM incomplete_txs 
+    INNER JOIN Tablet ON incomplete_txs.tablet_id = Tablet.id 
+    WHERE incomplete_txs.start_date BETWEEN NOW() - INTERVAL 1 WEEK AND NOW() 
+    """
     lines = []
     mysql_cmd = hosts[server]["mysql"]
     cmd = f"mysql {mysql_cmd} -e '{sql}'"
