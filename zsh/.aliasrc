@@ -20,7 +20,9 @@ fi
 # docker
 if command -v docker-compose > /dev/null; then
     # these are common commands
-    alias dcup='sudo docker-compose -f ./docker-compose.yml up -d' #brings up all containers if one is not defined after dcup
+    alias dcps='sud docker-compose -f ./docker-compose.yml ps'
+    alias dcup='sudo docker-compose -f ./docker-compose.yml up -d'
+    alias dcup='sudo docker-compose -f ./docker-compose.yml down'
     alias dcexec='sudo docker-compose -f ./docker-compose.yml exec'
     alias dcbuild='sudo docker-compose -f ./docker-compose.yml build'
     alias dcpull='sudo docker-compose -f ./docker-compose.yml pull' #pulls all new images is specified after dcpull
