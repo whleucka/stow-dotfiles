@@ -181,11 +181,28 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp", priority = 1000 },
     { name = "luasnip",  priority = 750 },
-    { name = "buffer",   priority = 500,    keyword_length = 4 },
+    { name = "buffer",   priority = 500, keyword_length = 4 },
     { name = "path",     priority = 250 },
     { name = "emoji",    priority = 700 },
     { name = "spell",    priority = 100 },
-    { name = "rg",       priority  = 150, dup = 0 },
+    {
+      name = "html-css",
+      priority = 400,
+      option = {
+        enable_on = {
+          "php",
+          "html",
+          "twig",
+          "latte",
+        },                                           -- set the file types you want the plugin to work on
+        file_extensions = { "css", "sass", "less" }, -- set the local filetypes from which you want to derive classes
+        style_sheets = {
+          -- example of remote styles, only css no js for now
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
+        }
+      }
+    },
+    -- { name = "rg",       priority  = 150, dup = 0 },
   },
 }
 
