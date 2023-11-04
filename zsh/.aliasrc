@@ -5,6 +5,12 @@
 
 alias h="history -E"
 
+if command -v udisksctl > /dev/null; then
+    alias mount-usb="udisksctl mount -b"
+    alias unmount-usb="udisksctl unmount -b"
+fi
+
+
 # ncdu
 if command -v ncdu > /dev/null; then
     alias du="ncdu -x "
