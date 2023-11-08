@@ -8,10 +8,10 @@ let &titlestring="nvim %F -- [" . v:servername . "]"
 set title
 ]]
 
-require "custom.config.lazy"
-require "custom.config.telescope"
-require "custom.config.treesitter"
-require "custom.options"
-require "custom.mappings"
-require "custom.config.autocmds"
-require "custom.config.lsp"
+require "config.lazy"
+require "config.telescope"
+require "config.treesitter"
+require "config.options"
+require "config.mappings"
+require "config.autocmds"
+require "config.lsp"
