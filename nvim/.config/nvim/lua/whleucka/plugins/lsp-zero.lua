@@ -21,12 +21,13 @@ return {
 		'hrsh7th/nvim-cmp',
 		event = 'InsertEnter',
 		dependencies = {
-			{'L3MON4D3/LuaSnip'},
+			{ 'L3MON4D3/LuaSnip' },
 		},
 		config = function()
 			-- Here is where you configure the autocompletion settings.
 			local lsp_zero = require('lsp-zero')
 			lsp_zero.extend_cmp()
+			local luasnip = require 'luasnip'
 
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require('cmp')
@@ -70,11 +71,11 @@ return {
 	-- LSP
 	{
 		'neovim/nvim-lspconfig',
-		cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-		event = {'BufReadPre', 'BufNewFile'},
+		cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+		event = { 'BufReadPre', 'BufNewFile' },
 		dependencies = {
-			{'hrsh7th/cmp-nvim-lsp'},
-			{'williamboman/mason-lspconfig.nvim'},
+			{ 'hrsh7th/cmp-nvim-lsp' },
+			{ 'williamboman/mason-lspconfig.nvim' },
 		},
 		config = function()
 			-- This is where all the LSP shenanigans will live
@@ -84,7 +85,7 @@ return {
 			lsp_zero.on_attach(function(client, bufnr)
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
-				lsp_zero.default_keymaps({buffer = bufnr})
+				lsp_zero.default_keymaps({ buffer = bufnr })
 			end)
 
 			require('mason-lspconfig').setup({

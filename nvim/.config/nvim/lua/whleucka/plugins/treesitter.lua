@@ -5,7 +5,7 @@ return {
 		'nvim-treesitter/nvim-treesitter-textobjects',
 	},
 	build = ':TSUpdate',
-	config = function ()
+	config = function()
 		require('nvim-treesitter.configs').setup {
 			-- Add languages to be installed here that you want installed for treesitter
 			ensure_installed = { 'c', 'cpp', 'php', 'bash', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
@@ -24,7 +24,7 @@ return {
 
 			highlight = { enable = true },
 			parsers = {
-				latte = 'latte',  -- Use the 'latte' parser for Latte templates
+				latte = 'latte', -- Use the 'latte' parser for Latte templates
 				-- Add parsers for other filetypes as needed
 			},
 			indent = { enable = true },

@@ -1,14 +1,14 @@
 return {
 	"NeogitOrg/neogit",
 	dependencies = {
-		"nvim-lua/plenary.nvim",         -- required
+		"nvim-lua/plenary.nvim",   -- required
 		"nvim-telescope/telescope.nvim", -- optional
-		"sindrets/diffview.nvim",        -- optional
-		"ibhagwan/fzf-lua",              -- optional
+		"sindrets/diffview.nvim",  -- optional
+		"ibhagwan/fzf-lua",        -- optional
 	},
 	config = true,
 	cmd = "Neogit",
 	keys = {
-		{"<leader>gs", "<cmd>Neogit<cr>", desc = "Neogit"}
+		{ "<leader>gs", "<cmd>Neogit<cr>", desc = "Neogit" }
 	}
 }

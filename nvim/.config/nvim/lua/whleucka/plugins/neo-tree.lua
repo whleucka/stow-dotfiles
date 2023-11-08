@@ -9,8 +9,8 @@ return {
 		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	keys = {
-		{"<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neotree toggle"},
-		{"<leader>o", "<cmd>Neotree focus<cr>", desc = "Neotree focus"}
+		{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neotree toggle" },
+		{ "<leader>o", "<cmd>Neotree focus<cr>",  desc = "Neotree focus" }
 	},
 	config = function()
 		require('neo-tree').setup {

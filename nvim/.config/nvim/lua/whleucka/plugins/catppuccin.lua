@@ -5,7 +5,7 @@ return {
 	priority = 1000,
 	integrations = {
 		telescope = true,
-        treesitter = true,
+		treesitter = true,
 		neotree = true,
 	},
 	config = function()
