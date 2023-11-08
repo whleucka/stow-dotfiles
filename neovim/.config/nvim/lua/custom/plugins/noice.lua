@@ -1,6 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
   "folke/noice.nvim",
+  lazy = true,
   event = "VeryLazy",
   opts = {
     -- add any options here

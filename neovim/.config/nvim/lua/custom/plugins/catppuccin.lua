@@ -1,7 +1,8 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
-  lazy = false,
+  lazy = true,
+  event = "VimEnter",
   priority = 1000,
   config = function()
     require("catppuccin").setup({

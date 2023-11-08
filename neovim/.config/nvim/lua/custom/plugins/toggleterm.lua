@@ -1,5 +1,7 @@
 return {
   'akinsho/toggleterm.nvim',
+  lazy = true,
+  cmd = { "ToggleTerm", "TermExec" },
   version = "*",
   opts = {
     float_opts = {

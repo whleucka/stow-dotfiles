@@ -1,5 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
+  lazy = true,
+  cmd = "Telescope",
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -16,14 +18,21 @@ return {
       end,
     },
   },
+  { "debugloop/telescope-undo.nvim" },
   config = function()
     local telescope = require('telescope')
     telescope.setup {
+      extensions = {
+        undo = {
+          -- telescope-undo.nvim config, see below
+        },
+      },
       pickers = {
         find_files = {
           hidden = true
         }
       }
     }
+    require("telescope").load_extension("undo")
   end
 }

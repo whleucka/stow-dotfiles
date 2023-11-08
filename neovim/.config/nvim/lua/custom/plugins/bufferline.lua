@@ -1,6 +1,8 @@
 ---@diagnostic disable: missing-fields
 return {
   'akinsho/bufferline.nvim',
+  lazy = true,
+  event = { 'BufReadPre', 'BufNewFile' },
   after = "catppuccin",
   version = "*",
   dependencies = 'nvim-tree/nvim-web-devicons',

@@ -23,6 +23,8 @@ vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { silent = true })
 vim.keymap.set('n', '<leader>pu', ':Lazy update<CR>', { desc = "Lazy update", silent = true })
 vim.keymap.set('n', '<leader>ps', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true })
 vim.keymap.set('n', '<leader>pc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true })
+vim.keymap.set('n', '<leader>pp', ':Lazy profile<CR>', { desc = "Lazy profile", silent = true })
+vim.keymap.set('n', '<leader>pd', ':Lazy debug<CR>', { desc = "Lazy debug", silent = true })
 
 -- Quickfix
 vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix' })
@@ -57,6 +59,7 @@ vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep,
   { desc = 'Find a string in your current working directory' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find diagnostic list' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find quickfix list' })
+vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
 
 -- Terminal
 vim.keymap.set('n', '<C-\\>', ':ToggleTerm direction=float<CR>', { silent = true })
