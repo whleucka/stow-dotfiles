@@ -32,7 +32,7 @@ To use my Neovim configuration with lazy.nvim, follow these simple steps:
 
 ## Screenshots
 
-![My Neovim Setup](screenshots/screenshot.png)
+![image](https://github.com/whleucka/stow-dotfiles/assets/71740767/2c0fc520-600e-46e3-a405-5850396e0e24)
 
 ## Usage
 
