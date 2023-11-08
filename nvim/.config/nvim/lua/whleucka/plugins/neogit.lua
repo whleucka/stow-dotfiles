@@ -9,6 +9,6 @@ return {
 	config = true,
 	cmd = "Neogit",
 	keys = {
-		{ "<leader>gs", "<cmd>Neogit<cr>", desc = "Neogit" }
+		{ "<leader>gs", "<cmd>Neogit kind=split<cr>", desc = "Neogit" }
 	}
 }

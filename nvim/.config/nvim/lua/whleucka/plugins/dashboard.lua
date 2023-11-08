@@ -9,26 +9,30 @@ return {
 					enable = true,
 				},
 				shortcut = {
-					{ desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+					{ desc = '⭐ New', group = '@property', action = 'enew', key = 'n' },
+					{ desc = '⚡ Sync', group = '@property', action = 'Lazy sync', key = 's' },
 					{
-						icon = ' ',
+						icon = '🔎 ',
 						icon_hl = '@variable',
-						desc = 'Files',
+						desc = 'Find files',
 						group = 'Label',
 						action = 'Telescope find_files',
-						key = 'f',
+						key = 'ff',
 					},
 					{
-						icon = ' ',
+						icon = '🎉 ',
 						icon_hl = '@variable',
-						desc = 'Old',
+						desc = 'Recent files',
 						group = 'Label',
 						action = 'Telescope oldfiles',
-						key = 'o',
+						key = 'fo',
 					},
 				},
 			},
 		}
 	end,
-	dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+	dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+	keys = {
+		{"<leader>d", "<cmd>Dashboard<cr>", desc = "Show dashboard"}
+	}
 }
