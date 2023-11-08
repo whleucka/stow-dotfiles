@@ -3,7 +3,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Saving and quitting
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true, desc = "Save" })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, desc = "Close window" })
+
+-- Buffers
 vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true, desc = "Destroy buffer" })
+vim.keymap.set('n', 'H', ':bp<CR>', { silent = true, desc = "Previous buffer" })
+vim.keymap.set('n', 'L', ':bn<CR>', { silent = true, desc = "Next buffer" })
 
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, desc = "Source buffer" })
