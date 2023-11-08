@@ -34,6 +34,17 @@ return {
 			local cmp_action = lsp_zero.cmp_action()
 
 			cmp.setup({
+				experimental = {
+					ghost_text = true,
+				},
+				sources = {
+					{ name = "nvim_lsp", priority = 1000 },
+					{ name = "luasnip",  priority = 750 },
+					{ name = "buffer",   priority = 500, keyword_length = 4 },
+					{ name = "path",     priority = 250 },
+					{ name = "emoji",    priority = 700 },
+					{ name = "spell",    priority = 100 },
+				},
 				formatting = lsp_zero.cmp_format(),
 				mapping = cmp.mapping.preset.insert({
 					['<C-n>'] = cmp.mapping.select_next_item(),
