@@ -2,7 +2,6 @@ return {
 	'ojroques/nvim-osc52',
 	event = "BufReadPost",
 	config = function()
-		require('osc52').setup({})
 		local function copy(lines, _)
 			require('osc52').copy(table.concat(lines, '\n'))
 		end
