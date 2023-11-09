@@ -17,6 +17,6 @@ return {
 			paste = {['+'] = paste, ['*'] = paste},
 		}
 
-		vim.keymap.set({'v', 'n'}, 'y', '"+y')
+		vim.keymap.set('v', 'y', '"+y')
 	end
 }
