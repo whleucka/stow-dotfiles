@@ -3,6 +3,7 @@ return {
 	tag = '0.1.4',
 	cmd = "Telescope",
 	dependencies = { 'nvim-lua/plenary.nvim' },
+	opts = {},
 	keys = {
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
 		{ "<C-p>",      "<cmd>Telescope git_files<cr>",  desc = "Git files" },
