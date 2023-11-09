@@ -1,6 +1,6 @@
 return {
 	'ojroques/nvim-osc52',
-	event = {"BufReadPre", "BufNewFile"},
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require('osc52').setup({})
 		local function copy(lines, _)
@@ -8,13 +8,13 @@ return {
 		end
 
 		local function paste()
-			return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+			return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
 		end
 
 		vim.g.clipboard = {
 			name = 'osc52',
-			copy = {['+'] = copy, ['*'] = copy},
-			paste = {['+'] = paste, ['*'] = paste},
+			copy = { ['+'] = copy, ['*'] = copy },
+			paste = { ['+'] = paste, ['*'] = paste },
 		}
 
 		vim.keymap.set('v', 'y', '"+y')
