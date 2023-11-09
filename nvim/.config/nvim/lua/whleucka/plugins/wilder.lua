@@ -1,5 +1,5 @@
 return {
 	'gelguy/wilder.nvim',
-	event = "VeryLazy",
+	event = "CmdlineEnter",
 	opts = {}
 }
