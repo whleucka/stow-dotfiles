@@ -12,7 +12,7 @@ return {
 	},
 	{
 		'williamboman/mason.nvim',
-		lazy = false,
+		cmd = "Mason",
 		config = true,
 		keys = {
 			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
