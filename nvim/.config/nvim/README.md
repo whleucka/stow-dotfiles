@@ -1,4 +1,4 @@
-# My Neovim Configuration
+# Neovim Config
 
 Welcome to my Neovim configuration! This repository contains my personal Neovim setup, which I've fine-tuned for a smooth and productive editing experience using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
