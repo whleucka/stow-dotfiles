@@ -2,6 +2,17 @@
 
 Welcome to my Neovim configuration! This repository contains my personal Neovim setup, which I've fine-tuned for a smooth and productive editing experience using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
+## Features
+
+- Fast and responsive editing.
+- Syntax highlighting and code completion.
+- Keybindings for quick navigation and editing.
+- A collection of carefully selected plugins for enhanced functionality.
+
+## Screenshots
+
+![image](https://github.com/whleucka/stow-dotfiles/assets/71740767/2c0fc520-600e-46e3-a405-5850396e0e24)
+
 ## Installation
 
 To use my Neovim configuration with lazy.nvim, follow these simple steps:
@@ -23,25 +34,16 @@ To use my Neovim configuration with lazy.nvim, follow these simple steps:
 
 3. Start Neovim, and lazy.nvim will automatically install and manage the plugins defined in your `init.lua` file.
 
-## Features
-
-- Fast and responsive editing.
-- Syntax highlighting and code completion.
-- Keybindings for quick navigation and editing.
-- A collection of carefully selected plugins for enhanced functionality.
-
-## Screenshots
-
-![image](https://github.com/whleucka/stow-dotfiles/assets/71740767/2c0fc520-600e-46e3-a405-5850396e0e24)
-
 ## Usage
 
 Once you've installed my Neovim configuration, you can start using it right away. Some keybindings you might find useful include:
 
 - `<Leader>` key is set to the space bar.
-- `<leader>ff` for opening files with Telescope.
+- `<leader>ff` for finding files with Telescope.
 - `<leader>w` to save the current file.
-- `<leader>q` to quit Neovim.
+- `<leader>e` to toggle Neotree file explorer.
+- `<leader>c` to close buffer.
+- `<leader>q` to close window (or exit Neovim).
 
 ## Customization
 
