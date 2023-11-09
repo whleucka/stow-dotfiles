@@ -1,6 +1,6 @@
 return {
 	"catppuccin/nvim",
-	event = "VimEnter",
+	lazy = false,
 	name = "catppuccin",
 	priority = 1000,
 	opts = {
