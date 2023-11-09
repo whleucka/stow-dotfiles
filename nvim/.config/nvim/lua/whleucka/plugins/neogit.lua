@@ -6,7 +6,7 @@ return {
 		"sindrets/diffview.nvim",  -- optional
 		"ibhagwan/fzf-lua",        -- optional
 	},
-	config = true,
+	opts = {},
 	cmd = "Neogit",
 	keys = {
 		{ "<leader>gs", "<cmd>Neogit kind=split<cr>", desc = "Neogit" }

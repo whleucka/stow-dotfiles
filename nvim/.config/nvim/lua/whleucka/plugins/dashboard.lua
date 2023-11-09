@@ -20,7 +20,7 @@ return {
 						key = 'ff',
 					},
 					{
-						icon = '🎉 ',
+						icon = '💎 ',
 						icon_hl = '@variable',
 						desc = 'Recent files',
 						group = 'Label',
