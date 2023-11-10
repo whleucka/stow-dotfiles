@@ -1,18 +1,17 @@
 return {
 	"catppuccin/nvim",
-	lazy = false,
 	name = "catppuccin",
 	priority = 1000,
-	opts = {
-		integrations = {
-			telescope = true,
-			treesitter = true,
-			neotree = true,
-		},
-		flavour = "mocha",
-		transparent_background = true,
-	},
 	config = function()
+		require("catppuccin").setup({
+			integrations = {
+				telescope = true,
+				treesitter = true,
+				neotree = true,
+			},
+			flavour = "mocha",
+			transparent_background = true,
+		})
 		vim.cmd.colorscheme "catppuccin"
 	end
 }
