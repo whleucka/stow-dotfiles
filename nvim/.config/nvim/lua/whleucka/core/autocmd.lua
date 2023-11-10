@@ -2,8 +2,8 @@ local grp = vim.api.nvim_create_augroup("GENERAL", { clear = true })
 
 -- Highlight yank
 vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight after yank',
     group = grp,
+    desc = 'Highlight after yank',
     callback = function ()
         vim.highlight.on_yank({higroup="IncSearch", timeout=120})
     end,
@@ -22,4 +22,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     group = grp,
     pattern = '*',
     command = [[%s/\s\+$//e]],
+})
+
+-- Close neogit on push complete
+vim.api.nvim_create_autocmd('User', {
+  group = grp,
+  pattern = 'NeogitPushComplete',
+  callback = require('neogit').close,
 })
