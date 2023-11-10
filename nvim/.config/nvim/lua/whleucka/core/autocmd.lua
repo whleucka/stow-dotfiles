@@ -23,10 +23,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = '*',
     command = [[%s/\s\+$//e]],
 })
-
--- Close neogit on push complete
-vim.api.nvim_create_autocmd('User', {
-  group = grp,
-  pattern = 'NeogitPushComplete',
-  callback = require('neogit').close,
-})
