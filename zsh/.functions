@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-fg() { 
+fg() {
     if [[ $# -eq 1 && $1 = - ]]; then
         builtin fg %-;
     elif [[ "$*" =~ ^[0-9]+$ ]]; then
@@ -20,6 +20,7 @@ stow-update() {
     cd $stow_dir;
 
     printf "Pulling stow-dotfiles...\n\n"
+    git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
     git pull -v;
 
     cd $current;
