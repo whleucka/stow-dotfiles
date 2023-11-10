@@ -12,3 +12,4 @@ set title
 -- Start
 require("whleucka.core")
 require("whleucka.lazy")
+require("whleucka.autocmd")
