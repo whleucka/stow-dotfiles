@@ -1,6 +1,6 @@
-#   _ _____ 
-#  (_)___ / 
-#  | | |_ \ 
+#   _ _____
+#  (_)___ /
+#  | | |_ \
 #  | |___) |
 #  |_|____/  CONFIG
 # William Hleucka <william.hleucka@gmail.com>
@@ -135,11 +135,6 @@ for_window [title="Bitwarden - Google Chrome"] floating enable
 #########################################################################################
 # Misc Key Bindings
 #########################################################################################
-# Keyboard repeat rate
-exec --no-startup-id xset r rate 200 50 
-# Touchpad speed
-exec --no-startup-id xset m 26/10 4
-
 # Dmenu
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # Kill focused window

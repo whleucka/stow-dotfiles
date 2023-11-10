@@ -182,9 +182,10 @@ bindkey '^p' reverse-menu-complete
 #ZSH_AUTOSUGGEST_USE_ASYNC=true
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+$(which xset) r rate 200 50
 
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # if type "neofetch" > /dev/null; then
-#     neofetch 
+#     neofetch
 # fi
