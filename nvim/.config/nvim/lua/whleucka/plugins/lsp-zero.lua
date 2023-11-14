@@ -24,31 +24,72 @@ return {
 		'hrsh7th/nvim-cmp',
 		event = 'InsertEnter',
 		dependencies = {
-			{ 'L3MON4D3/LuaSnip' },
+			{ 'onsails/lspkind.nvim' },
+			{
+				"L3MON4D3/LuaSnip",
+				dependencies = { "rafamadriz/friendly-snippets" },
+				-- follow latest release.
+				version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+				-- install jsregexp (optional!).
+				build = "make install_jsregexp"
+			},
+			{ 'saadparwaiz1/cmp_luasnip' },
+			{ 'hrsh7th/cmp-nvim-lua' },
+			{ 'hrsh7th/cmp-buffer' },
+			{ 'FelipeLema/cmp-async-path' },
+			{ 'hrsh7th/cmp-emoji' },
+			{ 'hrsh7th/cmp-nvim-lsp-signature-help' },
 		},
 		config = function()
 			-- Here is where you configure the autocompletion settings.
 			local lsp_zero = require('lsp-zero')
 			lsp_zero.extend_cmp()
 			local luasnip = require 'luasnip'
+			local lspkind = require('lspkind')
 
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require('cmp')
 			local cmp_action = lsp_zero.cmp_action()
+
+			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
 				experimental = {
 					ghost_text = true,
 				},
 				sources = {
-					{ name = "nvim_lsp", priority = 1000 },
-					{ name = "luasnip",  priority = 750 },
-					{ name = "buffer",   priority = 500, keyword_length = 4 },
-					{ name = "path",     priority = 250 },
-					{ name = "emoji",    priority = 700 },
-					{ name = "spell",    priority = 100 },
+					{ name = "nvim_lsp",                priority = 1000 },
+					{ name = "nvim_lsp_signature_help", priority = 850 },
+					{ name = "luasnip",                 priority = 800 },
+					{ name = "buffer",                  priority = 500, keyword_length = 4 },
+					{ name = "emoji",                   priority = 400 },
+					{ name = "async_path",              priority = 250 },
+					{ name = "nvim_lua",                priority = 200 },
+					{
+						name = 'spell',
+						priority = 100,
+						option = {
+							keep_all_entries = true,
+							enable_in_context = function()
+								return true
+							end,
+						},
+					},
 				},
-				formatting = lsp_zero.cmp_format(),
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = 'symbol_text', -- show only symbol annotations
+						preset = 'default',
+						maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+						ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+
+						-- The function below will be called before any actual modifications from lspkind
+						-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+						before = function(entry, vim_item)
+							return vim_item
+						end
+					})
+				},
 				mapping = cmp.mapping.preset.insert({
 					['<C-n>'] = cmp.mapping.select_next_item(),
 					['<C-p>'] = cmp.mapping.select_prev_item(),
