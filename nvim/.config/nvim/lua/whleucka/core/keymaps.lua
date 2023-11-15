@@ -9,7 +9,14 @@ vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-vim.keymap.set('n', '<leader>c', ':bd<CR>', { silent = true, noremap = true, desc = "Destroy buffer" })
+vim.keymap.set('n', '<leader>c',  ":lua require('bufdelete').bufdelete(0, true)<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
+vim.keymap.set('n', '<leader>bn',  ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
+vim.keymap.set('n', '[b',  ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', ']b',  ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+
+-- Tabs
+vim.keymap.set('n', '[t',  ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', ']t',  ":tabnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })

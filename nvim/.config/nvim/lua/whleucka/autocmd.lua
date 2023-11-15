@@ -35,29 +35,44 @@ vim.api.nvim_create_autocmd('TermOpen', {
 vim.api.nvim_create_autocmd("FileType", {
     group = grp,
     pattern = {
-      "help",
-      "startuptime",
-      "qf",
-      "lspinfo",
-      "man",
-      "checkhealth",
+        "help",
+        "startuptime",
+        "qf",
+        "lspinfo",
+        "man",
+        "checkhealth",
     },
     command = [[
             nnoremap <buffer><silent> q :close<CR>
             set nobuflisted
-        ]],
-  })
+            ]],
+})
 
 -- Terminal keys
 local function set_terminal_keymaps()
-  local opts = {}
-  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', 'kj', [[<C-\><C-n>]], opts)
+    local opts = {}
+    vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', 'kj', [[<C-\><C-n>]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = [[term://*]],
-  callback = set_terminal_keymaps
+    pattern = [[term://*]],
+    callback = set_terminal_keymaps
+})
+
+-- Show dashboard if there are no other buffers
+vim.api.nvim_create_autocmd("User", {
+    pattern = "BDeletePost*",
+    group = grp,
+    callback = function(event)
+        local fallback_name = vim.api.nvim_buf_get_name(event.buf)
+        local fallback_ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
+        local fallback_on_empty = fallback_name == "" and fallback_ft == ""
+
+        if fallback_on_empty then
+            vim.cmd("Dashboard")
+        end
+    end,
 })
