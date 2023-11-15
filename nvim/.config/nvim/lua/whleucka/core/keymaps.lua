@@ -9,10 +9,10 @@ vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-vim.keymap.set('n', '<leader>c',  ":lua require('bufdelete').bufdelete(0, true)<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
+vim.keymap.set('n', '<leader>c',  ":bdelete<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
 vim.keymap.set('n', '<leader>bn',  ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
-vim.keymap.set('n', '[b',  ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-vim.keymap.set('n', ']b',  ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set('n', 'H',  ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', 'L',  ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Tabs
 vim.keymap.set('n', '[t',  ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
@@ -43,8 +43,8 @@ vim.keymap.set('n', '<F9>', ':lua require("harpoon.term").gotoTerminal(1)<cr>', 
 vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>', { noremap = true, desc = 'Hapoon terminal(2)' })
 vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gotoTerminal(3)<cr>', { noremap = true, desc = 'Hapoon terminal(3)' })
 vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>', { noremap = true, desc = 'Hapoon terminal(4)' })
-vim.keymap.set('n', 'H', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
-vim.keymap.set('n', 'L', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
+vim.keymap.set('n', '[h', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
+vim.keymap.set('n', ']h', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
 -- Splits
 vim.keymap.set('n', '|', '<C-w>v', { silent = true, noremap = true })
