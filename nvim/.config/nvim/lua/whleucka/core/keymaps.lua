@@ -27,8 +27,8 @@ vim.keymap.set('n', '<c-f>', function()
 end, { silent = true, noremap = true, desc = "Format buffer" })
 
 -- Harpoon
-vim.keymap.set('n', '<leader>h', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
-vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { noremap = true, desc = 'Hapoon quick menu' })
+vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
+vim.keymap.set('n', '<leader>fh', ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { noremap = true, desc = 'Hapoon quick menu' })
 vim.keymap.set('n', '<leader>1', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
 vim.keymap.set('n', '<leader>2', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
 vim.keymap.set('n', '<leader>3', ':lua require("harpoon.ui").nav_file(3)<cr>', { noremap = true, desc = 'Hapoon nav(3)' })
@@ -47,8 +47,17 @@ vim.keymap.set('n', '[h', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap
 vim.keymap.set('n', ']h', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
 -- Splits
-vim.keymap.set('n', '|', '<C-w>v', { silent = true, noremap = true })
-vim.keymap.set('n', '\\', '<C-w>s', { silent = true, noremap = true })
+local focusmap = function(direction)
+    vim.keymap.set('n', '<leader>'..direction, function()
+        require('focus').split_command(direction)
+    end, { desc = string.format('Create or move to split (%s)', direction) })
+end
+
+-- Use `<Leader>h` to split the screen to the left, same as command FocusSplitLeft etc
+focusmap('h')
+focusmap('j')
+focusmap('k')
+focusmap('l')
 
 -- Lazy
 vim.keymap.set('n', '<leader>pu', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
