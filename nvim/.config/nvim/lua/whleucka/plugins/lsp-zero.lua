@@ -33,6 +33,7 @@ return {
 				-- install jsregexp (optional!).
 				build = "make install_jsregexp"
 			},
+			{ 'f3fora/cmp-spell' },
 			{ 'saadparwaiz1/cmp_luasnip' },
 			{ 'hrsh7th/cmp-nvim-lua' },
 			{ 'hrsh7th/cmp-buffer' },
@@ -61,20 +62,20 @@ return {
 					{ name = "nvim_lsp",                priority = 1000 },
 					{ name = "nvim_lsp_signature_help", priority = 850 },
 					{ name = "luasnip",                 priority = 800 },
-					{ name = "buffer",                  priority = 500, keyword_length = 4 },
-					{ name = "emoji",                   priority = 400 },
-					{ name = "async_path",              priority = 250 },
-					{ name = "nvim_lua",                priority = 200 },
 					{
 						name = 'spell',
-						priority = 100,
+						priority = 600,
 						option = {
-							keep_all_entries = true,
+							keep_all_entries = false,
 							enable_in_context = function()
 								return true
 							end,
 						},
 					},
+					{ name = "buffer",                  priority = 500, keyword_length = 4 },
+					{ name = "emoji",                   priority = 400 },
+					{ name = "async_path",              priority = 250 },
+					{ name = "nvim_lua",                priority = 200 },
 				},
 				formatting = {
 					format = lspkind.cmp_format({

@@ -47,7 +47,7 @@ Once you've installed my Neovim configuration, you can start using it right away
 
 ## Customization
 
-You can customize this configuration to fit your own preferences. 
+You can customize this configuration to fit your own preferences.
 
 ## License
 

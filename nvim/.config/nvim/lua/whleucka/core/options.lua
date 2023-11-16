@@ -39,10 +39,6 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
--- Spelling
-vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
-
 -- NOTE: cmdheight 0 has "Press enter to continue" issue
 vim.o.cmdheight = 1
 vim.o.laststatus = 3
