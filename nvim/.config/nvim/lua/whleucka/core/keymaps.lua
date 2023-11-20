@@ -48,7 +48,7 @@ vim.keymap.set('n', ']h', ':lua require("harpoon.ui").nav_next()<cr>', { noremap
 
 -- Splits
 local focusmap = function(direction)
-    vim.keymap.set('n', '<leader>'..direction, function()
+    vim.keymap.set('n', '<c-'..direction..'>', function()
         require('focus').split_command(direction)
     end, { desc = string.format('Create or move to split (%s)', direction) })
 end
