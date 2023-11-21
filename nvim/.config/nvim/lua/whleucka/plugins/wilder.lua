@@ -1,5 +1,5 @@
 return {
 	'gelguy/wilder.nvim',
-	event = "CmdlineEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {},
 }
