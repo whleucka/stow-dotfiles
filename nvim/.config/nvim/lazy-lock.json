@@ -40,5 +40,6 @@
   "statusline.lua": { "branch": "master", "commit": "20ad26912935f91918da9f428761b6d1b651d632" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "master", "commit": "7011eaae0ac1afe036e30c95cf80200b8dc3f21a" },
+  "vim-latte": { "branch": "master", "commit": "22cc8bb0b19ad8115d641a03a9ba29ed37cd9f84" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
 }
