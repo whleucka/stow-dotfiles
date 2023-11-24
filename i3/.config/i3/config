@@ -55,8 +55,8 @@ client.background        $base
 font pango:FiraCode Nerd Font Mono 10
 
 # Wallpaper
-exec --no-startup-id feh --bg-fill ~/.i3/night.webp
-
+# First run this: betterlockscreen -u ~/.i3
+exec --no-startup-id betterlockscreen -w
 
 #########################################################################################
 # Startup Applications
@@ -86,7 +86,7 @@ exec kitty bpytop
 #########################################################################################
 bindsym $super+e exec --no-startup-id kitty ranger ~
 bindsym $super+m exec --no-startup-id evolution
-bindsym $super+w exec --no-startup-id google-chrome-stable
+bindsym $super+w exec --no-startup-id firefox-developer-edition
 bindsym $super+b exec --no-startup-id barrier
 bindsym $super+c exec --no-startup-id gnome-calculator
 
@@ -142,13 +142,14 @@ bindsym $mod+q kill
 # Kitty (terminal)
 bindsym $mod+Return exec kitty
 
-# Note: i3-exit is a script in ~/bin/scripts
+# Note: i3-exit is a script in ~/.bin/scripts
+# Requires betterlockscreen
 # Lock the screen
-bindsym $super+L exec --no-startup-id $HOME/bin/scripts/i3-exit lock
+bindsym $super+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
 # Suspend the computer
-bindsym Ctrl+$mod+Delete exec --no-startup-id $HOME/bin/scripts/i3-exit suspend
+bindsym Ctrl+$mod+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
 # Shutdown
-bindsym Ctrl+$mod+Escape exec --no-startup-id $HOME/bin/scripts/i3-exit shutdown
+bindsym Ctrl+$mod+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
 # NOP
 bindsym Ctrl+$mod+Backspace exec --no-startup-id NOP
 
