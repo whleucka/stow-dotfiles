@@ -8,6 +8,7 @@ return {
 				telescope = true,
 				treesitter = true,
 				neotree = true,
+				neogit = true,
 			},
 			flavour = "mocha",
 			transparent_background = true,
