@@ -1,6 +1,6 @@
 return {
 	'ojroques/nvim-osc52',
-	event = { "BufReadPre", "BufNewFile" },
+	event = "CursorHoldI",
 	config = function()
 		require('osc52').setup({})
 		local function copy(lines, _)
