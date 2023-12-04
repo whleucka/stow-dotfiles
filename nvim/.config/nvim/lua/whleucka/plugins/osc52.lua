@@ -1,6 +1,6 @@
 return {
 	'ojroques/nvim-osc52',
-	event = "CursorHoldI",
+	event = "InsertEnter",
 	config = function()
 		require('osc52').setup({})
 		local function copy(lines, _)
