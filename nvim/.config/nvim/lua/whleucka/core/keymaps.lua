@@ -1,14 +1,16 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set("n", "Q", "<nop>", { silent = true, noremap = true })
+
 -- Saving and quitting
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
 
 -- Increment / Decrement
-vim.keymap.set({'n', 'v'}, '+', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
-vim.keymap.set({'n', 'v'}, '-', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
+vim.keymap.set({'n', 'v'}, '<c-=>', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
+vim.keymap.set({'n', 'v'}, '<c-->', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
 
 -- Select all
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+vim.keymap.set('n', '<c-bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
 
 -- Leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
@@ -28,7 +30,7 @@ vim.keymap.set('n', ']t',  ":tabnext<cr>", { silent = true, noremap = true, desc
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- Harpoon
-vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
+vim.keymap.set('n', '<leader>h', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
 vim.keymap.set('n', '<leader>fh', ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { noremap = true, desc = 'Hapoon quick menu' })
 vim.keymap.set('n', '<leader>1', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
 vim.keymap.set('n', '<leader>2', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
@@ -67,16 +69,17 @@ vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Lazy", silent = true, no
 vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, noremap = true })
 vim.keymap.set('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap = true })
 
--- Diagnostic
-vim.keymap.set('n', '<leader>f', vim.diagnostic.open_float, { desc = 'Open diagnostic float', silent = true, noremap = true})
-
 -- Primeagen remaps
 vim.keymap.set("n", "J", "mzJ`z", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true, noremap = true })
 vim.keymap.set("n", "n", "nzzzv", { silent = true, noremap = true })
 vim.keymap.set("n", "N", "Nzzzv", { silent = true, noremap = true })
-vim.keymap.set("n", "Q", "<nop>", { silent = true, noremap = true })
+
+--vim.keymap.set("x", "<leader>p", [["_dP]])
+--vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+-- Yank current line
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
