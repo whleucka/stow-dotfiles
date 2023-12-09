@@ -4,6 +4,13 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
 
+-- Increment / Decrement
+vim.keymap.set('n', '+', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
+vim.keymap.set('n', '-', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
+
+-- Select all
+vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+
 -- Leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
@@ -22,7 +29,7 @@ vim.keymap.set('n', ']t',  ":tabnext<cr>", { silent = true, noremap = true, desc
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- Formatting
-vim.keymap.set('n', '<c-f>', function()
+vim.keymap.set('n', '<leader>f', function()
 	vim.lsp.buf.format { async = true }
 end, { silent = true, noremap = true, desc = "Format buffer" })
 
@@ -60,19 +67,14 @@ focusmap('k')
 focusmap('l')
 
 -- Lazy
-vim.keymap.set('n', '<leader>pu', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
-vim.keymap.set('n', '<leader>ps', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
-vim.keymap.set('n', '<leader>pc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
-vim.keymap.set('n', '<leader>pp', ':Lazy profile<CR>', { desc = "Lazy profile", silent = true, noremap = true })
-vim.keymap.set('n', '<leader>pd', ':Lazy debug<CR>', { desc = "Lazy debug", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
 
 -- Quickfix
 vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, noremap = true })
 vim.keymap.set('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap = true })
 
 -- Diagnostic
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message', silent = true, noremap = true })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message', silent = true, noremap = true })
+vim.keymap.set('n', '<leader>f', vim.diagnostic.open_float, { desc = 'Open diagnostic float', silent = true, noremap = true})
 
 -- Primeagen remaps
 vim.keymap.set("n", "J", "mzJ`z", { silent = true, noremap = true })
