@@ -1,12 +1,11 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 -- Saving and quitting
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
 
 -- Increment / Decrement
-vim.keymap.set('n', '+', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
-vim.keymap.set('n', '-', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
+vim.keymap.set({'n', 'v'}, '+', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
+vim.keymap.set({'n', 'v'}, '-', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
 
 -- Select all
 vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
@@ -27,11 +26,6 @@ vim.keymap.set('n', ']t',  ":tabnext<cr>", { silent = true, noremap = true, desc
 
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
-
--- Formatting
-vim.keymap.set('n', '<leader>f', function()
-	vim.lsp.buf.format { async = true }
-end, { silent = true, noremap = true, desc = "Format buffer" })
 
 -- Harpoon
 vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
