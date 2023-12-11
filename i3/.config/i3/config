@@ -79,6 +79,8 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secr
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Kitty + bpytop
 exec kitty bpytop
+# Keyboard repeat rate
+exec --no-startup-id xset r rate 200 70
 
 
 #########################################################################################
