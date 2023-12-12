@@ -307,5 +307,3 @@ bindsym $mod+r mode "resize"
 # Mouse bindings
 #########################################################################################
 bindsym --whole-window $mod+button2 kill
-bindsym button8 workspace prev
-bindsym button9 workspace next

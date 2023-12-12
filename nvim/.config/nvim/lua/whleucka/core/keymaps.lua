@@ -64,6 +64,10 @@ focusmap('l')
 
 -- Lazy
 vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>ls', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>ls', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>lc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>lp', ':Lazy profile<CR>', { desc = "Lazy clean", silent = true, noremap = true })
 
 -- Quickfix
 vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, noremap = true })
