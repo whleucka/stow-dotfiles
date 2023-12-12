@@ -27,15 +27,4 @@ git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/c
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autoupdate
 
-printf "Installing Rust...\n"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-printf "Setting timezone...\n"
-timedatectl set-timezone America/Edmonton
-
-# Download font from nerdfonts.com - UbuntuMono
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/UbuntuMono.zip
-unzip ./UbuntuMono.zip -d ~/.local/share/fonts
-rm ./UbuntuMono.zip
-
 cd ~ && printf "With great power comes great responsibility\n"
