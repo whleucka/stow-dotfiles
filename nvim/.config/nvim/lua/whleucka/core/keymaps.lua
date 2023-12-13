@@ -1,5 +1,9 @@
+-- Disable
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set("n", "Q", "<nop>", { silent = true, noremap = true })
+vim.keymap.set("n", "Q", "<Nop>", { silent = true, noremap = true })
+
+-- Create undo breakpoints
+vim.keymap.set('i', '<space>', " <C-g>u")
 
 -- Saving and quitting
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
@@ -14,7 +18,7 @@ vim.keymap.set('n', '<c-bs>', 'gg<S-v>G', { silent = true, noremap = true, desc 
 
 -- Delete backwards
 vim.keymap.set('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
-vim.keymap.set('i', '<a-bs>', '<esc>dbi', { silent = true, noremap = true, desc = "Delete word backwards" })
+vim.keymap.set('i', '<a-bs>', '<esc>ldbi', { silent = true, noremap = true, desc = "Delete word backwards" })
 
 -- Leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
