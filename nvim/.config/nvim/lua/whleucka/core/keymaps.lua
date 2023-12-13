@@ -12,6 +12,10 @@ vim.keymap.set({'n', 'v'}, '<c-->', '<C-x>', { silent = true, noremap = true, de
 -- Select all
 vim.keymap.set('n', '<c-bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
 
+-- Delete backwards
+vim.keymap.set('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
+vim.keymap.set('i', '<a-bs>', '<esc>dbi', { silent = true, noremap = true, desc = "Delete word backwards" })
+
 -- Leave insert mode
 vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
