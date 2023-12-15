@@ -1,6 +1,6 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-	event = { "BufReadPost", "BufNewFile" },
+	event = {  "BufNewFile", "BufReadPost" },
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter-textobjects',
 	},
@@ -62,13 +62,14 @@ return {
 						['[]'] = '@class.outer',
 					},
 				},
+				-- This is awesome
 				swap = {
 					enable = true,
 					swap_next = {
-						['<leader>a'] = '@parameter.inner',
+						['J'] = '@parameter.inner',
 					},
 					swap_previous = {
-						['<leader>A'] = '@parameter.inner',
+						['K'] = '@parameter.inner',
 					},
 				},
 			},
