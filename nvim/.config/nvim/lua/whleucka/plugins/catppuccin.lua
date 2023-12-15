@@ -5,10 +5,27 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			integrations = {
+				cmp = true,
+				dashboard = true,
+				gitsigns = true,
+				markdown = true,
+				mason = true,
+				neogit = true,
+				neotree = true,
+				notify = true,
+				semantic_tokens = true,
 				telescope = true,
 				treesitter = true,
-				neotree = true,
-				neogit = true,
+				treesitter_context = true,
+				native_lsp = {
+					enabled = true,
+					underlines = {
+						errors = { "undercurl" },
+						hints = { "undercurl" },
+						warnings = { "undercurl" },
+						information = { "undercurl" },
+					},
+				},
 			},
 			flavour = "mocha",
 			transparent_background = true,
