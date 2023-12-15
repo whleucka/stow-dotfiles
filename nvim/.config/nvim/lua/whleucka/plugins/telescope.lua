@@ -27,6 +27,8 @@ return {
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
 		{ "<leader>fo", "<cmd>Telescope oldfiles<cr>",   desc = "Find old files" },
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live grep" },
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>",  desc = "Show buffers" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>",  desc = "Find buffers" },
+		{ "<leader>fm", "<cmd>Telescope man_pages<cr>",  desc = "Find manual pages" },
+		{ "<leader>ft", "<cmd>Telescope help_tags<cr>",  desc = "Find help tags" },
 	}
 }
