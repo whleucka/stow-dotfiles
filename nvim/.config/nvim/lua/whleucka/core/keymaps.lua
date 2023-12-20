@@ -8,6 +8,7 @@ vim.keymap.set('i', '<space>', " <C-g>u")
 -- Saving and quitting
 vim.keymap.set('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
+vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit" })
 
 -- Increment / Decrement
 vim.keymap.set({'n', 'v'}, '<c-=>', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
