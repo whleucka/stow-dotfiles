@@ -51,7 +51,7 @@ TEMP_FONT_CODE=2
 # Wind settings _______________________________________________________________
 
 # Display info about the wind or not. yes/no
-DISPLAY_WIND="yes"
+DISPLAY_WIND="no"
 
 # Show beaufort level in windicon
 BEAUFORTICON="yes"
@@ -87,7 +87,7 @@ COLD_TEMP=0
 # Other settings ______________________________________________________________
 
 # Display the weather description. yes/no
-DISPLAY_LABEL="yes"
+DISPLAY_LABEL="no"
 
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -300,7 +300,7 @@ function setIcons {
 }
 
 function outputCompact {
-    OUTPUT="$WIND %{T$WEATHER_FONT_CODE}%{F$ICON_COLOR}$ICON%{F-}%{T-} $ERR_MSG$COLOR_TEXT_BEGIN$DESCRIPTION$COLOR_TEXT_END| $TEMP"
+    OUTPUT="$WIND %{T$WEATHER_FONT_CODE}%{F$ICON_COLOR}$ICON%{F-}%{T-} $ERR_MSG$COLOR_TEXT_BEGIN$DESCRIPTION$COLOR_TEXT_END $TEMP"
     # echo "Output: $OUTPUT" >> "$HOME/.weather.log"
     echo "$OUTPUT"
 }
