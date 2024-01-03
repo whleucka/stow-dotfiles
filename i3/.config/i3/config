@@ -138,7 +138,7 @@ for_window [title="Bitwarden - Google Chrome"] floating enable
 # Misc Key Bindings
 #########################################################################################
 # Dmenu
-bindcode $mod+40 exec "rofi -modi drun,run -theme gruvbox-dark-hard -font 'hack 10' -show drun -icon-theme 'Papirus' -show-icons"
+bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # Kill focused window
 bindsym $mod+q kill
 # Kitty (terminal)
