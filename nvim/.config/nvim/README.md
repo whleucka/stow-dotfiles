@@ -1,4 +1,7 @@
 # Neovim Config
+<a href="https://dotfyle.com/whleucka/stow-dotfiles-nvim-config-nvim"><img src="https://dotfyle.com/whleucka/stow-dotfiles-nvim-config-nvim/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/whleucka/stow-dotfiles-nvim-config-nvim"><img src="https://dotfyle.com/whleucka/stow-dotfiles-nvim-config-nvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/whleucka/stow-dotfiles-nvim-config-nvim"><img src="https://dotfyle.com/whleucka/stow-dotfiles-nvim-config-nvim/badges/plugin-manager?style=flat" /></a>
 
 Welcome to my Neovim configuration! This repository contains my personal Neovim setup, which I've fine-tuned for a smooth and productive editing experience using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
