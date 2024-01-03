@@ -14,4 +14,4 @@ configuration{
     display-Network: " 󰤨  Network";
     sidebar-mode: true;
 }
-@theme "/usr/share/rofi/themes/sidebar.rasi"
+@theme "~/.config/rofi/sidebar.rasi"
