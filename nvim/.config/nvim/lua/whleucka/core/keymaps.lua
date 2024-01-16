@@ -38,6 +38,9 @@ vim.keymap.set('n', ']t',  ":tabnext<cr>", { silent = true, noremap = true, desc
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
+-- Terminal
+vim.keymap.set('n', '<c-Enter>', ':lua require("harpoon.term").gotoTerminal(1)<cr>', { noremap = true, desc = 'Hapoon terminal(1)' })
+
 -- Harpoon
 vim.keymap.set('n', '<leader>h', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
 vim.keymap.set('n', '<leader>fh', ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { noremap = true, desc = 'Hapoon quick menu' })
@@ -104,25 +107,18 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- DAP
 -- Adapted from https://grumpy-learning.com/blog/2023/04/03/neovim-and-xdebug/
-vim.keymap.set("n", "<leader>d", ":lua require'dapui'.toggle()<cr>")
+vim.keymap.set("n", "<C-\\>", ":lua require'dapui'.toggle()<cr>")
 vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<cr>")
 vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<cr>")
 vim.keymap.set("n", "<F7>", ":lua require'dap'.step_into()<cr>")
 vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<cr>")
-vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>")
+vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<cr>")
 vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<cr>")
 vim.keymap.set("n", "<leader>dl", ":lua require'dap'.run_last()<cr>")
+vim.keymap.set("n", "<leader>dc", ":lua require'telescope'.extensions.dap.commands{}<cr>")
+vim.keymap.set("n", "<leader>df", ":lua require'telescope'.extensions.dap.frames{}<cr>")
 vim.keymap.set({'n', 'v'}, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>")
 vim.keymap.set({'n', 'v'}, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>")
-vim.keymap.set('n', '<Leader>df', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.frames)
-end)
-vim.keymap.set('n', '<Leader>ds', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.scopes)
-end)
-
 -- Neotest
 vim.keymap.set("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>")
 vim.keymap.set("n", "<leader>tr", ":lua require'neotest'.run.run()<cr>")
