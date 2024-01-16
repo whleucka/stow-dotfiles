@@ -13,7 +13,53 @@ return {
 	{
 		'williamboman/mason.nvim',
 		cmd = "Mason",
-		config = true,
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+			"jay-babu/mason-nvim-dap.nvim",
+		},
+		config = function()
+			require("mason").setup()
+			require("mason-nvim-dap").setup({
+				-- Makes a best effort to setup the various debuggers with
+				-- reasonable debug configurations
+				automatic_setup = true,
+
+				-- You can provide additional configuration to the handlers,
+				-- see mason-nvim-dap README for more information
+				handlers = {
+					function(config)
+						require('mason-nvim-dap').default_setup(config)
+					end,
+					php = function(config)
+						config.configurations = {
+							{
+								type = 'php',
+								request = 'launch',
+								name = "Listen for XDebug",
+								port = 9003,
+								log = true,
+								pathMappings = {
+									['/var/www/html/'] = vim.fn.getcwd() .. '/',
+								},
+								hostname = '0.0.0.0',
+							}
+						}
+
+						require('mason-nvim-dap').default_setup(config) -- don't forget this!
+					end,
+
+				},
+
+				-- You'll need to check that you have the required things installed
+				-- online, please don't ask me how to install them :)
+				ensure_installed = {
+					-- Update this to ensure that you have the debuggers for the langs you want
+					'php',
+				},
+			})
+			require("dapui").setup()
+		end,
 		keys = {
 			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
 		},
@@ -72,10 +118,10 @@ return {
 							end,
 						},
 					},
-					{ name = "buffer",                  priority = 500, keyword_length = 4 },
-					{ name = "emoji",                   priority = 400 },
-					{ name = "async_path",              priority = 250 },
-					{ name = "nvim_lua",                priority = 200 },
+					{ name = "buffer",     priority = 500, keyword_length = 4 },
+					{ name = "emoji",      priority = 400 },
+					{ name = "async_path", priority = 250 },
+					{ name = "nvim_lua",   priority = 200 },
 				},
 				formatting = {
 					format = lspkind.cmp_format({
