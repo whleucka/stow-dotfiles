@@ -101,3 +101,24 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Moving lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+
+-- DAP
+-- Adapted from https://grumpy-learning.com/blog/2023/04/03/neovim-and-xdebug/
+vim.keymap.set("n", "<leader>d", ":lua require'dapui'.toggle()<cr>")
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<cr>")
+vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<cr>")
+vim.keymap.set("n", "<F7>", ":lua require'dap'.step_into()<cr>")
+vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<cr>")
+vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>")
+vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<cr>")
+vim.keymap.set("n", "<leader>dl", ":lua require'dap'.run_last()<cr>")
+vim.keymap.set({'n', 'v'}, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>")
+vim.keymap.set({'n', 'v'}, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>")
+vim.keymap.set('n', '<Leader>df', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.frames)
+end)
+vim.keymap.set('n', '<Leader>ds', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+end)
