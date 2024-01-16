@@ -17,6 +17,7 @@ return {
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-dap-ui",
 			"jay-babu/mason-nvim-dap.nvim",
+			"theHamsta/nvim-dap-virtual-text"
 		},
 		config = function()
 			require("mason").setup()
@@ -40,7 +41,7 @@ return {
 								port = 9003,
 								log = true,
 								pathMappings = {
-									['/var/www/html/'] = vim.fn.getcwd() .. '/',
+									['/var/www/'] = vim.fn.getcwd() .. '/',
 								},
 								hostname = '0.0.0.0',
 							}
@@ -59,6 +60,7 @@ return {
 				},
 			})
 			require("dapui").setup()
+			require("nvim-dap-virtual-text").setup()
 		end,
 		keys = {
 			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },

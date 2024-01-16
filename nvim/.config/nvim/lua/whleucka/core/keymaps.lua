@@ -122,3 +122,9 @@ vim.keymap.set('n', '<Leader>ds', function()
   local widgets = require('dap.ui.widgets')
   widgets.centered_float(widgets.scopes)
 end)
+
+-- Neotest
+vim.keymap.set("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>")
+vim.keymap.set("n", "<leader>tr", ":lua require'neotest'.run.run()<cr>")
+vim.keymap.set("n", "<leader>td", ":lua require'neotest'.run.run({strategy = 'dap'})<cr>")
+vim.keymap.set("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>")
