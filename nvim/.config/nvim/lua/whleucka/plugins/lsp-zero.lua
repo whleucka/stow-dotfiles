@@ -44,7 +44,14 @@ return {
 									['/var/www/'] = vim.fn.getcwd() .. '/',
 								},
 								hostname = '0.0.0.0',
-							}
+							},
+							{
+								type = 'python',
+								request = 'launch',
+								name = "Python",
+								program = "${file}",
+								command = "/usr/bin/python3",
+							},
 						}
 
 						require('mason-nvim-dap').default_setup(config) -- don't forget this!
