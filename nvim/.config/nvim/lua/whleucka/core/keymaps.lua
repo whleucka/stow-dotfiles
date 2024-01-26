@@ -119,6 +119,7 @@ vim.keymap.set("n", "<leader>dc", ":lua require'telescope'.extensions.dap.comman
 vim.keymap.set("n", "<leader>df", ":lua require'telescope'.extensions.dap.frames{}<cr>", { silent = true })
 vim.keymap.set({'n', 'v'}, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>", { silent = true })
 vim.keymap.set({'n', 'v'}, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>", { silent = true })
+
 -- Neotest
 vim.keymap.set("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>", { silent = true })
 vim.keymap.set("n", "<leader>tr", ":lua require'neotest'.run.run()<cr>", { silent = true })
