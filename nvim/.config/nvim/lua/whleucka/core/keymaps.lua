@@ -61,7 +61,7 @@ vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
 vim.keymap.set('n', '[h', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
 vim.keymap.set('n', ']h', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
--- Splits
+-- Focus
 local focusmap = function(direction)
     vim.keymap.set('n', '<c-'..direction..'>', function()
         require('focus').split_command(direction)
@@ -73,6 +73,10 @@ focusmap('h')
 focusmap('j')
 focusmap('k')
 focusmap('l')
+
+vim.keymap.set('n', '<leader>f', ':FocusMaximise<cr>', { desc = "Lazy", silent = true, noremap = true })
+vim.keymap.set('n', '<Esc><Esc>', ':FocusAutoresize<cr>', { desc = "Lazy", silent = true, noremap = true })
+
 
 -- Lazy
 vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
