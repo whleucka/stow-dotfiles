@@ -41,7 +41,7 @@ vim.o.shiftwidth = 4
 
 -- NOTE: cmdheight 0 has "Press enter to continue" issue
 vim.o.cmdheight = 1
-vim.o.laststatus = 2
+vim.o.laststatus = 3
 
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
