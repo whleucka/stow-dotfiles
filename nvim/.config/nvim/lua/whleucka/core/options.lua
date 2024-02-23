@@ -39,6 +39,9 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
+-- Wrap at 80
+vim.o.tw = 80
+
 -- NOTE: cmdheight 0 has "Press enter to continue" issue
 vim.o.cmdheight = 1
 vim.o.laststatus = 3
