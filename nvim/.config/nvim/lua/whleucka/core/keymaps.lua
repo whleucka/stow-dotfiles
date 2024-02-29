@@ -1,6 +1,7 @@
 -- Disable
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "Q", "<Nop>", { silent = true, noremap = true })
+vim.keymap.set("n", "q", "<Nop>", { silent = true, noremap = true })
 
 -- Create undo breakpoints
 vim.keymap.set('i', '<space>', " <C-g>u")
@@ -11,8 +12,8 @@ vim.keymap.set('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit" })
 
 -- Increment / Decrement
-vim.keymap.set({'n', 'v'}, '<c-=>', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
-vim.keymap.set({'n', 'v'}, '<c-->', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
+vim.keymap.set({ 'n', 'v' }, '<c-=>', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
+vim.keymap.set({ 'n', 'v' }, '<c-->', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
 
 -- Select all
 vim.keymap.set('n', '<c-bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
@@ -26,24 +27,26 @@ vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
 vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-vim.keymap.set('n', '<leader>c',  ":bdelete<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
-vim.keymap.set('n', '<leader>bn',  ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
-vim.keymap.set('n', 'H',  ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-vim.keymap.set('n', 'L',  ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
+vim.keymap.set('n', '<leader>bn', ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
+vim.keymap.set('n', 'H', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', 'L', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Tabs
-vim.keymap.set('n', '[t',  ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-vim.keymap.set('n', ']t',  ":tabnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set('n', '[t', ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', ']t', ":tabnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- Terminal
-vim.keymap.set('n', '<c-Enter>', ':lua require("harpoon.term").gotoTerminal(1)<cr>', { noremap = true, desc = 'Hapoon terminal(1)' })
+vim.keymap.set('n', '<c-\\>', ':lua require("harpoon.term").gotoTerminal(1)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(1)' })
 
 -- Harpoon
 vim.keymap.set('n', '<leader>h', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
-vim.keymap.set('n', '<leader>fh', ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { noremap = true, desc = 'Hapoon quick menu' })
+vim.keymap.set('n', '<leader>fh', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
+    { noremap = true, desc = 'Hapoon quick menu' })
 vim.keymap.set('n', '<leader>1', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
 vim.keymap.set('n', '<leader>2', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
 vim.keymap.set('n', '<leader>3', ':lua require("harpoon.ui").nav_file(3)<cr>', { noremap = true, desc = 'Hapoon nav(3)' })
@@ -54,16 +57,18 @@ vim.keymap.set('n', '<leader>7', ':lua require("harpoon.ui").nav_file(7)<cr>', {
 vim.keymap.set('n', '<leader>8', ':lua require("harpoon.ui").nav_file(8)<cr>', { noremap = true, desc = 'Hapoon nav(8)' })
 vim.keymap.set('n', '<leader>9', ':lua require("harpoon.ui").nav_file(9)<cr>', { noremap = true, desc = 'Hapoon nav(9)' })
 vim.keymap.set('n', '<leader>0', ':lua require("harpoon.ui").nav_file(0)<cr>', { noremap = true, desc = 'Hapoon nav(0)' })
-vim.keymap.set('n', '<F9>', ':lua require("harpoon.term").gotoTerminal(1)<cr>', { noremap = true, desc = 'Hapoon terminal(1)' })
-vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>', { noremap = true, desc = 'Hapoon terminal(2)' })
-vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gotoTerminal(3)<cr>', { noremap = true, desc = 'Hapoon terminal(3)' })
-vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>', { noremap = true, desc = 'Hapoon terminal(4)' })
+vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(1)' })
+vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gotoTerminal(3)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(2)' })
+vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(3)' })
 vim.keymap.set('n', '[h', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
 vim.keymap.set('n', ']h', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
 -- Focus
 local focusmap = function(direction)
-    vim.keymap.set('n', '<c-'..direction..'>', function()
+    vim.keymap.set('n', '<c-' .. direction .. '>', function()
         require('focus').split_command(direction)
     end, { desc = string.format('Create or move to split (%s)', direction) })
 end
@@ -74,8 +79,8 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-vim.keymap.set('n', '<leader>f', ':FocusMaximise<cr>', { desc = "Lazy", silent = true, noremap = true })
-vim.keymap.set('n', '<Esc><Esc>', ':FocusAutoresize<cr>', { desc = "Lazy", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>f', ':FocusMaximise<cr>', { silent = true, noremap = true, desc = 'Focus Maximize' })
+vim.keymap.set('n', '<Esc><Esc>', ':FocusAutoresize<cr>', { silent = true, noremap = true, desc = 'Focus Auto-resize' })
 
 
 -- Lazy
@@ -96,36 +101,42 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true, noremap = true })
 vim.keymap.set("n", "n", "nzzzv", { silent = true, noremap = true })
 vim.keymap.set("n", "N", "Nzzzv", { silent = true, noremap = true })
 
---vim.keymap.set("x", "<leader>p", [["_dP]])
---vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 -- Yank current line
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line", silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
 -- Moving lines around
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move line up" })
 
 -- DAP
 -- Adapted from https://grumpy-learning.com/blog/2023/04/03/neovim-and-xdebug/
-vim.keymap.set("n", "<C-\\>", ":lua require'dapui'.toggle()<cr>", { silent = true })
-vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<cr>", { silent = true })
-vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<cr>", { silent = true })
-vim.keymap.set("n", "<F7>", ":lua require'dap'.step_into()<cr>", { silent = true })
-vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<cr>", { silent = true })
-vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<cr>", { silent = true })
-vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<cr>", { silent = true })
-vim.keymap.set("n", "<leader>dl", ":lua require'dap'.run_last()<cr>", { silent = true })
-vim.keymap.set("n", "<leader>dc", ":lua require'telescope'.extensions.dap.commands{}<cr>", { silent = true })
-vim.keymap.set("n", "<leader>df", ":lua require'telescope'.extensions.dap.frames{}<cr>", { silent = true })
-vim.keymap.set({'n', 'v'}, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>", { silent = true })
-vim.keymap.set({'n', 'v'}, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>", { silent = true })
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
+vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step Over" })
+vim.keymap.set("n", "<F7>", ":lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step Into" })
+vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step Out" })
+vim.keymap.set("n", "<leader>do", ":lua require'dapui'.toggle()<cr>", { silent = true, desc = "DAP Open UI" })
+vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>",
+    { silent = true, desc = "DAP Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<cr>", { silent = true, desc = "DAP REPL Open" })
+vim.keymap.set("n", "<leader>dl", ":lua require'dap'.run_last()<cr>", { silent = true, desc = "DAP Run Last" })
+vim.keymap.set("n", "<leader>dc", ":lua require'telescope'.extensions.dap.commands{}<cr>",
+    { silent = true, desc = "DAP Commands" })
+vim.keymap.set("n", "<leader>df", ":lua require'telescope'.extensions.dap.frames{}<cr>",
+    { silent = true, desc = "DAP Frames" })
+vim.keymap.set({ 'n', 'v' }, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>",
+    { silent = true, desc = "DAP Hover" })
+vim.keymap.set({ 'n', 'v' }, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>",
+    { silent = true, desc = "DAP Preview" })
 
 -- Neotest
-vim.keymap.set("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>", { silent = true })
-vim.keymap.set("n", "<leader>tr", ":lua require'neotest'.run.run()<cr>", { silent = true })
-vim.keymap.set("n", "<leader>td", ":lua require'neotest'.run.run({strategy = 'dap'})<cr>", { silent = true })
-vim.keymap.set("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>", { silent = true })
+vim.keymap.set("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>",
+    { silent = true, desc = "Neotest Summary" })
+vim.keymap.set("n", "<leader>tr", ":lua require'neotest'.run.run()<cr>", { silent = true, desc = "Neotest Run" })
+vim.keymap.set("n", "<leader>td", ":lua require'neotest'.run.run({strategy = 'dap'})<cr>",
+    { silent = true, desc = "Neotest DAP" })
+vim.keymap.set("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
+    { silent = true, desc = "Neotest Output Panel" })
