@@ -44,8 +44,8 @@ vim.keymap.set('n', '<c-\\>', ':lua require("harpoon.term").gotoTerminal(1)<cr>'
     { noremap = true, desc = 'Hapoon terminal(1)' })
 
 -- Harpoon
-vim.keymap.set('n', '<leader>h', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
-vim.keymap.set('n', '<leader>fh', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
+vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
+vim.keymap.set('n', '<leader>h', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
     { noremap = true, desc = 'Hapoon quick menu' })
 vim.keymap.set('n', '<leader>1', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
 vim.keymap.set('n', '<leader>2', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
