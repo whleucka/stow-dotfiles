@@ -57,14 +57,16 @@ vim.keymap.set('n', '<leader>7', ':lua require("harpoon.ui").nav_file(7)<cr>', {
 vim.keymap.set('n', '<leader>8', ':lua require("harpoon.ui").nav_file(8)<cr>', { noremap = true, desc = 'Hapoon nav(8)' })
 vim.keymap.set('n', '<leader>9', ':lua require("harpoon.ui").nav_file(9)<cr>', { noremap = true, desc = 'Hapoon nav(9)' })
 vim.keymap.set('n', '<leader>0', ':lua require("harpoon.ui").nav_file(0)<cr>', { noremap = true, desc = 'Hapoon nav(0)' })
-vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
+vim.keymap.set('n', '<F9>', ':lua require("harpoon.term").gotoTerminal(1)<cr>',
     { noremap = true, desc = 'Hapoon terminal(1)' })
-vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gotoTerminal(3)<cr>',
+vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
     { noremap = true, desc = 'Hapoon terminal(2)' })
-vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(3)' })
-vim.keymap.set('n', '[h', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
-vim.keymap.set('n', ']h', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
+vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gototerminal(3)<cr>',
+    { noremap = true, desc = 'hapoon terminal(3)' })
+vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gototerminal(4)<cr>',
+    { noremap = true, desc = 'hapoon terminal(4)' })
+vim.keymap.set('n', '<c-.>', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
+vim.keymap.set('n', '<c-,>', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
 -- Focus
 local focusmap = function(direction)
