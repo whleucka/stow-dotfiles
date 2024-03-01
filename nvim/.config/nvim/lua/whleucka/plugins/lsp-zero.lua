@@ -129,7 +129,7 @@ return {
 					},
 					{ name = "buffer",     priority = 500, keyword_length = 4 },
 					{ name = "emoji",      priority = 400 },
-					{ name = "async_path", priority = 250 },
+					-- { name = "async_path", priority = 250 },
 					{ name = "nvim_lua",   priority = 200 },
 				},
 				formatting = {

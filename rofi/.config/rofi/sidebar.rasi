@@ -29,7 +29,7 @@
 }
 window {
     height:   100%;
-    width: 30em;
+    width: 24em;
     location: west;
     anchor:   west;
     border: 0;
@@ -51,7 +51,7 @@ inputbar {
 }
 mainbox {
     expand: true;
-    background-color: @lightblack;
+    background-color: #1e1e2eF0;
     spacing: 1em;
 }
 listview {
