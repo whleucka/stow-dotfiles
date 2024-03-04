@@ -63,7 +63,7 @@ vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
     { noremap = true, desc = 'Hapoon terminal(2)' })
 vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gotoTerminal(3)<cr>',
     { noremap = true, desc = 'hapoon terminal(3)' })
-vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gototerminal(4)<cr>',
+vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
     { noremap = true, desc = 'hapoon terminal(4)' })
 vim.keymap.set('n', '<c-.>', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
 vim.keymap.set('n', '<c-,>', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
