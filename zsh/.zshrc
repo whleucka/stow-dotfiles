@@ -187,3 +187,9 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # if type "neofetch" > /dev/null; then
 #     neofetch
 # fi
+#
+#
+
+
+# Faster compression
+export PKGEXT='.pkg.tar'
