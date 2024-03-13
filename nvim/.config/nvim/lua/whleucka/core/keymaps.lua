@@ -16,7 +16,7 @@ vim.keymap.set({ 'n', 'v' }, '<c-=>', '<C-a>', { silent = true, noremap = true, 
 vim.keymap.set({ 'n', 'v' }, '<c-->', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
 
 -- Select all
-vim.keymap.set('n', '<leader>a', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+vim.keymap.set('n', '<C-\\>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
 
 -- Delete backwards
 vim.keymap.set('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -31,44 +31,17 @@ vim.keymap.set('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true
 vim.keymap.set('n', '<leader>bn', ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
 vim.keymap.set('n', '[b', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
 vim.keymap.set('n', ']b', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
---vim.keymap.set('n', 'H', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
---vim.keymap.set('n', 'L', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Tabs
 vim.keymap.set('n', '[t', ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous tab" })
 vim.keymap.set('n', ']t', ":tabnext<cr>", { silent = true, noremap = true, desc = "Next tab" })
 
+-- Quickfix
+vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, noremap = true })
+vim.keymap.set('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap = true })
+
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
-
--- Terminal
-vim.keymap.set('n', '<c-\\>', ':lua require("harpoon.term").gotoTerminal(6)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(6)' })
-
--- Harpoon
-vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
-vim.keymap.set('n', '<leader>h', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
-    { noremap = true, desc = 'Hapoon quick menu' })
-vim.keymap.set('n', '<leader>6', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
-vim.keymap.set('n', '<leader>7', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
-vim.keymap.set('n', '<leader>8', ':lua require("harpoon.ui").nav_file(3)<cr>', { noremap = true, desc = 'Hapoon nav(3)' })
-vim.keymap.set('n', '<leader>9', ':lua require("harpoon.ui").nav_file(4)<cr>', { noremap = true, desc = 'Hapoon nav(4)' })
-vim.keymap.set('n', '<leader>10', ':lua require("harpoon.ui").nav_file(5)<cr>', { noremap = true, desc = 'Hapoon nav(5)' })
-vim.keymap.set('n', '<leader>11', ':lua require("harpoon.ui").nav_file(6)<cr>', { noremap = true, desc = 'Hapoon nav(6)' })
-vim.keymap.set('n', '<leader>12', ':lua require("harpoon.ui").nav_file(7)<cr>', { noremap = true, desc = 'Hapoon nav(7)' })
-vim.keymap.set('n', '<leader>13', ':lua require("harpoon.ui").nav_file(8)<cr>', { noremap = true, desc = 'Hapoon nav(8)' })
-vim.keymap.set('n', '<leader>14', ':lua require("harpoon.ui").nav_file(9)<cr>', { noremap = true, desc = 'Hapoon nav(9)' })
-vim.keymap.set('n', '<leader>5', ':lua require("harpoon.ui").nav_file(0)<cr>', { noremap = true, desc = 'Hapoon nav(0)' })
-vim.keymap.set('n', '<F14>', ':lua require("harpoon.term").gotoTerminal(1)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(6)' })
-vim.keymap.set('n', '<F15>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(7)' })
-vim.keymap.set('n', '<F16>', ':lua require("harpoon.term").gotoTerminal(3)<cr>',
-    { noremap = true, desc = 'hapoon terminal(8)' })
-vim.keymap.set('n', '<F17>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
-    { noremap = true, desc = 'hapoon terminal(9)' })
-vim.keymap.set('n', 'H', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
-vim.keymap.set('n', 'L', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
 -- Focus
 local focusmap = function(direction)
@@ -83,8 +56,8 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-vim.keymap.set('n', '<leader>f', ':FocusMaximise<cr>', { silent = true, noremap = true, desc = 'Focus Maximize' })
-vim.keymap.set('n', '<Esc><Esc>', ':FocusAutoresize<cr>', { silent = true, noremap = true, desc = 'Focus Auto-resize' })
+vim.keymap.set('n', "<F11>", ':FocusMaximise<cr>', { desc = 'Focus Maximize' })
+vim.keymap.set('n', "<F12>", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize' })
 
 
 -- Lazy
@@ -94,19 +67,12 @@ vim.keymap.set('n', '<leader>ls', ':Lazy update<CR>', { desc = "Lazy update", si
 vim.keymap.set('n', '<leader>lc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
 vim.keymap.set('n', '<leader>lp', ':Lazy profile<CR>', { desc = "Lazy clean", silent = true, noremap = true })
 
--- Quickfix
-vim.keymap.set('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, noremap = true })
-vim.keymap.set('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap = true })
-
 -- Primeagen remaps
 vim.keymap.set("n", "J", "mzJ`z", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true, noremap = true })
 vim.keymap.set("n", "n", "nzzzv", { silent = true, noremap = true })
 vim.keymap.set("n", "N", "Nzzzv", { silent = true, noremap = true })
-
--- Yank current line
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line", silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 5 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
