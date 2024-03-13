@@ -16,7 +16,7 @@ vim.keymap.set({ 'n', 'v' }, '<c-=>', '<C-a>', { silent = true, noremap = true, 
 vim.keymap.set({ 'n', 'v' }, '<c-->', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
 
 -- Select all
-vim.keymap.set('n', '<c-bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+vim.keymap.set('n', '<leader>a', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
 
 -- Delete backwards
 vim.keymap.set('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -29,44 +29,46 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 -- Buffers
 vim.keymap.set('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
 vim.keymap.set('n', '<leader>bn', ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
-vim.keymap.set('n', 'H', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-vim.keymap.set('n', 'L', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set('n', '[b', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', ']b', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+--vim.keymap.set('n', 'H', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+--vim.keymap.set('n', 'L', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Tabs
-vim.keymap.set('n', '[t', ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-vim.keymap.set('n', ']t', ":tabnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set('n', '[t', ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous tab" })
+vim.keymap.set('n', ']t', ":tabnext<cr>", { silent = true, noremap = true, desc = "Next tab" })
 
 -- Sourcing
 vim.keymap.set('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- Terminal
-vim.keymap.set('n', '<c-\\>', ':lua require("harpoon.term").gotoTerminal(1)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(1)' })
+vim.keymap.set('n', '<c-\\>', ':lua require("harpoon.term").gotoTerminal(6)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(6)' })
 
 -- Harpoon
 vim.keymap.set('n', '<leader><space>', ':lua require("harpoon.mark").add_file()<cr>', { noremap = true, desc = 'Hapoon file' })
 vim.keymap.set('n', '<leader>h', ':lua require("harpoon.ui").toggle_quick_menu()<cr>',
     { noremap = true, desc = 'Hapoon quick menu' })
-vim.keymap.set('n', '<leader>1', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
-vim.keymap.set('n', '<leader>2', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
-vim.keymap.set('n', '<leader>3', ':lua require("harpoon.ui").nav_file(3)<cr>', { noremap = true, desc = 'Hapoon nav(3)' })
-vim.keymap.set('n', '<leader>4', ':lua require("harpoon.ui").nav_file(4)<cr>', { noremap = true, desc = 'Hapoon nav(4)' })
-vim.keymap.set('n', '<leader>5', ':lua require("harpoon.ui").nav_file(5)<cr>', { noremap = true, desc = 'Hapoon nav(5)' })
-vim.keymap.set('n', '<leader>6', ':lua require("harpoon.ui").nav_file(6)<cr>', { noremap = true, desc = 'Hapoon nav(6)' })
-vim.keymap.set('n', '<leader>7', ':lua require("harpoon.ui").nav_file(7)<cr>', { noremap = true, desc = 'Hapoon nav(7)' })
-vim.keymap.set('n', '<leader>8', ':lua require("harpoon.ui").nav_file(8)<cr>', { noremap = true, desc = 'Hapoon nav(8)' })
-vim.keymap.set('n', '<leader>9', ':lua require("harpoon.ui").nav_file(9)<cr>', { noremap = true, desc = 'Hapoon nav(9)' })
-vim.keymap.set('n', '<leader>0', ':lua require("harpoon.ui").nav_file(0)<cr>', { noremap = true, desc = 'Hapoon nav(0)' })
-vim.keymap.set('n', '<F9>', ':lua require("harpoon.term").gotoTerminal(1)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(1)' })
-vim.keymap.set('n', '<F10>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
-    { noremap = true, desc = 'Hapoon terminal(2)' })
-vim.keymap.set('n', '<F11>', ':lua require("harpoon.term").gotoTerminal(3)<cr>',
-    { noremap = true, desc = 'hapoon terminal(3)' })
-vim.keymap.set('n', '<F12>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
-    { noremap = true, desc = 'hapoon terminal(4)' })
-vim.keymap.set('n', '<c-.>', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
-vim.keymap.set('n', '<c-,>', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
+vim.keymap.set('n', '<leader>6', ':lua require("harpoon.ui").nav_file(1)<cr>', { noremap = true, desc = 'Hapoon nav(1)' })
+vim.keymap.set('n', '<leader>7', ':lua require("harpoon.ui").nav_file(2)<cr>', { noremap = true, desc = 'Hapoon nav(2)' })
+vim.keymap.set('n', '<leader>8', ':lua require("harpoon.ui").nav_file(3)<cr>', { noremap = true, desc = 'Hapoon nav(3)' })
+vim.keymap.set('n', '<leader>9', ':lua require("harpoon.ui").nav_file(4)<cr>', { noremap = true, desc = 'Hapoon nav(4)' })
+vim.keymap.set('n', '<leader>10', ':lua require("harpoon.ui").nav_file(5)<cr>', { noremap = true, desc = 'Hapoon nav(5)' })
+vim.keymap.set('n', '<leader>11', ':lua require("harpoon.ui").nav_file(6)<cr>', { noremap = true, desc = 'Hapoon nav(6)' })
+vim.keymap.set('n', '<leader>12', ':lua require("harpoon.ui").nav_file(7)<cr>', { noremap = true, desc = 'Hapoon nav(7)' })
+vim.keymap.set('n', '<leader>13', ':lua require("harpoon.ui").nav_file(8)<cr>', { noremap = true, desc = 'Hapoon nav(8)' })
+vim.keymap.set('n', '<leader>14', ':lua require("harpoon.ui").nav_file(9)<cr>', { noremap = true, desc = 'Hapoon nav(9)' })
+vim.keymap.set('n', '<leader>5', ':lua require("harpoon.ui").nav_file(0)<cr>', { noremap = true, desc = 'Hapoon nav(0)' })
+vim.keymap.set('n', '<F14>', ':lua require("harpoon.term").gotoTerminal(1)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(6)' })
+vim.keymap.set('n', '<F15>', ':lua require("harpoon.term").gotoTerminal(2)<cr>',
+    { noremap = true, desc = 'Hapoon terminal(7)' })
+vim.keymap.set('n', '<F16>', ':lua require("harpoon.term").gotoTerminal(3)<cr>',
+    { noremap = true, desc = 'hapoon terminal(8)' })
+vim.keymap.set('n', '<F17>', ':lua require("harpoon.term").gotoTerminal(4)<cr>',
+    { noremap = true, desc = 'hapoon terminal(9)' })
+vim.keymap.set('n', 'H', ':lua require("harpoon.ui").nav_prev()<cr>', { noremap = true, desc = 'Hapoon prev' })
+vim.keymap.set('n', 'L', ':lua require("harpoon.ui").nav_next()<cr>', { noremap = true, desc = 'Hapoon prev' })
 
 -- Focus
 local focusmap = function(direction)
@@ -107,19 +109,19 @@ vim.keymap.set("n", "N", "Nzzzv", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line", silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
+vim.keymap.set('n', 'k', "v:count == 5 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
+vim.keymap.set('n', 'j', "v:count == 5 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
 -- Moving lines around
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move line down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move line up" })
+vim.keymap.set("v", "J", ":m '>+6<CR>gv=gv", { silent = true, desc = "Move line down" })
+vim.keymap.set("v", "K", ":m '<3<CR>gv=gv", { silent = true, desc = "Move line up" })
 
 -- DAP
--- Adapted from https://grumpy-learning.com/blog/2023/04/03/neovim-and-xdebug/
-vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
-vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step Over" })
-vim.keymap.set("n", "<F7>", ":lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step Into" })
-vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step Out" })
+-- Adapted from https://grumpy-learning.com/blog/2028/04/03/neovim-and-xdebug/
+vim.keymap.set("n", "<F10>", ":lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
+vim.keymap.set("n", "<F11>", ":lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step Over" })
+vim.keymap.set("n", "<F12>", ":lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step Into" })
+vim.keymap.set("n", "<F13>", ":lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step Out" })
 vim.keymap.set("n", "<leader>do", ":lua require'dapui'.toggle()<cr>", { silent = true, desc = "DAP Open UI" })
 vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>",
     { silent = true, desc = "DAP Toggle Breakpoint" })
