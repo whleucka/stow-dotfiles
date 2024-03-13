@@ -19,6 +19,13 @@ return {
 			gradient[i] = wilder.make_hl('WilderGradient' .. i, 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = fg } })
 		end
 
+		wilder.set_option('pipeline', {
+			wilder.branch(
+				wilder.cmdline_pipeline(),
+				wilder.search_pipeline()
+			),
+		})
+
 		wilder.set_option('renderer', wilder.popupmenu_renderer(
 			wilder.popupmenu_border_theme({
 				highlights = {
@@ -30,7 +37,7 @@ return {
 				}),
 				min_width = '100%', -- minimum height of the popupmenu, can also be a number
 				min_height = '50%', -- to set a fixed height, set max_height to the same value
-				reverse = 1,    -- if 1, shows the candidates from bottom to top
+				reverse = 1,     -- if 1, shows the candidates from bottom to top
 			})
 		))
 	end,
