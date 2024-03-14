@@ -43,8 +43,7 @@ vim.o.shiftwidth = 4
 vim.o.colorcolumn = "80"
 vim.o.tw = 80
 
--- NOTE: cmdheight 0 has "Press enter to continue" issue
-vim.o.cmdheight = 1
+vim.o.cmdheight = 0
 vim.o.laststatus = 3
 
 vim.g.loaded_ruby_provider = 0

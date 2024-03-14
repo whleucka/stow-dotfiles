@@ -48,8 +48,6 @@ vim.api.nvim_create_autocmd("FileType", {
             ]],
 })
 
--- Hide dashboard when neotree
-
 -- Terminal keys
 local function set_terminal_keymaps()
     local opts = {}
