@@ -41,7 +41,7 @@ vim.o.shiftwidth = 4
 
 --
 vim.o.colorcolumn = "80"
-vim.o.tw = "80"
+vim.o.tw = 80
 
 -- NOTE: cmdheight 0 has "Press enter to continue" issue
 vim.o.cmdheight = 1
