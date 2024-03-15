@@ -13,8 +13,7 @@ Welcome to my Neovim configuration! This repository contains my personal Neovim 
 - A collection of carefully selected plugins for enhanced functionality.
 
 ## Screenshots
-
-![image](https://github.com/whleucka/stow-dotfiles/assets/71740767/2c0fc520-600e-46e3-a405-5850396e0e24)
+![image](https://github.com/whleucka/stow-dotfiles/assets/71740767/cdf2fb7b-ea14-4146-9962-d09145455170)
 
 ## Installation
 
