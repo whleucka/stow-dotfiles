@@ -11,8 +11,8 @@ return {
 					'another_item', {
 						"harpoon2",
 						icon = '♥',
-						indicators = { "1", "2", "3", "4" },
-						active_indicators = { "[1]", "[2]", "[3]", "[4]" }
+						indicators = { "1", "2", "3", "4", "5", "6", "7", "8" },
+						active_indicators = { "[1]", "[2]", "[3]", "[4]","[5]", "[6]", "[7]", "[8]" }
 					},
 				},
 			},
