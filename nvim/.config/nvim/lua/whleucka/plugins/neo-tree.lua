@@ -9,14 +9,31 @@ return {
 		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	keys = {
-		{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neotree toggle" },
-		{ "<leader>o", "<cmd>Neotree focus<cr>",  desc = "Neotree focus" }
+		{ "\\", "<cmd>Neotree toggle<cr>", desc = "Neotree toggle" },
 	},
 	config = function()
+		-- Diagnostics styles
+		local signs = {
+			Error = "🤬",
+			Warn = "⚠️ ",
+			Hint = "💡",
+			Info = "ℹ️ "
+		}
+
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		end
+
 		require('neo-tree').setup {
+			auto_clean_after_session_restore = true,
+			close_if_last_window = true,
 			source_selector = {
-				winbar = false,
+				winbar = true,
 				statusline = false
+			},
+			window = {
+				width = 30,
 			},
 			filesystem = {
 				filtered_items = {
@@ -25,6 +42,8 @@ return {
 					hide_gitignored = false,
 					hide_hidden = false,
 				},
+				follow_current_file = { enabled = true },
+				hijack_netrw_behavior = "open_current",
 			},
 			event_handlers = {
 				-- Auto Close on Open File
