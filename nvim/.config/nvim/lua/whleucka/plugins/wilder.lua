@@ -1,10 +1,7 @@
 return {
 	"gelguy/wilder.nvim",
 	build = ":UpdateRemotePlugins",
-	keys = {
-		{"\\"},
-		{":"},
-	},
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 	},
