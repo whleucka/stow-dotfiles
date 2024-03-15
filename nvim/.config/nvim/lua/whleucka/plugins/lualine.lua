@@ -6,6 +6,16 @@ return {
 			options = {
 				theme = "catppuccin"
 			},
+			sections = {
+				lualine_c = {
+					'another_item', {
+						"harpoon2",
+						icon = '♥',
+						indicators = { "1", "2", "3", "4" },
+						active_indicators = { "[1]", "[2]", "[3]", "[4]" }
+					},
+				},
+			},
 			winbar = {
 				lualine_a = {},
 				lualine_b = {},
