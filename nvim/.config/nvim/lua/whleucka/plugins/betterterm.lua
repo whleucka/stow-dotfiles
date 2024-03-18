@@ -1,6 +1,6 @@
 return {
 	'CRAG666/betterTerm.nvim',
-	event = "CmdlineEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local betterTerm = require('betterTerm')
 		require('betterTerm').setup {
