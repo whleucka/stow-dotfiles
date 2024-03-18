@@ -1,6 +1,6 @@
 return {
 	'CRAG666/betterTerm.nvim',
-	event = { "BufReadPre", "BufNewFile" },
+	event = "CmdlineEnter",
 	config = function()
 		local betterTerm = require('betterTerm')
 		require('betterTerm').setup {
@@ -10,5 +10,5 @@ return {
 		  size = 10
 		}
 		vim.keymap.set({ "n", "t" }, "<C-;>", betterTerm.open, { desc = "Open terminal" })
-	end
+	end,
 }
