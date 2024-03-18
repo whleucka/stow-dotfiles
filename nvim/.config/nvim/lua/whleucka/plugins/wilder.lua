@@ -26,19 +26,14 @@ return {
 			),
 		})
 
-		wilder.set_option('renderer', wilder.popupmenu_renderer(
-			wilder.popupmenu_border_theme({
-				highlights = {
-					gradient = gradient, -- must be set
-					-- selected_gradient key can be set to apply gradient highlighting for the selected candidate.
-				},
-				highlighter = wilder.highlighter_with_gradient({
-					wilder.basic_highlighter(), -- or wilder.lua_fzy_highlighter(),
-				}),
-				min_width = '100%', -- minimum height of the popupmenu, can also be a number
-				min_height = '50%', -- to set a fixed height, set max_height to the same value
-				reverse = 1,     -- if 1, shows the candidates from bottom to top
-			})
-		))
+		wilder.set_option('renderer', wilder.popupmenu_renderer({
+			highlights = {
+				gradient = gradient, -- must be set
+				-- selected_gradient key can be set to apply gradient highlighting for the selected candidate.
+			},
+			highlighter = wilder.highlighter_with_gradient({
+				wilder.basic_highlighter(), -- or wilder.lua_fzy_highlighter(),
+			}),
+		}))
 	end,
 }
