@@ -22,6 +22,14 @@ return {
 			},
 			t = {
 				name = "Neotest"
+			},
+			u = {
+				name = "Upload / Download",
+				d = { "<cmd>TransferDownload<cr>", "Download from remote server (scp)" },
+				u = { "<cmd>TransferUpload<cr>", "Upload to remote server (scp)" },
+				f = { "<cmd>DiffRemote<cr>", "Diff file with remote server (scp)" },
+				i = { "<cmd>TransferInit<cr>", "Init/Edit Deployment config" },
+				r = { "<cmd>TransferRepeat<cr>", "Repeat transfer command" },
 			}
 		}, { prefix = "<leader>" })
 	end,

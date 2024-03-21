@@ -20,6 +20,15 @@ return {
 					height = 0.80,
 					preview_cutoff = 120,
 				},
+			},
+			extensions = {
+				fzf = {
+					fuzzy = true,     -- false will only do exact matching
+					override_generic_sorter = true, -- override the generic sorter
+					override_file_sorter = true, -- override the file sorter
+					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+					-- the default case_mode is "smart_case"
+				}
 			}
 		})
 		require('telescope').load_extension('fzf')
@@ -28,7 +37,7 @@ return {
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
 		{ "<leader>fo", "<cmd>Telescope oldfiles<cr>",   desc = "Find old files" },
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live grep" },
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>",  desc = "Find buffers" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Find buffers" },
 		{ "<leader>fm", "<cmd>Telescope man_pages<cr>",  desc = "Find manual pages" },
 		{ "<leader>ft", "<cmd>Telescope help_tags<cr>",  desc = "Find help tags" },
 	}
