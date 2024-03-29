@@ -4,7 +4,7 @@ return {
 		vim.o.timeout = true
 		vim.o.timeoutlen = 300
 	end,
-	event = { "BufReadPre", "BufNewFile" },
+	event = "VeryLazy",
 	config = function()
 		local wk = require("which-key")
 		wk.register({

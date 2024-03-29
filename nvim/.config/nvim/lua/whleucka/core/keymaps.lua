@@ -29,8 +29,8 @@ vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
 -- Buffers
 vim.keymap.set('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
 vim.keymap.set('n', '<leader>bn', ":enew<cr>", { silent = true, noremap = true, desc = "New buffer" })
-vim.keymap.set('n', '[b', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-vim.keymap.set('n', ']b', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set('n', '<S-h>', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+vim.keymap.set('n', '<S-l>', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Tabs
 vim.keymap.set('n', '[t', ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous tab" })
@@ -56,8 +56,8 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-vim.keymap.set('n', "<F11>", ':FocusMaximise<cr>', { desc = 'Focus Maximize' })
-vim.keymap.set('n', "<F12>", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize' })
+vim.keymap.set('n', "<leader>wf", ':FocusMaximise<cr>', { desc = 'Focus Maximize' })
+vim.keymap.set('n', "<leader>wa", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize' })
 
 
 -- Lazy
