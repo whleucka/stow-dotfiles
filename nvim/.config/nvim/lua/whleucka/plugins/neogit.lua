@@ -4,7 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",   -- required
 		"nvim-telescope/telescope.nvim", -- optional
 		"sindrets/diffview.nvim",  -- optional
-		"ibhagwan/fzf-lua",        -- optional
+		"https://gitlab.com/ibhagwan/fzf-lua",        -- optional
 	},
 	opts = {},
 	cmd = "Neogit",
