@@ -4,6 +4,7 @@ bc 1.07.1-4
 betterlockscreen 4.2.0-1
 blueberry 1.4.8-1
 bpytop 1.0.68-1
+brightnessctl 0.5.1-2
 cmake 3.29.0-1
 dbus-python 1.3.2-2
 dmenu 5.3-1
@@ -46,9 +47,12 @@ rofi 1.7.5-2
 smartmontools 7.4-1
 sof-firmware 2023.12.1-1
 stow 2.3.1-3
+systemd-resolvconf 255.4-2
 vulkan-intel 1:24.0.4-2
 vulkan-radeon 1:24.0.4-2
 wget 1.24.5-1
+wireguard-go-git 0.0.20230223.r46.g12269c2-1
+wireguard-tools 1.0.20210914-2
 wireless_tools 30.pre9-3
 wireplumber 0.5.1-1
 wpa_supplicant 2:2.10-8
