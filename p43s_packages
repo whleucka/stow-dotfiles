@@ -47,6 +47,7 @@ polybar 3.7.1-1
 python-jq 1.7.0-1
 ripgrep 14.1.0-1
 rofi 1.7.5-2
+rust 1:1.77.1-2
 smartmontools 7.4-1
 sof-firmware 2023.12.1-1
 stow 2.3.1-3
