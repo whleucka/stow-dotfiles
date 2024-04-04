@@ -56,10 +56,9 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-vim.keymap.set('n', "<leader>wf", ':FocusMaximise<cr>', { desc = 'Focus Maximize' })
-vim.keymap.set('n', "<leader>wa", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize' })
-vim.keymap.set('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise' })
-vim.keymap.set('n', "<leader>ws", ':FocusSplitNicely<cr>', { desc = 'Focus SplitNicely' })
+vim.keymap.set('n', "<c-w>f", ':FocusMaximise<cr>', { desc = 'Focus Maximize' })
+vim.keymap.set('n', "<c-w>a", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize' })
+vim.keymap.set('n', "<c-w>=", ':FocusEqualise<cr>', { desc = 'Focus Equalise' })
 
 
 -- Lazy
