@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
-printf "Installing system packages...\n"
+printf "Setting up Arch Linux...\n"
 
 if ! command -v yay &> /dev/null
 then
     printf "Installing yay..."
     git clone https://aur.archlinux.org/yay.git ~/yay
     cd ~/yay && makepkg -si
-    cd ~/stow-dotfiles
-    rm -rf ~/yay
+    cd ~ && rm -rf ~/yay
 fi
 
-# Main packages
-yay -Syu
-yay -S $(cat ./packages) --needed
+# Installing FZF
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf\n~/.fzf/install
+
+# Install packages
+printf "Installing system packages...\n"
+yay -S $(cat ./p43s) --needed
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
@@ -25,6 +27,22 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HO
 git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-256color
 git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autoupdate
 
-cd ~ && printf "With great power comes great responsibility\n"
+# Stow
+stow ~/.stow-dotfiles/alias
+stow ~/.stow-dotfiles/fonts
+stow ~/.stow-dotfiles/functions
+stow ~/.stow-dotfiles/i3
+stow ~/.stow-dotfiles/picom
+stow ~/.stow-dotfiles/zsh
+stow ~/.stow-dotfiles/p10k
+stow ~/.stow-dotfiles/kitty
+stow ~/.stow-dotfiles/nvim
+stow ~/.stow-dotfiles/polybar
+stow ~/.stow-dotfiles/rofi
+stow ~/.stow-dotfiles/scripts
+
+# Create wallpaper / lockscreens
+betterlockscreen -u ~/.i3
+
+cd ~ && printf "With great power comes great responsibility...\n"
