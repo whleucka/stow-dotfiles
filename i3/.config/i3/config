@@ -28,8 +28,8 @@ set $teal      #94e2d5
 set $sky       #89dceb
 set $sapphire  #74c7ec
 set $blue      #89b4fa
-#set $lavender  #b4befe
-set $lavender  #9098CB
+set $lavender  #b4befe
+set $active    #364259
 set $text      #cdd6f4
 set $subtext1  #bac2de
 set $subtext0  #a6adc8
@@ -43,12 +43,12 @@ set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $green $surface0  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+# target                 title          bg           text       indicator       border
+client.focused           $lavender      $sapphire    $crust     $blue           $overlay2
+client.focused_inactive  $overlay0      $base        $text      $rosewater      $overlay0
+client.unfocused         $overlay0      $base        $text      $rosewater      $overlay0
+client.urgent            $peach         $base        $peach     $overlay0       $peach
+client.placeholder       $overlay0      $base        $text      $overlay0       $overlay0
 client.background        $base
 
 # Font for window titles (currently hidden)
