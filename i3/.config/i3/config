@@ -31,6 +31,7 @@ set $blue      #89b4fa
 set $lavender  #b4befe
 set $active    #364259
 set $text      #cdd6f4
+set $selection #9098CB
 set $subtext1  #bac2de
 set $subtext0  #a6adc8
 set $overlay2  #9399b2
@@ -44,7 +45,7 @@ set $mantle    #181825
 set $crust     #11111b
 
 # target                 title          bg           text       indicator       border
-client.focused           $lavender      $sapphire    $crust     $blue           $overlay2
+client.focused           $lavender      $selection    $crust     $blue          $selection
 client.focused_inactive  $overlay0      $base        $text      $rosewater      $overlay0
 client.unfocused         $overlay0      $base        $text      $rosewater      $overlay0
 client.urgent            $peach         $base        $peach     $overlay0       $peach
