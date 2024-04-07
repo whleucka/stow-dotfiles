@@ -53,7 +53,7 @@ polybar
 python-jq
 ripgrep
 rofi
-rust
+rustup
 smartmontools
 sof-firmware
 stow
