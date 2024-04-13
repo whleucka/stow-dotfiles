@@ -1,3 +1,4 @@
+arandr
 barrier
 base
 base-devel
@@ -11,6 +12,7 @@ dbus-python
 dmenu
 efibootmgr
 expressvpn
+expressvpn-gui-gtk
 feh
 fwupd
 git
@@ -49,6 +51,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 plank
+playerctl
 polybar
 python-jq
 ripgrep
