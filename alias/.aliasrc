@@ -43,6 +43,12 @@ if command -v composer > /dev/null; then
     alias cr="composer require "
 fi
 
+# pnpm
+if command -v pnpm > /dev/null; then
+    alias npm="pnpm"
+fi
+
+
 # npm
 if command -v npm > /dev/null; then
     alias naf="npm audit fix"
