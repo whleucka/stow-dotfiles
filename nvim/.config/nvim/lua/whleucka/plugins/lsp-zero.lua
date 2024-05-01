@@ -21,7 +21,13 @@ return {
 			"theHamsta/nvim-dap-virtual-text"
 		},
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				ui = {
+					border = "rounded",
+					width = 0.8,
+					height = 0.9,
+				},
+			})
 			require("mason-nvim-dap").setup({
 				-- Makes a best effort to setup the various debuggers with
 				-- reasonable debug configurations
