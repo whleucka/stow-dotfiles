@@ -39,13 +39,11 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
---
-vim.o.colorcolumn = "80"
-vim.o.tw = 80
-
+-- Last status / cmd height
 vim.o.cmdheight = 0
 vim.o.laststatus = 3
 
+-- Providers
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.python3_host_prog = "/usr/bin/python"

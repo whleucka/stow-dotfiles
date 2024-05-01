@@ -24,13 +24,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
--- Start terminal in insert mode
-vim.api.nvim_create_autocmd('TermOpen', {
-    group   = grp,
-    pattern = '*',
-    command = 'startinsert | set winfixheight'
-})
-
 -- Exit help page pressing q
 vim.api.nvim_create_autocmd("FileType", {
     group = grp,
@@ -46,6 +39,13 @@ vim.api.nvim_create_autocmd("FileType", {
             nnoremap <buffer><silent> q :close<CR>
             set nobuflisted
             ]],
+})
+
+-- Start terminal in insert mode
+vim.api.nvim_create_autocmd('TermOpen', {
+    group   = grp,
+    pattern = '*',
+    command = 'startinsert | set winfixheight'
 })
 
 -- Terminal keys
