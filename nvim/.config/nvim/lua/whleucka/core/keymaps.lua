@@ -123,10 +123,11 @@ vim.keymap.set("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
 
 -- Terminal
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-vim.keymap.set("n", "<C-;>", function()
+vim.keymap.set("n", "<C-t>", function()
     vim.cmd.new()
     vim.cmd.wincmd "J"
     vim.api.nvim_win_set_height(0, 12)
     vim.wo.winfixheight = true
     vim.cmd.term()
 end)
+vim.keymap.set("n", "<C-;>", ":lua require('FTerm').toggle()<cr>", { silent = true, desc = "Toggle Terminal"})
