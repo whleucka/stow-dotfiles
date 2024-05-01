@@ -64,6 +64,11 @@ vim.keymap.set('n', "<F11>", function()
 end, { desc = 'Focus Maximize', silent = true })
 vim.keymap.set('n', "<F12>", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', silent = true })
 
+-- Resize splits
+vim.keymap.set('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', silent = true })
+vim.keymap.set('n', "<C-Right>", '<C-w>>', { desc = 'Increase Window Width', silent = true })
+vim.keymap.set('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', silent = true })
+vim.keymap.set('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', silent = true })
 
 -- Lazy
 vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
