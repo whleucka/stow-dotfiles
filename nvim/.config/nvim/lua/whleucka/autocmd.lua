@@ -49,15 +49,21 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Terminal keys
-local function set_terminal_keymaps()
+local function set_terminal()
+    local set = vim.opt_local
     local opts = {}
     vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
     vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
     vim.keymap.set('t', 'kj', [[<C-\><C-n>]], opts)
+
+    set.number = false
+    set.relativenumber = false
+    set.scrolloff = 0
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.api.nvim_create_autocmd("TermOpen", {
+    group = grp,
     pattern = [[term://*]],
-    callback = set_terminal_keymaps
+    callback = set_terminal
 })

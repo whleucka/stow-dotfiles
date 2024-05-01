@@ -56,9 +56,13 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-vim.keymap.set('n', "<c-w>f", ':FocusMaximise<cr>', { desc = 'Focus Maximize' })
-vim.keymap.set('n', "<c-w>a", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize' })
-vim.keymap.set('n', "<c-w>=", ':FocusEqualise<cr>', { desc = 'Focus Equalise' })
+vim.keymap.set('n', "<F9>", ':FocusToggle<cr>', { desc = 'Focus Toggle', silent = true })
+vim.keymap.set('n', "<F10>", ':FocusEqualise<cr>', { desc = 'Focus Equalise', silent = true })
+vim.keymap.set('n', "<F11>", function()
+    vim.cmd[[ FocusEnable ]]
+    vim.cmd[[ FocusMaximise ]]
+end, { desc = 'Focus Maximize', silent = true })
+vim.keymap.set('n', "<F12>", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', silent = true })
 
 
 -- Lazy
@@ -85,10 +89,10 @@ vim.keymap.set("v", "K", ":m '<3<CR>gv=gv", { silent = true, desc = "Move line u
 
 -- DAP
 -- Adapted from https://grumpy-learning.com/blog/2028/04/03/neovim-and-xdebug/
-vim.keymap.set("n", "<F10>", ":lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
-vim.keymap.set("n", "<F11>", ":lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step Over" })
-vim.keymap.set("n", "<F12>", ":lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step Into" })
-vim.keymap.set("n", "<F13>", ":lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step Out" })
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
+vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step Over" })
+vim.keymap.set("n", "<F7>", ":lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step Into" })
+vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step Out" })
 vim.keymap.set("n", "<leader>do", ":lua require'dapui'.toggle()<cr>", { silent = true, desc = "DAP Open UI" })
 vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>",
     { silent = true, desc = "DAP Toggle Breakpoint" })
@@ -111,3 +115,13 @@ vim.keymap.set("n", "<leader>td", ":lua require'neotest'.run.run({strategy = 'da
     { silent = true, desc = "Neotest DAP" })
 vim.keymap.set("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
     { silent = true, desc = "Neotest Output Panel" })
+
+-- Terminal
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+vim.keymap.set("n", "<C-;>", function()
+    vim.cmd.new()
+    vim.cmd.wincmd "J"
+    vim.api.nvim_win_set_height(0, 12)
+    vim.wo.winfixheight = true
+    vim.cmd.term()
+end)
