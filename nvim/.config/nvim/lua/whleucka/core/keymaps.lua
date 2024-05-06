@@ -49,7 +49,6 @@ map('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap
 map('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- File navigation
-map('n', "<C-p>", ":lua require('fzf-lua').git_files()<cr>", { silent = true, noremap = true, desc = "Find git files" })
 map('n', "<leader>fm", ":lua require('fzf-lua').manpages()<cr>", { silent = true, noremap = true, desc = "Find man" })
 map('n', "<leader>ff", ":lua require('fzf-lua').files()<cr>", { silent = true, noremap = true, desc = "Find files" })
 map('n', "<leader>fo", ":lua require('fzf-lua').oldfiles()<cr>", { silent = true, noremap = true, desc = "Find old files" })
@@ -59,6 +58,7 @@ map('n', "<leader>fg", ":lua require('fzf-lua').live_grep_native()<cr>", { silen
 map('n', "<leader>fq", ":lua require('fzf-lua').quickfix()<cr>", { silent = true, noremap = true, desc = "Find quickfix" })
 map('n', "<leader>fl", ":lua require('fzf-lua').loclist()<cr>", { silent = true, noremap = true, desc = "Find location list" })
 map('n', "<leader>ft", ":lua require('fzf-lua').tags()<cr>", { silent = true, noremap = true, desc = "Find tags" })
+map('n', "<leader>fc", ":lua require('fzf-lua').colorscheme()<cr>", { silent = true, noremap = true, desc = "Find color scheme" })
 
 -- Focus
 local focusmap = function(direction)
