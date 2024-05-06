@@ -58,7 +58,7 @@ map('n', "<leader>fg", ":lua require('fzf-lua').live_grep_native()<cr>", { silen
 map('n', "<leader>fq", ":lua require('fzf-lua').quickfix()<cr>", { silent = true, noremap = true, desc = "Find quickfix" })
 map('n', "<leader>fl", ":lua require('fzf-lua').loclist()<cr>", { silent = true, noremap = true, desc = "Find location list" })
 map('n', "<leader>ft", ":lua require('fzf-lua').tags()<cr>", { silent = true, noremap = true, desc = "Find tags" })
-map('n', "<leader>fc", ":lua require('fzf-lua').colorscheme()<cr>", { silent = true, noremap = true, desc = "Find color scheme" })
+map('n', "<leader>fc", ":lua require('fzf-lua').colorschemes()<cr>", { silent = true, noremap = true, desc = "Find color scheme" })
 
 -- Focus
 local focusmap = function(direction)

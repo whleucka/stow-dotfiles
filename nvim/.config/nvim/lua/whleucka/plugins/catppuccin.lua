@@ -14,7 +14,6 @@ return {
 				neotree = true,
 				notify = true,
 				semantic_tokens = true,
-				telescope = true,
 				treesitter = true,
 				treesitter_context = true,
 				native_lsp = {
@@ -27,7 +26,7 @@ return {
 					},
 				},
 			},
-			flavour = "mocha",
+			flavour = "frappe",
 			transparent_background = true,
 		})
 		vim.cmd.colorscheme "catppuccin"
