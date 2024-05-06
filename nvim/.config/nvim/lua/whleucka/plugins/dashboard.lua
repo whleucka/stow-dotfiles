@@ -16,7 +16,7 @@ return {
 						icon_hl = '@variable',
 						desc = 'Config',
 						group = 'Label',
-						action = 'Telescope find_files search_dirs={"~/.config/nvim/"}',
+						action = ":lua require('fzf-lua').files({ cwd = '~/.config/nvim' })",
 						key = 'c',
 					},
 					{
@@ -24,7 +24,7 @@ return {
 						icon_hl = '@variable',
 						desc = 'Find',
 						group = 'Label',
-						action = 'Telescope find_files',
+						action = ":lua require('fzf-lua').files()",
 						key = 'f',
 					},
 					{
@@ -32,7 +32,7 @@ return {
 						icon_hl = '@variable',
 						desc = 'Recent',
 						group = 'Label',
-						action = 'Telescope oldfiles',
+						action = ":lua require('fzf-lua').oldfiles()",
 						key = 'o',
 					},
 				},

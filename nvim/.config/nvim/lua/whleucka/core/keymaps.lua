@@ -48,6 +48,18 @@ map('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap
 -- Sourcing
 map('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
+-- File navigation
+map('n', "<C-p>", ":lua require('fzf-lua').git_files()<cr>", { silent = true, noremap = true, desc = "Find git files" })
+map('n', "<leader>fm", ":lua require('fzf-lua').manpages()<cr>", { silent = true, noremap = true, desc = "Find man" })
+map('n', "<leader>ff", ":lua require('fzf-lua').files()<cr>", { silent = true, noremap = true, desc = "Find files" })
+map('n', "<leader>fo", ":lua require('fzf-lua').oldfiles()<cr>", { silent = true, noremap = true, desc = "Find old files" })
+map('n', "<leader>fb", ":lua require('fzf-lua').buffers()<cr>", { silent = true, noremap = true, desc = "Find buffers" })
+map('n', "<leader>fs", ":lua require('fzf-lua').blines()<cr>", { silent = true, noremap = true, desc = "Find buffer lines" })
+map('n', "<leader>fg", ":lua require('fzf-lua').live_grep_native()<cr>", { silent = true, noremap = true, desc = "Find grep match" })
+map('n', "<leader>fq", ":lua require('fzf-lua').quickfix()<cr>", { silent = true, noremap = true, desc = "Find quickfix" })
+map('n', "<leader>fl", ":lua require('fzf-lua').loclist()<cr>", { silent = true, noremap = true, desc = "Find location list" })
+map('n', "<leader>ft", ":lua require('fzf-lua').tags()<cr>", { silent = true, noremap = true, desc = "Find tags" })
+
 -- Focus
 local focusmap = function(direction)
     map('n', '<c-' .. direction .. '>', function()
@@ -108,10 +120,6 @@ map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>",
     { silent = true, desc = "DAP Toggle Breakpoint" })
 map("n", "<leader>dr", ":lua require'dap'.repl.open()<cr>", { silent = true, desc = "DAP REPL Open" })
 map("n", "<leader>dl", ":lua require'dap'.run_last()<cr>", { silent = true, desc = "DAP Run Last" })
-map("n", "<leader>dc", ":lua require'telescope'.extensions.dap.commands{}<cr>",
-    { silent = true, desc = "DAP Commands" })
-map("n", "<leader>df", ":lua require'telescope'.extensions.dap.frames{}<cr>",
-    { silent = true, desc = "DAP Frames" })
 map({ 'n', 'v' }, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>",
     { silent = true, desc = "DAP Hover" })
 map({ 'n', 'v' }, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>",
