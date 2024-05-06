@@ -134,10 +134,14 @@ return {
 							end,
 						},
 					},
-					{ name = "buffer",     priority = 500, keyword_length = 4 },
-					{ name = "emoji",      priority = 400 },
+					{ name = "buffer",   priority = 500, keyword_length = 4 },
+					{ name = "emoji",    priority = 400 },
 					-- { name = "async_path", priority = 250 },
-					{ name = "nvim_lua",   priority = 200 },
+					{ name = "nvim_lua", priority = 200 },
+				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
 				},
 				formatting = {
 					format = lspkind.cmp_format({
@@ -267,6 +271,8 @@ return {
 					end,
 				}
 			})
+
+			require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 			-- Diagnostics styles
 			local signs = {
