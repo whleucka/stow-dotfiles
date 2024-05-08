@@ -105,11 +105,11 @@ map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', silent = true 
 map('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', silent = true })
 
 -- Lazy
-map('n', '<leader>l', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
-map('n', '<leader>ls', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
-map('n', '<leader>ls', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
-map('n', '<leader>lc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
-map('n', '<leader>lp', ':Lazy profile<CR>', { desc = "Lazy clean", silent = true, noremap = true })
+map('n', '<leader>z', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
+map('n', '<leader>zs', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
+map('n', '<leader>zs', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
+map('n', '<leader>zc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
+map('n', '<leader>zp', ':Lazy profile<CR>', { desc = "Lazy clean", silent = true, noremap = true })
 
 -- Primeagen remaps
 map("n", "J", "mzJ`z", { silent = true, noremap = true })

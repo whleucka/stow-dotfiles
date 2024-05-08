@@ -23,9 +23,9 @@ return {
 			t = {
 				name = "Neotest"
 			},
-			w = {
-				name = "Focus"
-			},
+			z = {
+				name = "Lazy"
+			}
 		}, { prefix = "<leader>" })
 	end,
 	opts = {
