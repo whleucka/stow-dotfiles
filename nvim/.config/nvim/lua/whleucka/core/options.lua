@@ -15,7 +15,7 @@ vim.o.breakindent = true
 vim.o.undofile = true
 
 -- No swap files
-vim.opt.swapfile = false
+vim.o.swapfile = false
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
@@ -33,6 +33,9 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Scrolloff
+vim.o.scrolloff = 10
 
 -- Default indentation
 vim.o.tabstop = 4
