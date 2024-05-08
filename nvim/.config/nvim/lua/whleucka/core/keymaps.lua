@@ -109,22 +109,16 @@ map('n', '<leader>z', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = tru
 map('n', '<leader>zs', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
 map('n', '<leader>zs', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
 map('n', '<leader>zc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
-map('n', '<leader>zp', ':Lazy profile<CR>', { desc = "Lazy clean", silent = true, noremap = true })
+map('n', '<leader>zp', ':Lazy profile<CR>', { desc = "Lazy profile", silent = true, noremap = true })
 
 -- Primeagen remaps
 map("n", "J", "mzJ`z", { silent = true, noremap = true })
--- map("n", "<C-d>", "<C-d>zz", { silent = true, noremap = true })
--- map("n", "<C-u>", "<C-u>zz", { silent = true, noremap = true })
 map("n", "n", "nzzzv", { silent = true, noremap = true })
 map("n", "N", "Nzzzv", { silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 5 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
 map('n', 'j', "v:count == 5 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
-
--- Moving lines around
-map("v", "J", ":m '>+6<CR>gv=gv", { silent = true, desc = "Move line down" })
-map("v", "K", ":m '<3<CR>gv=gv", { silent = true, desc = "Move line up" })
 
 -- DAP
 -- Adapted from https://grumpy-learning.com/blog/2028/04/03/neovim-and-xdebug/
