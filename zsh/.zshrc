@@ -190,3 +190,11 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Faster compression
 export PKGEXT='.pkg.tar'
+
+# pnpm
+export PNPM_HOME="/home/whleucka/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
