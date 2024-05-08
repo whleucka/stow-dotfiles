@@ -53,6 +53,8 @@ map('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap
 map('n', '<leader><space>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- Folds
+map('n', '[f', "zk", { silent = true, noremap = true, desc = "Next fold" })
+map('n', ']f', "zj", { silent = true, noremap = true, desc = "Prev fold" })
 map('n', '<tab>',
   function() return require('fold-cycle').open() end,
   {silent = true, desc = 'Fold-cycle: open folds'})
