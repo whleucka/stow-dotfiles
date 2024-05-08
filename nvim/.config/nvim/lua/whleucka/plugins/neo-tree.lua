@@ -31,19 +31,6 @@ return {
 		{ "\\", "<cmd>Neotree toggle<cr>", desc = "Neotree toggle" },
 	},
 	config = function()
-		-- Diagnostics styles
-		local signs = {
-			Error = "🤬",
-			Warn = "⚠️ ",
-			Hint = "💡",
-			Info = "ℹ️ "
-		}
-
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-		end
-
 		require('neo-tree').setup {
 			auto_clean_after_session_restore = true,
 			close_if_last_window = true,
