@@ -52,6 +52,17 @@ map('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap
 -- Sourcing
 map('n', '<leader><space>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
+-- Folds
+map('n', '<tab>',
+  function() return require('fold-cycle').open() end,
+  {silent = true, desc = 'Fold-cycle: open folds'})
+map('n', '<s-tab>',
+  function() return require('fold-cycle').close() end,
+  {silent = true, desc = 'Fold-cycle: close folds'})
+map('n', 'zC',
+  function() return require('fold-cycle').close_all() end,
+  {remap = true, silent = true, desc = 'Fold-cycle: close all folds'})
+
 -- File navigation
 map('n', "<leader>fm", ":lua require('fzf-lua').manpages()<cr>", { silent = true, noremap = true, desc = "Find man" })
 map('n', "<leader>ff", ":lua require('fzf-lua').files()<cr>", { silent = true, noremap = true, desc = "Find files" })
@@ -100,8 +111,8 @@ map('n', '<leader>lp', ':Lazy profile<CR>', { desc = "Lazy clean", silent = true
 
 -- Primeagen remaps
 map("n", "J", "mzJ`z", { silent = true, noremap = true })
-map("n", "<C-d>", "<C-d>zz", { silent = true, noremap = true })
-map("n", "<C-u>", "<C-u>zz", { silent = true, noremap = true })
+-- map("n", "<C-d>", "<C-d>zz", { silent = true, noremap = true })
+-- map("n", "<C-u>", "<C-u>zz", { silent = true, noremap = true })
 map("n", "n", "nzzzv", { silent = true, noremap = true })
 map("n", "N", "Nzzzv", { silent = true, noremap = true })
 
