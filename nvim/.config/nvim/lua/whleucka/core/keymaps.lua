@@ -13,12 +13,8 @@ map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Sa
 map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
 map('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit" })
 
--- Increment / Decrement
-map({ 'n', 'v' }, '<c-=>', '<C-a>', { silent = true, noremap = true, desc = "Increment" })
-map({ 'n', 'v' }, '<c-->', '<C-x>', { silent = true, noremap = true, desc = "Decrement" })
-
 -- Select all
-map('n', '<C-\\>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+map('n', '<leader><bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
 
 -- Delete backwards
 map('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -46,7 +42,7 @@ map('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, nor
 map('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap = true })
 
 -- Sourcing
-map('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
+map('n', '<leader><space>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- File navigation
 map('n', "<leader>fm", ":lua require('fzf-lua').manpages()<cr>", { silent = true, noremap = true, desc = "Find man" })
