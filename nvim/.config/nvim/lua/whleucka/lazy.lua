@@ -27,3 +27,4 @@ require("lazy").setup("whleucka.plugins", {
     notify = false,
   },
 })
+

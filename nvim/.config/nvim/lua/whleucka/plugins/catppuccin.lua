@@ -6,6 +6,11 @@ return {
 		require("catppuccin").setup({
 			integrations = {
 				cmp = true,
+				flash = true,
+				noice = true,
+				dap_ui = true,
+				lsp_trouble = false,
+				which_key = false,
 				dashboard = true,
 				gitsigns = true,
 				markdown = true,
@@ -18,11 +23,20 @@ return {
 				treesitter_context = true,
 				native_lsp = {
 					enabled = true,
+					virtual_text = {
+						errors = { "italic" },
+						hints = { "italic" },
+						warnings = { "italic" },
+						information = { "italic" },
+					},
 					underlines = {
 						errors = { "undercurl" },
 						hints = { "undercurl" },
 						warnings = { "undercurl" },
 						information = { "undercurl" },
+					},
+					inlay_hints = {
+						background = true,
 					},
 				},
 			},
