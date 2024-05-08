@@ -33,10 +33,6 @@ end, { silent = true, noremap = true, desc = "New buffer" })
 map('n', '<S-h>', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
 map('n', '<S-l>', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
--- Tabs
-map('n', '[t', ":tabprev<cr>", { silent = true, noremap = true, desc = "Previous tab" })
-map('n', ']t', ":tabnext<cr>", { silent = true, noremap = true, desc = "Next tab" })
-
 -- Trouble
 map("n", "<leader>xx", function() require("trouble").toggle() end)
 map("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
@@ -44,6 +40,14 @@ map("n", "<leader>xd", function() require("trouble").toggle("document_diagnostic
 map("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
 map("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
 map("n", "gR", function() require("trouble").toggle("lsp_references") end)
+
+-- TODO comments
+map('n', '[t', function()
+  require("todo-comments").jump_prev()
+end, { silent = true, noremap = true, desc = "Previous todo comment" })
+map('n', ']t', function()
+  require("todo-comments").jump_next()
+end, { silent = true, noremap = true, desc = "Next todo comment" })
 
 -- Quickfix
 map('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, noremap = true })
