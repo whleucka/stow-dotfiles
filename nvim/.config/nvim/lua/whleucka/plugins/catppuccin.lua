@@ -40,7 +40,7 @@ return {
 					},
 				},
 			},
-			flavour = "frappe",
+			flavour = "macchiato",
 			transparent_background = true,
 		})
 		vim.cmd.colorscheme "catppuccin"
