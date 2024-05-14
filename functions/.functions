@@ -8,16 +8,21 @@ fg() {
         builtin fg "$@";
     fi
 }
+
 what() {
     curl cheat.sh/$1;
 }
 
 stow-update() {
     printf "One moment...\n\n"
+    sleep 1
     current=$(pwd)
-    stow_dir=$HOME/stow-dotfiles
 
-    cd $stow_dir;
+    stow_dir=$HOME/stow-dotfiles
+    stow_dir_hidden=$HOME/.stow-dotfiles
+
+    [ -d "$stow_dir" ] && cd "$stow_dir";
+    [ -d "$stow_dir_hidden" ] && cd "$stow_dir_hidden";
 
     printf "Pulling stow-dotfiles...\n\n"
     git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
