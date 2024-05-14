@@ -112,7 +112,6 @@ return {
 
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require('cmp')
-			local cmp_action = lsp_zero.cmp_action()
 
 			require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -277,9 +276,9 @@ return {
 			-- Diagnostics styles
 			local signs = {
 				Error = "🤬",
-				Warn = "⚠️ ",
+				Warn = "🛑",
 				Hint = "💡",
-				Info = "ℹ️ "
+				Info = "✅"
 			}
 
 			for type, icon in pairs(signs) do
