@@ -163,13 +163,7 @@ alias uninstall='yay -R '
 #alias search='sudo apt search'
 
 # nvim
-if command -v nvim > /dev/null; then
-    alias v='nvim '
-else
-    if command -v vim > /dev/null; then
-        alias v='vim'
-    fi
-fi
+alias v='nvim '
 
 # transf files / folders
 if command -v rsync > /dev/null; then

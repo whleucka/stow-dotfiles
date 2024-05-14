@@ -14,9 +14,16 @@ what() {
 }
 
 stow-update() {
+    current=$(pwd)
+
     printf "One moment...\n\n"
     sleep 1
-    current=$(pwd)
+
+    printf "Fetching nightly build of neovim\n"
+    mkdir -p ~/.neovim
+    cd ~/.neovim
+    wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+    tar -xvzf nvim-linux64.tar.gz
 
     stow_dir=$HOME/stow-dotfiles
     stow_dir_hidden=$HOME/.stow-dotfiles
@@ -30,8 +37,8 @@ stow-update() {
 
     cd $current;
 
-    printf "\n\nUpdating plugins...\n\n"
-    nvim --headless "+Lazy! update" +UpdateRemotePlugins +qa
+    printf "\n\nUpdating neovim...\n\n"
+    nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
 
-    printf "\n\nDone!\n"
+    printf "\n\nUpdate complete!\n"
 }
