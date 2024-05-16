@@ -10,8 +10,8 @@ map('i', '<space>', " <C-g>u")
 
 -- Saving and quitting
 map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
-map('n', '<leader>qq', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
-map('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit" })
+map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
+map('n', '<leader>qq', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit" })
 
 -- Select all
 map('n', '<leader><bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
