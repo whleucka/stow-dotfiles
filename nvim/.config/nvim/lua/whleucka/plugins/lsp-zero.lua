@@ -42,15 +42,10 @@ return {
 					php = function(config)
 						config.configurations = {
 							{
-								type = 'php',
-								request = 'launch',
-								name = "Listen for XDebug",
-								port = 9003,
-								log = true,
-								pathMappings = {
-									['/var/www/'] = vim.fn.getcwd() .. '/',
-								},
-								hostname = '0.0.0.0',
+							    type = "php",
+								request = "launch",
+								name = "Listen for Xdebug",
+								port = 9003
 							},
 							{
 								type = 'python',
@@ -60,7 +55,6 @@ return {
 								command = "/usr/bin/python3",
 							},
 						}
-
 						require('mason-nvim-dap').default_setup(config) -- don't forget this!
 					end,
 
