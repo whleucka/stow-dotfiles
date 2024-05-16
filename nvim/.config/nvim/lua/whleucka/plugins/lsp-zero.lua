@@ -40,13 +40,24 @@ return {
 						require('mason-nvim-dap').default_setup(config)
 					end,
 					php = function(config)
+						config.adapters = {
+							type = 'executable',
+							command = 'node',
+							args = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/php-debug-adapter/extension/out/phpDebug.js" }
+						}
 						config.configurations = {
 							{
 							    type = "php",
 								request = "launch",
 								name = "Listen for Xdebug",
-								port = 9003
+								port = 9003,
+								log = true,
 							},
+						}
+						require('mason-nvim-dap').default_setup(config) -- don't forget this!
+					end,
+					python = function(config)
+						config.configurations = {
 							{
 								type = 'python',
 								request = 'launch',
@@ -55,16 +66,14 @@ return {
 								command = "/usr/bin/python3",
 							},
 						}
-						require('mason-nvim-dap').default_setup(config) -- don't forget this!
-					end,
-
+					end
 				},
 
 				-- You'll need to check that you have the required things installed
 				-- online, please don't ask me how to install them :)
 				ensure_installed = {
 					-- Update this to ensure that you have the debuggers for the langs you want
-					'php',
+					'php', 'python', 'rust'
 				},
 			})
 			require("dapui").setup()
