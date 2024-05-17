@@ -22,17 +22,23 @@ stow-update() {
     printf "Fetching nightly build of neovim\n"
     mkdir -p ~/.neovim
     cd ~/.neovim
+    rm -rf nvim-linux64
+    rm -rf nvim-linux64.tar.gz
     wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
     tar -xvzf nvim-linux64.tar.gz
 
     stow_dir=$HOME/stow-dotfiles
     stow_dir_hidden=$HOME/.stow-dotfiles
 
-    [ -d "$stow_dir" ] && cd "$stow_dir";
-    [ -d "$stow_dir_hidden" ] && cd "$stow_dir_hidden";
-
     printf "Pulling stow-dotfiles...\n\n"
-    git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
+    if [ -d "$stow_dir" ]; then
+        cd $stow_dir;
+        git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json;
+    elif [ -d "$stow_dir_hidden" ]; then
+        cd $stow_dir_hidden;
+        git checkout ~/.stow-dotfiles/nvim/.config/nvim/lazy-lock.json;
+    fi;
+
     git pull -v;
 
     cd $current;
