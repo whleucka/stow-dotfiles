@@ -94,13 +94,13 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-map('n', "<F9>", ':FocusToggle<cr>', { desc = 'Focus Toggle', silent = true })
-map('n', "<F10>", ':FocusEqualise<cr>', { desc = 'Focus Equalise', silent = true })
-map('n', "<F11>", function()
+map('n', "<leader>wt", ':FocusToggle<cr>', { desc = 'Focus Toggle', silent = true })
+map('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise', silent = true })
+map('n', "<leader>wf", function()
     vim.cmd[[ FocusEnable ]]
     vim.cmd[[ FocusMaximise ]]
 end, { desc = 'Focus Maximize', silent = true })
-map('n', "<F12>", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', silent = true })
+map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', silent = true })
 
 -- Resize splits
 map('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', silent = true })
@@ -125,20 +125,31 @@ map('n', 'k', "v:count == 5 ? 'gk' : 'k'", { expr = true, silent = true, noremap
 map('n', 'j', "v:count == 5 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
 
 -- DAP
--- Adapted from https://grumpy-learning.com/blog/2028/04/03/neovim-and-xdebug/
-map("n", "<F5>", ":lua require'dap'.continue()<cr>", { silent = true, desc = "DAP Continue" })
-map("n", "<F6>", ":lua require'dap'.step_over()<cr>", { silent = true, desc = "DAP Step Over" })
-map("n", "<F7>", ":lua require'dap'.step_into()<cr>", { silent = true, desc = "DAP Step Into" })
-map("n", "<F8>", ":lua require'dap'.step_out()<cr>", { silent = true, desc = "DAP Step Out" })
-map("n", "<leader>do", ":lua require'dapui'.toggle()<cr>", { silent = true, desc = "DAP Open UI" })
-map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>",
-    { silent = true, desc = "DAP Toggle Breakpoint" })
-map("n", "<leader>dr", ":lua require'dap'.repl.open()<cr>", { silent = true, desc = "DAP REPL Open" })
-map("n", "<leader>dl", ":lua require'dap'.run_last()<cr>", { silent = true, desc = "DAP Run Last" })
-map({ 'n', 'v' }, '<leader>dh', ":lua require('dap.ui.widgets').hover()<cr>",
-    { silent = true, desc = "DAP Hover" })
-map({ 'n', 'v' }, '<leader>dp', ":lua require('dap.ui.widgets').preview()<cr>",
-    { silent = true, desc = "DAP Preview" })
+map('n', '<F5>', function() require('dap').continue() end)
+map('n', '<F10>', function() require('dap').step_over() end)
+map('n', '<F11>', function() require('dap').step_into() end)
+map('n', '<F12>', function() require('dap').step_out() end)
+map('n', '<leader>du', function() require('dapui').toggle() end)
+map('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+map('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+map('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+map('n', '<Leader>dr', function() require('dap').repl.open() end)
+map('n', '<Leader>dl', function() require('dap').run_last() end)
+map({'n', 'v'}, '<Leader>dh', function()
+    require('dap.ui.widgets').hover()
+end)
+map({'n', 'v'}, '<Leader>dp', function()
+    require('dap.ui.widgets').preview()
+end)
+map('n', '<Leader>df', function()
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.frames)
+end)
+map('n', '<Leader>ds', function()
+    local widgets = require('dap.ui.widgets')
+    widgets.centered_float(widgets.scopes)
+end)
+
 
 -- Neotest
 map("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>",

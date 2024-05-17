@@ -36,15 +36,7 @@ return {
 				-- You can provide additional configuration to the handlers,
 				-- see mason-nvim-dap README for more information
 				handlers = {
-					function(config)
-						require('mason-nvim-dap').default_setup(config)
-					end,
 					php = function(config)
-						config.adapters = {
-							type = 'executable',
-							command = 'node',
-							args = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/php-debug-adapter/extension/out/phpDebug.js" }
-						}
 						config.configurations = {
 							{
 							    type = "php",
@@ -66,6 +58,7 @@ return {
 								command = "/usr/bin/python3",
 							},
 						}
+						require('mason-nvim-dap').default_setup(config) -- don't forget this!
 					end
 				},
 
@@ -138,7 +131,7 @@ return {
 					},
 					{ name = "buffer",   priority = 500, keyword_length = 4 },
 					{ name = "emoji",    priority = 400 },
-					-- { name = "async_path", priority = 250 },
+					{ name = "async_path", priority = 250 },
 					{ name = "nvim_lua", priority = 200 },
 				},
 				window = {
