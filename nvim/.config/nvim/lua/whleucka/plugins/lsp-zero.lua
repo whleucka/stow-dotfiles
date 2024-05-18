@@ -39,9 +39,10 @@ return {
 					php = function(config)
 						config.configurations = {
 							{
-							    type = "php",
+								type = "php",
 								request = "launch",
 								name = "Listen for Xdebug",
+								localSourceRoot = vim.fn.expand("%:p:h") .. "/",
 								port = 9003,
 								log = true,
 							},
@@ -129,10 +130,10 @@ return {
 							end,
 						},
 					},
-					{ name = "buffer",   priority = 500, keyword_length = 4 },
-					{ name = "emoji",    priority = 400 },
+					{ name = "buffer",     priority = 500, keyword_length = 4 },
+					{ name = "emoji",      priority = 400 },
 					{ name = "async_path", priority = 250 },
-					{ name = "nvim_lua", priority = 200 },
+					{ name = "nvim_lua",   priority = 200 },
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
