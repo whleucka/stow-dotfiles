@@ -273,7 +273,7 @@ return {
 			-- Diagnostics styles
 			local signs = {
 				Error = "🤬",
-				Warn = "🛑",
+				Warn = "🔥",
 				Hint = "💡",
 				Info = "✅"
 			}

@@ -9,6 +9,18 @@ fg() {
     fi
 }
 
+tsm() {
+    if [[ $# -eq 2 && ($1 = "add" || $1 = "-a") ]]; then
+        transmission-remote -a $2
+    elif [[ $# -eq 2 && ($1 = "remove" || $1 = "-r") ]]; then
+        transmission-remote -t $2 -r
+    elif [[ $# -eq 1 && ($1 = "list" || $1 = "-l") ]]; then
+        transmission-remote -l
+    elif [[ $# -eq 1 && ($1 = "follow" || $1 = "-f") ]]; then
+        watch "transmission-remote -l"
+    fi
+}
+
 what() {
     curl cheat.sh/$1;
 }
