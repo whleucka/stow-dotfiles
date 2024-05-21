@@ -200,6 +200,9 @@ return {
 			local lsp_zero = require('lsp-zero')
 			lsp_zero.extend_lspconfig()
 
+			-- Inlay hints
+			vim.lsp.inlay_hint.enable()
+
 			lsp_zero.on_attach(function(client, bufnr)
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
