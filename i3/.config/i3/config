@@ -234,7 +234,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+m split toggle
 
 # Toggle between tiling / floating
-bindsym $mod+Tab floating toggle
+bindsym $mod+y floating toggle
 
 # Focus the parent container
 bindsym $mod+p focus parent
