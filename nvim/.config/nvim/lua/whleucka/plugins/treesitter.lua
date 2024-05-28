@@ -66,10 +66,10 @@ return {
 				swap = {
 					enable = true,
 					swap_next = {
-						['<c-n>'] = '@parameter.inner',
+						['<c-=>'] = '@parameter.inner',
 					},
 					swap_previous = {
-						['<c-p>'] = '@parameter.inner',
+						['<c-->'] = '@parameter.inner',
 					},
 				},
 			},

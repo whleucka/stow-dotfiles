@@ -23,6 +23,9 @@ return {
 			t = {
 				name = "Neotest"
 			},
+			x = {
+				name = "Trouble"
+			},
 			z = {
 				name = "Lazy"
 			}

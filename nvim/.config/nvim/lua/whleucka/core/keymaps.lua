@@ -95,19 +95,19 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-map('n', "<leader>wt", ':FocusToggle<cr>', { desc = 'Focus Toggle', silent = true })
-map('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise', silent = true })
+map('n', "<leader>wt", ':FocusToggle<cr>', { desc = 'Focus Toggle', noremap = true, silent = true })
+map('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise', noremap = true, silent = true })
 map('n', "<leader>wf", function()
     vim.cmd[[ FocusEnable ]]
     vim.cmd[[ FocusMaximise ]]
 end, { desc = 'Focus Maximize', silent = true })
-map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', silent = true })
+map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
 
 -- Resize splits
-map('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', silent = true })
-map('n', "<C-Right>", '<C-w>>', { desc = 'Increase Window Width', silent = true })
-map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', silent = true })
-map('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', silent = true })
+map('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', noremap = true, silent = true })
+map('n', "<C-Right>", '<C-w>>', { desc = 'Increase Window Width', noremap = true, silent = true })
+map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', noremap = true, silent = true })
+map('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', noremap = true, silent = true })
 
 -- Lazy
 map('n', '<leader>z', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
@@ -131,9 +131,9 @@ map('n', '<F10>', function() require('dap').step_over() end, { silent = true, de
 map('n', '<F11>', function() require('dap').step_into() end, { silent = true, desc = "DAP step into" })
 map('n', '<F12>', function() require('dap').step_out() end, { silent = true, desc = "DAP step out" })
 map('n', '<leader>du', function() require('dapui').toggle() end, { silent = true, desc = "DAP UI toggle" })
-map('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { silent = true, desc = "DAP toggle breakpoint" })
-map('n', '<Leader>B', function() require('dap').set_breakpoint() end, { silent = true, desc = "DAP set breakpoint" })
-map('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { silent = true, desc = "DAP log point msg" })
+map('n', '<Leader>db', function() require('dap').toggle_breakpoint() end, { silent = true, desc = "DAP toggle breakpoint" })
+map('n', '<Leader>dB', function() require('dap').set_breakpoint() end, { silent = true, desc = "DAP set breakpoint" })
+map('n', '<Leader>dl', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { silent = true, desc = "DAP log point msg" })
 map('n', '<Leader>dr', function() require('dap').repl.open() end, { silent = true, desc = "DAP REPL open" })
 map('n', '<Leader>dl', function() require('dap').run_last() end, { silent = true, desc = "DAP run last" })
 map({'n', 'v'}, '<Leader>dh', function()
@@ -170,4 +170,4 @@ map("n", "<C-t>", function()
     vim.wo.winfixheight = true
     vim.cmd.term()
 end)
-map("n", "<C-;>", ":lua require('FTerm').toggle()<cr>", { silent = true, desc = "Toggle Terminal"})
+map("n", "<C-;>", ":lua require('FTerm').toggle()<cr>", { silent = true, noremap = true, desc = "Toggle Terminal"})
