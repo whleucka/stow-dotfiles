@@ -70,6 +70,7 @@ map('n', 'zC',
   {remap = true, silent = true, desc = 'Fold-cycle: close all folds'})
 
 -- File navigation
+map('n', "<C-p>", ":lua require('fzf-lua').git_files()<cr>", { silent = true, noremap = true, desc = "Find git files"})
 map('n', "<leader>fm", ":lua require('fzf-lua').manpages()<cr>", { silent = true, noremap = true, desc = "Find man" })
 map('n', "<leader>ff", ":lua require('fzf-lua').files()<cr>", { silent = true, noremap = true, desc = "Find files" })
 map('n', "<leader>fo", ":lua require('fzf-lua').oldfiles()<cr>", { silent = true, noremap = true, desc = "Find old files" })
