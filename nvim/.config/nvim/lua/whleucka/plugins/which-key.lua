@@ -8,6 +8,9 @@ return {
 	config = function()
 		local wk = require("which-key")
 		wk.register({
+			q = {
+				name = "Exit"
+			},
 			f = {
 				name = "File"
 			},
@@ -22,6 +25,9 @@ return {
 			},
 			t = {
 				name = "Neotest"
+			},
+			s = {
+				name = "Window"
 			},
 			x = {
 				name = "Trouble"

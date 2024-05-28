@@ -9,9 +9,11 @@ map("n", "q", "<Nop>", { silent = true, noremap = true })
 map('i', '<space>', " <C-g>u")
 
 -- Saving and quitting
-map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save" })
-map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Close window" })
-map('n', '<leader>qq', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit" })
+map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save (update)" })
+map('n', '<leader>W', ':w!<CR>', { silent = true, noremap = true, desc = "Save (force)" })
+map('n', '<leader>qw', ':q<CR>', { silent = true, noremap = true, desc = "Exit window" })
+map('n', '<leader>qa', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit Neovim" })
+map('n', '<leader>qq', ":bdelete<cr>", { silent = true, noremap = true, desc = "Exit buffer" })
 
 -- Select all
 map('n', '<leader><bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
@@ -25,7 +27,6 @@ map('i', 'jk', '<ESC>', { silent = true })
 map('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Destroy buffer" })
 map('n', '<leader>n', function()
     vim.cmd.enew()
     vim.cmd[[ Dashboard ]]
@@ -95,13 +96,13 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-map('n', "<leader>wt", ':FocusToggle<cr>', { desc = 'Focus Toggle', noremap = true, silent = true })
-map('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise', noremap = true, silent = true })
-map('n', "<leader>wf", function()
+map('n', "<leader>st", ':FocusToggle<cr>', { desc = 'Focus Toggle', noremap = true, silent = true })
+map('n', "<leader>se", ':FocusEqualise<cr>', { desc = 'Focus Equalise', noremap = true, silent = true })
+map('n', "<leader>sf", function()
     vim.cmd[[ FocusEnable ]]
     vim.cmd[[ FocusMaximise ]]
 end, { desc = 'Focus Maximize', silent = true })
-map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
+map('n', "<leader>sr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
 
 -- Resize splits
 map('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', noremap = true, silent = true })
