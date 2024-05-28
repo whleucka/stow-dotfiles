@@ -16,6 +16,7 @@ Plug 'tpope/vim-repeat'
 "Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'itchyny/lightline.vim'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'junegunn/fzf', { 'do': 'yes \| ./install' }
 
 call plug#end()
@@ -157,3 +158,23 @@ vnoremap < <gv
 xnoremap < <gv
 vnoremap > >gv
 xnoremap > >gv
+
+" Clipboard
+if (!has('nvim') && !has('clipboard_working'))
+    " In the event that the clipboard isn't working, it's quite likely that
+    " the + and * registers will not be distinct from the unnamed register. In
+    " this case, a:event.regname will always be '' (empty string). However, it
+    " can be the case that `has('clipboard_working')` is false, yet `+` is
+    " still distinct, so we want to check them all.
+    let s:VimOSCYankPostRegisters = ['', '+', '*']
+    function! s:VimOSCYankPostCallback(event)
+        if a:event.operator == 'y' && index(s:VimOSCYankPostRegisters, a:event.regname) != -1
+            call OSCYankRegister(a:event.regname)
+        endif
+    endfunction
+    augroup VimOSCYankPost
+        autocmd!
+        autocmd TextYankPost * call s:VimOSCYankPostCallback(v:event)
+    augroup END
+endif
+
