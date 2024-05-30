@@ -11,9 +11,9 @@ map('i', '<space>', " <C-g>u")
 -- Saving and quitting
 map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save (update)" })
 map('n', '<leader>W', ':w!<CR>', { silent = true, noremap = true, desc = "Save (force)" })
-map('n', '<leader>qw', ':q<CR>', { silent = true, noremap = true, desc = "Exit window" })
+map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Exit window" })
 map('n', '<leader>qa', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit Neovim" })
-map('n', '<leader>qq', ":bdelete<cr>", { silent = true, noremap = true, desc = "Exit buffer" })
+map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Exit buffer" })
 
 -- Select all
 map('n', '<leader><bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
