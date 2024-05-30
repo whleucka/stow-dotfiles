@@ -65,6 +65,7 @@ stow-update() {
         printf "\n\nUpdating neovim...\n\n"
         nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
         printf "\n\nUpdate complete!\n"
+        zsh
     else
         printf "\n\nAll good, no updates are necessary!\n"
     fi
