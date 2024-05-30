@@ -31,32 +31,43 @@ stow-update() {
     printf "One moment...\n\n"
     sleep 1
 
-    printf "Fetching nightly build of neovim\n"
+    printf "Fetching nightly build of neovim if necessary\n"
     mkdir -p ~/.neovim
     cd ~/.neovim
-    rm -rf nvim-linux64
-    rm -rf nvim-linux64.tar.gz
-    wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-    tar -xvzf nvim-linux64.tar.gz
+
+    # Check if the file exists and is older than 1 day
+    if [ ! -f "nvim-linux64.tar.gz" ] || [ "$(find nvim-linux64.tar.gz -mtime +0)" ]; then
+        printf "Downloading new nightly build of neovim\n"
+        rm -rf nvim-linux64
+        rm -rf nvim-linux64.tar.gz
+        wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+        tar -xvzf nvim-linux64.tar.gz
+    else
+        printf "Nightly build of neovim is up-to-date\n"
+    fi
 
     stow_dir=$HOME/stow-dotfiles
     stow_dir_hidden=$HOME/.stow-dotfiles
 
     printf "Pulling stow-dotfiles...\n\n"
     if [ -d "$stow_dir" ]; then
-        cd $stow_dir;
-        git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json;
+        cd $stow_dir
+        git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
     elif [ -d "$stow_dir_hidden" ]; then
-        cd $stow_dir_hidden;
-        git checkout ~/.stow-dotfiles/nvim/.config/nvim/lazy-lock.json;
-    fi;
+        cd $stow_dir_hidden
+        git checkout ~/.stow-dotfiles/nvim/.config/nvim/lazy-lock.json
+    fi
 
-    git pull -v;
+    pull_output=$(git pull -v)
+    printf "%s\n" "$pull_output"
 
-    cd $current;
+    if [[ "$pull_output" != *"Already up to date."* ]]; then
+        printf "\n\nUpdating neovim...\n\n"
+        nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
+        printf "\n\nUpdate complete!\n"
+    else
+        printf "\n\nAll good, no updates are necessary!\n"
+    fi
 
-    printf "\n\nUpdating neovim...\n\n"
-    nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
-
-    printf "\n\nUpdate complete!\n"
+    cd $current
 }
