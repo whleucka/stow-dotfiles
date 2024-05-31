@@ -1,5 +1,5 @@
 # Dotfiles
-My personal dotfiles for Arch Linux
+My personal dotfiles for Linux
 - kitty
 - zsh
 - p10k
