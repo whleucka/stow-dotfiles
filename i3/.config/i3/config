@@ -133,6 +133,7 @@ for_window [class="Evolution" title="Fwd(.*)"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="mpv"] border pixel 0
 for_window [class="Pavucontrol"] floating enable
+for_window [class="pavucontrol"] floating enable
 for_window [title="Bitwarden - Google Chrome"] floating enable
 
 
