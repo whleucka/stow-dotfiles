@@ -7,9 +7,14 @@ return {
 	config = function()
 		require("noice").setup({
 			lsp = {
-				progress = {
-					-- TODO: enable this when the problem is resolved
+				signature = {
 					enabled = false,
+				},
+				hover = {
+					enabled = false
+				},
+				progress = {
+					enabled = true,
 				},
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
