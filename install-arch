@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Set up Arch Linux with this script
+# only run this once
+
 printf "Setting up Arch Linux...\n"
 
 if ! command -v yay &> /dev/null
@@ -10,17 +14,21 @@ then
 fi
 
 # Installing FZF
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf\n~/.fzf/install
+printf "Installing fzf...\n"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+
+# Go to stow directory
+cd ~/.stow-dotfiles
 
 # Install packages
-printf "Installing system packages...\n"
+printf "Installing some system packages...\n"
 yay -S $(cat ./p43s) --needed
 
 # Install Oh My Zsh
 printf "Installing Oh my zsh...\n"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-printf "Installing zsh plugins...\n"
+printf "Installing omz plugins...\n"
 git clone https://github.com/Aloxaf/fzf-tab.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -28,7 +36,14 @@ git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-$HOME/.oh-my
 git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/autojump && python install.py
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
+# Go to stow directory
+cd ~/.stow-dotfiles
+
+# Remove previous zshrc
+rm ~/.zshrc
+
 # Stow
+printf "Stow...\n"
 stow ~/.stow-dotfiles/alias
 stow ~/.stow-dotfiles/fonts
 stow ~/.stow-dotfiles/functions
@@ -43,6 +58,17 @@ stow ~/.stow-dotfiles/rofi
 stow ~/.stow-dotfiles/scripts
 
 # Create wallpaper / lockscreens
+printf "Updating wallpaper / lock screen...\n"
 betterlockscreen -u ~/.i3
+
+# Create cargo env
+mkdir ~/.cargo && touch ~/.cargo/env
+
+# Services
+sudo systemctl start bluetooth.service && sudo systemctl enable bluetooth.service
+sudo systemctl start systemd-resolved.service && sudo systemctl enable systemd-resolved.service
+
+# Reload
+zsh
 
 cd ~ && printf "With great power comes great responsibility...\n"
