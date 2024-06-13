@@ -64,6 +64,10 @@ betterlockscreen -u ~/.i3
 # Create cargo env
 mkdir ~/.cargo && touch ~/.cargo/env
 
+# Install Rust / i3 easy nav
+rustup default stable
+cargo install easy-i3-neovim-nav
+
 # Services
 sudo systemctl start bluetooth.service && sudo systemctl enable bluetooth.service
 sudo systemctl start systemd-resolved.service && sudo systemctl enable systemd-resolved.service
