@@ -49,6 +49,22 @@ return {
 						}
 						require('mason-nvim-dap').default_setup(config) -- don't forget this!
 					end,
+					codelldb = function(config)
+						config.configurations = {
+							{
+								name = "Launch file",
+								type = "codelldb",
+								request = "launch",
+								program = function()
+									return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+								end,
+								cwd = '${workspaceFolder}',
+								stopOnEntry = false,
+								args = {},
+							},
+						}
+						require('mason-nvim-dap').default_setup(config) -- don't forget this!
+					end,
 					python = function(config)
 						config.configurations = {
 							{
@@ -66,12 +82,6 @@ return {
 			require("dapui").setup()
 			require("nvim-dap-virtual-text").setup()
 		end,
-		opts = {
-			ensure_installed = {
-				-- Update this to ensure that you have the debuggers for the langs you want
-				'clangd', 'clang-format', 'intelephense', 'html-lsp', 'bash-language-server', 'rust-analyzer'
-			},
-		},
 		keys = {
 			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
 		}
@@ -259,7 +269,10 @@ return {
 			end)
 
 			require('mason-lspconfig').setup({
-				ensure_installed = {},
+				ensure_installed = {
+					-- Update this to ensure that you have the debuggers for the langs you want
+					'clangd', 'clang-format', 'codelldb', 'intelephense', 'html-lsp', 'bash-language-server', 'rust-analyzer'
+				},
 				handlers = {
 					lsp_zero.default_setup,
 					clangd = function()
