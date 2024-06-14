@@ -66,14 +66,14 @@ return {
 			require("dapui").setup()
 			require("nvim-dap-virtual-text").setup()
 		end,
-		keys = {
-			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
-		},
 		opts = {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
-				'clangd', 'intelephense', 'html-lsp', 'bash-language-server', 'rust-analyzer'
+				'clangd', 'clang-format', 'intelephense', 'html-lsp', 'bash-language-server', 'rust-analyzer'
 			},
+		},
+		keys = {
+			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
 		}
 	},
 
