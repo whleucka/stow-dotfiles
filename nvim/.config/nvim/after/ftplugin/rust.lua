@@ -18,7 +18,7 @@ vim.bo.syntax = 'rust'
 -- Function to set window-local options
 local function set_window_options()
     vim.wo.foldmethod = 'syntax'
-    vim.wo.foldlevelstart = 99
+    vim.o.foldlevelstart = 99
 end
 
 -- Set window-local options using an autocmd
