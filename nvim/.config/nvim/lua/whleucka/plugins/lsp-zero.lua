@@ -62,13 +62,6 @@ return {
 						require('mason-nvim-dap').default_setup(config) -- don't forget this!
 					end
 				},
-
-				-- You'll need to check that you have the required things installed
-				-- online, please don't ask me how to install them :)
-				ensure_installed = {
-					-- Update this to ensure that you have the debuggers for the langs you want
-					'php', 'python', 'rust'
-				},
 			})
 			require("dapui").setup()
 			require("nvim-dap-virtual-text").setup()
@@ -76,6 +69,12 @@ return {
 		keys = {
 			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },
 		},
+		opts = {
+			ensure_installed = {
+				-- Update this to ensure that you have the debuggers for the langs you want
+				'clangd', 'intelephense', 'html-lsp', 'bash-language-server', 'rust-analyzer'
+			},
+		}
 	},
 
 	-- Autocompletion
@@ -263,6 +262,13 @@ return {
 				ensure_installed = {},
 				handlers = {
 					lsp_zero.default_setup,
+					clangd = function()
+						require('lspconfig').clangd.setup({
+							capabilities = {
+								offsetEncoding = 'utf-8',
+							},
+						})
+					end,
 					lua_ls = function()
 						-- (Optional) Configure lua language server for neovim
 						local lua_opts = lsp_zero.nvim_lua_ls()
