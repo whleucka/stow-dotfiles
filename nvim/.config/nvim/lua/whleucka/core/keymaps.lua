@@ -55,7 +55,7 @@ map('n', '[q', ':cp<CR>', { desc = 'Go to previous quickfix', silent = true, nor
 map('n', ']q', ':cn<CR>', { desc = 'Go to next quickfix', silent = true, noremap = true })
 
 -- Sourcing
-map('n', '<leader><space>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
+map('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buffer" })
 
 -- Folds
 map('n', '[f', "zk", { silent = true, noremap = true, desc = "Next fold" })
