@@ -276,17 +276,6 @@ return {
 
 			lsp_zero.on_attach(function(client, bufnr)
 
-				-- Lenses
-				if client and client.supports_method(lsp.protocol.Methods.textDocument_codeLens) then
-					vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-						buffer = ev.buf,
-						group = vim.api.nvim_create_augroup("codelens", { clear = false }),
-						callback = function()
-							lsp.codelens.refresh()
-						end,
-					})
-				end
-
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
 				lsp_zero.default_keymaps({ buffer = bufnr })

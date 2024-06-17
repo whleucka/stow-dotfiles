@@ -34,7 +34,7 @@
   "neogit": { "branch": "master", "commit": "11dea1b67bb153cd5b4a2de348ceefa69508dfce" },
   "neotest": { "branch": "master", "commit": "f30bab1faef13d47f3905e065215c96a42d075ad" },
   "neotest-phpunit": { "branch": "main", "commit": "baae8dfa0a3aaacd9f0bb6845d6348f5bcdc48bb" },
-  "noice.nvim": { "branch": "main", "commit": "8bccd26e912a439f45829bd1fe83e77c4dc263ad" },
+  "noice.nvim": { "branch": "main", "commit": "7ee3649b9b5f4df5b44ae63ed85b2c9fc834a124" },
   "nui.nvim": { "branch": "main", "commit": "322978c734866996274467de084a95e4f9b5e0b1" },
   "nvim-autopairs": { "branch": "master", "commit": "c15de7e7981f1111642e7e53799e1211d4606cb9" },
   "nvim-cmp": { "branch": "main", "commit": "a110e12d0b58eefcf5b771f533fc2cf3050680ac" },
@@ -52,7 +52,6 @@
   "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856" },
   "nvim-window-picker": { "branch": "main", "commit": "41cfaa428577c53552200a404ae9b3a0b5719706" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
-  "rustaceanvim": { "branch": "master", "commit": "bc8c4b8f7606d5b7c067cd8369e25c1a7ff77bd0" },
   "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2" },
   "trouble.nvim": { "branch": "main", "commit": "58a3acfc6d8d819324dab4c87068596319032e64" },
   "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" }
