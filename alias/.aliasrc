@@ -176,7 +176,7 @@ fi
 
 # list directories
 if command -v lsd > /dev/null; then
-    alias ls='lsd'
+    alias ls='lsd --config-file ~/.config/lsd'
 fi
 alias l='ls -l'
 alias la='ls -a'
