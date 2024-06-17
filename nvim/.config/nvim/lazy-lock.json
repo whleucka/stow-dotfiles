@@ -11,8 +11,8 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "39e2eda76828d88b773cc27a3f61d2ad782c922d" },
   "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" },
   "cmp-nvim-lua": { "branch": "main", "commit": "f12408bdb54c39c23e67cab726264c10db33ada8" },
+  "cmp-nvim-ultisnips": { "branch": "main", "commit": "404401792ec62d51ca2e8c279a81996082c2f937" },
   "cmp-spell": { "branch": "master", "commit": "694a4e50809d6d645c1ea29015dad0c293f019d6" },
-  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "dashboard-nvim": { "branch": "master", "commit": "b88c997f468a1bacb1e9b13ff3b567638caa06e6" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "e3714c8049b2243e792492c4149e4cc395c68eb9" },
@@ -54,5 +54,6 @@
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2" },
   "trouble.nvim": { "branch": "main", "commit": "58a3acfc6d8d819324dab4c87068596319032e64" },
+  "ultisnips": { "branch": "master", "commit": "49dc8cb2086db19d385791c8e1635723b0fd95c7" },
   "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" }
 }

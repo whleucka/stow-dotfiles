@@ -111,7 +111,8 @@ return {
 				build = "make install_jsregexp"
 			},
 			{ 'f3fora/cmp-spell' },
-			{ 'saadparwaiz1/cmp_luasnip' },
+			{ "quangnguyen30192/cmp-nvim-ultisnips" },
+			{ 'SirVer/ultisnips' },
 			{ 'hrsh7th/cmp-nvim-lua' },
 			{ 'hrsh7th/cmp-buffer' },
 			{ 'FelipeLema/cmp-async-path' },
@@ -124,6 +125,7 @@ return {
 			lsp_zero.extend_cmp()
 			local luasnip = require 'luasnip'
 			local lspkind = require('lspkind')
+			require("cmp_nvim_ultisnips").setup{}
 
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require('cmp')
@@ -137,6 +139,7 @@ return {
 				sources = {
 					{ name = "nvim_lsp",                priority = 1000 },
 					{ name = "nvim_lsp_signature_help", priority = 850 },
+					{ name = "ultisnips",				priority = 825 },
 					{ name = "luasnip",                 priority = 800 },
 					{
 						name = 'spell',
@@ -212,47 +215,6 @@ return {
 					end, { 'i', 's' }),
 				})
 			})
-			-- Customization for Pmenu
-			-- vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
-			-- vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
-			-- vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
-			-- vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82AAFF", bg = "NONE", bold = true })
-			-- vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#EED8DA", bg = "#B5585F" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#EED8DA", bg = "#B5585F" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#EED8DA", bg = "#B5585F" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#C3E88D", bg = "#9FBD73" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#C3E88D", bg = "#9FBD73" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#C3E88D", bg = "#9FBD73" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#FFE082", bg = "#D4BB6C" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#FFE082", bg = "#D4BB6C" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#FFE082", bg = "#D4BB6C" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#EADFF0", bg = "#A377BF" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#EADFF0", bg = "#A377BF" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#EADFF0", bg = "#A377BF" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#EADFF0", bg = "#A377BF" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#EADFF0", bg = "#A377BF" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#C5CDD9", bg = "#7E8294" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#C5CDD9", bg = "#7E8294" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#F5EBD9", bg = "#D4A959" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#F5EBD9", bg = "#D4A959" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#F5EBD9", bg = "#D4A959" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#DDE5F5", bg = "#6C8ED4" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#DDE5F5", bg = "#6C8ED4" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#DDE5F5", bg = "#6C8ED4" })
-			--
-			-- vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
-			-- vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
 		end
 	},
 
@@ -277,58 +239,7 @@ return {
 			lsp_zero.on_attach(function(client, bufnr)
 
 				-- see :help lsp-zero-keybindings
-				-- to learn the available actions
 				lsp_zero.default_keymaps({ buffer = bufnr })
-				-- K:
-				--     Displays hover information about the symbol under the cursor in a
-				--     floating window. See |vim.lsp.buf.hover()|.
-				--
-				-- gd:
-				--     Jumps to the definition of the symbol under the cursor.
-				--     See |vim.lsp.buf.definition()|.
-				--
-				-- gD:
-				--     Jumps to the declaration of the symbol under the cursor. Some servers
-				--     don't implement this feature. See |vim.lsp.buf.declaration()|.
-				--
-				-- gi:
-				--     Lists all the implementations for the symbol under the cursor in the
-				--     quickfix window. See |vim.lsp.buf.implementation()|.
-				--
-				-- go:
-				--     Jumps to the definition of the type of the symbol under the cursor.
-				--     See |vim.lsp.buf.type_definition()|.
-				--
-				-- gr:
-				--     Lists all the references to the symbol under the cursor in the quickfix
-				--     window. See |vim.lsp.buf.references()|.
-				--
-				-- gs:
-				--     Displays signature information about the symbol under the cursor in a
-				--     floating window. See |vim.lsp.buf.signature_help()|. If a mapping
-				--     already exists for this key this function is not bound.
-				--
-				-- <F2>:
-				--     Renames all references to the symbol under the cursor.
-				--     See |vim.lsp.buf.rename()|.
-				--
-				-- <F3>:
-				--     Format a buffer using the LSP servers attached to it.
-				--     See |vim.lsp.buf.format()|.
-				--
-				-- <F4>:
-				--     Selects a code action available at the current cursor position.
-				--     See |vim.lsp.buf.code_action()|.
-				--
-				-- gl:
-				--     Show diagnostic in a floating window. See |vim.diagnostic.open_float()|.
-				--
-				-- [d:
-				--     Move to the previous diagnostic in the current buffer.
-				--     See |vim.diagnostic.goto_prev()|.
-				--
-				-- ]d:
-				--     Move to the next diagnostic. See |vim.diagnostic.goto_next()|.
 			end)
 
 			require('mason-lspconfig').setup({

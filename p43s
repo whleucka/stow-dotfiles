@@ -64,6 +64,7 @@ pnpm
 polybar
 python-dbus
 python-jq
+python-pynvim
 qbittorrent
 ripgrep
 rofi
