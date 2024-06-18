@@ -40,12 +40,23 @@ To use my Neovim configuration with lazy.nvim, follow these simple steps:
 
 Once you've installed my Neovim configuration, you can start using it right away. Some keybindings you might find useful include:
 
-- `<Leader>` key is set to the space bar.
-- `<leader>ff` for finding files with Telescope.
+- `<leader>` is the leader key.
+- `<leader>ff` for finding files with fzf-lua.
+- `<leader>h` to show dashboard.
 - `<leader>w` to save the current file.
 - `<leader>e` to toggle Neotree file explorer.
 - `<leader>c` to close buffer.
 - `<leader>q` to close window (or exit Neovim).
+- `<F5>` start debugging session.
+- `<leader>du` to show debugging UI.
+- `<leader>z` to show Lazy.
+- `<leader>m` to show Mason.
+- `<C-h>` to navigate to (or create) split on left.
+- `<C-j>` to navigate to (or create) split on bottom.
+- `<C-k>` to navigate to (or create) split on top.
+- `<C-l>` to navigate to (or create) split on right.
+- `<C-;>` to open terminal (floating).
+- `<leader>;` to open terminal (split).
 
 ## Customization
 

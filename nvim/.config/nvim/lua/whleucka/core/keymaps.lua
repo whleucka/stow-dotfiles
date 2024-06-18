@@ -27,10 +27,11 @@ map('i', 'jk', '<ESC>', { silent = true })
 map('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-map('n', '<leader>n', function()
+map('n', '<leader>h', function()
     vim.cmd.enew()
     vim.cmd[[ Dashboard ]]
-end, { silent = true, noremap = true, desc = "New buffer" })
+end, { silent = true, noremap = true, desc = "Show dashboard" })
+
 map('n', '<S-h>', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
 map('n', '<S-l>', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
@@ -132,11 +133,11 @@ map('n', '<F10>', function() require('dap').step_over() end, { silent = true, de
 map('n', '<F11>', function() require('dap').step_into() end, { silent = true, desc = "DAP step into" })
 map('n', '<F12>', function() require('dap').step_out() end, { silent = true, desc = "DAP step out" })
 map('n', '<leader>du', function() require('dapui').toggle() end, { silent = true, desc = "DAP UI toggle" })
-map('n', '<Leader>db', function() require('dap').toggle_breakpoint() end, { silent = true, desc = "DAP toggle breakpoint" })
-map('n', '<Leader>dB', function() require('dap').set_breakpoint() end, { silent = true, desc = "DAP set breakpoint" })
-map('n', '<Leader>dl', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { silent = true, desc = "DAP log point msg" })
-map('n', '<Leader>dr', function() require('dap').repl.open() end, { silent = true, desc = "DAP REPL open" })
-map('n', '<Leader>dl', function() require('dap').run_last() end, { silent = true, desc = "DAP run last" })
+map('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { silent = true, desc = "DAP toggle breakpoint" })
+map('n', '<Leader>db', function() require('dap').set_breakpoint() end, { silent = true, desc = "DAP set breakpoint" })
+map('n', '<Leader>dm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { silent = true, desc = "DAP log point msg" })
+map('n', '<Leader>dR', function() require('dap').repl.open() end, { silent = true, desc = "DAP REPL open" })
+map('n', '<Leader>dr', function() require('dap').run_last() end, { silent = true, desc = "DAP run last" })
 map({'n', 'v'}, '<Leader>dh', function()
     require('dap.ui.widgets').hover()
 end, { silent = true, desc = "DAP hover" })
@@ -164,7 +165,7 @@ map("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
 
 -- Terminal
 map("t", "<esc><esc>", "<c-\\><c-n>")
-map("n", "<C-t>", function()
+map("n", "<leader>;", function()
     vim.cmd.new()
     vim.cmd.wincmd "J"
     vim.api.nvim_win_set_height(0, 12)
