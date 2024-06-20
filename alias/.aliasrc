@@ -135,12 +135,31 @@ alias gpsu='git push -u origin'
 alias gstore="git config credential.helper store"
 
 # yay
-alias upg='yay -Syu'
-alias upd='yay -Sy'
-alias install='yay -S '
-alias remove='yay -Rs '
-alias purge='yay -Rcns '
-alias uninstall='yay -R '
+if command -v yay > /dev/null; then
+    alias upg='yay -Syu'
+elif command -v apt > /dev/null; then
+    alias upg='sudo apt update && sudo apt upgrade -y'
+fi
+if command -v yay > /dev/null; then
+    alias upd='yay -Sy'
+elif command -v apt > /dev/null; then
+    alias upd='sudo apt update'
+fi
+if command -v yay > /dev/null; then
+    alias install='yay -S '
+elif command -v apt > /dev/null; then
+    alias install='sudo apt install '
+fi
+if command -v yay > /dev/null; then
+    alias uninstall='yay -R '
+elif command -v apt > /dev/null; then
+    alias uninstall='sudo apt remove '
+fi
+if command -v yay > /dev/null; then
+    alias purge='yay -Rcns '
+elif command -v apt > /dev/null; then
+    alias purge='sudo apt remove --purge '
+fi
 #alias upg='sudo apt update && sudo apt upgrade -y'
 #alias upd='sudo apt update'
 #alias install='sudo apt install'
