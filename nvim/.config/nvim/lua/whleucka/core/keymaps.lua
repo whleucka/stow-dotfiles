@@ -171,6 +171,7 @@ map("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
     { silent = true, desc = "Neotest Output Panel" })
 
 -- Terminal
+map("t", "<esc><esc>", "<c-\\><c-n>")
 -- Define a global variable to track terminal state
 _G.fterm_open = false
 _G.fterm_first_open = true
@@ -179,13 +180,19 @@ _G.fterm_first_open = true
 function _G.toggle_fterm()
     local fterm = require('FTerm')
     if _G.fterm_open then
+        -- Terminal is currently open, toggle it off
         fterm.toggle()
         _G.fterm_open = false
     else
+        -- Terminal is currently closed, toggle it on
         fterm.toggle()
         if _G.fterm_first_open then
+            -- Enter insert mode the first time the terminal is opened
             vim.cmd('startinsert')
             _G.fterm_first_open = false
+        else
+            -- Ensure the terminal is in normal mode for subsequent toggles
+            vim.cmd('stopinsert')
         end
         _G.fterm_open = true
     end
@@ -194,7 +201,7 @@ end
 -- Key mapping to toggle terminal and enter insert mode if shown
 vim.api.nvim_set_keymap('n', '\\', ':lua toggle_fterm()<CR>', { silent = true, noremap = true, desc = "Toggle Terminal" })
 
-map("t", "<esc><esc>", "<c-\\><c-n>")
+
 -- Custom Terminals
 local term_wins = {nil, nil, nil, nil}
 local term_bufs = {nil, nil, nil, nil}
