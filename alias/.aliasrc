@@ -160,12 +160,11 @@ if command -v yay > /dev/null; then
 elif command -v apt > /dev/null; then
     alias purge='sudo apt remove --purge '
 fi
-#alias upg='sudo apt update && sudo apt upgrade -y'
-#alias upd='sudo apt update'
-#alias install='sudo apt install'
-#alias remove='sudo apt remove'
-#alias uninstall='remove'
-#alias search='sudo apt search'
+if command -v yay > /dev/null; then
+    alias clr='yay -Sc '
+elif command -v apt > /dev/null; then
+    alias clr='sudo apt autoremove && sudo apt autoclean '
+fi
 
 # nvim
 if command -v nvim > /dev/null; then
