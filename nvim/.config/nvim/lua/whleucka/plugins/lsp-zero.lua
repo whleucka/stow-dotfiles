@@ -245,7 +245,7 @@ return {
 			require('mason-lspconfig').setup({
 				ensure_installed = {
 					-- Update this to ensure that you have the debuggers for the langs you want
-					'clangd', 'intelephense', 'html', 'cssls', 'bashls', 'rust_analyzer', 'tsserver', 'jedi_language_server'
+					'clangd', 'intelephense', 'html', 'cssls', 'bashls', 'rust_analyzer', 'tsserver'
 				},
 				handlers = {
 					lsp_zero.default_setup,
