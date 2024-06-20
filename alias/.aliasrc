@@ -23,20 +23,6 @@ if command -v tmux > /dev/null; then
     alias cls="clear; tmux clear-history"
 fi
 
-# docker
-if command -v docker-compose > /dev/null; then
-    # these are common commands
-    alias dcps='sud docker-compose -f ./docker-compose.yml ps'
-    alias dcup='sudo docker-compose -f ./docker-compose.yml up -d'
-    alias dcdown='sudo docker-compose -f ./docker-compose.yml down'
-    alias dcexec='sudo docker-compose -f ./docker-compose.yml exec'
-    alias dcbuild='sudo docker-compose -f ./docker-compose.yml build'
-    alias dcpull='sudo docker-compose -f ./docker-compose.yml pull' #pulls all new images is specified after dcpull
-    alias dclogs='sudo docker-compose -f ./docker-compose.yml logs -tf --tail="50" '
-    # this one is special
-    alias dcapp='sudo docker-compose -f ~/docker/docker-compose.yml exec php zsh'
-fi
-
 # composer
 if command -v composer > /dev/null; then
     alias cu="composer update"
