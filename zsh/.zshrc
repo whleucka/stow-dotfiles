@@ -3,11 +3,12 @@ export TMPDIR="/tmp"
 # SSH gpg key
 export GPG_TTY=$(tty)
 
-if [ -x "$(command -v kitty)" ]; then
-    export TERM="xterm-kitty"
-else
-    export TERM="xterm-256color"
-fi
+# if [ -x "$(command -v kitty)" ]; then
+#     export TERM="xterm-kitty"
+# else
+#     export TERM="xterm-256color"
+# fi
+export TERM="xterm-256color"
 
 if type rg &> /dev/null; then
     #export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
