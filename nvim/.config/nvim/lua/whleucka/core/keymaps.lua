@@ -112,9 +112,9 @@ map('n', "<leader>wf", function()
 end, { desc = 'Focus Maximize', silent = true })
 map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
 
--- Resize splits
-map('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', noremap = true, silent = true })
-map('n', "<C-Right>", '<C-w>>', { desc = 'Increase Window Width', noremap = true, silent = true })
+-- Resize splits (on the select window to resize)
+map('n', "<C-Right>", '<C-w><', { desc = 'Increase Window Width', noremap = true, silent = true })
+map('n', "<C-Left>", '<C-w>>', { desc = 'Decrease Window Width', noremap = true, silent = true })
 map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', noremap = true, silent = true })
 map('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', noremap = true, silent = true })
 
