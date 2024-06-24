@@ -111,8 +111,6 @@ return {
 				build = "make install_jsregexp"
 			},
 			{ 'f3fora/cmp-spell' },
-			{ "quangnguyen30192/cmp-nvim-ultisnips" },
-			{ 'SirVer/ultisnips' },
 			{ 'hrsh7th/cmp-nvim-lua' },
 			{ 'hrsh7th/cmp-buffer' },
 			{ 'FelipeLema/cmp-async-path' },
@@ -139,7 +137,6 @@ return {
 				sources = {
 					{ name = "nvim_lsp",                priority = 1000 },
 					{ name = "nvim_lsp_signature_help", priority = 850 },
-					{ name = "ultisnips",				priority = 825 },
 					{ name = "luasnip",                 priority = 800 },
 					{
 						name = 'spell',
