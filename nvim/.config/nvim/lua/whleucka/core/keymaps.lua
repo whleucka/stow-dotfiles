@@ -8,15 +8,22 @@ map("n", "q", "<Nop>", { silent = true, noremap = true })
 -- Create undo breakpoints
 map('i', '<space>', " <C-g>u")
 
+-- Undo some stuff
+map('n', '<leader>u', ':UndotreeToggle<CR>', {silent = true, noremap = true})
+
 -- Saving and quitting
 map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Save (update)" })
 map('n', '<leader>W', ':w!<CR>', { silent = true, noremap = true, desc = "Save (force)" })
 map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Exit window" })
-map('n', '<leader>qa', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit Neovim" })
-map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Exit buffer" })
+map('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit Neovim (force)" })
+map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Close buffer" })
+
+-- Formatting
+-- This one will indent the entire buffer and then return to the cursor position
+map('n', '<leader>f', "maggVG=`a", { silent = true, noremap = true, desc =  "Indent buffer" })
 
 -- Select all
-map('n', '<leader><bs>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+map('n', '<leader><enter>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
 
 -- Delete backwards
 map('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -27,10 +34,11 @@ map('i', 'jk', '<ESC>', { silent = true })
 map('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-map('n', '<leader>n', function()
+map('n', '<leader>h', function()
     vim.cmd.enew()
     vim.cmd[[ Dashboard ]]
-end, { silent = true, noremap = true, desc = "New buffer" })
+end, { silent = true, noremap = true, desc = "Show dashboard" })
+
 map('n', '<S-h>', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
 map('n', '<S-l>', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
@@ -44,10 +52,10 @@ map("n", "gR", function() require("trouble").toggle("lsp_references") end)
 
 -- TODO comments
 map('n', '[t', function()
-  require("todo-comments").jump_prev()
+    require("todo-comments").jump_prev()
 end, { silent = true, noremap = true, desc = "Previous todo comment" })
 map('n', ']t', function()
-  require("todo-comments").jump_next()
+    require("todo-comments").jump_next()
 end, { silent = true, noremap = true, desc = "Next todo comment" })
 
 -- Quickfix
@@ -61,14 +69,14 @@ map('n', '<c-s>', ':so<CR>', { silent = true, noremap = true, desc = "Source buf
 map('n', '[f', "zk", { silent = true, noremap = true, desc = "Next fold" })
 map('n', ']f', "zj", { silent = true, noremap = true, desc = "Prev fold" })
 map('n', '<tab>',
-  function() return require('fold-cycle').open() end,
-  {silent = true, desc = 'Fold-cycle: open folds'})
+    function() return require('fold-cycle').open() end,
+    {silent = true, desc = 'Fold-cycle: open folds'})
 map('n', '<s-tab>',
-  function() return require('fold-cycle').close() end,
-  {silent = true, desc = 'Fold-cycle: close folds'})
+    function() return require('fold-cycle').close() end,
+    {silent = true, desc = 'Fold-cycle: close folds'})
 map('n', 'zC',
-  function() return require('fold-cycle').close_all() end,
-  {remap = true, silent = true, desc = 'Fold-cycle: close all folds'})
+    function() return require('fold-cycle').close_all() end,
+    {remap = true, silent = true, desc = 'Fold-cycle: close all folds'})
 
 -- File navigation
 map('n', "<C-p>", ":lua require('fzf-lua').git_files()<cr>", { silent = true, noremap = true, desc = "Find git files"})
@@ -96,26 +104,26 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-map('n', "<leader>st", ':FocusToggle<cr>', { desc = 'Focus Toggle', noremap = true, silent = true })
-map('n', "<leader>se", ':FocusEqualise<cr>', { desc = 'Focus Equalise', noremap = true, silent = true })
-map('n', "<leader>sf", function()
+map('n', "<leader>wt", ':FocusToggle<cr>', { desc = 'Focus Toggle', noremap = true, silent = true })
+map('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise', noremap = true, silent = true })
+map('n', "<leader>wf", function()
     vim.cmd[[ FocusEnable ]]
     vim.cmd[[ FocusMaximise ]]
 end, { desc = 'Focus Maximize', silent = true })
-map('n', "<leader>sr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
+map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
 
--- Resize splits
-map('n', "<C-Left>", '<C-w><', { desc = 'Decrease Window Width', noremap = true, silent = true })
-map('n', "<C-Right>", '<C-w>>', { desc = 'Increase Window Width', noremap = true, silent = true })
+-- Resize splits (on the select window to resize)
+map('n', "<C-Right>", '<C-w><', { desc = 'Increase Window Width', noremap = true, silent = true })
+map('n', "<C-Left>", '<C-w>>', { desc = 'Decrease Window Width', noremap = true, silent = true })
 map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', noremap = true, silent = true })
 map('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', noremap = true, silent = true })
 
 -- Lazy
-map('n', '<leader>z', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
-map('n', '<leader>zs', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
-map('n', '<leader>zs', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
-map('n', '<leader>zc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
-map('n', '<leader>zp', ':Lazy profile<CR>', { desc = "Lazy profile", silent = true, noremap = true })
+map('n', '<leader>p', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
+map('n', '<leader>ps', ':Lazy sync<CR>', { desc = "Lazy sync", silent = true, noremap = true })
+map('n', '<leader>ps', ':Lazy update<CR>', { desc = "Lazy update", silent = true, noremap = true })
+map('n', '<leader>pc', ':Lazy clean<CR>', { desc = "Lazy clean", silent = true, noremap = true })
+map('n', '<leader>pp', ':Lazy profile<CR>', { desc = "Lazy profile", silent = true, noremap = true })
 
 -- Primeagen remaps
 map("n", "J", "mzJ`z", { silent = true, noremap = true })
@@ -132,11 +140,11 @@ map('n', '<F10>', function() require('dap').step_over() end, { silent = true, de
 map('n', '<F11>', function() require('dap').step_into() end, { silent = true, desc = "DAP step into" })
 map('n', '<F12>', function() require('dap').step_out() end, { silent = true, desc = "DAP step out" })
 map('n', '<leader>du', function() require('dapui').toggle() end, { silent = true, desc = "DAP UI toggle" })
-map('n', '<Leader>db', function() require('dap').toggle_breakpoint() end, { silent = true, desc = "DAP toggle breakpoint" })
-map('n', '<Leader>dB', function() require('dap').set_breakpoint() end, { silent = true, desc = "DAP set breakpoint" })
-map('n', '<Leader>dl', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { silent = true, desc = "DAP log point msg" })
-map('n', '<Leader>dr', function() require('dap').repl.open() end, { silent = true, desc = "DAP REPL open" })
-map('n', '<Leader>dl', function() require('dap').run_last() end, { silent = true, desc = "DAP run last" })
+map('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, { silent = true, desc = "DAP toggle breakpoint" })
+map('n', '<Leader>db', function() require('dap').set_breakpoint() end, { silent = true, desc = "DAP set breakpoint" })
+map('n', '<Leader>dm', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { silent = true, desc = "DAP log point msg" })
+map('n', '<Leader>dR', function() require('dap').repl.open() end, { silent = true, desc = "DAP REPL open" })
+map('n', '<Leader>dr', function() require('dap').run_last() end, { silent = true, desc = "DAP run last" })
 map({'n', 'v'}, '<Leader>dh', function()
     require('dap.ui.widgets').hover()
 end, { silent = true, desc = "DAP hover" })
@@ -164,11 +172,73 @@ map("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
 
 -- Terminal
 map("t", "<esc><esc>", "<c-\\><c-n>")
-map("n", "<C-t>", function()
-    vim.cmd.new()
-    vim.cmd.wincmd "J"
-    vim.api.nvim_win_set_height(0, 12)
+-- Define a global variable to track terminal state
+_G.fterm_open = false
+_G.fterm_first_open = true
+
+-- Define a custom toggle function
+function _G.toggle_fterm()
+    local fterm = require('FTerm')
+    if _G.fterm_open then
+        -- Terminal is currently open, toggle it off
+        fterm.toggle()
+        _G.fterm_open = false
+    else
+        -- Terminal is currently closed, toggle it on
+        fterm.toggle()
+        if _G.fterm_first_open then
+            -- Enter insert mode the first time the terminal is opened
+            vim.cmd('startinsert')
+            _G.fterm_first_open = false
+        else
+            -- Ensure the terminal is in normal mode for subsequent toggles
+            vim.cmd('stopinsert')
+        end
+        _G.fterm_open = true
+    end
+end
+
+-- Key mapping to toggle terminal and enter insert mode if shown
+vim.api.nvim_set_keymap('n', '\\', ':lua toggle_fterm()<CR>', { silent = true, noremap = true, desc = "Toggle Terminal" })
+
+
+-- Custom Terminals
+local term_wins = {nil, nil, nil, nil}
+local term_bufs = {nil, nil, nil, nil}
+
+-- Function to create or switch to terminal
+local function open_terminal(term_index)
+    -- Check if the terminal buffer already exists
+    if term_bufs[term_index] and vim.api.nvim_buf_is_valid(term_bufs[term_index]) then
+        -- If the window is valid, switch to it
+        if term_wins[term_index] and vim.api.nvim_win_is_valid(term_wins[term_index]) then
+            vim.api.nvim_set_current_win(term_wins[term_index])
+        else
+            -- Otherwise, open the buffer in a new split and update the window id
+            vim.cmd('split')
+            vim.cmd('wincmd J')
+            vim.api.nvim_set_current_buf(term_bufs[term_index])
+            term_wins[term_index] = vim.api.nvim_get_current_win()
+        end
+    else
+        -- Create a new terminal buffer if it doesn't exist
+        vim.cmd('split')
+        vim.cmd('wincmd J')
+        vim.cmd('term')
+        term_wins[term_index] = vim.api.nvim_get_current_win()
+        term_bufs[term_index] = vim.api.nvim_get_current_buf()
+    end
+
+    -- Set the height of the terminal window
+    vim.api.nvim_win_set_height(term_wins[term_index], 12)
     vim.wo.winfixheight = true
-    vim.cmd.term()
-end)
-map("n", "<C-;>", ":lua require('FTerm').toggle()<cr>", { silent = true, noremap = true, desc = "Toggle Terminal"})
+
+    -- Enter insert mode
+    vim.cmd('startinsert')
+end
+
+-- Key mappings for terminals
+vim.api.nvim_set_keymap('n', '<leader>1', '', { noremap = true, silent = true, callback = function() open_terminal(1) end })
+vim.api.nvim_set_keymap('n', '<leader>2', '', { noremap = true, silent = true, callback = function() open_terminal(2) end })
+vim.api.nvim_set_keymap('n', '<leader>3', '', { noremap = true, silent = true, callback = function() open_terminal(3) end })
+vim.api.nvim_set_keymap('n', '<leader>4', '', { noremap = true, silent = true, callback = function() open_terminal(4) end })

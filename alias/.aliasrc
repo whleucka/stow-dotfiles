@@ -20,21 +20,6 @@ fi
 if command -v tmux > /dev/null; then
     alias tmux="tmux -u"
     alias mux="tmuxinator"
-    alias cls="clear; tmux clear-history"
-fi
-
-# docker
-if command -v docker-compose > /dev/null; then
-    # these are common commands
-    alias dcps='sud docker-compose -f ./docker-compose.yml ps'
-    alias dcup='sudo docker-compose -f ./docker-compose.yml up -d'
-    alias dcdown='sudo docker-compose -f ./docker-compose.yml down'
-    alias dcexec='sudo docker-compose -f ./docker-compose.yml exec'
-    alias dcbuild='sudo docker-compose -f ./docker-compose.yml build'
-    alias dcpull='sudo docker-compose -f ./docker-compose.yml pull' #pulls all new images is specified after dcpull
-    alias dclogs='sudo docker-compose -f ./docker-compose.yml logs -tf --tail="50" '
-    # this one is special
-    alias dcapp='sudo docker-compose -f ~/docker/docker-compose.yml exec php zsh'
 fi
 
 # composer
@@ -149,18 +134,36 @@ alias gpsu='git push -u origin'
 alias gstore="git config credential.helper store"
 
 # yay
-alias upg='yay -Syu'
-alias upd='yay -Sy'
-alias install='yay -S '
-alias remove='yay -Rs '
-alias purge='yay -Rcns '
-alias uninstall='yay -R '
-#alias upg='sudo apt update && sudo apt upgrade -y'
-#alias upd='sudo apt update'
-#alias install='sudo apt install'
-#alias remove='sudo apt remove'
-#alias uninstall='remove'
-#alias search='sudo apt search'
+if command -v yay > /dev/null; then
+    alias upg='yay -Syu'
+elif command -v apt > /dev/null; then
+    alias upg='sudo apt update && sudo apt upgrade -y'
+fi
+if command -v yay > /dev/null; then
+    alias upd='yay -Sy'
+elif command -v apt > /dev/null; then
+    alias upd='sudo apt update'
+fi
+if command -v yay > /dev/null; then
+    alias install='yay -S '
+elif command -v apt > /dev/null; then
+    alias install='sudo apt install '
+fi
+if command -v yay > /dev/null; then
+    alias uninstall='yay -R '
+elif command -v apt > /dev/null; then
+    alias uninstall='sudo apt remove '
+fi
+if command -v yay > /dev/null; then
+    alias purge='yay -Rcns '
+elif command -v apt > /dev/null; then
+    alias purge='sudo apt remove --purge '
+fi
+if command -v yay > /dev/null; then
+    alias clr='yay -Sc '
+elif command -v apt > /dev/null; then
+    alias clr='sudo apt autoremove && sudo apt autoclean '
+fi
 
 # nvim
 if command -v nvim > /dev/null; then

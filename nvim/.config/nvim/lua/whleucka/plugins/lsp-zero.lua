@@ -123,7 +123,6 @@ return {
 			lsp_zero.extend_cmp()
 			local luasnip = require 'luasnip'
 			local lspkind = require('lspkind')
-			require("cmp_nvim_ultisnips").setup{}
 
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require('cmp')

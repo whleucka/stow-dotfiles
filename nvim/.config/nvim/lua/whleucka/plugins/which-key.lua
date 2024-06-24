@@ -23,14 +23,14 @@ return {
 			t = {
 				name = "Neotest"
 			},
-			s = {
+			w = {
 				name = "Window"
 			},
 			x = {
 				name = "Trouble"
 			},
-			z = {
-				name = "Lazy"
+			p = {
+				name = "Lazy (Package Manager)"
 			}
 		}, { prefix = "<leader>" })
 	end,
