@@ -43,6 +43,5 @@ return {
 			flavour = "macchiato",
 			transparent_background = true,
 		})
-		vim.cmd.colorscheme "catppuccin"
 	end
 }
