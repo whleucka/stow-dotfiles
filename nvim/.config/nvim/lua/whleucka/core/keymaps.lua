@@ -199,7 +199,7 @@ function _G.toggle_fterm()
 end
 
 -- Key mapping to toggle terminal and enter insert mode if shown
-vim.api.nvim_set_keymap('n', '\\', ':lua toggle_fterm()<CR>', { silent = true, noremap = true, desc = "Toggle Terminal" })
+vim.api.nvim_set_keymap('n', '<C-t>', ':lua toggle_fterm()<CR>', { silent = true, noremap = true, desc = "Toggle Terminal" })
 
 
 -- Custom Terminals
