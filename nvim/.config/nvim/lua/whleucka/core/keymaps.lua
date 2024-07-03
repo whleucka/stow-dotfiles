@@ -23,7 +23,12 @@ map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "C
 map('n', '<leader>f', "maggVG=`a", { silent = true, noremap = true, desc =  "Indent buffer" })
 
 -- Select all
-map('n', '<leader><enter>', 'gg<S-v>G', { silent = true, noremap = true, desc = "Select all" })
+map('n', '<c-a>', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
+map('n', '<c-y>', 'ggVGy', { silent = true, noremap = true, desc = "Copy entire buffer" })
+
+-- Inc/Dec
+map('n', '<c-->', '<C-x>', { noremap = true, silent = true })
+map('n', '<c-=>', '<C-a>', { noremap = true, silent = true })
 
 -- Delete backwards
 map('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -34,7 +39,7 @@ map('i', 'jk', '<ESC>', { silent = true })
 map('i', 'kj', '<ESC>', { silent = true })
 
 -- Buffers
-map('n', '<leader>h', function()
+map('n', '<leader><space>', function()
     vim.cmd.enew()
     vim.cmd[[ Dashboard ]]
 end, { silent = true, noremap = true, desc = "Show dashboard" })
@@ -43,12 +48,12 @@ map('n', '<S-h>', ":bprev<cr>", { silent = true, noremap = true, desc = "Previou
 map('n', '<S-l>', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Trouble
-map("n", "<leader>xx", function() require("trouble").toggle() end)
-map("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-map("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-map("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-map("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-map("n", "gR", function() require("trouble").toggle("lsp_references") end)
+map("n", "<leader>xx", function() require("trouble").toggle() end, { silent = true, noremap = true, desc = "Trouble (toggle)" } )
+map("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { silent = true, noremap = true, desc = "Trouble Workspace Diagnostics"  })
+map("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { silent = true, noremap = true, desc = "Trouble Document Diagnostics"  })
+map("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { silent = true, noremap = true, desc = "Trouble Quickfix List"  })
+map("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { silent = true, noremap = true, desc = "Trouble Location List"  })
+map("n", "gR", function() require("trouble").toggle("lsp_references") end, { silent = true, noremap = true, desc = "Trouble LSP references"  })
 
 -- TODO comments
 map('n', '[t', function()
@@ -104,14 +109,6 @@ focusmap('j')
 focusmap('k')
 focusmap('l')
 
-map('n', "<leader>wt", ':FocusToggle<cr>', { desc = 'Focus Toggle', noremap = true, silent = true })
-map('n', "<leader>we", ':FocusEqualise<cr>', { desc = 'Focus Equalise', noremap = true, silent = true })
-map('n', "<leader>wf", function()
-    vim.cmd[[ FocusEnable ]]
-    vim.cmd[[ FocusMaximise ]]
-end, { desc = 'Focus Maximize', silent = true })
-map('n', "<leader>wr", ':FocusAutoresize<cr>', { desc = 'Focus Auto-resize', noremap = true, silent = true })
-
 -- Resize splits (on the select window to resize)
 map('n', "<C-Right>", '<C-w><', { desc = 'Increase Window Width', noremap = true, silent = true })
 map('n', "<C-Left>", '<C-w>>', { desc = 'Decrease Window Width', noremap = true, silent = true })
@@ -162,12 +159,12 @@ end, { silent = true, desc = "DAP scopes" })
 
 
 -- Neotest
-map("n", "<leader>ts", ":lua require'neotest'.summary.toggle()<cr>",
+map("n", "<leader>ns", ":lua require'neotest'.summary.toggle()<cr>",
     { silent = true, desc = "Neotest Summary" })
-map("n", "<leader>tr", ":lua require'neotest'.run.run()<cr>", { silent = true, desc = "Neotest Run" })
-map("n", "<leader>td", ":lua require'neotest'.run.run({strategy = 'dap'})<cr>",
+map("n", "<leader>nr", ":lua require'neotest'.run.run()<cr>", { silent = true, desc = "Neotest Run" })
+map("n", "<leader>nd", ":lua require'neotest'.run.run({strategy = 'dap'})<cr>",
     { silent = true, desc = "Neotest DAP" })
-map("n", "<leader>to", ":lua require'neotest'.output_panel()<cr>",
+map("n", "<leader>no", ":lua require'neotest'.output_panel()<cr>",
     { silent = true, desc = "Neotest Output Panel" })
 
 -- Terminal
@@ -238,7 +235,4 @@ local function open_terminal(term_index)
 end
 
 -- Key mappings for terminals
-vim.api.nvim_set_keymap('n', '<leader>1', '', { noremap = true, silent = true, callback = function() open_terminal(1) end })
-vim.api.nvim_set_keymap('n', '<leader>2', '', { noremap = true, silent = true, callback = function() open_terminal(2) end })
-vim.api.nvim_set_keymap('n', '<leader>3', '', { noremap = true, silent = true, callback = function() open_terminal(3) end })
-vim.api.nvim_set_keymap('n', '<leader>4', '', { noremap = true, silent = true, callback = function() open_terminal(4) end })
+vim.api.nvim_set_keymap('n', '<leader>t', '', { noremap = true, silent = true, callback = function() open_terminal(1) end })
