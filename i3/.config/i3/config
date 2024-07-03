@@ -83,6 +83,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec kitty bpytop
 # Keyboard repeat rate
 exec --no-startup-id xset r rate 200 70
+exec --no-startup-id plank
 
 
 #########################################################################################
@@ -120,8 +121,8 @@ smart_borders on
 # Window borders
 #########################################################################################
 default_border pixel 2
-for_window [class="^.*"] border pixel 3
 default_floating_border pixel 2
+for_window [class="^.*"] border pixel 0
 
 for_window [window_role="pop-up"] floating enable
 for_window [class="feh"] floating enable
