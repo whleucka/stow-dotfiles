@@ -100,10 +100,10 @@ floating_modifier $mod
 #########################################################################################
 # Window Gaps
 #########################################################################################
-gaps inner 20
+gaps inner 15
 gaps outer 0
-gaps top 5
-gaps bottom 5
+gaps top 0
+gaps bottom 0
 smart_gaps off
 smart_borders on
 
