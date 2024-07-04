@@ -20,11 +20,8 @@ return {
 			g = {
 				name = "Neogit"
 			},
-			t = {
+			n = {
 				name = "Neotest"
-			},
-			w = {
-				name = "Window"
 			},
 			x = {
 				name = "Trouble"
