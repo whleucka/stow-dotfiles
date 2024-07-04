@@ -37,6 +37,7 @@ return {
 						key = 'o',
 					},
 				},
+				footer = {'With great power comes great responsibility'},
 			},
 		}
 	end,
