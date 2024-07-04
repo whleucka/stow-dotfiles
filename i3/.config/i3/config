@@ -88,16 +88,6 @@ exec --no-startup-id plank
 
 
 #########################################################################################
-# Shortcuts
-#########################################################################################
-bindsym $super+f exec --no-startup-id nemo
-bindsym $super+e exec --no-startup-id evolution
-bindsym $super+w exec --no-startup-id google-chrome-stable
-bindsym $super+b exec --no-startup-id barrier
-bindsym $super+c exec --no-startup-id gnome-calculator
-
-
-#########################################################################################
 # Window properties
 #########################################################################################
 focus_follows_mouse yes
@@ -114,7 +104,7 @@ gaps inner 10
 gaps outer 5
 gaps top 1
 gaps bottom 1
-smart_gaps on
+smart_gaps off
 smart_borders on
 
 
