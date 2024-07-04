@@ -9,9 +9,9 @@ return {
 					enable = true,
 				},
 				shortcut = {
-					{ desc = '🧙 Resume', group = '@property', action = 'FzfLua resume', key = 'r' },
 					{ desc = '⭐ New', group = '@property', action = 'enew', key = 'n' },
-					{ desc = '⚡ Sync', group = '@property', action = 'Lazy sync', key = 's' },
+					{ desc = '⚡ Lazy', group = '@property', action = 'Lazy', key = 'l' },
+					{ desc = '🧙 Mason', group = '@property', action = 'Mason', key = 'm' },
 					{
 						icon = '🧰 ',
 						icon_hl = '@variable',

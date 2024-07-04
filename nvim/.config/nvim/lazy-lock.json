@@ -22,7 +22,7 @@
   "fzf-lua": { "branch": "main", "commit": "3b91c1a471160bd8620bdca8f18743d954994daa" },
   "gitsigns.nvim": { "branch": "main", "commit": "39b5b6f48bde0595ce68007ffce408c5d7ac1f79" },
   "guess-indent.nvim": { "branch": "main", "commit": "6c75506e71836f34fe5c5efa322dfce3e0494e7b" },
-  "lazy.nvim": { "branch": "main", "commit": "cea5920abb202753004440f94ec39bcf2927e02e" },
+  "lazy.nvim": { "branch": "main", "commit": "851b12034d1eb77acda84537805740923af3fab4" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "87701af045b3032515776abeb47eb8c2ddb5e679" },
   "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },
   "lualine.nvim": { "branch": "master", "commit": "0a5a66803c7407767b799067986b4dc3036e1983" },
@@ -53,7 +53,7 @@
   "nvimgelion": { "branch": "main", "commit": "28f3b71f8545ff002a1c08ca928799cdf660eccf" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2" },
-  "trouble.nvim": { "branch": "main", "commit": "42dcb58e95723f833135d5cf406c38bd54304389" },
+  "trouble.nvim": { "branch": "main", "commit": "ff71514835b8f006e76cdd8018182ba1e88d112b" },
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
   "which-key.nvim": { "branch": "main", "commit": "0099511294f16b81c696004fa6a403b0ae61f7a0" }
 }
