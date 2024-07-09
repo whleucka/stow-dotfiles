@@ -35,14 +35,14 @@ def get_host():
 def get_sessions(server):
     global sessions
     sql = """SELECT txs.session_id, LEFT(Tablet.fingerprint, 5) as fingerprint
-    FROM txs 
-    INNER JOIN Tablet ON txs.tablet_id = Tablet.id 
-    WHERE txs.created BETWEEN NOW() - INTERVAL 1 WEEK AND NOW() 
+    FROM txs
+    INNER JOIN Tablet ON txs.tablet_id = Tablet.id
+    WHERE txs.created BETWEEN NOW() - INTERVAL 1 WEEK AND NOW()
     UNION
     SELECT incomplete_txs.session_id, LEFT(Tablet.fingerprint, 5) as fingerprint
-    FROM incomplete_txs 
-    INNER JOIN Tablet ON incomplete_txs.tablet_id = Tablet.id 
-    WHERE incomplete_txs.start_date BETWEEN NOW() - INTERVAL 1 WEEK AND NOW() 
+    FROM incomplete_txs
+    INNER JOIN Tablet ON incomplete_txs.tablet_id = Tablet.id
+    WHERE incomplete_txs.start_date BETWEEN NOW() - INTERVAL 1 WEEK AND NOW()
     """
     lines = []
     mysql_cmd = hosts[server]["mysql"]
@@ -80,7 +80,22 @@ def connect(session_id, fingerprint):
         f'sed -n \\"{pattern}\\" /var/log/supervisor/lamassu-machine.err.log'
     )
     cmd = f"/usr/bin/ssh {HOST} -C \"pssh {fingerprint} 'which restart &> /dev/null && {sed_upstart} || {sed_supervisor};'\""
-    os.system(cmd)
+    #os.system(cmd)
+    # Open a file in write mode
+    with open(f"{session_id}.txt", "w") as file:
+        # Execute the command and capture the output
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # Write the stdout to the file
+        for line in process.stdout:
+            file.write(line.decode())
+
+        # Write the stderr to the file (optional, if you want to capture errors as well)
+        for line in process.stderr:
+            file.write(line.decode())
+
+        # Wait for the process to complete
+        process.wait()
 
 
 if __name__ == "__main__":
