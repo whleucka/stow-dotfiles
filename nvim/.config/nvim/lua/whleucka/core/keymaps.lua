@@ -18,10 +18,6 @@ map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Exit wi
 map('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit Neovim (force)" })
 map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Close buffer" })
 
--- Formatting
--- This one will indent the entire buffer and then return to the cursor position
-map('n', '<leader>f', "maggVG=`a", { silent = true, noremap = true, desc =  "Indent buffer" })
-
 -- Select all
 map('n', '<c-a>', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
 map('n', '<c-y>', 'ggVGy', { silent = true, noremap = true, desc = "Copy entire buffer" })
