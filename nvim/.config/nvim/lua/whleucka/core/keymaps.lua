@@ -231,4 +231,4 @@ local function open_terminal(term_index)
 end
 
 -- Key mappings for terminals
-vim.api.nvim_set_keymap('n', '<leader>t', '', { noremap = true, silent = true, callback = function() open_terminal(1) end })
+vim.api.nvim_set_keymap('n', '<leader>z', '', { noremap = true, silent = true, callback = function() open_terminal(1) end })
