@@ -200,4 +200,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-neofetch
+if type neofetch &> /dev/null; then
+    neofetch
+fi
