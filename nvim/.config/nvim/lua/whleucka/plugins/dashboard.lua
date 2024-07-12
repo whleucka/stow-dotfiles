@@ -5,6 +5,9 @@ return {
 		require('dashboard').setup {
 			theme = 'hyper',
 			config = {
+				project = { enable = true, limit = 8, action = function(path)
+					require('fzf-lua').files({ cwd = path })
+				end},
 				week_header = {
 					enable = true,
 				},
