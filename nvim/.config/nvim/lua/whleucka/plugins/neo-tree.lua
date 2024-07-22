@@ -29,7 +29,7 @@ return {
 	},
 	keys = {
 		{ "\\", "<cmd>Neotree toggle<cr>", desc = "Neotree open" },
-		{ "<leader>e", "<cmd>Neotree focus<cr>", desc = "Neotree focus" },
+		{ "<leader>o", "<cmd>Neotree focus<cr>", desc = "Neotree focus" },
 	},
 	config = function()
 		require('neo-tree').setup {
