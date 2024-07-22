@@ -19,12 +19,8 @@ map('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit 
 map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Close buffer" })
 
 -- Select all
-map('n', '<c-a>', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
-map('n', '<c-y>', 'ggVGy', { silent = true, noremap = true, desc = "Copy entire buffer" })
-
--- Inc/Dec
-map('n', '<c-->', '<C-x>', { noremap = true, silent = true })
-map('n', '<c-=>', '<C-a>', { noremap = true, silent = true })
+map('n', '<leader>a', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
+map('n', '<leader>y', 'ggVGy', { silent = true, noremap = true, desc = "Copy entire buffer" })
 
 -- Delete backwards
 map('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -93,8 +89,9 @@ map('n', "<leader>ft", ":lua require('fzf-lua').tags()<cr>", { silent = true, no
 map('n', "<leader>fc", ":lua require('fzf-lua').colorschemes()<cr>", { silent = true, noremap = true, desc = "Find color scheme" })
 
 -- Focus
+-- <leader>direction to create/switch to split
 local focusmap = function(direction)
-    map('n', '<c-' .. direction .. '>', function()
+    map('n', '<leader>' .. direction, function()
         require('focus').split_command(direction)
     end, { desc = string.format('Create or move to split (%s)', direction) })
 end
@@ -108,8 +105,8 @@ focusmap('l')
 -- Resize splits (on the select window to resize)
 map('n', "<C-Right>", '<C-w><', { desc = 'Increase Window Width', noremap = true, silent = true })
 map('n', "<C-Left>", '<C-w>>', { desc = 'Decrease Window Width', noremap = true, silent = true })
-map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', noremap = true, silent = true })
 map('n', "<C-Up>", '<C-w>+', { desc = 'Increase Window Height', noremap = true, silent = true })
+map('n', "<C-Down>", '<C-w>-', { desc = 'Decrease Window Height', noremap = true, silent = true })
 
 -- Lazy
 map('n', '<leader>p', ':Lazy<CR>', { desc = "Lazy", silent = true, noremap = true })
