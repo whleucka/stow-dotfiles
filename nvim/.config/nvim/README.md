@@ -58,10 +58,6 @@ Once you've installed my Neovim configuration, you can start using it right away
 - `<leader>k` to navigate to (or create) split on top.
 - `<leader>l` to navigate to (or create) split on right.
 - `<C-t>` to open terminal (floating).
-- `<leader>1` to open terminal 1 (split).
-- `<leader>2` to open terminal 1 (split).
-- `<leader>3` to open terminal 1 (split).
-- `<leader>4` to open terminal 1 (split).
 
 ## Customization
 
