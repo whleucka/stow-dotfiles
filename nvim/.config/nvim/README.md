@@ -63,12 +63,6 @@ Once you've installed my Neovim configuration, you can start using it right away
 
 You can customize this configuration to fit your own preferences.
 
-## License
-
-This project is licensed under the MIT License
-
 ## Acknowledgments
 
 I want to thank the Neovim community and the creators of the plugins I use. Their work has greatly contributed to this configuration.
-
-Happy coding with Neovim!
