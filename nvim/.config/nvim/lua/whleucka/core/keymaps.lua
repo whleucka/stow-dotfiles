@@ -20,7 +20,6 @@ map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "C
 
 -- Select all
 map('n', '<leader>a', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
-map('n', '<leader>y', 'ggVGy', { silent = true, noremap = true, desc = "Copy entire buffer" })
 
 -- Delete backwards
 map('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
