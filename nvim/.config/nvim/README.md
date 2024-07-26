@@ -13,7 +13,7 @@ Welcome to my Neovim configuration! This repository contains my personal Neovim 
 - A collection of carefully selected plugins for enhanced functionality.
 
 ## Screenshots
-![image](https://github.com/whleucka/stow-dotfiles/assets/71740767/cdf2fb7b-ea14-4146-9962-d09145455170)
+![image](https://github.com/user-attachments/assets/7d94d873-c965-43d2-8227-e60e85600ece)
 
 ## Installation
 
@@ -40,39 +40,29 @@ To use my Neovim configuration with lazy.nvim, follow these simple steps:
 
 Once you've installed my Neovim configuration, you can start using it right away. Some keybindings you might find useful include:
 
-- `<leader>` is the leader key.
+(spacebar is the leader key)
+
 - `<leader>ff` for finding files with fzf-lua.
 - `<C-p>` for finding git files.
-- `<leader>h` to show dashboard.
+- `<leader><space>` to show dashboard.
 - `<leader>w` to save the current file.
-- `<leader>e` to toggle Neotree file explorer.
+- `<leader>o` to open Neotree file explorer.
 - `<leader>c` to close buffer.
 - `<leader>q` to close window (or exit Neovim).
 - `<F5>` start debugging session.
 - `<leader>du` to show debugging UI.
 - `<leader>p` to show Lazy.
 - `<leader>m` to show Mason.
-- `<C-h>` to navigate to (or create) split on left.
-- `<C-j>` to navigate to (or create) split on bottom.
-- `<C-k>` to navigate to (or create) split on top.
-- `<C-l>` to navigate to (or create) split on right.
-- `<C-;>` to open terminal (floating).
-- `<leader>1` to open terminal 1 (split).
-- `<leader>2` to open terminal 1 (split).
-- `<leader>3` to open terminal 1 (split).
-- `<leader>4` to open terminal 1 (split).
-- `<C-t>` to open a floating terminal.
+- `<leader>h` to navigate to (or create) split on left.
+- `<leader>j` to navigate to (or create) split on bottom.
+- `<leader>k` to navigate to (or create) split on top.
+- `<leader>l` to navigate to (or create) split on right.
+- `<C-t>` to open terminal (floating).
 
 ## Customization
 
 You can customize this configuration to fit your own preferences.
 
-## License
-
-This project is licensed under the MIT License
-
 ## Acknowledgments
 
 I want to thank the Neovim community and the creators of the plugins I use. Their work has greatly contributed to this configuration.
-
-Happy coding with Neovim!

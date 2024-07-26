@@ -20,7 +20,6 @@ map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "C
 
 -- Select all
 map('n', '<leader>a', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
-map('n', '<leader>y', 'ggVGy', { silent = true, noremap = true, desc = "Copy entire buffer" })
 
 -- Delete backwards
 map('n', '<a-bs>', 'db', { silent = true, noremap = true, desc = "Delete word backwards" })
@@ -189,7 +188,7 @@ function _G.toggle_fterm()
 end
 
 -- Key mapping to toggle terminal and enter insert mode if shown
-vim.api.nvim_set_keymap('n', '<C-t>', ':lua toggle_fterm()<CR>', { silent = true, noremap = true, desc = "Toggle Terminal" })
+vim.api.nvim_set_keymap('n', '<C-t>', ':lua toggle_fterm()<CR>', { silent = true, noremap = true, desc = "Toggle floating terminal" })
 
 
 -- Custom Terminals
@@ -228,4 +227,4 @@ local function open_terminal(term_index)
 end
 
 -- Key mappings for terminals
-vim.api.nvim_set_keymap('n', '<leader>z', '', { noremap = true, silent = true, callback = function() open_terminal(1) end })
+vim.api.nvim_set_keymap('n', '<leader>t', '', { noremap = true, silent = true, desc = "Open terminal in horizontal split", callback = function() open_terminal(1) end })
