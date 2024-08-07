@@ -3,30 +3,29 @@ export TMPDIR="/tmp"
 # SSH gpg key
 export GPG_TTY=$(tty)
 
-# if [ -x "$(command -v kitty)" ]; then
-#     export TERM="xterm-kitty"
-# else
-#     export TERM="xterm-256color"
-# fi
-export TERM="xterm-256color"
-
-if type rg &> /dev/null; then
-    #export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
-    #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
-    #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    #
-    #
-    export FZF_DEFAULT_OPTS="-m"
-    FZF_DEFAULT_OPTS+=" --color='dark'"
-    FZF_DEFAULT_OPTS+=" --bind 'ctrl-i:toggle-preview'"
-    FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
-    FZF_DEFAULT_OPTS+=" --height=50%"
-    FZF_DEFAULT_OPTS+=" --layout=reverse"
-    #FZF_DEFAULT_OPTS+=" --border"
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow -g "!{.git,vendor,node_modules}/*"'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    #export FZF_TMUX=1
+if type kitty &> /dev/null; then
+    export TERM="xterm-kitty"
+else
+    export TERM="xterm-256color"
 fi
+
+#export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#
+#
+export FZF_DEFAULT_OPTS="-m"
+FZF_DEFAULT_OPTS+=" --color='dark'"
+FZF_DEFAULT_OPTS+=" --bind 'ctrl-i:toggle-preview'"
+FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
+FZF_DEFAULT_OPTS+=" --height=50%"
+FZF_DEFAULT_OPTS+=" --layout=reverse"
+#FZF_DEFAULT_OPTS+=" --border"
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow -g "!{.git,vendor,node_modules}/*"'
+fi
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_TMUX=1
 
 # Caps lock is not needed..
 # xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -142,7 +141,6 @@ bindkey '^[OB'  down-line-or-beginning-search
 # Preferred editor for local and remote sessions
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export BROWSER="google-chrome-stable"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
