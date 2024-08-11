@@ -16,7 +16,26 @@ map('n', '<leader>w', ':update<CR>', { silent = true, noremap = true, desc = "Sa
 map('n', '<leader>W', ':w!<CR>', { silent = true, noremap = true, desc = "Save (force)" })
 map('n', '<leader>q', ':q<CR>', { silent = true, noremap = true, desc = "Exit window" })
 map('n', '<leader>Q', ':qa!<CR>', { silent = true, noremap = true, desc = "Exit Neovim (force)" })
-map('n', '<leader>c', ":bdelete<cr>", { silent = true, noremap = true, desc = "Close buffer" })
+map('n', '<leader>c', ":BufferLinePickClose<cr>", { silent = true, noremap = true, desc = "Close buffer" })
+
+-- Buffers
+map('n', '<leader><enter>', function()
+    vim.cmd.enew()
+    vim.cmd[[ Dashboard ]]
+end, { silent = true, noremap = true, desc = "Show dashboard" })
+map('n', '<leader><space>', ":BufferLinePick<cr>", { silent = true, noremap = true, desc = "Pick buffer" })
+map('n', '<S-h>', ":BufferLineCyclePrev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
+map('n', '<S-l>', ":BufferLineCycleNext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
+map('n', '<leader>1', ':BufferLineGoToBuffer 1<cr>', { silent = true, noremap = true, desc = "Go to Buffer 1" })
+map('n', '<leader>2', ':BufferLineGoToBuffer 2<cr>', { silent = true, noremap = true, desc = "Go to Buffer 2" })
+map('n', '<leader>3', ':BufferLineGoToBuffer 3<cr>', { silent = true, noremap = true, desc = "Go to Buffer 3" })
+map('n', '<leader>4', ':BufferLineGoToBuffer 4<cr>', { silent = true, noremap = true, desc = "Go to Buffer 4" })
+map('n', '<leader>5', ':BufferLineGoToBuffer 5<cr>', { silent = true, noremap = true, desc = "Go to Buffer 5" })
+map('n', '<leader>6', ':BufferLineGoToBuffer 6<cr>', { silent = true, noremap = true, desc = "Go to Buffer 6" })
+map('n', '<leader>7', ':BufferLineGoToBuffer 7<cr>', { silent = true, noremap = true, desc = "Go to Buffer 7" })
+map('n', '<leader>8', ':BufferLineGoToBuffer 8<cr>', { silent = true, noremap = true, desc = "Go to Buffer 8" })
+map('n', '<leader>9', ':BufferLineGoToBuffer 9<cr>', { silent = true, noremap = true, desc = "Go to Buffer 9" })
+map('n', '<leader>0', ':BufferLineGoToBuffer 10<cr>', { silent = true, noremap = true, desc = "Go to Buffer 10" })
 
 -- Select all
 map('n', '<leader>a', 'ggVG', { silent = true, noremap = true, desc = "Select all" })
@@ -29,14 +48,6 @@ map('i', '<a-bs>', '<esc>ldbi', { silent = true, noremap = true, desc = "Delete 
 map('i', 'jk', '<ESC>', { silent = true })
 map('i', 'kj', '<ESC>', { silent = true })
 
--- Buffers
-map('n', '<leader><space>', function()
-    vim.cmd.enew()
-    vim.cmd[[ Dashboard ]]
-end, { silent = true, noremap = true, desc = "Show dashboard" })
-
-map('n', '<S-h>', ":bprev<cr>", { silent = true, noremap = true, desc = "Previous buffer" })
-map('n', '<S-l>', ":bnext<cr>", { silent = true, noremap = true, desc = "Next buffer" })
 
 -- Trouble
 map("n", "<leader>xx", function() require("trouble").toggle() end, { silent = true, noremap = true, desc = "Trouble (toggle)" } )
