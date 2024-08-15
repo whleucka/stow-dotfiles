@@ -190,7 +190,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-if type fastfetch &> /dev/null; then
-    /usr/bin/fastfetch
-fi
