@@ -54,7 +54,7 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- avoid taking up room with an extra column
 vim.o.foldcolumn = "0"
 -- helps with navigating a large file as not all the contents will be expanded initially.
-vim.o.foldlevel = 99
+vim.o.foldlevel = 0
 vim.o.foldlevelstart = 1
 -- this limits how deeply code gets folded
 vim.o.foldnestmax = 4
