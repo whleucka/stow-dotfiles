@@ -20,13 +20,10 @@ return {
 			},
 
 			-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-			auto_install = false,
+			auto_install = true,
 
 			highlight = { enable = true },
-			parsers = {
-				latte = 'latte', -- Use the 'latte' parser for Latte templates
-				-- Add parsers for other filetypes as needed
-			},
+			fold = { enable = true },
 			indent = { enable = true },
 			textobjects = {
 				select = {
