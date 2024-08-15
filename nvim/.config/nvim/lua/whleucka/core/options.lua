@@ -52,8 +52,7 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- Start with folds closed for all function-like constructs (e.g., class methods)
-vim.opt.foldlevelstart = 99  -- Open all folds by default
+vim.opt.foldlevelstart = 0   -- Close all folds by default
 vim.opt.foldminlines = 1     -- Minimum lines required for a fold to be created
 vim.opt.foldnestmax = 3      -- Maximum nested folds (adjust as needed)
 
