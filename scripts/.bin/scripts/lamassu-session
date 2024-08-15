@@ -66,9 +66,17 @@ def select_session_fingerprint(sessions):
     session_id, fingerprint = SELECTED_SESSION.split(" | ")
     return (session_id, fingerprint)
 
+def check_file_exists(session_id):
+    file_path = f"/home/whleucka/Sessions/{session_id}.txt"
+    if os.path.isfile(file_path):
+        print(f"File exists: {file_path}")
+        with open(file_path, 'r') as file:
+            print(file.read())
+        sys.exit(0)
 
 def connect(session_id, fingerprint):
     global SELECTED_SESSION
+    check_file_exists(session_id)
     print(f"Now connecting -- {HOST}@{fingerprint}")
     pattern = f"/Started tx: {session_id}/,/Started tx/p"
     log_upstart = f'sed -n \\"{pattern}\\" /var/log/upstart/lamassu-machine.log'
@@ -82,7 +90,7 @@ def connect(session_id, fingerprint):
     cmd = f"/usr/bin/ssh {HOST} -C \"pssh {fingerprint} 'which restart &> /dev/null && {sed_upstart} || {sed_supervisor};'\""
     #os.system(cmd)
     # Open a file in write mode
-    with open(f"{session_id}.txt", "w") as file:
+    with open(f"/home/whleucka/Sessions/{session_id}.txt", "w") as file:
         # Execute the command and capture the output
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -96,6 +104,8 @@ def connect(session_id, fingerprint):
 
         # Wait for the process to complete
         process.wait()
+
+    check_file_exists(session_id)
 
 
 if __name__ == "__main__":

@@ -49,12 +49,12 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- Folding
 -- source of truth for folding
---vim.o.foldmethod = "expr"
---vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
----- avoid taking up room with an extra column
---vim.o.foldcolumn = "0"
----- helps with navigating a large file as not all the contents will be expanded initially.
---vim.o.foldlevel = 99
---vim.o.foldlevelstart = 1
----- this limits how deeply code gets folded
---vim.o.foldnestmax = 4
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- avoid taking up room with an extra column
+vim.o.foldcolumn = "0"
+-- helps with navigating a large file as not all the contents will be expanded initially.
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 1
+-- this limits how deeply code gets folded
+vim.o.foldnestmax = 4
