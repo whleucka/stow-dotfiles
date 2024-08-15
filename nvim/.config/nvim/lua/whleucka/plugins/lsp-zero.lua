@@ -15,10 +15,6 @@ return {
 		cmd = "Mason",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
-			"mfussenegger/nvim-dap",
-			"rcarriga/nvim-dap-ui",
-			"jay-babu/mason-nvim-dap.nvim",
-			"theHamsta/nvim-dap-virtual-text"
 		},
 		config = function()
 			ensure_installed = {'codelldb'},
@@ -29,67 +25,6 @@ return {
 					height = 0.9,
 				},
 			})
-			require("mason-nvim-dap").setup({
-				-- Makes a best effort to setup the various debuggers with
-				-- reasonable debug configurations
-				automatic_setup = true,
-
-				-- You can provide additional configuration to the handlers,
-				-- see mason-nvim-dap README for more information
-				handlers = {
-					php = function(config)
-						config.configurations = {
-							{
-								type = "php",
-								request = "launch",
-								name = "Listen for Xdebug",
-								localSourceRoot = vim.fn.expand("%:p:h") .. "/",
-								port = 9003,
-								log = true,
-							},
-						}
-						require('mason-nvim-dap').default_setup(config) -- don't forget this!
-					end,
-					codelldb = function(config)
-						config.adapters = {
-							type = 'server',
-							port = "${port}",
-							executable = {
-								command = 'codelldb',
-								args = {"--port", "${port}"},
-							}
-						}
-						config.configurations = {
-							{
-								name = "Launch file",
-								type = "codelldb",
-								request = "launch",
-								program = function()
-									return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-								end,
-								cwd = '${workspaceFolder}',
-								stopOnEntry = false,
-								args = {},
-							},
-						}
-						require('mason-nvim-dap').default_setup(config) -- don't forget this!
-					end,
-					python = function(config)
-						config.configurations = {
-							{
-								type = 'python',
-								request = 'launch',
-								name = "Python",
-								program = "${file}",
-								command = "/usr/bin/python3",
-							},
-						}
-						require('mason-nvim-dap').default_setup(config) -- don't forget this!
-					end
-				},
-			})
-			require("dapui").setup()
-			require("nvim-dap-virtual-text").setup()
 		end,
 		keys = {
 			{ "<leader>m", "<cmd>Mason<cr>", desc = "Mason" },

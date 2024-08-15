@@ -197,16 +197,16 @@ bindsym Ctrl+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
 # Window Key Bindings
 #########################################################################################
 # Move focus
-bindsym $mod+h exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus left
-bindsym $mod+j exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus down
-bindsym $mod+k exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus up
-bindsym $mod+l exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # Resizing windows (just use $mod+r to set resize mode instead)
-bindsym $mod+Shift+Right  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink width  5 10 5
-bindsym $mod+Shift+Down  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink height 5 10 5
-bindsym $mod+Shift+Up    exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   height 5 10 5
-bindsym $mod+Shift+Left exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   width  5 10 5
+bindsym $mod+Shift+Right resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+Left resize grow width 10 px or 10 ppt
 
 # Move focused window
 bindsym $mod+Shift+h move left
@@ -283,16 +283,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym l resize shrink width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Left resize grow width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Right resize shrink width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
