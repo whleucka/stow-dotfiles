@@ -48,13 +48,17 @@ vim.g.loaded_perl_provider = 0
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- Folding
--- source of truth for folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- avoid taking up room with an extra column
-vim.o.foldcolumn = "0"
--- helps with navigating a large file as not all the contents will be expanded initially.
-vim.o.foldlevel = 0
-vim.o.foldlevelstart = 1
--- this limits how deeply code gets folded
-vim.o.foldnestmax = 4
+-- Use Tree-sitter for folds
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Start with folds closed for all function-like constructs (e.g., class methods)
+vim.opt.foldlevelstart = 99  -- Open all folds by default
+vim.opt.foldminlines = 1     -- Minimum lines required for a fold to be created
+vim.opt.foldnestmax = 3      -- Maximum nested folds (adjust as needed)
+
+-- Optional: Keep fold text concise
+vim.opt.foldtext = [[substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g') . '...' . trim(getline(v:foldend))]]
+
+-- Enable folding
+vim.opt.foldenable = true
