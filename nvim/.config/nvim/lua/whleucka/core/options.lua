@@ -52,7 +52,7 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-vim.o.foldlevelstart = 0   -- Close all folds by default
+vim.o.foldlevelstart = 1   -- Close all folds by default
 vim.o.foldminlines = 1     -- Minimum lines required for a fold to be created
 vim.o.foldnestmax = 3      -- Maximum nested folds (adjust as needed)
 
