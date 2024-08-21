@@ -41,13 +41,13 @@ stow-update() {
 
     # Check if the file exists and is older than 1 day
     if [ ! -f "nvim-linux64.tar.gz" ] || [ "$(find nvim-linux64.tar.gz -mtime +0)" ]; then
-        printf "Downloading new nightly build of neovim\n"
+        printf "Downloading latest release of neovim\n"
         rm -rf nvim-linux64
         rm -rf nvim-linux64.tar.gz
-        wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+        wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
         tar -xvzf nvim-linux64.tar.gz
     else
-        printf "Nightly build of neovim is up-to-date\n"
+        printf "Neovim is up-to-date\n"
     fi
 
     stow_dir=$HOME/stow-dotfiles
