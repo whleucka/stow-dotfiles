@@ -165,7 +165,7 @@ return {
 			lsp_zero.extend_lspconfig()
 
 			-- Inlay hints
-			lsp.inlay_hint.enable()
+			--lsp.inlay_hint.enable()
 
 			lsp_zero.on_attach(function(client, bufnr)
 

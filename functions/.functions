@@ -44,7 +44,7 @@ stow-update() {
         printf "Downloading latest release of neovim\n"
         rm -rf nvim-linux64
         rm -rf nvim-linux64.tar.gz
-        wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+        wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
         tar -xvzf nvim-linux64.tar.gz
     else
         printf "Neovim is up-to-date\n"
