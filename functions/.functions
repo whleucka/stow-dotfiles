@@ -31,20 +31,22 @@ what() {
 
 stow-update() {
     current=$(pwd)
+    build=${1:-nightly}
 
     printf "One moment...\n\n"
     sleep 1
 
-    printf "Fetching nightly build of neovim if necessary\n"
+    printf "Fetching neovim if necessary\n"
     mkdir -p ~/.neovim
     cd ~/.neovim
 
     # Check if the file exists and is older than 1 day
     if [ ! -f "nvim-linux64.tar.gz" ] || [ "$(find nvim-linux64.tar.gz -mtime +0)" ]; then
-        printf "Downloading latest release of neovim\n"
+        printf "Downloading neovim...\n"
+        sleep 1
         rm -rf nvim-linux64
         rm -rf nvim-linux64.tar.gz
-        wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
+        wget "https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
         tar -xvzf nvim-linux64.tar.gz
     else
         printf "Neovim is up-to-date\n"
@@ -75,4 +77,5 @@ stow-update() {
     fi
 
     cd $current
+    zsh
 }
