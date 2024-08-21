@@ -29,7 +29,7 @@ what() {
     curl cheat.sh/$1;
 }
 
-stow-update() {
+nvim-update() {
     current=$(pwd)
     build=${1:-nightly}
 
