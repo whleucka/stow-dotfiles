@@ -1,6 +1,9 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.editor.fzf"
+    "lazyvim.plugins.extras.editor.fzf",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.php",
+    "lazyvim.plugins.extras.lang.rust"
   ],
   "news": {
     "NEWS.md": "6520"
