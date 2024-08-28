@@ -21,3 +21,5 @@ focusmap("l")
 
 map("n", "<leader>ws", "<ESC>")
 map("n", "<leader>wv", "<ESC>")
+
+map("n", "<leader>w", "<cmd>update<cr>", { desc = "Update (save) buffer" })
