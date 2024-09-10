@@ -1,1 +1,1 @@
-return { "stevearc/conform.nvim", enabled = false }
+return { "conform.nvim", enabled = false }

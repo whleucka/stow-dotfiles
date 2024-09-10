@@ -1,1 +1,1 @@
-return { "nvim-telescope/telescope.nvim", enabled = false }
+return { "telescope.nvim", enabled = false }
