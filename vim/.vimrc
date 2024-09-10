@@ -121,7 +121,7 @@ set cmdheight=1
 let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
 
 
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 
 " Mappings
 map Q <nop>
