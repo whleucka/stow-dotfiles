@@ -118,7 +118,7 @@ colorscheme catppuccin_mocha
 " Status Bar
 set laststatus=2
 set cmdheight=1
-let g:lightline = {'colorscheme': 'catppuccin_macchiato'}
+let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 
 
 "hi Normal guibg=NONE ctermbg=NONE
