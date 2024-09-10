@@ -113,7 +113,7 @@ set t_Co=256
 "let g:tokyonight_enable_italic = 1
 "let g:tokyonight_transparent_background = 1
 "colorscheme tokyonight
-colorscheme catppuccin_macchiato
+colorscheme catppuccin_mocha
 
 " Status Bar
 set laststatus=2
