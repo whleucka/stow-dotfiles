@@ -79,3 +79,38 @@ nvim-update() {
     cd $current
     zsh
 }
+
+backup_drive() {
+  # Check if both source and target are provided
+  if [[ $# -ne 2 ]]; then
+    echo "Usage: backup_drive <source_device> <target_image>"
+    return 1
+  fi
+
+  # Define the source and target from the arguments
+  local source="$1"
+  local target="$2"
+
+  # Set the log file path in /var/log
+  local logfile="/var/log/backup_drive.log"
+
+  # Check if the source device exists
+  if [[ ! -e "$source" ]]; then
+    echo "Error: Source device $source does not exist" | tee -a $logfile
+    return 1
+  fi
+
+  # Start the backup process
+  echo "Starting backup of $source to $target at $(date)" | sudo tee -a $logfile
+
+  # Create the backup using dd
+  sudo dd if="$source" of="$target" bs=4M status=progress conv=noerror,sync
+
+  # Check if the dd command was successful
+  if [[ $? -eq 0 ]]; then
+    echo "Backup completed successfully at $(date)" | sudo tee -a $logfile
+  else
+    echo "Backup failed at $(date)" | sudo tee -a $logfile
+    return 1
+  fi
+}
