@@ -118,7 +118,7 @@ backup_drive() {
 backup_rsync() {
   # Check if both source and target are provided
   if [[ $# -ne 2 ]]; then
-    echo "Usage: backup_rsync <source_directory> <target_tar_file>"
+    echo "Usage: backup_rsync <source_directory_or_file> <remote_target_tar_file>"
     return 1
   fi
 
@@ -126,43 +126,53 @@ backup_rsync() {
   local source="$1"
   local target="$2"
 
+  # Get the current date in YYYY-MM-DD format
+  local current_date=$(date +'%Y-%m-%d')
+
   # Get the log file path in /var/log
   local logfile="/var/log/rsync_backup.log"
 
-  # Ensure the target ends with .tar
-  if [[ "$target" != *.tar ]]; then
-    echo "Error: Target file must end with .tar" | sudo tee -a $logfile
+  # Ensure the target ends with .tar.gz
+  if [[ "$target" != *.tar.gz ]]; then
+    echo "Error: Target file must end with .tar.gz" | sudo tee -a $logfile
     return 1
   fi
+
+  # Create a temporary tarball
+  local temp_tarball="/tmp/backup_${current_date}.tar.gz"
 
   # Start the backup process
-  echo "Starting rsync backup of $source to a temporary directory at $(date)" | sudo tee -a $logfile
+  echo "Creating tarball of $source at $(date)" | sudo tee -a $logfile
 
-  # Create a temporary directory to store the backup contents
-  local temp_dir=$(mktemp -d)
+  # Create the tarball
+  tar -czvf "$temp_tarball" -C "$(dirname "$source")" "$(basename "$source")"
 
-  # Perform the rsync backup to the temporary directory
-  rsync -avh --progress "$source" "$temp_dir"
+  # Check if tar was successful
+  if [[ $? -ne 0 ]]; then
+    echo "Tar creation failed at $(date)" | sudo tee -a $logfile
+    return 1
+  fi
+
+  # Transfer the tarball to the remote server using rsync
+  echo "Transferring $temp_tarball to $target at $(date)" | sudo tee -a $logfile
+  rsync -avh --progress "$temp_tarball" "$target"
 
   # Check if rsync was successful
-  if [[ $? -ne 0 ]]; then
-    echo "Rsync failed at $(date)" | sudo tee -a $logfile
-    rm -rf "$temp_dir"
+  if [[ $? -eq 0 ]]; then
+    echo "Backup completed successfully and transferred to $target at $(date)" | sudo tee -a $logfile
+  else
+    echo "Backup transfer failed at $(date)" | sudo tee -a $logfile
     return 1
   fi
 
-  # Create the tarball from the temporary directory
-  echo "Creating tarball $target from temporary directory..." | sudo tee -a $logfile
-  tar -cvf "$target" -C "$temp_dir" .
+  # Clean up the temporary tarball
+  rm -f "$temp_tarball"
 
-  # Clean up the temporary directory
-  rm -rf "$temp_dir"
-
-  # Check if the tar command was successful
+  # Check if cleanup was successful
   if [[ $? -eq 0 ]]; then
-    echo "Backup completed successfully and saved to $target at $(date)" | sudo tee -a $logfile
+    echo "Temporary tarball removed successfully at $(date)" | sudo tee -a $logfile
   else
-    echo "Backup failed during tar creation at $(date)" | sudo tee -a $logfile
-    return 1
+    echo "Failed to remove temporary tarball at $(date)" | sudo tee -a $logfile
   fi
 }
+
