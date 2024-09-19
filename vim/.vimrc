@@ -103,7 +103,7 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
-set mouse=
+set mouse=a
 
 " Color scheme (terminal)
 set t_Co=256
