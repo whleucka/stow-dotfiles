@@ -80,6 +80,7 @@ nvim-update() {
     zsh
 }
 
+# Backup a drive to a target
 backup_drive() {
   # Check if both source and target are provided
   if [[ $# -ne 2 ]]; then
@@ -115,6 +116,7 @@ backup_drive() {
   fi
 }
 
+# Backup a directory to a target
 backup_rsync() {
   # Check if both source and target are provided
   if [[ $# -ne 2 ]]; then
