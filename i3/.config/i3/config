@@ -86,7 +86,7 @@ exec --no-startup-id xset r rate 200 70
 # Panel
 exec --no-startup-id plank
 # xmas!
-exec --no-startup-id xsnow --snowflakes 500 -nowind
+exec --no-startup-id xsnow -snowflakes 500 -nowind
 
 
 #########################################################################################
