@@ -85,6 +85,8 @@ exec kitty bpytop
 exec --no-startup-id xset r rate 200 70
 # Panel
 exec --no-startup-id plank
+# xmas!
+exec --no-startup-id xsnow --snowflakes 1000 --wind 1
 
 
 #########################################################################################
