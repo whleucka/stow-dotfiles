@@ -20,8 +20,10 @@ focusmap("j")
 focusmap("k")
 focusmap("l")
 
-map("n", "<leader>ws", "<ESC>")
-map("n", "<leader>wv", "<ESC>")
+map("n", "<c-p>", function() require('fzf-lua').git_files() end, { desc = "Open recent files" })
+
+map("n", "<leader>ws", "<nop>")
+map("n", "<leader>wv", "<nop>")
 
 map("n", "<leader>w", "<cmd>update<cr>", { desc = "Update (save) buffer" })
 
