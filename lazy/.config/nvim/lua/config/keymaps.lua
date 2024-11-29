@@ -25,7 +25,7 @@ map("n", "<leader>wv", "<ESC>")
 
 map("n", "<leader>w", "<cmd>update<cr>", { desc = "Update (save) buffer" })
 
-map("n", "<leader>gs", "<cmd>Neogit<cr>", { desc = "Neogit" })
+map("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Neogit" })
 
 map("n", "<leader>tr", function() require("neotest").run.run() end, { desc = "Run the nearest test" })
 map("n", "<leader>tS", function() require("neotest").run.stop() end, { desc = "Stop the nearest test" })
