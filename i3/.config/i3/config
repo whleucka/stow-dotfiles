@@ -85,8 +85,9 @@ exec kitty bpytop
 exec --no-startup-id xset r rate 200 70
 # Panel
 exec --no-startup-id plank
+
 # xmas!
-exec --no-startup-id sh -c "sleep 3 && xsnow -snowflakes 100 -nowind -notrees -nosanta -norudolf"
+#exec --no-startup-id sh -c "sleep 3 && xsnow -snowflakes 100 -nowind -notrees -nosanta -norudolf"
 
 
 #########################################################################################
