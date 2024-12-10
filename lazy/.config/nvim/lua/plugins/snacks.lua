@@ -8,7 +8,7 @@ return {
         zen = { enabled = true },
         bigfile = { enabled = true },
         dashboard = { enabled = true },
-        indent = { enabled = true },
+        indent = { enabled = false },
         input = { enabled = true },
         notifier = {
             enabled = true,
