@@ -72,7 +72,7 @@ exec --no-startup-id nm-applet
 # Bluetooth
 exec --no-startup-id blueberry-tray
 # Expressvpn
-exec --no-startup-id sleep 4 && expressvpn-gui-gtk
+#exec --no-startup-id sleep 4 && expressvpn-gui-gtk
 # For transparent backgrounds
 exec --no-startup-id picom -b --backend glx --config ~/.config/picom/picom.conf
 # Keyring
