@@ -14,5 +14,14 @@ return {
                 require("neotest-phpunit")
             },
         })
-    end
+    end,
+    keys = {
+        { "<leader>tr", function() require("neotest").run.run() end, desc = "Run the nearest test" },
+        { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop the nearest test" },
+        { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach the nearest test" },
+        { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run the current file" },
+        { "<leader>tt", function() require("neotest").run.run({ suite = true }) end, desc = "Run the test suite" },
+        { "<leader>to", function() require("neotest").output_panel.toggle() end, desc = "Toggle the output panel" },
+        { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle the test summary" },
+    },
 }
