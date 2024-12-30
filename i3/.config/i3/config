@@ -83,7 +83,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec kitty bpytop
 # Keyboard repeat rate
 exec --no-startup-id xset r rate 200 70
-# Panel
+# Panel (requires .plank_toggle)
+exec --no-startup-id touch ~/.plank_toggle
 exec --no-startup-id plank
 
 # xmas!
