@@ -24,5 +24,3 @@ map("n", "<c-p>", function() require('fzf-lua').git_files() end, { desc = "Open 
 
 map("n", "<leader>ws", "<nop>")
 map("n", "<leader>wv", "<nop>")
-
-map("n", "<leader>w", "<cmd>update<cr>", { desc = "Update (save) buffer" })
