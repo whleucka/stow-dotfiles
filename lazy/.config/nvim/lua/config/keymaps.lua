@@ -8,6 +8,9 @@ map("n", "q", "<nop>", { desc = "Nothing" })
 map("i", "jk", "<C-c>", { desc = "Exit insert mode" })
 map("i", "kj", "<C-c>", { desc = "Exit insert mode" })
 
+-- Save / update
+map("n", "<leader>w", ":update<cr>", { desc = "Update" })
+
 -- Focus
 local focusmap = function(direction)
     map("n", "<C-" .. direction .. ">", function()
