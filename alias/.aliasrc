@@ -12,7 +12,7 @@ fi
 
 if command -v docker > /dev/null; then
     alias dcps="docker compose ps"
-    alias dclogs="docker compose logs"
+    alias dclogs="docker compose logs -n 100 -f"
     alias dcbuild="docker compose build"
     alias dcexec="docker exec -it"
     alias dcmysql="docker exec -it mysql mysql -u root -p"
