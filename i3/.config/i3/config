@@ -104,7 +104,7 @@ floating_modifier $mod
 #########################################################################################
 # Window Gaps
 #########################################################################################
-gaps inner 15
+gaps inner 20
 gaps outer 0
 gaps top 0
 gaps bottom 0
@@ -180,11 +180,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Screenshots
 # Screen to ~/Pictures
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
+bindsym Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
 # Screen to CLIPBOARD
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 # Selection to ~/Pictures
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date +'%s').png"
+bindsym Shift+Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim --select "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
 # Selection TO CLIPBOARD
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
