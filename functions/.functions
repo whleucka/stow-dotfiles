@@ -30,45 +30,67 @@ what() {
 }
 
 nvim-update() {
-    current=$(pwd)
     build=${1:-nightly}
+    current=$(pwd)
+    nvim_version=nightly
+    nvim_dir=$HOME/.neovim
+    stow_dir=$HOME/stow-dotfiles
+    stow_dir_hidden=$HOME/.stow-dotfiles
 
     printf "One moment...\n\n"
     sleep 1
 
-    printf "Fetching neovim if necessary\n"
-    mkdir -p ~/.neovim
-    cd ~/.neovim
+    # Check if neovim is installed
+    if command -v nvim > /dev/null; then
+        nvim_version=$(nvim -v | cut -d' ' -f2 | head -n1)
+        if [[ "$nvim_version" != "$build" ]]; then
+            printf "You requested a different Neovim version (%s)\n\nThe current version (%s) will be replaced.\n\n" "$build" "$nvim_version"
+            rm -rf "$nvim_dir"
+        else
+            printf "You already have the current Neovim version: %s\n\n" "$nvim_version"
+            exit 0
+        fi
+    else
+        printf "A new version of Neovim will be installed %s\n\n" "$build"
+    fi
+
+    # Make the neovim directory
+    printf "Fetching neovim if necessary...\n\n"
+    mkdir -p "$nvim_dir"
+    cd "$nvim_dir"
+
 
     # Check if the file exists and is older than 1 day
     if [ ! -f "nvim-linux64.tar.gz" ] || [ "$(find nvim-linux64.tar.gz -mtime +0)" ]; then
-        printf "Downloading neovim...\n"
+        printf "Downloading Neovim...\n"
         sleep 1
         rm -rf nvim-linux64
         rm -rf nvim-linux64.tar.gz
         wget "https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
-        tar -xvzf nvim-linux64.tar.gz
+        tar -xzf nvim-linux64.tar.gz
     else
-        printf "Neovim is up-to-date\n"
+        printf "Neovim is up-to-date\n\n"
     fi
 
-    stow_dir=$HOME/stow-dotfiles
-    stow_dir_hidden=$HOME/.stow-dotfiles
-
+    # Update dotfiles
     printf "Pulling stow-dotfiles...\n\n"
     if [ -d "$stow_dir" ]; then
         cd $stow_dir
-        git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
+        if [ -d "$stow_dir/nvim/.config/nvim/lazy-lock.json" ]; then
+            git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
+        fi
     elif [ -d "$stow_dir_hidden" ]; then
         cd $stow_dir_hidden
-        git checkout ~/.stow-dotfiles/nvim/.config/nvim/lazy-lock.json
+        if [ -d "$stow_dir_hidden/nvim/.config/nvim/lazy-lock.json" ]; then
+            git checkout ~/.stow-dotfiles/nvim/.config/nvim/lazy-lock.json
+        fi
     fi
 
+    # Update neovim plugins
     pull_output=$(git pull -v)
     printf "%s\n" "$pull_output"
-
     if [[ "$pull_output" != *"Already up to date."* ]]; then
-        printf "\n\nUpdating neovim...\n\n"
+        printf "\n\nUpdating neovim plugins...\n\n"
         nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
         printf "\n\nUpdate complete!\n"
         zsh
@@ -77,7 +99,6 @@ nvim-update() {
     fi
 
     cd $current
-    zsh
 }
 
 # Backup a drive to a target
