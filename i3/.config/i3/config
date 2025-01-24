@@ -86,6 +86,8 @@ exec --no-startup-id xset r rate 200 70
 # Panel (requires .plank_toggle)
 exec --no-startup-id touch ~/.plank_toggle
 exec --no-startup-id plank
+# xscreensaver
+exec --no-startup-id xscreensaver
 
 # xmas!
 #exec --no-startup-id sh -c "sleep 3 && xsnow -snowflakes 100 -nowind -notrees -nosanta -norudolf"
