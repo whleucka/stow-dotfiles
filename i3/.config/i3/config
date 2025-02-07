@@ -134,7 +134,6 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="pavucontrol"] floating enable
 for_window [title="Bitwarden - Google Chrome"] floating enable
 for_window [title="Crafy"] floating enable
-for_window [class="Google-chrome"] floating disable
 
 
 #########################################################################################
