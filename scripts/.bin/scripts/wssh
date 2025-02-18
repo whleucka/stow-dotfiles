@@ -11,7 +11,8 @@ hosts = {
     "chainlogic": {"mysql": "chainlogic_cms"},
     "hilt-cms": {"mysql": "cms"},
     "getcoin": {"mysql": "cms"},
-    "margo": {"mysql": "cms"},
+    # "margo": {"mysql": "cms"},
+    "americabitcoin": {"mysql": "cms"},
 }
 HOST = ""
 NAME = ""

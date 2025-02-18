@@ -2,7 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local map = vim.keymap.set
-map("n", "q", "<nop>", { desc = "Nothing" })
 
 -- Exit insert mode
 map("i", "jk", "<C-c>", { desc = "Exit insert mode" })
@@ -11,19 +10,14 @@ map("i", "kj", "<C-c>", { desc = "Exit insert mode" })
 -- Save / update
 map("n", "<leader>w", ":update<cr>", { desc = "Update" })
 
--- Focus
-local focusmap = function(direction)
-    map("n", "<C-" .. direction .. ">", function()
-        require("focus").split_command(direction)
-    end, { desc = string.format("Create or move to split (%s)", direction) })
-end
+-- Window navigation
+map("n", "<C-h>", "<C-w>h", { desc = "Move left" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move down" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move up" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move right" })
 
-focusmap("h")
-focusmap("j")
-focusmap("k")
-focusmap("l")
-
+-- File picker
 map("n", "<c-p>", function() require('fzf-lua').git_files() end, { desc = "Open recent files" })
 
-map("n", "<leader>ws", "<nop>")
-map("n", "<leader>wv", "<nop>")
+-- Disable
+map("n", "q", "<nop>")
