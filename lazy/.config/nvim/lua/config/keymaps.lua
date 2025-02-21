@@ -10,11 +10,5 @@ map("i", "kj", "<C-c>", { desc = "Exit insert mode" })
 -- Save / update
 map("n", "<leader>w", ":update<cr>", { desc = "Update" })
 
--- Window navigation
-map("n", "<C-h>", "<C-w>h", { desc = "Move left" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move down" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move up" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move right" })
-
 -- Disable
 map("n", "q", "<nop>")
