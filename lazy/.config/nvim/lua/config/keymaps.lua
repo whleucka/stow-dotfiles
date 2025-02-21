@@ -16,8 +16,5 @@ map("n", "<C-j>", "<C-w>j", { desc = "Move down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move up" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move right" })
 
--- File picker
-map("n", "<c-p>", function() require('fzf-lua').git_files() end, { desc = "Open recent files" })
-
 -- Disable
 map("n", "q", "<nop>")
