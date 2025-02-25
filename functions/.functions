@@ -29,6 +29,10 @@ what() {
     curl cheat.sh/$1;
 }
 
+check-url() {
+    curl -Ifs "$1" > /dev/null
+}
+
 nvim-update() {
     build=${1:-nightly}
     current=$(pwd)
@@ -59,15 +63,36 @@ nvim-update() {
     mkdir -p "$nvim_dir"
     cd "$nvim_dir"
 
+    # Determine correct release url
+    URL1="https://github.com/neovim/neovim/releases/download/$build/nvim-linux-x86_64.tar.gz"
+    URL2="https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
+
+    if check-url "$URL1"; then
+        printf "Download succeeded from primary neovim URL.\n"
+	target=$URL1	
+	directory="nvim-linux-x86_64"
+	filename="$directory.tar.gz"
+    else
+        printf "Primary neovim URL failed, trying fallback...\n"
+        if check-url "$URL2"; then
+            printf "Download succeeded from fallback neovim URL.\n"
+	    target=$URL2
+	    directory="nvim-linux64"
+	    filename="$directory.tar.gz"
+        else
+            printf "Both neovim URLs failed.\n"
+            exit 1
+        fi
+    fi
 
     # Check if the file exists and is older than 1 day
-    if [ ! -f "nvim-linux64.tar.gz" ] || [ "$(find nvim-linux64.tar.gz -mtime +0)" ]; then
+    if [ ! -f "$filename" ] || [ "$(find $filename -mtime +0)" ]; then
         printf "Downloading Neovim...\n"
         sleep 1
-        rm -rf nvim-linux64
-        rm -rf nvim-linux64.tar.gz
-        wget "https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
-        tar -xzf nvim-linux64.tar.gz
+        rm -rf "$directory"
+        rm -rf "$filename"
+        wget "$target"
+        tar -xzf "$filename"
     else
         printf "Neovim is up-to-date\n\n"
     fi
