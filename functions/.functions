@@ -34,96 +34,103 @@ check-url() {
 }
 
 nvim-update() {
-    build=${1:-nightly}
-    current=$(pwd)
-    nvim_version=nightly
-    nvim_dir=$HOME/.neovim
-    stow_dir=$HOME/stow-dotfiles
-    stow_dir_hidden=$HOME/.stow-dotfiles
+    local build=${1:-nightly}
+    local current=$(pwd)
+    local nvim_dir=$HOME/.neovim
+    local stow_dir=$HOME/stow-dotfiles
+    local stow_dir_hidden=$HOME/.stow-dotfiles
+    local directory=""
+    local filename=""
+    local target=""
 
-    printf "One moment...\n\n"
-    sleep 1
-
-    # Check if neovim is installed
+    echo "One moment..."
+    
+    # Check if neovim is installed and compare versions
     if command -v nvim > /dev/null; then
-        nvim_version=$(nvim -v | cut -d' ' -f2 | head -n1)
+        local nvim_version=$(nvim -v | cut -d' ' -f2 | head -n1)
         if [[ "$nvim_version" != "$build" ]]; then
-            printf "You requested a different Neovim version (%s)\n\nThe current version (%s) will be replaced.\n\n" "$build" "$nvim_version"
+            echo "You requested a different Neovim version ($build)"
+            echo "The current version ($nvim_version) will be replaced."
             rm -rf "$nvim_dir"
         else
-            printf "You already have the current Neovim version: %s\n\n" "$nvim_version"
-            exit 0
+            echo "You already have the current Neovim version: $nvim_version"
+            return 0
         fi
     else
-        printf "A new version of Neovim will be installed %s\n\n" "$build"
+        echo "A new version of Neovim will be installed: $build"
     fi
 
     # Make the neovim directory
-    printf "Fetching neovim if necessary...\n\n"
+    echo "Fetching neovim if necessary..."
     mkdir -p "$nvim_dir"
-    cd "$nvim_dir"
+    cd "$nvim_dir" || { echo "Failed to change directory to $nvim_dir"; return 1; }
 
-    # Determine correct release url
-    URL1="https://github.com/neovim/neovim/releases/download/$build/nvim-linux-x86_64.tar.gz"
-    URL2="https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
-
+    # Determine correct release URL
+    local URL1="https://github.com/neovim/neovim/releases/download/$build/nvim-linux-x86_64.tar.gz"
+    local URL2="https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
+    
     if curl -Ifs "$URL1" > /dev/null; then
-        printf "Download succeeded from primary neovim URL.\n"
-        target=$URL1	
+        echo "Download succeeded from primary neovim URL."
+        target=$URL1
         directory="nvim-linux-x86_64"
-        filename="$directory.tar.gz"
+    elif curl -Ifs "$URL2" > /dev/null; then
+        echo "Download succeeded from fallback neovim URL."
+        target=$URL2
+        directory="nvim-linux64"
     else
-        printf "Primary neovim URL failed, trying fallback...\n"
-        if curl -Ifs "$URL2" > /dev/null; then
-            printf "Download succeeded from fallback neovim URL.\n"
-            target=$URL2
-            directory="nvim-linux64"
-            filename="$directory.tar.gz"
-        else
-            printf "Both neovim URLs failed.\n"
-            exit 1
-        fi
+        echo "Both neovim URLs failed."
+        return 1
     fi
+    
+    filename="$directory.tar.gz"
 
     # Check if the file exists and is older than 1 day
-    if [ ! -f "$filename" ] || [ "$(find $filename -mtime +0)" ]; then
-        printf "Downloading Neovim...\n"
-        sleep 1
-        rm -rf "$directory"
-        rm -rf "$filename"
-        curl -LO "$target"
-        tar -xzf "$filename"
+    if [ ! -f "$filename" ] || [ "$(find "$filename" -mtime +0 2>/dev/null)" ]; then
+        echo "Downloading Neovim..."
+        rm -rf "$directory" "$filename"
+        curl -LO "$target" || { echo "Download failed"; return 1; }
+        tar -xzf "$filename" || { echo "Extraction failed"; return 1; }
     else
-        printf "Neovim is up-to-date\n\n"
+        echo "Neovim is up-to-date"
     fi
 
-    # Update dotfiles
-    printf "Pulling stow-dotfiles...\n\n"
+    # Update dotfiles from the appropriate directory
+    echo "Pulling stow-dotfiles..."
+    
+    local dotfiles_dir=""
     if [ -d "$stow_dir" ]; then
-        cd $stow_dir
-        if [ -d "$stow_dir/nvim/.config/nvim/lazy-lock.json" ]; then
-            git checkout ~/stow-dotfiles/nvim/.config/nvim/lazy-lock.json
-        fi
+        dotfiles_dir="$stow_dir"
     elif [ -d "$stow_dir_hidden" ]; then
-        cd $stow_dir_hidden
-        if [ -d "$stow_dir_hidden/nvim/.config/nvim/lazy-lock.json" ]; then
-            git checkout ~/.stow-dotfiles/nvim/.config/nvim/lazy-lock.json
-        fi
+        dotfiles_dir="$stow_dir_hidden"
+    else
+        echo "Stow dotfiles directory not found"
+        cd "$current" || return 1
+        return 1
+    fi
+    
+    cd "$dotfiles_dir" || { echo "Failed to change directory to $dotfiles_dir"; return 1; }
+    
+    # Check and reset lazy-lock.json if it exists
+    local lazy_lock="$dotfiles_dir/nvim/.config/nvim/lazy-lock.json"
+    if [ -f "$lazy_lock" ]; then
+        git checkout "$lazy_lock"
     fi
 
     # Update neovim plugins
+    local pull_output
     pull_output=$(git pull -v)
-    printf "%s\n" "$pull_output"
+    echo "$pull_output"
+    
     if [[ "$pull_output" != *"Already up to date."* ]]; then
-        printf "\n\nUpdating neovim plugins...\n\n"
+        echo "Updating neovim plugins..."
         nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
-        printf "\n\nUpdate complete!\n"
-        zsh
+        echo "Update complete!"
+        exec zsh
     else
-        printf "\n\nAll good, no updates are necessary!\n"
+        echo "All good, no updates are necessary!"
     fi
-
-    cd $current
+    
+    cd "$current" || return 1
 }
 
 # Backup a drive to a target
