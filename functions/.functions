@@ -29,6 +29,21 @@ what() {
     curl cheat.sh/$1;
 }
 
+killer() {
+  local selection
+  
+  # List processes with PID and command, then pass to fzf
+  selection=$(ps -eo pid,user,command --no-headers | fzf --height=40% --reverse --prompt="Select process to kill: ")
+  
+  if [[ -n "$selection" ]]; then
+    local pid=$(awk '{print $1}' <<< "$selection")
+    echo "Killing process: $selection"
+    kill -9 "$pid"
+  else
+    echo "No process selected."
+  fi
+}
+
 check-url() {
     curl -Ifs "$1" > /dev/null
 }
@@ -134,6 +149,7 @@ nvim-update() {
 }
 
 # Backup a drive to a target
+# example) backup_drive /dev/sda /mnt/drive/backup.tar.gz
 backup_drive() {
   # Check if both source and target are provided
   if [[ $# -ne 2 ]]; then
@@ -170,6 +186,7 @@ backup_drive() {
 }
 
 # Backup a directory to a target
+# example) backup_rsync $HOME/.ssh somewhere:/mnt/drive/backup.tar.gz
 backup_rsync() {
   # Check if both source and target are provided
   if [[ $# -ne 2 ]]; then
