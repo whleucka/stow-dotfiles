@@ -7,8 +7,5 @@ local map = vim.keymap.set
 map("i", "jk", "<C-c>", { desc = "Exit insert mode" })
 map("i", "kj", "<C-c>", { desc = "Exit insert mode" })
 
--- Save / update
-map("n", "<leader>w", ":update<cr>", { desc = "Update" })
-
 -- Disable
 map("n", "q", "<nop>")
