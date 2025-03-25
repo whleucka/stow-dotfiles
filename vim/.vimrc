@@ -12,8 +12,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-"Plug 'morhetz/gruvbox'
-"Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'itchyny/lightline.vim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
@@ -108,11 +106,6 @@ set mouse=a
 " Color scheme (terminal)
 set t_Co=256
 
-"colorscheme gruvbox
-"let g:tokyonight_style = 'storm' " available: night, storm
-"let g:tokyonight_enable_italic = 1
-"let g:tokyonight_transparent_background = 1
-"colorscheme tokyonight
 colorscheme catppuccin_mocha
 
 " Status Bar
