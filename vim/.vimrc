@@ -29,6 +29,8 @@ filetype plugin indent on
 
 let mapleader = " "
 
+set nowrap
+
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
@@ -151,6 +153,10 @@ vnoremap < <gv
 xnoremap < <gv
 vnoremap > >gv
 xnoremap > >gv
+
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html       setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python     setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " Clipboard
 if (!has('nvim') && !has('clipboard_working'))
