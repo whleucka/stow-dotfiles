@@ -119,8 +119,8 @@ let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 " Mappings
 map Q <nop>
 nnoremap <ESC><ESC> :noh<CR>
-nnoremap <leader>w :update!<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <C-s> :w!<CR>
+nnoremap <leader>qq :q!<CR>
 nnoremap <leader>, ^
 nnoremap <leader>. $
 nnoremap <leader>1 1gt
