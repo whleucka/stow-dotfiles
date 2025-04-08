@@ -5,7 +5,18 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = {
+        enabled = true,
+        preset = {
+            header = [[
+ __  __     __         ______     __  __     ______     __  __     ______   
+/\ \_\ \   /\ \       /\  ___\   /\ \/\ \   /\  ___\   /\ \/ /    /\  __ \  
+\ \  __ \  \ \ \____  \ \  __\   \ \ \_\ \  \ \ \____  \ \  _"-.  \ \  __ \ 
+ \ \_\ \_\  \ \_____\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_\ \_\
+  \/_/\/_/   \/_____/   \/_____/   \/_____/   \/_____/   \/_/\/_/   \/_/\/_/
+            ]]
+        }
+    },
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
