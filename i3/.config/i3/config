@@ -209,10 +209,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # Resizing windows (just use $mod+r to set resize mode instead)
-bindsym $mod+Shift+Right resize shrink width 10 px or 10 ppt
-bindsym $mod+Shift+Down resize grow height 10 px or 10 ppt
-bindsym $mod+Shift+Up resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+Left resize grow width 10 px or 10 ppt
+bindsym $mod+Right resize shrink width 10 px or 10 ppt
+bindsym $mod+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Left resize grow width 11 px or 10 ppt
 
 # Move focused window
 bindsym $mod+Shift+h move left
@@ -290,14 +290,14 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym h resize grow width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
         bindsym l resize shrink width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize grow width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
         bindsym Right resize shrink width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
