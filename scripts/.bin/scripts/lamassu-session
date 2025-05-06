@@ -11,6 +11,7 @@ hosts = {
     "chainlogic": {"mysql": "chainlogic_cms"},
     "hilt-cms": {"mysql": "cms"},
     "getcoin": {"mysql": "cms"},
+    "americabitcoin": {"mysql": "cms"}
 }
 HOST = ""
 SELECTED_SESSION = ""
