@@ -26,7 +26,7 @@
   "mini.surround": { "branch": "main", "commit": "5aab42fcdcf31fa010f012771eda5631c077840a" },
   "neo-tree.nvim": { "branch": "main", "commit": "71bfdeddc90225e281ce34c378dc1b5914f5018d" },
   "neogit": { "branch": "master", "commit": "8fcbe0db52f52062e447e0e154a4c5a2398c8bab" },
-  "neotest": { "branch": "master", "commit": "6267dcd577aa519c828d2526b05844770d3a2c6a" },
+  "neotest": { "branch": "master", "commit": "f0edc1dafdb04ae51a3863c1c5e4268d7462931b" },
   "neotest-phpunit": { "branch": "main", "commit": "baae8dfa0a3aaacd9f0bb6845d6348f5bcdc48bb" },
   "neotest-python": { "branch": "master", "commit": "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
