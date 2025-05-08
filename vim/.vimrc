@@ -147,7 +147,7 @@ nnoremap <C-l> <C-w>l<CR>
 
 
 " Splits
-nnoremap <leader>| :vs<CR>
+nnoremap <leader>\\ :vs<CR>
 nnoremap <leader>- :sp<CR>
 
 " Fixes
