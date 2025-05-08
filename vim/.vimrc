@@ -23,6 +23,9 @@ syntax on
 
 set termguicolors
 
+" No startup messages
+set shortmess+=I
+
 " For plugins to load correctly
 filetype plugin indent on
 
