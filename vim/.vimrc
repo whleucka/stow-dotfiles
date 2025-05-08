@@ -147,8 +147,8 @@ nnoremap <C-l> <C-w>l<CR>
 
 
 " Splits
-nnoremap <Space>\\ :vs<CR>
-nnoremap <Space>- :sp<CR>
+nnoremap <leader>| :vs<CR>
+nnoremap <leader>- :sp<CR>
 
 " Fixes
 nnoremap j gj
