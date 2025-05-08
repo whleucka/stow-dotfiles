@@ -1,7 +1,6 @@
 " Don't try to be vi compatible
 set nocompatible
 
-
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
@@ -115,17 +114,18 @@ set laststatus=2
 set cmdheight=1
 let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 
-
 "hi Normal guibg=NONE ctermbg=NONE
 
 " Mappings
-map Q <nop>
 nnoremap <ESC><ESC> :noh<CR>
-nnoremap <C-s> :w!<CR>
-inoremap <F3> <c-o>:w<cr>
-nnoremap <leader>qq :q!<CR>
-nnoremap <leader>, ^
-nnoremap <leader>. $
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <C-p> :FZF<CR>
+
+" Quit
+nnoremap <leader>q :q<CR>
+nnoremap <leader>qq :qa<CR>
+
+" Tabs
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
@@ -136,28 +136,31 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 :tablast<CR>
+nnoremap H :tabprev<CR>
+nnoremap L :tabnext<CR>
+
+" Window nav
 nnoremap <leader>h <C-w>h<CR>
 nnoremap <leader>j <C-w>j<CR>
 nnoremap <leader>k <C-w>k<CR>
 nnoremap <leader>l <C-w>l<CR>
+
+
+" Splits
 nnoremap <leader>= :vs<CR>
 nnoremap <leader>- :sp<CR>
-nnoremap <C-p> :FZF<CR>
-nnoremap H :tabprev<CR>
-nnoremap L :tabnext<CR>
+
+" Fixes
 nnoremap j gj
 nnoremap k gk
 imap jk <ESC>
 imap kj <ESC>
 
+" Move text
 vnoremap < <gv
 xnoremap < <gv
 vnoremap > >gv
 xnoremap > >gv
-
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType html       setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType python     setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " Clipboard
 if (!has('nvim') && !has('clipboard_working'))
@@ -178,3 +181,7 @@ if (!has('nvim') && !has('clipboard_working'))
     augroup END
 endif
 
+" Filetype
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html       setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python     setlocal shiftwidth=4 softtabstop=4 expandtab
