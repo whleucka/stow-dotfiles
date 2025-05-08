@@ -140,10 +140,10 @@ nnoremap H :tabprev<CR>
 nnoremap L :tabnext<CR>
 
 " Window nav
-nnoremap <leader>h <C-w>h<CR>
-nnoremap <leader>j <C-w>j<CR>
-nnoremap <leader>k <C-w>k<CR>
-nnoremap <leader>l <C-w>l<CR>
+nnoremap <C-h> <C-w>h<CR>
+nnoremap <C-j> <C-w>j<CR>
+nnoremap <C-k> <C-w>k<CR>
+nnoremap <C-l> <C-w>l<CR>
 
 
 " Splits
