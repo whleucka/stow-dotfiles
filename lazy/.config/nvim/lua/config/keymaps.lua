@@ -6,6 +6,3 @@ local map = vim.keymap.set
 -- Exit insert mode
 map("i", "jk", "<C-c>", { desc = "Exit insert mode" })
 map("i", "kj", "<C-c>", { desc = "Exit insert mode" })
-
--- Disable
-map("n", "q", "<nop>")
