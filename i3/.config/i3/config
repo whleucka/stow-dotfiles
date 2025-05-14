@@ -29,7 +29,7 @@ set $sky       #89dceb
 set $sapphire  #74c7ec
 set $blue      #89b4fa
 set $lavender  #b4befe
-set $active    #364259
+set $active    #d0a3ff
 set $text      #cdd6f4
 set $selection #41455c
 set $subtext1  #bac2de
@@ -46,15 +46,12 @@ set $crust     #11111b
 set $inactive  #21232e
 
 # target                 title          bg              text       indicator       border
-client.focused           $text          $selection      $text      $blue           $selection
-client.focused_inactive  $overlay0      $base           $text      $rosewater      $inactive
-client.unfocused         $overlay0      $base           $text      $rosewater      $inactive
+client.focused           $text          $selection      $text      $blue           $active
+client.focused_inactive  $overlay0      $base           $text      $rosewater      $surface1
+client.unfocused         $overlay0      $base           $text      $rosewater      $surface1
 client.urgent            $peach         $base           $peach     $overlay0       $peach
 client.placeholder       $overlay0      $base           $text      $overlay0       $overlay0
 client.background        $base
-
-# Font for window titles (currently hidden)
-font pango:FiraCode Nerd Font Mono 10
 
 # Wallpaper
 # First run this: betterlockscreen -u ~/.i3
@@ -106,20 +103,20 @@ floating_modifier $mod
 #########################################################################################
 # Window Gaps
 #########################################################################################
-gaps inner 20
+gaps inner 15
 gaps outer 0
 gaps top 0
 gaps bottom 0
-smart_gaps off
+smart_gaps on
 smart_borders on
 
 
 #########################################################################################
 # Window borders
 #########################################################################################
-default_border pixel 2
-default_floating_border pixel 2
-for_window [class="^.*"] border pixel 0
+default_border pixel 3
+default_floating_border pixel 3
+#for_window [class="^.*"] border pixel 0
 
 for_window [window_role="pop-up"] floating enable
 for_window [class="feh"] floating enable
