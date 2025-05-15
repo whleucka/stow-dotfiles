@@ -53,6 +53,9 @@ client.urgent            $peach         $base           $peach     $overlay0    
 client.placeholder       $overlay0      $base           $text      $overlay0       $overlay0
 client.background        $base
 
+# window titles (if supported)
+font pango:UbuntuMono Nerd Font Mono 9
+
 # Wallpaper
 # First run this: betterlockscreen -u ~/.i3
 exec --no-startup-id betterlockscreen -w
@@ -137,7 +140,7 @@ for_window [title="Crafy"] floating enable
 # Misc Key Bindings
 #########################################################################################
 # Dmenu
-bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindcode $mod+40 exec "rofi -modi drun,run -show drun -font 'UbuntuMono Nerd Font 12'"
 # Kill focused window
 bindsym $mod+q kill
 # Kitty (terminal)
