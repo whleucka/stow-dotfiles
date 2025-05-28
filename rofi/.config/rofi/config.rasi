@@ -1,6 +1,6 @@
 configuration{
-    modi: "run,drun,window";
-    font: "Ubuntu 10";
+    modi: "run,drun,emoji:rofimoji";
+    font: "UbuntuMono NerdFont 12";
     icon-theme: "Papirus";
     show-icons: true;
     terminal: "kitty";
@@ -8,10 +8,10 @@ configuration{
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-drun: "   Apps ";
-    display-run: "   Run ";
-    display-window: " 﩯  Window";
-    display-Network: " 󰤨  Network";
+    display-drun: " 😈 Apps ";
+    display-run: " 🚀 Run ";
+    display-filebrowser: " 💻 Browser";
+    display-emoji: " 😼 Emoji";
     sidebar-mode: true;
 }
 @theme "~/.config/rofi/sidebar.rasi"

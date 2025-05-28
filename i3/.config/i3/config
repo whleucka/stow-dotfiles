@@ -140,7 +140,8 @@ for_window [title="Crafy"] floating enable
 # Misc Key Bindings
 #########################################################################################
 # Dmenu
-bindcode $mod+40 exec "rofi -modi drun,run -show drun -font 'UbuntuMono Nerd Font 12'"
+bindcode $mod+40 exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji --selector rofi' -show drun"
+
 # Kill focused window
 bindsym $mod+q kill
 # Kitty (terminal)
@@ -241,9 +242,6 @@ bindsym $mod+p focus parent
 
 # Focus the child container
 bindsym $mod+c focus child
-
-# Emoji
-bindsym $mod+e exec "dmenu-emoji | rofi -dmenu -i -p `Emoji` | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard"
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
