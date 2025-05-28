@@ -140,7 +140,7 @@ for_window [title="Crafy"] floating enable
 # Misc Key Bindings
 #########################################################################################
 # Dmenu
-bindcode $mod+40 exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji --selector rofi' -show drun"
+bindcode $mod+40 exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji -a copy --selector rofi' -show drun"
 
 # Kill focused window
 bindsym $mod+q kill
