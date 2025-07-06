@@ -18,24 +18,6 @@ map("n", "<leader>Y", "ggVGy", opts)
 map("n", "H", ":bprevious<CR>", opts)
 map("n", "L", ":bnext<CR>", opts)
 map("n", "<leader>bd", ":bp | bd #<CR>", opts)
-map("n", "<leader>bl", function()
-    local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-    if #buffers == 0 then
-        vim.notify("No buffers to switch to", vim.log.levels.WARN)
-        return
-    end
-
-    local choices = {}
-    for i, buf in ipairs(buffers) do
-        local name = buf.name ~= "" and vim.fn.fnamemodify(buf.name, ":t") or "[No Name]"
-        table.insert(choices, string.format("%d: %s", i, name))
-    end
-
-    local choice = vim.fn.inputlist(choices)
-    if choice >= 1 and choice <= #buffers then
-        vim.cmd("buffer " .. buffers[choice].bufnr)
-    end
-end, opts)
 
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR>", opts)
