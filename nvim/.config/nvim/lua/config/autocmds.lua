@@ -50,7 +50,6 @@ local function start_insert_if_terminal()
         vim.cmd("startinsert")
     end
 end
-
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
     pattern = "term://*",
     callback = start_insert_if_terminal,
@@ -62,6 +61,9 @@ vim.api.nvim_create_autocmd("FileType", {
         "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw",
     },
     callback = function()
-        vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = true, silent = true, desc = "Close window" })
+        vim.keymap.set("n", "q", function()
+            vim.cmd("nohlsearch")
+            vim.cmd("close")
+        end, { buffer = true, silent = true, desc = "Close window and clear highlights" })
     end,
 })

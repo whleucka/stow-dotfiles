@@ -10,6 +10,7 @@ map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
+map("n", "q", "<nop>", opts)
 
 -- Yank file
 map("n", "<leader>Y", "ggVGy", opts)
@@ -81,6 +82,7 @@ end)
 vim.keymap.set("n", "<leader>s", function()
     local input = vim.fn.input("Search for: ")
     if input == "" then return end
+
     local cmd = { "rg", "--vimgrep", input }
     local output = vim.fn.systemlist(cmd)
 
@@ -95,5 +97,10 @@ vim.keymap.set("n", "<leader>s", function()
         title = "rg: " .. input,
         lines = output,
     })
+
+    -- Highlight search matches in open buffers
+    vim.fn.setreg("/", "\\V" .. input) -- Use very nomagic to match exact string
+    vim.opt.hlsearch = true
+
     vim.cmd("copen")
 end)
