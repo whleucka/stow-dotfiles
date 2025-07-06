@@ -17,22 +17,43 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Bufferline
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
     callback = function()
+        local bt = vim.bo.buftype
         local ft = vim.bo.filetype
-        local exclude = {
-            ["qf"] = true,
-            ["help"] = true,
-            ["lspinfo"] = true,
-            ["netrw"] = true,
+        local exclude_ft = {
+            qf = true,
+            help = true,
+            lspinfo = true,
+            netrw = true,
+        }
+        local exclude_bt = {
+            terminal = true,
         }
 
-        if exclude[ft] or vim.api.nvim_win_get_config(0).relative ~= "" then
+        if exclude_ft[ft] or exclude_bt[bt] or vim.api.nvim_win_get_config(0).relative ~= "" then
             vim.wo.winbar = ""
         else
             vim.wo.winbar = "%{%v:lua.bufferline()%}"
         end
     end,
+})
+vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
+    callback = function()
+        vim.cmd("redrawstatus")
+    end,
+})
+
+-- Enhance term
+local function start_insert_if_terminal()
+    if vim.bo.buftype == "terminal" then
+        vim.cmd("startinsert")
+    end
+end
+
+vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
+    pattern = "term://*",
+    callback = start_insert_if_terminal,
 })
 
 -- Use 'q' to close panels
