@@ -12,7 +12,6 @@ map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
-map("n", "q", "<nop>", opts)
 
 -- Yank file
 map("n", "<leader>Y", "ggVGy", opts)
@@ -40,6 +39,7 @@ map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
 map("t", "jk", [[<C-\><C-n>]], opts)
 map("t", "kj", [[<C-\><C-n>]], opts)
+map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
 
 -- Scrolling
 map("n", "<C-d>", "<C-d>zz")
@@ -63,7 +63,7 @@ map("n", "q]", ":cnext<CR>zz", opts)
 -- map("n", "<leader>e", explorer.toggle_netrw, opts)
 
 -- Search files
-map("n", "<leader>s", explorer.grep_files)
+map("n", "<leader>s", explorer.grep_files, opts)
 
 -- Find files
-map("n", "<leader>f", explorer.find_files)
+map("n", "<leader>f", explorer.find_files, opts)

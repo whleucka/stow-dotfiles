@@ -67,12 +67,12 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
 vim.api.nvim_create_autocmd("FileType", {
   group = "AllHopeIsGone",
   pattern = {
-    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw",
+    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal"
   },
   callback = function()
     vim.keymap.set("n", "q", function()
       vim.cmd("nohlsearch")
       vim.cmd("close")
-    end, { buffer = true, silent = true, desc = "Close window and clear highlights" })
+    end, { buffer = true, silent = true })
   end,
 })

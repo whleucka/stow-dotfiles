@@ -59,7 +59,10 @@ function M.grep_files()
 end
 
 function M.find_files()
-  local input = vim.fn.input("Find files: ")
+  local input = vim.fn.input({
+    prompt = "Find files: ",
+    completion = "file"
+  })
   if input == "" then return end
 
   local files_cmd
@@ -72,7 +75,13 @@ function M.find_files()
       vim.notify("Missing required commands: ripgrep or find+grep", vim.log.levels.ERROR)
       return
     end
-    files_cmd = string.format([[find . -type f -not -path "*/.git/*" | grep -F %q]], input)
+    files_cmd = string.format([[
+      find . -type f \
+        -not -path "*/.git/*" \
+        -not -path "*/node_modules/*" \
+        -not -path "*/vendor/*" \
+      | grep -F %q
+    ]], input)
   end
 
   local output = vim.fn.systemlist(files_cmd)
