@@ -1,69 +1,69 @@
 -- Highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank({ timeout = 150 })
-    end,
+  callback = function()
+    vim.highlight.on_yank({ timeout = 150 })
+  end,
 })
 
 -- Restore cursor pos
 vim.api.nvim_create_autocmd("BufReadPost", {
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
-        if mark[1] > 0 and mark[1] <= lcount then
-            pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        end
-    end,
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
 })
 
 -- Bufferline
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
-    callback = function()
-        local bt = vim.bo.buftype
-        local ft = vim.bo.filetype
-        local exclude_ft = {
-            qf = true,
-            help = true,
-            lspinfo = true,
-            netrw = true,
-        }
-        local exclude_bt = {
-            terminal = true,
-        }
+  callback = function()
+    local bt = vim.bo.buftype
+    local ft = vim.bo.filetype
+    local exclude_ft = {
+      qf = true,
+      help = true,
+      lspinfo = true,
+      netrw = true,
+    }
+    local exclude_bt = {
+      terminal = true,
+    }
 
-        if exclude_ft[ft] or exclude_bt[bt] or vim.api.nvim_win_get_config(0).relative ~= "" then
-            vim.wo.winbar = ""
-        else
-            vim.wo.winbar = "%{%v:lua.bufferline()%}"
-        end
-    end,
+    if exclude_ft[ft] or exclude_bt[bt] or vim.api.nvim_win_get_config(0).relative ~= "" then
+      vim.wo.winbar = ""
+    else
+      vim.wo.winbar = "%{%v:lua.bufferline()%}"
+    end
+  end,
 })
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
-    callback = function()
-        vim.cmd("redrawstatus")
-    end,
+  callback = function()
+    vim.cmd("redrawstatus")
+  end,
 })
 
 -- Enhance term
 local function start_insert_if_terminal()
-    if vim.bo.buftype == "terminal" then
-        vim.cmd("startinsert")
-    end
+  if vim.bo.buftype == "terminal" then
+    vim.cmd("startinsert")
+  end
 end
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
-    pattern = "term://*",
-    callback = start_insert_if_terminal,
+  pattern = "term://*",
+  callback = start_insert_if_terminal,
 })
 
 -- Use 'q' to close panels
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {
-        "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw",
-    },
-    callback = function()
-        vim.keymap.set("n", "q", function()
-            vim.cmd("nohlsearch")
-            vim.cmd("close")
-        end, { buffer = true, silent = true, desc = "Close window and clear highlights" })
-    end,
+  pattern = {
+    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw",
+  },
+  callback = function()
+    vim.keymap.set("n", "q", function()
+      vim.cmd("nohlsearch")
+      vim.cmd("close")
+    end, { buffer = true, silent = true, desc = "Close window and clear highlights" })
+  end,
 })
