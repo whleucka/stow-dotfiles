@@ -1,6 +1,6 @@
 vim.cmd([[
   highlight BufferLineInactive guifg=#666666 guibg=NONE
-  highlight BufferLineActive guifg=#ffffff guibg=#7287fd gui=bold
+  highlight BufferLineActive guifg=#444444 guibg=#89b4fa gui=bold
 ]])
 
 function _G.bufferline()
