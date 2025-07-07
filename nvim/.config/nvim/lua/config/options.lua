@@ -60,8 +60,10 @@ opt.ruler = false
 opt.laststatus = 3               -- global statusline (Neovim 0.7+)
 
 -- Netrw
-vim.g.netrw_browse_split = 4     -- Open files in previous window (the main one)
-vim.g.netrw_altv = 1             -- Vertical splits open to the right
-vim.g.netrw_winsize = 30         -- Sidebar width
-vim.g.netrw_liststyle = 3        -- Tree view style
-vim.g.netrw_banner = 0           -- No banner
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- vim.g.netrw_browse_split = 4     -- Open files in previous window (the main one)
+-- vim.g.netrw_altv = 1             -- Vertical splits open to the right
+-- vim.g.netrw_winsize = 30         -- Sidebar width
+-- vim.g.netrw_liststyle = 3        -- Tree view style
+-- vim.g.netrw_banner = 0           -- No banner

@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 local explorer = require("config.lib.explorer")
+local buffer = require("config.lib.buffer")
 
 vim.g.mapleader = " "
 
@@ -17,8 +18,12 @@ map("n", "q", "<nop>", opts)
 map("n", "<leader>Y", "ggVGy", opts)
 
 -- Buffers
-map("n", "H", ":bprevious<CR>", opts)
-map("n", "L", ":bnext<CR>", opts)
+map("n", "H", function()
+  buffer.switch(false)
+end, opts)
+map("n", "L", function()
+  buffer.switch(true)
+end, opts)
 map("n", "<leader>bd", ":bp | bd #<CR>", opts)
 
 -- Splits
@@ -36,6 +41,9 @@ map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
 map("t", "jk", [[<C-\><C-n>]], opts)
 map("t", "kj", [[<C-\><C-n>]], opts)
 
+-- Scrolling
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
 
 -- Window nav
 map("n", "<C-j>", "<C-w>j", opts)
@@ -48,10 +56,10 @@ map("n", "q[", ":cprev<CR>zz", opts)
 map("n", "q]", ":cnext<CR>zz", opts)
 
 -- File explorer
-map("n", "<leader>e", explorer.toggle_netrw, opts)
+-- map("n", "<leader>e", explorer.toggle_netrw, opts)
 
 -- Search files
-vim.keymap.set("n", "<leader>s", explorer.grep_files)
+map("n", "<leader>s", explorer.grep_files)
 
 -- Find files
-vim.keymap.set("n", "<leader>f", explorer.find_files)
+map("n", "<leader>f", explorer.find_files)
