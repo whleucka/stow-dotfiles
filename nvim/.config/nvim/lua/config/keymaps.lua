@@ -60,47 +60,80 @@ end, opts)
 vim.keymap.set("n", "<leader>f", function()
     local input = vim.fn.input("Find files: ")
     if input == "" then return end
-    local cmd = string.format("rg --files | rg -F %q", input)
-    local output = vim.fn.systemlist(cmd)
 
-    -- If no results
+    local files_cmd
+    local use_rg = vim.fn.executable("rg") == 1
+
+    if use_rg then
+        files_cmd = string.format("rg --files | rg -F %q", input)
+    else
+        if vim.fn.executable("find") == 0 or vim.fn.executable("grep") == 0 then
+            vim.notify("Missing required commands: ripgrep or find+grep", vim.log.levels.ERROR)
+            return
+        end
+        files_cmd = string.format([[find . -type f -not -path "*/.git/*" | grep -F %q]], input)
+    end
+
+    local output = vim.fn.systemlist(files_cmd)
+
     if vim.v.shell_error ~= 0 or vim.tbl_isempty(output) then
-        vim.notify("No matches found for: " .. input, vim.log.levels.INFO)
+        vim.notify("No files matched: " .. input, vim.log.levels.INFO)
         return
     end
 
-    -- Convert to quickfix format
     local qf_list = {}
-    for _, line in ipairs(output) do
-        table.insert(qf_list, { filename = line, lnum = 1, col = 1, text = line })
+    for _, file in ipairs(output) do
+        table.insert(qf_list, { filename = file, lnum = 1, col = 1, text = file })
     end
-    vim.fn.setqflist(qf_list, 'r')
+
+    vim.fn.setqflist({}, "r", {
+        title = "Find files: " .. input,
+        items = qf_list,
+    })
+
     vim.cmd("copen")
 end)
 
--- Search with rg
+-- Search files
 vim.keymap.set("n", "<leader>s", function()
     local input = vim.fn.input("Search for: ")
     if input == "" then return end
 
-    local cmd = { "rg", "--vimgrep", input }
-    local output = vim.fn.systemlist(cmd)
+    local grep_cmd
+    local use_rg = vim.fn.executable("rg") == 1
 
-    -- If no results
-    if vim.v.shell_error ~= 0 or vim.tbl_isempty(output) then
-        vim.notify("No matches found for: " .. input, vim.log.levels.INFO)
+    if use_rg then
+        grep_cmd = { "rg", "--vimgrep", input }
+    else
+        if vim.fn.executable("grep") == 0 then
+            vim.notify("Neither ripgrep (rg) nor grep is installed", vim.log.levels.ERROR)
+            return
+        end
+        grep_cmd = { "grep", "-rInH", input, "." }
+    end
+
+    -- Run command
+    local output = vim.fn.systemlist(grep_cmd)
+
+    -- Show diagnostic output
+    if not output then
+        vim.notify("Command failed: nil output", vim.log.levels.ERROR)
+        return
+    end
+
+    if vim.tbl_isempty(output) then
+        vim.notify("Command returned empty output", vim.log.levels.INFO)
         return
     end
 
     -- Populate quickfix list
     vim.fn.setqflist({}, " ", {
-        title = "rg: " .. input,
+        title = (use_rg and "rg: " or "grep: ") .. input,
         lines = output,
     })
 
-    -- Highlight search matches in open buffers
-    vim.fn.setreg("/", "\\V" .. input) -- Use very nomagic to match exact string
+    vim.fn.setreg("/", "\\V" .. input)
     vim.opt.hlsearch = true
-
     vim.cmd("copen")
 end)
+
