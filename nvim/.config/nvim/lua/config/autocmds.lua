@@ -1,5 +1,8 @@
+vim.api.nvim_create_augroup("AllHopeIsGone", { clear = true })
+
 -- Highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = "AllHopeIsGone",
   callback = function()
     vim.highlight.on_yank({ timeout = 150 })
   end,
@@ -7,6 +10,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Restore cursor pos
 vim.api.nvim_create_autocmd("BufReadPost", {
+  group = "AllHopeIsGone",
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -18,6 +22,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Bufferline
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
+  group = "AllHopeIsGone",
   callback = function()
     local bt = vim.bo.buftype
     local ft = vim.bo.filetype
@@ -38,7 +43,9 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" 
     end
   end,
 })
+
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
+  group = "AllHopeIsGone",
   callback = function()
     vim.cmd("redrawstatus")
   end,
@@ -51,12 +58,14 @@ local function start_insert_if_terminal()
   end
 end
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
+  group = "AllHopeIsGone",
   pattern = "term://*",
   callback = start_insert_if_terminal,
 })
 
 -- Use 'q' to close panels
 vim.api.nvim_create_autocmd("FileType", {
+  group = "AllHopeIsGone",
   pattern = {
     "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw",
   },
