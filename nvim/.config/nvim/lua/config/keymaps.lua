@@ -33,6 +33,9 @@ map("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
 map("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
+map("t", "jk", [[<C-\><C-n>]], opts)
+map("t", "kj", [[<C-\><C-n>]], opts)
+
 
 -- Window nav
 map("n", "<C-j>", "<C-w>j", opts)

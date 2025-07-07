@@ -27,7 +27,7 @@ function M.toggle()
     vim.api.nvim_win_set_buf(term_win, term_buf)
   end
 
-  -- Optional: disable line numbers
+  -- Disable line numbers
   vim.wo.number = false
   vim.wo.relativenumber = false
 end
