@@ -1,6 +1,6 @@
 vim.cmd([[
   highlight BufferLineInactive guifg=#666666 guibg=NONE
-  highlight BufferLineActive guifg=#ffffff guibg=#5f87af gui=bold
+  highlight BufferLineActive guifg=#ffffff guibg=#7287fd gui=bold
 ]])
 
 function _G.bufferline()
@@ -8,11 +8,15 @@ function _G.bufferline()
   local current = vim.api.nvim_get_current_buf()
   local line = ""
 
-  for i, buf in ipairs(buffers) do
-    local name = vim.fn.fnamemodify(buf.name, ":t") or "[No Name]"
-    local hl = (buf.bufnr == current) and "%#BufferLineActive#" or "%#BufferLineInactive#"
-    line = line .. hl .. " " .. name .. " "
+  for _, buf in ipairs(buffers) do
+    -- Skip special buffers like quickfix, terminal, etc.
+    local bt = vim.bo[buf.bufnr].buftype
+    if bt == "" or bt == "acwrite" then
+      local name = buf.name ~= "" and vim.fn.fnamemodify(buf.name, ":t") or "No Name " .. buf.bufnr
+      local hl = (buf.bufnr == current) and "%#BufferLineActive#" or "%#BufferLineInactive#"
+      line = line .. hl .. " [" .. name .. "] "
+    end
   end
 
-  return line .. "%#Normal#" -- reset highlighting at the end
+  return line .. "%#Normal#"
 end

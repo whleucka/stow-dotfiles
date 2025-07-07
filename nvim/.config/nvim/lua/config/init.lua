@@ -1,6 +1,9 @@
+-- Main config
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
-require("config.lib.bufferline")
+-- Other elements
 require("config.lib.theme")
+require("config.lib.bufferline")
+require("config.lib.statusline")

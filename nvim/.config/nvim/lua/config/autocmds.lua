@@ -41,12 +41,6 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" 
     else
       vim.wo.winbar = "%{%v:lua.bufferline()%}"
     end
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
-  group = "AllHopeIsGone",
-  callback = function()
     vim.cmd("redrawstatus")
   end,
 })
