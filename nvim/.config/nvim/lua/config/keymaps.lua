@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local opts = { silent = true }
+local opts = { silent = true, noremap = true }
 local explorer = require("config.lib.explorer")
 local buffer = require("config.lib.buffer")
 
@@ -45,9 +45,13 @@ map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
+-- Indent lines
+map('v', '<', '<gv', opts)
+map('v', '>', '>gv', opts)
+
 -- Moving lines
-map("v", "J", ":m '>+1<CR>gv=gv", opts)
-map("v", "K", ":m '<-2<CR>gv=gv", opts)
+map("v", "J", ":m '>+1<CR>gv-gv", opts)
+map("v", "K", ":m '<-2<CR>gv-gv", opts)
 
 -- Window nav
 map("n", "<C-j>", "<C-w>j", opts)

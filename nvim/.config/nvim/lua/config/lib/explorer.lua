@@ -93,7 +93,7 @@ function M.find_files()
 
   local qf_list = {}
   for _, file in ipairs(output) do
-    table.insert(qf_list, { filename = file, lnum = 1, col = 1, text = file })
+    table.insert(qf_list, { filename = file, text = file })
   end
 
   vim.fn.setqflist({}, "r", {
