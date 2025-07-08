@@ -33,7 +33,6 @@ function M.grep_files()
     grep_cmd = { "grep", "-rInH", input, "." }
   end
 
-  -- Run command
   local output = vim.fn.systemlist(grep_cmd)
 
   -- Show diagnostic output
@@ -108,7 +107,7 @@ function M.find_files()
     local qf_win = vim.fn.win_getid()
 
     vim.api.nvim_create_autocmd("BufEnter", {
-      group = vim.api.nvim_create_augroup("FindFilesAutoCloseQf", { clear = true }),
+      group = vim.api.nvim_create_augroup("find_files", { clear = true }),
       callback = function()
         -- Check if quickfix is still open
         local open_qf = false

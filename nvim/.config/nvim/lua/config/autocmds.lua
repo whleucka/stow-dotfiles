@@ -45,6 +45,20 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" 
   end,
 })
 
+-- Handle close with quickfix
+vim.api.nvim_create_autocmd("WinEnter", {
+  pattern = "*",
+  callback = function()
+    local wins = vim.api.nvim_list_wins()
+    if #wins == 1 then
+      local buftype = vim.bo[vim.api.nvim_win_get_buf(wins[1])].buftype
+      if buftype == "quickfix" then
+        vim.cmd("quit")
+      end
+    end
+  end
+})
+
 -- Enhance term
 local function start_insert_if_terminal()
   if vim.bo.buftype == "terminal" then
