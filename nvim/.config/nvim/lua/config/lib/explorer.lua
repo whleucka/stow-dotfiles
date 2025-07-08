@@ -102,6 +102,30 @@ function M.find_files()
   })
 
   vim.cmd("copen")
+
+  -- Auto-close when user selects an item (moves out of quickfix window)
+  vim.defer_fn(function()
+    local qf_win = vim.fn.win_getid()
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      group = vim.api.nvim_create_augroup("FindFilesAutoCloseQf", { clear = true }),
+      callback = function()
+        -- Check if quickfix is still open
+        local open_qf = false
+        for _, win in ipairs(vim.fn.getwininfo()) do
+          if win.quickfix == 1 then
+            open_qf = true
+            break
+          end
+        end
+
+        if open_qf then
+          vim.cmd("cclose")
+        end
+      end,
+      once = true,
+    })
+  end, 10)
 end
 
 return M
