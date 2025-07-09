@@ -72,7 +72,6 @@ map("n", "<leader>gb", function()
   terminal.toggle({
     key = "git-blame",
     cmd = blame_cmd,
-    direction = "vertical",
   })
 end, opt)
 map("n", "<leader>gbl", function()
@@ -90,21 +89,18 @@ map("n", "<leader>gd", function()
   terminal.toggle({
     key = "git-diff",
     cmd = "git diff HEAD --color=always",
-    direction = "vertical",
   })
 end, opt)
 map("n", "<leader>gs", function()
   terminal.toggle({
     key = "git-status",
     cmd = "git status",
-    direction = "vertical",
   })
 end, opt)
 map("n", "<leader>gl", function()
   terminal.toggle({
     key = "git-log",
     cmd = 'git log --graph --abbrev-commit --decorate --date=relative --format="%C(yellow)%h%Creset%C(auto)%d %Cgreen%ad %Cblue%an%Creset %s"',
-    direction = "vertical",
   })
 end, opt)
 
