@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local opts = { silent = true, noremap = true }
 local explorer = require("config.lib.explorer")
 local buffer = require("config.lib.buffer")
+local terminal = require("config.lib.terminal")
 
 vim.g.mapleader = " "
 
@@ -12,16 +13,10 @@ map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
+map("n", "q", "<Nop>", opts)
 
 -- Yank file
 map("n", "<leader>Y", "ggVGy", opts)
-
--- Git
-map("n", "<leader>gb", require("config.lib.git").blame_line, opt)
-map("n", "<leader>gd", require("config.lib.git").diff_current_file, opt)
-
--- AI
-map("n", "<leader>ai", require("config.lib.gemini").gemini_cli, opt)
 
 -- Buffers
 map("n", "H", function()
@@ -37,16 +32,67 @@ map("n", "<leader>\\", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>",  opts)
 
 -- Terminal
-map("n", "<leader>t", function()
-  require("config.lib.terminal").toggle()
+map("n", "<leader>ts", function()
+  terminal.toggle({
+    cmd = vim.o.shell,
+    direction = "horizontal",
+    key = "shell",
+    size = 12
+  })
+end, opts)
+map("n", "<leader>tv", function()
+  terminal.toggle({
+    cmd = vim.o.shell,
+    direction = "vertical",
+    key = "shell",
+    size = 75
+  })
+end, opts)
+map("n", "<leader>tf", function()
+  terminal.toggle({
+    cmd = vim.o.shell,
+    key = "shell-float",
+    float = true,
+    width = 150,
+    height = 40,
+    border = "rounded",
+    startinsert = true,
+  })
 end, opts)
 map("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
 map("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
-map("t", "jk", [[<C-\><C-n>]], opts)
-map("t", "kj", [[<C-\><C-n>]], opts)
 map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
+
+-- Git
+map("n", "<leader>gb", function()
+  local file = vim.fn.expand("%:p")
+  local line = vim.fn.line(".")
+  local blame_cmd = string.format("git blame -L %d,%d %s", line, line, file)
+  terminal.toggle({
+    key = "git-blame-line",
+    cmd = blame_cmd,
+    direction = "horizontal",
+    size = 10
+  })
+end, opt)
+map("n", "<leader>gd", function()
+  terminal.toggle({
+    key = "git-diff",
+    cmd = "git diff HEAD --color=always",
+    direction = "vertical",
+  })
+end, opt)
+
+-- AI
+map("n", "<leader>ai", function()
+  terminal.toggle({
+    cmd = "gemini",
+    key = "gemini"
+  })
+end, opt)
+
 
 -- Scrolling
 map("n", "<C-d>", "<C-d>zz")
