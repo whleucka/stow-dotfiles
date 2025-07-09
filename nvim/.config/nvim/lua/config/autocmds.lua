@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
 vim.api.nvim_create_autocmd("FileType", {
   group = "AllHopeIsGone",
   pattern = {
-    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal"
+    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal", "gitblame", "gitdiff"
   },
   callback = function()
     vim.keymap.set("n", "q", function()

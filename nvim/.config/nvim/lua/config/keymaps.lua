@@ -16,6 +16,10 @@ map("i", "kj", "<Esc>", opts)
 -- Yank file
 map("n", "<leader>Y", "ggVGy", opts)
 
+-- Git
+map("n", "<leader>gb", require("config.lib.git").blame_line, opt)
+map("n", "<leader>gd", require("config.lib.git").diff_current_file, opt)
+
 -- Buffers
 map("n", "H", function()
   buffer.switch(false)
