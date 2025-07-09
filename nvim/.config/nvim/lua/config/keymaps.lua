@@ -68,8 +68,17 @@ map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
 -- Git
 map("n", "<leader>gb", function()
   local file = vim.fn.expand("%:p")
+  local blame_cmd = string.format("git blame --color-lines --date=short %s", file)
+  terminal.toggle({
+    key = "git-blame",
+    cmd = blame_cmd,
+    direction = "vertical",
+  })
+end, opt)
+map("n", "<leader>gbl", function()
+  local file = vim.fn.expand("%:p")
   local line = vim.fn.line(".")
-  local blame_cmd = string.format("git blame -L %d,%d %s", line, line, file)
+  local blame_cmd = string.format("git blame --color-lines -L %d,%d %s", line, line, file)
   terminal.toggle({
     key = "git-blame-line",
     cmd = blame_cmd,
@@ -81,6 +90,20 @@ map("n", "<leader>gd", function()
   terminal.toggle({
     key = "git-diff",
     cmd = "git diff HEAD --color=always",
+    direction = "vertical",
+  })
+end, opt)
+map("n", "<leader>gs", function()
+  terminal.toggle({
+    key = "git-status",
+    cmd = "git status",
+    direction = "vertical",
+  })
+end, opt)
+map("n", "<leader>gl", function()
+  terminal.toggle({
+    key = "git-log",
+    cmd = 'git log --graph --abbrev-commit --decorate --date=relative --format="%C(yellow)%h%Creset%C(auto)%d %Cgreen%ad %Cblue%an%Creset %s"',
     direction = "vertical",
   })
 end, opt)
