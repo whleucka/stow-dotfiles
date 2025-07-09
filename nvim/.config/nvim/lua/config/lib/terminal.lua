@@ -13,7 +13,7 @@ function M.toggle()
 
   -- If terminal buffer doesn't exist, create it and start terminal
   if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
-    vim.cmd("botright split")
+    vim.cmd("split")
     vim.cmd("resize 15")
     term_win = vim.api.nvim_get_current_win()
     term_buf = vim.api.nvim_create_buf(false, true)
@@ -21,7 +21,7 @@ function M.toggle()
     vim.fn.termopen(vim.o.shell)
   else
     -- Reopen existing terminal buffer in split
-    vim.cmd("botright split")
+    vim.cmd("split")
     vim.cmd("resize 15")
     term_win = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_buf(term_win, term_buf)
