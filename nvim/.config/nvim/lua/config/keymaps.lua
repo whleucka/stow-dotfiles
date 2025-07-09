@@ -20,6 +20,9 @@ map("n", "<leader>Y", "ggVGy", opts)
 map("n", "<leader>gb", require("config.lib.git").blame_line, opt)
 map("n", "<leader>gd", require("config.lib.git").diff_current_file, opt)
 
+-- AI
+map("n", "<leader>ai", require("config.lib.gemini").gemini_cli, opt)
+
 -- Buffers
 map("n", "H", function()
   buffer.switch(false)
