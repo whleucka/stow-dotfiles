@@ -68,7 +68,7 @@ map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
 -- Git
 map("n", "<leader>gb", function()
   local file = vim.fn.expand("%:p")
-  local blame_cmd = string.format("git blame --color-lines --date=short %s", file)
+  local blame_cmd = string.format("git blame --color-by-age --date=short %s", file)
   terminal.toggle({
     key = "git-blame",
     cmd = blame_cmd,
@@ -77,7 +77,7 @@ end, opt)
 map("n", "<leader>gbl", function()
   local file = vim.fn.expand("%:p")
   local line = vim.fn.line(".")
-  local blame_cmd = string.format("git blame --color-lines -L %d,%d %s", line, line, file)
+  local blame_cmd = string.format("git blame --color-by-age --date=short -L %d,%d %s", line, line, file)
   terminal.toggle({
     key = "git-blame-line",
     cmd = blame_cmd,
