@@ -85,6 +85,16 @@ map("n", "<leader>tf", function()
     border = "rounded",
   })
 end, opts)
+map("n", "<leader>tt", function()
+  terminal.toggle({
+    key = "top",
+    cmd = "command -v htop >/dev/null && htop || top",
+    float = true,
+    width = '80%',
+    height = '80%',
+    border = "rounded",
+  })
+end, opts)
 map("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
 map("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
