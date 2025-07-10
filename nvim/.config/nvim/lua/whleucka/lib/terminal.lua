@@ -1,4 +1,4 @@
-local split = require("config.lib.split")
+local split = require("whleucka.lib.split")
 
 local M = {}
 

@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local opts = { silent = true, noremap = true }
-local explorer = require("config.lib.explorer")
-local buffer = require("config.lib.buffer")
-local terminal = require("config.lib.terminal")
+local explorer = require("whleucka.lib.explorer")
+local buffer = require("whleucka.lib.buffer")
+local terminal = require("whleucka.lib.terminal")
 
 vim.g.mapleader = " "
 
@@ -14,14 +14,34 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", opts)
+
+-- Reload config
 map("n", "<C-s>", function()
-  vim.cmd("source " .. vim.fn.expand("$MYVIMRC"))
-  print("🔁 Reloaded init.lua!")
+  -- If current buffer is a Lua config file, source it
+  local file = vim.fn.expand("%:p")
+  if file and file:match("lua/config/.*%.lua$") then
+    vim.cmd("luafile " .. file)
+  end
+
+  local modules = {
+    "whleucka.core.options",
+    "whleucka.core.keymaps",
+    "whleucka.core.autocmds",
+    -- etc
+  }
+
+  for _, mod in ipairs(modules) do
+    print("Resetting " .. mod)
+    package.loaded[mod] = nil
+    require(mod)
+  end
+
+  vim.notify("🔁 Reloaded config!")
 end, opts)
 
--- Yank entire file
-map("n", "<leader>Y", "ggVGy", opts)
--- Yank to system clipboard (via OSC52)
+-- Yank entire file to system clipboard
+map("n", "<leader>Y", 'ggVG"+y', opts)
+-- Yank to system clipboard
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 
 
@@ -119,10 +139,13 @@ map("n", "<leader>ai", function()
   })
 end, opt)
 
-
 -- Scrolling
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+
+-- Center screen on search result jump
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
 
 -- Indent lines
 map('v', '<', '<gv', opts)
@@ -131,6 +154,12 @@ map('v', '>', '>gv', opts)
 -- Moving lines
 map("v", "J", ":m '>+1<CR>gv-gv", opts)
 map("v", "K", ":m '<-2<CR>gv-gv", opts)
+
+-- Moving splits
+map("n", "<C-Up>", ":resize +2<CR>", opts)
+map("n", "<C-Down>", ":resize -2<CR>", opts)
+map("n", "<C-Left>", ":resize -2<CR>", opts)
+map("n", "<C-Right>", ":resize +2<CR>", opts)
 
 -- Window nav
 map("n", "<C-j>", "<C-w>j", opts)

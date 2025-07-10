@@ -1,7 +1,7 @@
 vim.cmd [[colorscheme zaibatsu]]
 
 -- Float bg
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#0e0024" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000", blend = 0 })
 
 -- Transparent bg
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
