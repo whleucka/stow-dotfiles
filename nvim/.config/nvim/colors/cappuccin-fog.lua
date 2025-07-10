@@ -68,7 +68,7 @@ set(0, "DiagnosticInfo",  { fg = theme.sky })
 set(0, "DiagnosticHint",  { fg = theme.teal })
 
 -- Statusline
-set(0, "StatusLine",  { fg = theme.subtext0, bg = theme.base })
+set(0, "StatusLine",  { fg = theme.subtext0, bg = "none" })
 set(0, "StatusLineMode",  { fg = "#1e1e2e", bg = "#89b4fa", bold = true })
 set(0, "StatusLineFile",  { fg = "#cba6f7", bg = "none" })
 set(0, "StatusLineGit",  { fg = "#a6e3a1", bg = "none" })
@@ -77,7 +77,7 @@ set(0, "StatusLineExtra",  { fg = "#bac2de", bg = "none" })
 -- Bufferline
 set(0, "BufferLineBackground", { fg = theme.subtext0, bg = theme.base })
 set(0, "BufferLineInactive", { fg = "#666666", bg = theme.base })
-set(0, "BufferLineActive", { fg = "#444444", bg = "#89b4fa", bold = true })
+set(0, "BufferLineActive", { fg = "#444444", bg = theme.blue, bold = true })
 
 -- Transparent bg
 set(0, "NormalFloat", { bg = "none" })

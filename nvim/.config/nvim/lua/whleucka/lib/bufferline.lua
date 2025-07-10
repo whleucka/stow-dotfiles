@@ -12,6 +12,5 @@ function _G.bufferline()
     end
   end
 
-  -- Apply background for leftover space so bg isn’t black
   return line .. "%#BufferLineBackground#"
 end
