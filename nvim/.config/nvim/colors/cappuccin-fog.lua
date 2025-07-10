@@ -26,7 +26,7 @@ local theme = {
   sapphire  = "#74d3ff",
   blue      = "#8cbaff",
   lavender  = "#cfc3ff",
-  comment   = "#767c9f",
+  comment   = "#8ea5bd",
 }
 
 -- Set the background
@@ -37,53 +37,57 @@ vim.cmd("syntax reset")
 -- Apply highlights
 local set = vim.api.nvim_set_hl
 
-set(0, "Normal",       { fg = theme.text, bg = theme.base })
-set(0, "Comment",      { fg = theme.comment, italic = true })
-set(0, "Constant",     { fg = theme.peach })
-set(0, "String",       { fg = theme.green })
-set(0, "Function",     { fg = theme.blue })
-set(0, "Keyword",      { fg = theme.mauve, bold = true })
-set(0, "Identifier",   { fg = theme.teal })
-set(0, "Type",         { fg = theme.yellow })
-set(0, "Statement",    { fg = theme.mauve })
-set(0, "Number",       { fg = theme.peach })
-set(0, "Boolean",      { fg = theme.peach })
-set(0, "Operator",     { fg = theme.sky })
-set(0, "PreProc",      { fg = theme.pink })
-set(0, "Special",      { fg = theme.rosewater })
+function hl(type, opts)
+  set(0, type, opts)
+end
+
+hl("Normal",       { fg = theme.text, bg = theme.base })
+hl("Comment",      { fg = theme.comment, italic = true })
+hl("Constant",     { fg = theme.peach })
+hl("String",       { fg = theme.green })
+hl("Function",     { fg = theme.blue })
+hl("Keyword",      { fg = theme.mauve, bold = true })
+hl("Identifier",   { fg = theme.teal })
+hl("Type",         { fg = theme.yellow })
+hl("Statement",    { fg = theme.mauve })
+hl("Number",       { fg = theme.peach })
+hl("Boolean",      { fg = theme.peach })
+hl("Operator",     { fg = theme.sky })
+hl("PreProc",      { fg = theme.pink })
+hl("Special",      { fg = theme.rosewater })
 
 -- UI
-set(0, "CursorLine",   { bg = "none" })
-set(0, "Visual",       { bg = theme.surface1 })
-set(0, "StatusLine",   { fg = theme.subtext0, bg = theme.surface0 })
-set(0, "StatusLineNC", { fg = theme.surface2, bg = theme.mantle })
-set(0, "LineNr",       { fg = theme.surface2 })
-set(0, "CursorLineNr", { fg = theme.lavender, bold = true })
-set(0, "VertSplit",    { fg = theme.crust })
+hl("CursorLine",   { bg = "none" })
+hl("Visual",       { bg = theme.surface1 })
+hl("StatusLine",   { fg = theme.subtext0, bg = theme.surface0 })
+hl("StatusLineNC", { fg = theme.surface2, bg = theme.mantle })
+hl("LineNr",       { fg = theme.surface2 })
+hl("CursorLineNr", { fg = theme.lavender, bold = true })
+hl("VertSplit",    { fg = theme.crust })
 
 -- Diagnostic (if using LSP)
-set(0, "DiagnosticError", { fg = theme.red })
-set(0, "DiagnosticWarn",  { fg = theme.yellow })
-set(0, "DiagnosticInfo",  { fg = theme.sky })
-set(0, "DiagnosticHint",  { fg = theme.teal })
+hl("DiagnosticError", { fg = theme.red })
+hl("DiagnosticWarn",  { fg = theme.yellow })
+hl("DiagnosticInfo",  { fg = theme.sky })
+hl("DiagnosticHint",  { fg = theme.teal })
 
 -- Statusline
-set(0, "StatusLine",  { fg = theme.subtext0, bg = "none" })
-set(0, "StatusLineMode",  { fg = "#1e1e2e", bg = "#89b4fa", bold = true })
-set(0, "StatusLineFile",  { fg = "#cba6f7", bg = "none" })
-set(0, "StatusLineGit",  { fg = "#a6e3a1", bg = "none" })
-set(0, "StatusLineExtra",  { fg = "#bac2de", bg = "none" })
+hl("StatusLine",  { fg = theme.subtext0, bg = "none" })
+hl("StatusLineMode",  { fg = "#1e1e2e", bg = "#89b4fa", bold = true })
+hl("StatusLineFile",  { fg = "#cba6f7", bg = "none" })
+hl("StatusLineGit",  { fg = "#a6e3a1", bg = "none" })
+hl("StatusLineExtra",  { fg = "#bac2de", bg = "none" })
 
 -- Bufferline
-set(0, "BufferLineBackground", { fg = theme.subtext0, bg = theme.base })
-set(0, "BufferLineInactive", { fg = "#666666", bg = theme.base })
-set(0, "BufferLineActive", { fg = "#444444", bg = theme.blue, bold = true })
+hl("BufferLineBackground", { fg = theme.subtext0, bg = theme.base })
+hl("BufferLineInactive", { fg = "#666666", bg = theme.base })
+hl("BufferLineActive", { fg = "#444444", bg = theme.blue, bold = true })
 
 -- Transparent bg
-set(0, "NormalFloat", { bg = "none" })
-set(0, "Normal", { bg = "none" })
-set(0, "NormalNC", { bg = "none" })
-set(0, "EndOfBuffer", { bg = "none" })
-set(0, "SignColumn", { bg = "none" })
-set(0, "VertSplit", { bg = "none" })
-set(0, "LineNr", { bg = "none" })
+hl("NormalFloat", { bg = "none" })
+hl("Normal", { bg = "none" })
+hl("NormalNC", { bg = "none" })
+hl("EndOfBuffer", { bg = "none" })
+hl("SignColumn", { bg = "none" })
+hl("VertSplit", { bg = "none" })
+hl("LineNr", { bg = "none" })
