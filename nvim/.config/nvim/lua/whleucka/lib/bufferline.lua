@@ -1,15 +1,9 @@
-vim.cmd([[
-  highlight BufferLineInactive guifg=#666666 guibg=NONE
-  highlight BufferLineActive guifg=#444444 guibg=#89b4fa gui=bold
-]])
-
 function _G.bufferline()
   local buffers = vim.fn.getbufinfo({ buflisted = 1 })
   local current = vim.api.nvim_get_current_buf()
   local line = ""
 
   for _, buf in ipairs(buffers) do
-    -- Skip special buffers like quickfix, terminal, etc.
     local bt = vim.bo[buf.bufnr].buftype
     if bt == "" or bt == "acwrite" then
       local name = buf.name ~= "" and vim.fn.fnamemodify(buf.name, ":t") or "No Name " .. buf.bufnr
@@ -18,5 +12,6 @@ function _G.bufferline()
     end
   end
 
-  return line .. "%#Normal#"
+  -- Apply background for leftover space so bg isn’t black
+  return line .. "%#BufferLineBackground#"
 end

@@ -31,7 +31,6 @@ map("n", "<C-s>", function()
   }
 
   for _, mod in ipairs(modules) do
-    print("Resetting " .. mod)
     package.loaded[mod] = nil
     require(mod)
   end
@@ -85,6 +84,12 @@ map("n", "<leader>tf", function()
     border = "rounded",
   })
 end, opts)
+map("n", "<C-/>", function()
+  terminal.toggle({
+    key = "shell-smart",
+    cmd = vim.o.shell,
+  })
+end, opts)
 map("n", "<leader>tt", function()
   terminal.toggle({
     key = "top",
@@ -100,6 +105,7 @@ map("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
 map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
+map("t", "<C-/>", [[<C-\><C-n>:close<CR>]], opts)
 
 -- Git
 map("n", "<leader>gb", function()

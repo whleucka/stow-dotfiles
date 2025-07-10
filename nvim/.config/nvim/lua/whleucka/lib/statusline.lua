@@ -1,11 +1,3 @@
-vim.cmd([[
-  highlight StatusLine guibg=#1e1e2e guifg=#cdd6f4
-  highlight StatusLineMode guibg=#89b4fa guifg=#1e1e2e gui=bold
-  highlight StatusLineFile guibg=NONE guifg=#cba6f7
-  highlight StatusLineGit guibg=NONE guifg=#a6e3a1
-  highlight StatusLineExtra guibg=NONE guifg=#bac2de
-]])
-
 function _G.statusline()
   local mode_map = {
     n = "NORMAL", i = "INSERT", v = "VISUAL", V = "V-LINE",
