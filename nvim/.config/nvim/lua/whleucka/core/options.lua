@@ -1,5 +1,9 @@
 local opt = vim.opt
 local g = vim.g
+local cmd = vim.cmd
+
+-- Theme
+cmd.colorscheme("cappuccin-fog")
 
 -- UI
 opt.number = true                   -- show line numbers

@@ -5,5 +5,4 @@ require("whleucka.core.autocmds")
 
 -- Other elements
 require("whleucka.lib.bufferline")
-require("whleucka.lib.theme")
 require("whleucka.lib.statusline")

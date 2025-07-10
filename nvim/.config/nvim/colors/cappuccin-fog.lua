@@ -1,30 +1,32 @@
+-- Colour palette
 local theme = {
-  base      = "#292c3c",
-  mantle    = "#232634",
-  crust     = "#1e2030",
-  surface0  = "#403f4e",
-  surface1  = "#595a6e",
-  surface2  = "#757688",
-  overlay0  = "#8e8fa8",
-  overlay1  = "#a8a9be",
-  overlay2  = "#bfc0d3",
-  text      = "#d9dce8",
-  subtext1  = "#c5c7d9",
-  subtext0  = "#b0b3c5",
+  base      = "#1a1c25",
+  mantle    = "#14151d",
+  crust     = "#0e0f14",
+  surface0  = "#2a2c3a",
+  surface1  = "#3a3d4e",
+  surface2  = "#4b4f63",
+  overlay0  = "#6b6e87",
+  overlay1  = "#8184a0",
+  overlay2  = "#989bb5",
+  text      = "#d9e0ee",
+  subtext1  = "#c3c8da",
+  subtext0  = "#a6acc9",
   rosewater = "#f4c7c3",
   flamingo  = "#f5a5a8",
   pink      = "#f0a6ca",
-  mauve     = "#d9a9f6",
-  red       = "#ef7186",
-  maroon    = "#ef8a9a",
-  peach     = "#fab68f",
-  yellow    = "#fae09e",
-  green     = "#aceb8a",
-  teal      = "#8ce9d0",
-  sky       = "#8bdaf7",
-  sapphire  = "#74caff",
-  blue      = "#89b4fa",
-  lavender  = "#cbb9fa",
+  mauve     = "#d4b2ff",
+  red       = "#ff6e85",
+  maroon    = "#ea7186",
+  peach     = "#ffb770",
+  yellow    = "#ffe08c",
+  green     = "#b6f48c",
+  teal      = "#94f0dc",
+  sky       = "#89e3f7",
+  sapphire  = "#74d3ff",
+  blue      = "#8cbaff",
+  lavender  = "#cfc3ff",
+  comment   = "#767c9f",
 }
 
 -- Set the background
@@ -35,8 +37,8 @@ vim.cmd("syntax reset")
 -- Apply highlights
 local set = vim.api.nvim_set_hl
 
-set(0, "Normal",       { fg = theme.text,     bg = theme.base })
-set(0, "Comment",      { fg = theme.yellow, italic = true })
+set(0, "Normal",       { fg = theme.text, bg = theme.base })
+set(0, "Comment",      { fg = theme.comment, italic = true })
 set(0, "Constant",     { fg = theme.peach })
 set(0, "String",       { fg = theme.green })
 set(0, "Function",     { fg = theme.blue })
@@ -78,10 +80,10 @@ set(0, "BufferLineInactive", { fg = "#666666", bg = theme.base })
 set(0, "BufferLineActive", { fg = "#444444", bg = "#89b4fa", bold = true })
 
 -- Transparent bg
---set(0, "NormalFloat", { bg = "none" })
---set(0, "Normal", { bg = "none" })
---set(0, "NormalNC", { bg = "none" })
---set(0, "EndOfBuffer", { bg = "none" })
---set(0, "SignColumn", { bg = "none" })
---set(0, "VertSplit", { bg = "none" })
---set(0, "LineNr", { bg = "none" })
+set(0, "NormalFloat", { bg = "none" })
+set(0, "Normal", { bg = "none" })
+set(0, "NormalNC", { bg = "none" })
+set(0, "EndOfBuffer", { bg = "none" })
+set(0, "SignColumn", { bg = "none" })
+set(0, "VertSplit", { bg = "none" })
+set(0, "LineNr", { bg = "none" })
