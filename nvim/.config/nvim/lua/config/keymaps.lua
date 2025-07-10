@@ -15,7 +15,8 @@ map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", opts)
 
--- Yank file
+-- Yanking
+map("v", "<leader>y", '"+y', opts)
 map("n", "<leader>Y", "ggVGy", opts)
 
 -- Buffers
