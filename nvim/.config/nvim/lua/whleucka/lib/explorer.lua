@@ -69,7 +69,7 @@ function M.find_files()
   local use_rg = vim.fn.executable("rg") == 1
 
   if use_rg then
-    files_cmd = string.format("rg --files | rg -F %q", input)
+    files_cmd = string.format("rg --files | rg -Fi %q", input)
   else
     if vim.fn.executable("find") == 0 or vim.fn.executable("grep") == 0 then
       vim.notify("Missing required commands: ripgrep or find+grep", vim.log.levels.ERROR)
@@ -127,6 +127,10 @@ function M.find_files()
       once = true,
     })
   end, 10)
+end
+
+function M.is_netrw()
+  return vim.bo.filetype == "netrw"
 end
 
 return M

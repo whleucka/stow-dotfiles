@@ -17,23 +17,13 @@ map("n", "q", "<Nop>", opts)
 
 -- Reload config
 map("n", "<C-s>", function()
-  -- If current buffer is a Lua config file, source it
-  local file = vim.fn.expand("%:p")
-  if file and file:match("lua/config/.*%.lua$") then
-    vim.cmd("luafile " .. file)
+  for name, _ in pairs(package.loaded) do
+    if name:match("^whleucka") then
+      package.loaded[name] = nil
+    end
   end
 
-  local modules = {
-    "whleucka.core.options",
-    "whleucka.core.keymaps",
-    "whleucka.core.autocmds",
-    -- etc
-  }
-
-  for _, mod in ipairs(modules) do
-    package.loaded[mod] = nil
-    require(mod)
-  end
+  require("whleucka")
 
   vim.notify("🔁 Reloaded config!")
 end, opts)
@@ -114,7 +104,7 @@ map("n", "<leader>gb", function()
     key = "git-blame",
     cmd = blame_cmd,
   })
-end, opt)
+end, opts)
 map("n", "<leader>gbl", function()
   local file = vim.fn.expand("%:p")
   local line = vim.fn.line(".")
@@ -125,25 +115,25 @@ map("n", "<leader>gbl", function()
     direction = "horizontal",
     size = 10
   })
-end, opt)
+end, opts)
 map("n", "<leader>gd", function()
   terminal.toggle({
     key = "git-diff",
     cmd = "git diff HEAD --color=always",
   })
-end, opt)
+end, opts)
 map("n", "<leader>gs", function()
   terminal.toggle({
     key = "git-status",
     cmd = "git status",
   })
-end, opt)
+end, opts)
 map("n", "<leader>gl", function()
   terminal.toggle({
     key = "git-log",
     cmd = 'git log --graph --abbrev-commit --decorate --date=relative --format="%C(yellow)%h%Creset%C(auto)%d %Cgreen%ad %Cblue%an%Creset %s"',
   })
-end, opt)
+end, opts)
 
 -- AI
 map("n", "<leader>ai", function()
@@ -151,7 +141,7 @@ map("n", "<leader>ai", function()
     cmd = "gemini",
     key = "gemini"
   })
-end, opt)
+end, opts)
 
 -- Scrolling
 map("n", "<C-d>", "<C-d>zz")
