@@ -51,7 +51,7 @@ set(0, "PreProc",      { fg = theme.pink })
 set(0, "Special",      { fg = theme.rosewater })
 
 -- UI
-set(0, "CursorLine",   { bg = theme.surface0 })
+set(0, "CursorLine",   { bg = "none" })
 set(0, "Visual",       { bg = theme.surface1 })
 set(0, "StatusLine",   { fg = theme.subtext0, bg = theme.surface0 })
 set(0, "StatusLineNC", { fg = theme.surface2, bg = theme.mantle })
@@ -66,22 +66,22 @@ set(0, "DiagnosticInfo",  { fg = theme.sky })
 set(0, "DiagnosticHint",  { fg = theme.teal })
 
 -- Statusline
-set(0, "StatusLine",  { fg = "#cdd6f4", bg = "#1e1e2e" })
+set(0, "StatusLine",  { fg = theme.subtext0, bg = theme.base })
 set(0, "StatusLineMode",  { fg = "#1e1e2e", bg = "#89b4fa", bold = true })
 set(0, "StatusLineFile",  { fg = "#cba6f7", bg = "none" })
 set(0, "StatusLineGit",  { fg = "#a6e3a1", bg = "none" })
 set(0, "StatusLineExtra",  { fg = "#bac2de", bg = "none" })
 
 -- Bufferline
-set(0, "BufferLineBackground", { fg = theme.subtext0, bg = theme.mantle })
+set(0, "BufferLineBackground", { fg = theme.subtext0, bg = theme.base })
 set(0, "BufferLineInactive", { fg = "#666666", bg = theme.base })
 set(0, "BufferLineActive", { fg = "#444444", bg = "#89b4fa", bold = true })
 
 -- Transparent bg
-set(0, "NormalFloat", { bg = "none" })
-set(0, "Normal", { bg = "none" })
-set(0, "NormalNC", { bg = "none" })
-set(0, "EndOfBuffer", { bg = "none" })
-set(0, "SignColumn", { bg = "none" })
-set(0, "VertSplit", { bg = "none" })
-set(0, "LineNr", { bg = "none" })
+--set(0, "NormalFloat", { bg = "none" })
+--set(0, "Normal", { bg = "none" })
+--set(0, "NormalNC", { bg = "none" })
+--set(0, "EndOfBuffer", { bg = "none" })
+--set(0, "SignColumn", { bg = "none" })
+--set(0, "VertSplit", { bg = "none" })
+--set(0, "LineNr", { bg = "none" })
