@@ -1,11 +1,5 @@
 # Dotfiles
 
-
-
-
-![image](https://github.com/user-attachments/assets/91827bb2-80db-4fc9-806c-b47076c67bfc)
-
-
 My personal dotfiles for Linux
 - kitty
 - zsh
