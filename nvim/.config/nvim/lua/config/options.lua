@@ -37,9 +37,8 @@ opt.wildmenu = true
 opt.wildmode = { "longest", "full" }
 
 -- Clipboard
-opt.clipboard = "unnamedplus"
 g.clipboard = {
-  name = 'OSC 52',
+  name = 'osc52',
   copy = {
     ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
     ['*'] = require('vim.ui.clipboard.osc52').copy('*'),

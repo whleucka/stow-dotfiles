@@ -19,8 +19,11 @@ map("n", "<C-s>", function()
   print("🔁 Reloaded init.lua!")
 end, opts)
 
--- Yanking
+-- Yank entire file
 map("n", "<leader>Y", "ggVGy", opts)
+-- Yank to system clipboard (via OSC52)
+map({ "n", "v" }, "<leader>y", '"+y', opts)
+
 
 -- Buffers
 map("n", "H", function()
