@@ -60,15 +60,14 @@ vim.api.nvim_create_autocmd("WinEnter", {
 })
 
 -- Enhance term
-local function start_insert_if_terminal()
-  if vim.bo.buftype == "terminal" then
-    vim.cmd("startinsert")
-  end
-end
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
   group = "AllHopeIsGone",
   pattern = "term://*",
-  callback = start_insert_if_terminal,
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.cmd("startinsert")
+    end
+  end
 })
 
 -- Use 'q' to close panels
