@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" 
 
 -- Handle close with quickfix
 vim.api.nvim_create_autocmd("WinEnter", {
+  group = "AllHopeIsGone",
   pattern = "*",
   callback = function()
     local wins = vim.api.nvim_list_wins()
