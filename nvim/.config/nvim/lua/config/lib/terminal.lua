@@ -5,6 +5,16 @@ local M = {}
 -- Track terminals by key
 local terminals = {}
 
+-- Setting float width/height
+local function resolve_dim(val, total)
+  if type(val) == "string" and val:sub(-1) == "%" then
+    local pct = tonumber(val:sub(1, -2))
+    return math.floor(total * (pct / 100))
+  end
+  return tonumber(val) or total -- fallback to full if nil
+end
+
+-- Toggle a persistent terminal
 function M.toggle(opts)
   local key = opts.key or opts.cmd
   if not key then
@@ -32,8 +42,8 @@ function M.toggle(opts)
   local win
   if opts.float then
     -- Floaterm style
-    local width = opts.width or math.floor(vim.o.columns * 0.8)
-    local height = opts.height or math.floor(vim.o.lines * 0.8)
+    local width = resolve_dim(opts.width, vim.o.columns)
+    local height = resolve_dim(opts.height, vim.o.lines)
     local row = math.floor((vim.o.lines - height) / 2)
     local col = math.floor((vim.o.columns - width) / 2)
 

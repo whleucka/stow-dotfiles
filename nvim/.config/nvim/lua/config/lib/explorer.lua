@@ -55,6 +55,7 @@ function M.grep_files()
   vim.fn.setreg("/", "\\V" .. input)
   vim.opt.hlsearch = true
   vim.cmd("copen")
+  vim.notify("")
 end
 
 function M.find_files()
@@ -101,6 +102,7 @@ function M.find_files()
   })
 
   vim.cmd("copen")
+  vim.notify("")
 
   -- Auto-close when user selects an item (moves out of quickfix window)
   vim.defer_fn(function()

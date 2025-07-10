@@ -14,10 +14,13 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", opts)
+map("n", "<C-s>", function()
+  vim.cmd("source " .. vim.fn.expand("$MYVIMRC"))
+  print("🔁 Reloaded init.lua!")
+end, opts)
 
 -- Yanking
 map("n", "<leader>Y", "ggVGy", opts)
-map("n", "<leader>y", '"+y', opts)
 
 -- Buffers
 map("n", "H", function()
@@ -33,11 +36,11 @@ map("n", "<leader>\\", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>",  opts)
 
 -- Terminal
-map("n", "<leader>ts", function()
+map("n", "<leader>th", function()
   terminal.toggle({
     cmd = vim.o.shell,
     direction = "horizontal",
-    key = "shell",
+    key = "shell-horizontal",
     size = 12
   })
 end, opts)
@@ -45,7 +48,7 @@ map("n", "<leader>tv", function()
   terminal.toggle({
     cmd = vim.o.shell,
     direction = "vertical",
-    key = "shell",
+    key = "shell-vertical",
     size = 75
   })
 end, opts)
@@ -54,8 +57,8 @@ map("n", "<leader>tf", function()
     cmd = vim.o.shell,
     key = "shell-float",
     float = true,
-    width = 150,
-    height = 40,
+    width = '80%',
+    height = '40%',
     border = "rounded",
     startinsert = true,
   })
