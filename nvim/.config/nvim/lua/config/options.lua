@@ -37,7 +37,17 @@ opt.wildmenu = true
 opt.wildmode = { "longest", "full" }
 
 -- Clipboard
-opt.clipboard = "unnamedplus"       -- use system clipboard by default
+opt.clipboard = {
+  name = "osc52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy,
+    ["*"] = require("vim.ui.clipboard.osc52").copy,
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste,
+    ["*"] = require("vim.ui.clipboard.osc52").paste,
+  },
+}
 
 -- Splits
 opt.splitbelow = true
