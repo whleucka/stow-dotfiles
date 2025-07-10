@@ -61,29 +61,28 @@ map("n", "<leader>-", ":split<CR>",  opts)
 -- Terminal
 map("n", "<leader>th", function()
   terminal.toggle({
+    key = "shell-horizontal",
     cmd = vim.o.shell,
     direction = "horizontal",
-    key = "shell-horizontal",
     size = 12
   })
 end, opts)
 map("n", "<leader>tv", function()
   terminal.toggle({
+    key = "shell-vertical",
     cmd = vim.o.shell,
     direction = "vertical",
-    key = "shell-vertical",
     size = 75
   })
 end, opts)
 map("n", "<leader>tf", function()
   terminal.toggle({
-    cmd = vim.o.shell,
     key = "shell-float",
+    cmd = vim.o.shell,
     float = true,
     width = '80%',
     height = '40%',
     border = "rounded",
-    startinsert = true,
   })
 end, opts)
 map("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
@@ -155,7 +154,7 @@ map('v', '>', '>gv', opts)
 map("v", "J", ":m '>+1<CR>gv-gv", opts)
 map("v", "K", ":m '<-2<CR>gv-gv", opts)
 
--- Moving splits
+-- Resizing splits
 map("n", "<C-Up>", ":resize +2<CR>", opts)
 map("n", "<C-Down>", ":resize -2<CR>", opts)
 map("n", "<C-Left>", ":resize -2<CR>", opts)

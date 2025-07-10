@@ -82,10 +82,6 @@ function M.toggle(opts)
     vim.fn.termopen(opts.cmd or vim.o.shell, term_opts)
   end
 
-  if opts.startinsert ~= false then
-    vim.cmd("startinsert")
-  end
-
   -- Optional line number disabling
   vim.wo.number = false
   vim.wo.relativenumber = false
