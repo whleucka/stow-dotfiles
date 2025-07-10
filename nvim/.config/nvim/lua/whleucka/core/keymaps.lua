@@ -79,8 +79,8 @@ map("n", "<leader>tf", function()
     key = "shell-float",
     cmd = vim.o.shell,
     float = true,
-    width = '80%',
-    height = '40%',
+    width = '60%',
+    height = '70%',
     border = "rounded",
   })
 end, opts)
@@ -104,7 +104,6 @@ map("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
 map("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
-map("t", "<Esc>", [[<C-\><C-n>:close<CR>]], opts)
 map("t", "<C-/>", [[<C-\><C-n>:close<CR>]], opts)
 
 -- Git
