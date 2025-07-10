@@ -16,8 +16,8 @@ map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", opts)
 
 -- Yanking
-map("v", "<leader>y", '"+y', opts)
 map("n", "<leader>Y", "ggVGy", opts)
+map("n", "<leader>y", '"+y', opts)
 
 -- Buffers
 map("n", "H", function()

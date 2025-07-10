@@ -4,7 +4,7 @@ vim.api.nvim_create_augroup("AllHopeIsGone", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = "AllHopeIsGone",
   callback = function()
-    vim.highlight.on_yank({ timeout = 150 })
+    vim.hl.on_yank({ timeout = 150 })
   end,
 })
 
