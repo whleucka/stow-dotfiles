@@ -16,7 +16,7 @@ map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", { expr = true, silent = true })
 
 -- Reload config
-map("n", "<C-s>", function()
+map("n", "<F5>", function()
   for name, _ in pairs(package.loaded) do
     if name:match("^whleucka") then
       package.loaded[name] = nil
