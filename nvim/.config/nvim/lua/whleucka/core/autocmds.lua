@@ -60,6 +60,15 @@ vim.api.nvim_create_autocmd("WinEnter", {
   end
 })
 
+-- Turn off line numbers in quickfix
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
+
 -- Enhance term
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
   group = "AllHopeIsGone",
