@@ -54,17 +54,21 @@ opt.wildmenu = true
 opt.wildmode = { "longest", "full" }
 
 -- Clipboard
-g.clipboard = {
-  name = 'osc52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
+if vim.fn.has("nvim-0.10") == 1 then
+  g.clipboard = {
+    name = 'osc52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+  }
+else
+  vim.opt.clipboard = "unnamedplus"
+end
 
 -- Splits
 opt.splitbelow = true
