@@ -59,8 +59,8 @@ opt.splitright = true
 
 -- Performance
 opt.lazyredraw = true               -- faster macro execution
-opt.updatetime = 250                -- lower = faster CursorHold events
-opt.timeoutlen = 300                -- lower = snappier mappings
+opt.updatetime = 2000                -- lower = faster CursorHold events
+opt.timeoutlen = 500                -- lower = snappier mappings
 
 -- Misc
 opt.mouse = "a"                     -- enable mouse in all modes
