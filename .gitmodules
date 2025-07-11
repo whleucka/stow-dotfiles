@@ -1,0 +1,3 @@
+[submodule "nvim/.config/nvim/nvim/.config/nvim/pack/base/start/catppuccin-nvim"]
+	path = nvim/.config/nvim/nvim/.config/nvim/pack/base/start/catppuccin-nvim
+	url = https://github.com/catppuccin/nvim

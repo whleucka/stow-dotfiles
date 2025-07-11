@@ -13,7 +13,7 @@ map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
-map("n", "q", "<Nop>", opts)
+map("n", "q", "<Nop>", { expr = true, silent = true })
 
 -- Reload config
 map("n", "<C-s>", function()
