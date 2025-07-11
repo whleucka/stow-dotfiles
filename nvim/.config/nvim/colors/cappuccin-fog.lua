@@ -81,7 +81,7 @@ hl("StatusLineExtra",  { fg = "#bac2de", bg = "none" })
 -- Bufferline
 hl("BufferLineBackground", { fg = theme.subtext0, bg = theme.base })
 hl("BufferLineInactive", { fg = "#666666", bg = theme.base })
-hl("BufferLineActive", { fg = "#444444", bg = theme.blue, bold = true })
+hl("BufferLineActive", { fg = "#444444", bg = theme.yellow, bold = true })
 
 -- Transparent bg
 -- hl("NormalFloat", { bg = "none" })
