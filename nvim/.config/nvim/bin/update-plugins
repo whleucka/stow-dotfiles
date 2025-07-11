@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "🔍 Checking for missing submodules..."
+git submodule init
+
+echo "📦 Updating submodules to recorded commits..."
+git submodule update --recursive --remote
+
+echo "✅ All submodules initialized and updated."
