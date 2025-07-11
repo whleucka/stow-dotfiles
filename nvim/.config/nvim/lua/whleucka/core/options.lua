@@ -3,7 +3,7 @@ local g = vim.g
 local cmd = vim.cmd
 
 -- Theme
-cmd.colorscheme("cappuccin-fog")
+cmd.colorscheme("darkness")
 
 -- UI
 opt.number = true                   -- show line numbers
