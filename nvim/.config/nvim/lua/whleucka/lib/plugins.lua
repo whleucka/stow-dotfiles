@@ -44,12 +44,30 @@ function M.install()
   vim.fn.mkdir(base_path .. "/opt", "p")
 
   for _, plugin in ipairs(options.start or {}) do
+    -- Clone dependencies
+    for _, dependency in ipairs(plugin.dependencies or {}) do
+      clone_plugin(dependency, "start")
+      -- Check for build step
+      if dependency.build then
+        build(dependency)
+      end
+    end
+
+    -- Clone plugin
     clone_plugin(plugin, "start")
   end
 
   for _, plugin in ipairs(options.opt or {}) do
     clone_plugin(plugin, "opt")
   end
+end
+
+function build(plugin)
+    local plugin_dir = vim.fn.stdpath("data") .. "/site/pack/base/start/" .. plugin.name
+    local output = vim.fn.system("cd " .. plugin_dir .. " && " .. plugin.build)
+    if vim.v.shell_error ~= 0 then
+      vim.notify("⚠️ Build failed for " .. plugin.name .. ": " .. output, vim.log.levels.ERROR)
+    end
 end
 
 --- Updates all installed plugins by pulling the latest changes from git.
@@ -89,6 +107,13 @@ function M.list()
   end
 end
 
+function bootstrap(plugin)
+  local ok, err = pcall(plugin.setup)
+  if not ok then
+    vim.notify("⚠️ Error in setup for " .. plugin.name .. ": " .. err, vim.log.levels.ERROR)
+  end
+end
+
 --- Runs the setup function for configured start plugins.
 function M.setup(opts)
   local plugins = require("whleucka.plugins")
@@ -97,11 +122,14 @@ function M.setup(opts)
 
   for _, plugin in ipairs(options[type] or {}) do
     if plugin_exists(type, plugin.name) then
-      if plugin.setup then
-        local ok, err = pcall(plugin.setup)
-        if not ok then
-          vim.notify("⚠️ Error in setup for " .. plugin.name .. ": " .. err, vim.log.levels.ERROR)
+      -- Check for dependencies
+      for _, dependency in ipairs(plugin.dependencies or {}) do
+        if dependency.setup then
+          bootstrap(dependency)
         end
+      end
+      if plugin.setup then
+        bootstrap(plugin)
       end
     else
       local msg = string.format("⁉️ Plugin not found: %s (Try running :PluginInstall)", plugin.name)
