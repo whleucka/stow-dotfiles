@@ -5,6 +5,9 @@ return {
     require'nvim-treesitter.configs'.setup {
       ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "php", "javascript", "html", "css", "python", "bash" },
       auto_install = false,
+      indent = {
+        enable = true
+      },
       highlight = {
         enable = true,
         -- Disable slow treesitter highlight for large files
