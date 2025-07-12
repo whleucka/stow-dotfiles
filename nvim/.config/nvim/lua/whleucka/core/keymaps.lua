@@ -3,6 +3,7 @@ local opts = { silent = true, noremap = true }
 local explorer = require("whleucka.lib.explorer")
 local buffer = require("whleucka.lib.buffer")
 local terminal = require("whleucka.lib.terminal")
+local plugin = require("whleucka.lib.plugins")
 
 vim.g.mapleader = " "
 
@@ -10,10 +11,16 @@ vim.g.mapleader = " "
 map("n", "<leader>w", ":w<CR>", opts)
 map("n", "<leader>q", ":q<CR>", opts)
 map("n", "<leader>qq", ":qa<CR>", opts)
-map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
+map("n", "<Esc>", ":nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", { expr = true, silent = true })
+
+-- Plugins
+map("n", "<F2>", ":PluginList<CR>", opts)
+map("n", "<F3>", ":PluginInstall<CR>", opts) 
+map("n", "<F4>", ":PluginUpdate<CR>", opts) 
+
 
 -- Reload config
 map("n", "<F5>", function()
