@@ -43,10 +43,9 @@ end
 
 --- Installs plugins defined in the configuration.
 --- Creates the necessary directories and clones the plugins.
---- @param opts table The plugin configuration, expects `start` and `opt` tables.
-function M.install(opts)
-  opts = opts or {}
-  local options = vim.tbl_deep_extend("force", default, opts)
+function M.install()
+  local plugins = require("whleucka.plugins")
+  local options = vim.tbl_deep_extend("force", default, plugins)
 
   vim.fn.mkdir(base_path .. "/start", "p")
   vim.fn.mkdir(base_path .. "/opt", "p")
@@ -104,10 +103,9 @@ function M.list()
 end
 
 --- Runs the setup function for configured start plugins.
---- @param opts table The plugin configuration.
 function M.setup(opts)
-  opts = opts or {}
-  local options = vim.tbl_deep_extend("force", default, opts)
+  local plugins = require("whleucka.plugins")
+  local options = vim.tbl_deep_extend("force", default, plugins)
   local type = "start" -- Only setup start plugins automatically
 
   for _, plugin in ipairs(options[type] or {}) do
@@ -125,20 +123,48 @@ function M.setup(opts)
 end
 
 --- Removes any installed plugins that are no longer in the configuration.
---- (Not yet implemented)
 function M.clean()
-  vim.notify("`PluginClean` is not yet implemented.", vim.log.levels.WARN)
+  local plugins = require("whleucka.plugins")
+  local options = vim.tbl_deep_extend("force", default, plugins)
+
+  -- Get list of expected plugin names
+  local expected = {}
+  for _, plugin in ipairs(options.start or {}) do
+    expected["start/" .. plugin.name] = true
+  end
+  for _, plugin in ipairs(options.opt or {}) do
+    expected["opt/" .. plugin.name] = true
+  end
+
+  local removed = {}
+
+  -- Iterate over start and opt folders
+  for _, type in ipairs({ "start", "opt" }) do
+    local type_path = base_path .. "/" .. type
+    for _, dir in ipairs(vim.fn.readdir(type_path)) do
+      local key = type .. "/" .. dir
+      if not expected[key] then
+        local full_path = type_path .. "/" .. dir
+        vim.fn.delete(full_path, "rf")
+        table.insert(removed, key)
+      end
+    end
+  end
+
+  if #removed > 0 then
+    print("🗑️ Removed unused plugins:")
+    for _, name in ipairs(removed) do
+      print("   └─ " .. name)
+    end
+  else
+    print("✅ No unused plugins to clean.")
+  end
 end
 
 -- Create user commands for plugin management.
-vim.api.nvim_create_user_command("PluginInstall", function()
-  M.install(require("whleucka.plugins"))
-end, {})
-
+vim.api.nvim_create_user_command("PluginInstall", M.install, {})
 vim.api.nvim_create_user_command("PluginUpdate", M.update, {})
-
 vim.api.nvim_create_user_command("PluginList", M.list, {})
-
 vim.api.nvim_create_user_command("PluginClean", M.clean, {})
 
 return M

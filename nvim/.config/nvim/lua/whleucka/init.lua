@@ -4,8 +4,7 @@ require("whleucka.core.keymaps")
 require("whleucka.core.autocmds")
 
 -- Plugins
-local plugins = require("whleucka.plugins")
-require("whleucka.lib.plugins").setup(plugins)
+require("whleucka.lib.plugins").setup()
 
 -- Other elements
 require("whleucka.lib.bufferline")

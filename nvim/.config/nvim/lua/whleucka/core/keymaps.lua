@@ -15,12 +15,6 @@ map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", { expr = true, silent = true })
 
--- Plugins
-map("n", "<F2>", ":PluginList<CR>", opts)
-map("n", "<F3>", ":PluginInstall<CR>", opts) 
-map("n", "<F4>", ":PluginUpdate<CR>", opts) 
-
-
 -- Reload config
 map("n", "<F5>", function()
   for name, _ in pairs(package.loaded) do
