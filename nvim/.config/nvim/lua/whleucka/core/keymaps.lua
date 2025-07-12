@@ -3,7 +3,6 @@ local opts = { silent = true, noremap = true }
 local explorer = require("whleucka.lib.explorer")
 local buffer = require("whleucka.lib.buffer")
 local terminal = require("whleucka.lib.terminal")
-local plugin = require("whleucka.lib.plugins")
 
 vim.g.mapleader = " "
 
