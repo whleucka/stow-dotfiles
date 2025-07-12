@@ -112,7 +112,7 @@ function M.setup(opts)
         end
       end
     else
-      local msg = string.format("⁉️ Plugin not found: %s (Try running :BaseInstall)", plugin.name)
+      local msg = string.format("⁉️ Plugin not found: %s (Try running :PluginInstall)", plugin.name)
       vim.notify(msg, vim.log.levels.WARN)
     end
   end
@@ -157,11 +157,11 @@ function M.clean()
   end
 end
 
-vim.api.nvim_create_user_command("BaseInstall", M.install, {})
-vim.api.nvim_create_user_command("BaseUpdate", M.update, {})
-vim.api.nvim_create_user_command("BaseList", M.list, {})
-vim.api.nvim_create_user_command("BaseClean", M.clean, {})
-vim.api.nvim_create_user_command("BaseSync", function()
+vim.api.nvim_create_user_command("PluginInstall", M.install, {})
+vim.api.nvim_create_user_command("PluginUpdate", M.update, {})
+vim.api.nvim_create_user_command("PluginList", M.list, {})
+vim.api.nvim_create_user_command("PluginClean", M.clean, {})
+vim.api.nvim_create_user_command("PluginSync", function()
   M.install()
   M.update()
   M.clean()
