@@ -16,7 +16,7 @@ map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", { expr = true, silent = true })
 
 -- Reload config
-map("n", "<F5>", ":ReloadConfig", opts)
+map("n", "<F5>", ":ReloadConfig<CR>", opts)
 
 -- Yank entire file to system clipboard
 map("n", "<leader>Y", 'ggVG"+y', opts)
