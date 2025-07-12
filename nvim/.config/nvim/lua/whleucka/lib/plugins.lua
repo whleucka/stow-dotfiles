@@ -22,9 +22,6 @@ end
 
 --- Clones a plugin from a git repository.
 local function clone_plugin(plugin, type)
-  if not plugin.name then
-    plugin.name = plugin.url:match(".*/(.-)%.git$") or plugin.url:match(".*/(.-)$")
-  end
   local path = get_plugin_path(type, plugin.name)
   if not plugin_exists(type, plugin.name) then
     vim.notify(string.format("📦 Installing [%s] (%s)...", plugin.name, type))
