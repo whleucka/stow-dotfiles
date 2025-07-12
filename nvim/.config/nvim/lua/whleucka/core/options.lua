@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
-local cmd = vim.cmd
+local bo = vim.bo
+local wo = vim.wo
 
 -- UI
 opt.number = true                   -- show line numbers
@@ -14,12 +15,12 @@ opt.wrap = false                    -- no line wrapping
 opt.linebreak = true                -- wrap at word boundary if wrap is on
 
 -- Indentation
-vim.bo.shiftwidth = 2
-vim.bo.tabstop = 2
-vim.bo.softtabstop = 2
-vim.bo.expandtab = true             -- use spaces instead of tabs
-vim.bo.autoindent = true
-vim.bo.smartindent = true
+bo.shiftwidth = 2
+bo.tabstop = 2
+bo.softtabstop = 2
+bo.expandtab = true             -- use spaces instead of tabs
+bo.autoindent = true
+bo.smartindent = true
 
 -- Search
 opt.ignorecase = true               -- case-insensitive by default
@@ -32,6 +33,15 @@ opt.swapfile = false                -- no .swp files
 opt.backup = false                  -- no backup files
 opt.undofile = true                 -- persistent undo
 opt.undolevels = 10000              -- lots of undo history
+
+-- Folds
+wo.foldenable = true
+wo.foldlevel = 99
+opt.foldlevelstart = 99
+wo.foldmethod = 'expr'
+wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+--opt.foldcolumn = '1'  -- or 'auto'
+opt.fillchars = 'fold: '
 
 -- Completion
 opt.wildmenu = true
