@@ -37,7 +37,7 @@ local function clone_plugin(plugin, type)
     os.execute(cmd)
     vim.notify(string.format("✅ Installed %s → %s", plugin.name, path))
   else
-    vim.notify(string.format("🟢 %s (%s) already installed.", plugin.name, type), vim.log.levels.INFO)
+    vim.notify(string.format("✅ %s (%s) already installed.", plugin.name, type), vim.log.levels.INFO)
   end
   vim.notify("✅ Plugin installation complete.")
 end
@@ -165,6 +165,7 @@ vim.api.nvim_create_user_command("BaseSync", function()
   M.install()
   M.update()
   M.clean()
+  vim.cmd("ReloadConfig")
 end, {})
 
 return M

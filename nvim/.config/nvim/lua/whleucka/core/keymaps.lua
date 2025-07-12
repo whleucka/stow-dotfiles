@@ -16,17 +16,7 @@ map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", { expr = true, silent = true })
 
 -- Reload config
-map("n", "<F5>", function()
-  for name, _ in pairs(package.loaded) do
-    if name:match("^whleucka") then
-      package.loaded[name] = nil
-    end
-  end
-
-  require("whleucka")
-
-  vim.notify("🔁 Reloaded config!")
-end, opts)
+map("n", "<F5>", ":ReloadConfig", opts)
 
 -- Yank entire file to system clipboard
 map("n", "<leader>Y", 'ggVG"+y', opts)
