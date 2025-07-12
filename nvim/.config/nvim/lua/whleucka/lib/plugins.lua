@@ -39,6 +39,7 @@ local function clone_plugin(plugin, type)
   else
     vim.notify(string.format("🟢 %s (%s) already installed.", plugin.name, type), vim.log.levels.INFO)
   end
+  vim.notify("✅ Plugin installation complete.")
 end
 
 --- Installs plugins defined in the configuration.
@@ -76,12 +77,6 @@ function M.update()
   vim.notify("✅ Plugin update complete.")
 end
 
---- Lazily loads an optional plugin.
---- @param plugin string The name of the plugin to load.
-function M.lazy(plugin)
-  vim.cmd(string.format("packadd %s", plugin))
-end
-
 --- Lists all installed plugins.
 function M.list()
   for _, type in ipairs({ "start", "opt" }) do
@@ -89,15 +84,15 @@ function M.list()
     if vim.fn.isdirectory(type_path) == 1 then
       local plugins = vim.fn.readdir(type_path)
       if #plugins > 0 then
-        print("📦 " .. type .. " plugins:")
+        vim.notify("📦 " .. type .. " plugins:")
         for _, name in ipairs(plugins) do
-          print("   └─ " .. name)
+          vim.notify("   └─ " .. name)
         end
       else
-        print("📦 " .. type .. " plugins: (none)")
+        vim.notify("📦 " .. type .. " plugins: (none)")
       end
     else
-      print("📦 " .. type .. " plugins: (directory missing)")
+      vim.notify("📦 " .. type .. " plugins: (directory missing)")
     end
   end
 end
@@ -113,11 +108,11 @@ function M.setup(opts)
       if plugin.setup then
         local ok, err = pcall(plugin.setup)
         if not ok then
-          vim.notify("Error in setup for " .. plugin.name .. ": " .. err, vim.log.levels.ERROR)
+          vim.notify("⚠️ Error in setup for " .. plugin.name .. ": " .. err, vim.log.levels.ERROR)
         end
       end
     else
-      vim.notify("Plugin not found: " .. plugin.name, vim.log.levels.WARN)
+      vim.notify("⁉️ Plugin not found: " .. plugin.name, vim.log.levels.WARN)
     end
   end
 end
@@ -152,19 +147,23 @@ function M.clean()
   end
 
   if #removed > 0 then
-    print("🗑️ Removed unused plugins:")
+    vim.notify("🗑️ Removed unused plugins:")
     for _, name in ipairs(removed) do
-      print("   └─ " .. name)
+      vim.notify("   └─ " .. name)
     end
   else
-    print("✅ No unused plugins to clean.")
+    vim.notify("✅ No unused plugins to clean.")
   end
 end
 
--- Create user commands for plugin management.
-vim.api.nvim_create_user_command("PluginInstall", M.install, {})
-vim.api.nvim_create_user_command("PluginUpdate", M.update, {})
-vim.api.nvim_create_user_command("PluginList", M.list, {})
-vim.api.nvim_create_user_command("PluginClean", M.clean, {})
+vim.api.nvim_create_user_command("PInstall", M.install, {})
+vim.api.nvim_create_user_command("PUpdate", M.update, {})
+vim.api.nvim_create_user_command("PList", M.list, {})
+vim.api.nvim_create_user_command("PClean", M.clean, {})
+vim.api.nvim_create_user_command("PSync", function()
+  M.install()
+  M.update()
+  M.clean()
+end, {})
 
 return M
