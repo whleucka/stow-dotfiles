@@ -113,7 +113,7 @@ function M.setup(opts)
       end
     else
       vim.notify("⁉️ Plugin not found: " .. plugin.name, vim.log.levels.WARN)
-      vim.notify("Try running :BaseInstall")
+      vim.notify("ℹ️ Try running :BaseInstall")
     end
   end
 end
