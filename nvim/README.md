@@ -3,10 +3,6 @@
 *A minimalist, plugin-free Neovim setup for people who think `init.lua` is a lifestyle choice.*
 
 ## Welcome.
-No plugins.
-No dependencies.
-No excuses.
-
 This isn't for everyone.
 This is for the keyboard monks. The no-mouse prophets. The config freaks.
 If you're still reading this, you're probably one of us.
