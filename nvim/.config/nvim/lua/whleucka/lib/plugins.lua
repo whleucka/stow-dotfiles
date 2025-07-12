@@ -11,25 +11,20 @@ local default = {
 }
 
 --- Returns the full path for a given plugin.
---- @param type string "start" or "opt"
---- @param name string The name of the plugin
---- @return string The absolute path to the plugin
 local function get_plugin_path(type, name)
   return string.format("%s/%s/%s", base_path, type, name)
 end
 
 --- Checks if a plugin directory exists.
---- @param type string "start" or "opt"
---- @param name string The name of the plugin
---- @return boolean
 local function plugin_exists(type, name)
   return vim.fn.isdirectory(get_plugin_path(type, name)) == 1
 end
 
 --- Clones a plugin from a git repository.
---- @param plugin table The plugin table, expecting `name` and `url` keys.
---- @param type string "start" or "opt"
 local function clone_plugin(plugin, type)
+  if not plugin.name then
+    plugin.name = plugin.url:match(".*/(.-)%.git$") or plugin.url:match(".*/(.-)$")
+  end
   local path = get_plugin_path(type, plugin.name)
   if not plugin_exists(type, plugin.name) then
     vim.notify(string.format("📦 Installing [%s] (%s)...", plugin.name, type))
