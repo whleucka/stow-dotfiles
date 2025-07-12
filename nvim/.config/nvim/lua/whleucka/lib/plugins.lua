@@ -165,7 +165,6 @@ vim.api.nvim_create_user_command("BaseSync", function()
   M.install()
   M.update()
   M.clean()
-  vim.cmd("ReloadConfig")
 end, {})
 
 return M
