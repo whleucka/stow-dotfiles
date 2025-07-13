@@ -161,10 +161,6 @@ map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
--- Quickfix
-map("n", "q[", ":cprev<CR>zz", opts)
-map("n", "q]", ":cnext<CR>zz", opts)
-
 -- File explorer
 -- map("n", "<leader>e", explorer.toggle_netrw, opts)
 
