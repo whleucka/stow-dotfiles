@@ -14,9 +14,9 @@ M.config = vim.deepcopy(default_config)
 
 -- Functions
 local function bootstrap(plugin)
-  local ok, err = pcall(plugin.setup)
+  local ok, err = pcall(plugin.config)
   if not ok then
-    log.error(string.format("Error in setup for %s: %s", plugin.name, err))
+    log.error(string.format("Error in config for %s: %s", plugin.name, err))
   end
 end
 
@@ -179,11 +179,11 @@ function M.setup(user_config)
     if plugin_exists("start", plugin.name) then
       -- Check for dependencies
       for _, dependency in ipairs(plugin.dependencies or {}) do
-        if dependency.setup then
+        if dependency.config then
           bootstrap(dependency)
         end
       end
-      if plugin.setup then
+      if plugin.config then
         bootstrap(plugin)
       end
     else

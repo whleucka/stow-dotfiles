@@ -6,7 +6,7 @@ return {
       url = "https://github.com/Saghen/blink.cmp",
       name = "blink.cmp",
       build = "cargo build --release",
-      setup = function()
+      config = function()
         local blink = require("blink.cmp")
         local lspconfig = require('lspconfig')
 
@@ -54,10 +54,5 @@ return {
         end
       end
     }
-  },
-  setup = function()
-    vim.lsp.enable("intelephense")
-    vim.lsp.enable("bashls")
-    vim.lsp.enable("lua_ls")
-  end
+  }
 }

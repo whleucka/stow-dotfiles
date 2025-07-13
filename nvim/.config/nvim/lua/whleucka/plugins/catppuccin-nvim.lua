@@ -1,7 +1,7 @@
 return {
   url = "https://github.com/catppuccin/nvim",
   name = "catppuccin-nvim",
-  setup = function()
+  config = function()
     -- Theme
     vim.cmd.colorscheme("catppuccin")
     local set_hl = vim.api.nvim_set_hl

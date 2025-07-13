@@ -1,11 +1,5 @@
--- Plugin Manager
-require("whleucka.lib.plugin_manager").setup()
-
--- Main config
-require("whleucka.core.options")
-require("whleucka.core.keymaps")
-require("whleucka.core.autocmds")
-
--- Other elements
-require("whleucka.lib.bufferline")
-require("whleucka.lib.statusline")
+require("whleucka.core.plugin_manager").setup()
+require("whleucka.core.lsp")
+require("whleucka.config.options")
+require("whleucka.config.keymaps")
+require("whleucka.config.autocmds")
