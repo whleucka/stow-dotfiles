@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
 vim.api.nvim_create_autocmd("FileType", {
   group = "default",
   pattern = {
-    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal", "git", "gitblame", "gitdiff",
+    "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal", "git", "gitblame", "gitdiff", "gitcommit",
     "fugitive", "fugitiveblame", "fugitivediff"
   },
   callback = function()
