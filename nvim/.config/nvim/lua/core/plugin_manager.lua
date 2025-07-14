@@ -1,18 +1,19 @@
 local M = {}
 local log = require("lib.utils").log
-local base_path = vim.fn.stdpath("data") .. "/site/pack/base"
-local base = require("plugins")
+local plugin_root = vim.fn.stdpath("data") .. "/site/pack/plugins"
+local plugins = require("plugins")
 
--- Config
+-- Configuration
 local default_config = {
-  path = base_path,
-  plugins = base,
+  plugin_root = plugin_root,
+  plugins = plugins,
 }
 vim.inspect(default_config)
 
 M.config = vim.deepcopy(default_config)
 
--- Functions
+-- Boostrap the plugin
+-- This will run the config function in the plugin configuration
 local function bootstrap(plugin)
   local ok, err = pcall(plugin.config)
   if not ok then
@@ -20,15 +21,19 @@ local function bootstrap(plugin)
   end
 end
 
+-- Get the plugin path
 local function get_plugin_path(type, name)
-  return string.format("%s/%s/%s", M.config.path, type, name)
+  return string.format("%s/%s/%s", M.config.plugin_root, type, name)
 end
 
+-- Does the plugin exist?
 local function plugin_exists(type, name)
   return vim.fn.isdirectory(get_plugin_path(type, name)) == 1
 end
 
-local function clone(plugin, type)
+-- Clone plugin
+-- This will use git to fetch the plugin from the repository
+local function plugin_clone(plugin, type)
   local path = get_plugin_path(type, plugin.name)
   if not plugin_exists(type, plugin.name) then
     log.info(string.format("Installing [%s] (%s)...", plugin.name, type))
@@ -41,52 +46,104 @@ local function clone(plugin, type)
   end
 end
 
-local function build(plugin)
-    log.info("Building " .. plugin.name)
-    local plugin_dir = vim.fn.stdpath("data") .. "/site/pack/base/start/" .. plugin.name
-    local output = vim.fn.system("cd " .. plugin_dir .. " && " .. plugin.build)
-    vim.notify(output)
-    if vim.v.shell_error ~= 0 then
-      log.error(string.format("Build failed for %s: %s", plugin.name, output))
+-- Stream cmd output to vim notify
+local function run_shell_command_stream(cmd)
+  local stdout = vim.loop.new_pipe(false)
+  local stderr = vim.loop.new_pipe(false)
+
+  local handle
+  handle = vim.loop.spawn("sh", {
+    args = { "-c", cmd },
+    stdio = {nil, stdout, stderr},
+  }, function(code, signal)
+    stdout:close()
+    stderr:close()
+    handle:close()
+
+    vim.schedule(function()
+      if code == 0 then
+        log.success("Done: " .. cmd)
+      else
+        log.error("Exit code " .. code .. ": " .. cmd)
+      end
+    end)
+  end)
+
+  local function on_read(err, data)
+    if err then
+      vim.schedule(function()
+        log.error("ERROR: " .. err)
+      end)
     end
+    if data then
+      for line in string.gmatch(data, "[^\r\n]+") do
+        vim.schedule(function()
+          vim.notify(line)
+        end)
+      end
+    end
+  end
+
+  vim.loop.read_start(stdout, on_read)
+  vim.loop.read_start(stderr, on_read)
 end
 
+-- Build plugin
+-- This will run the build command in a shell
+local function build(plugin)
+    log.info(string.format("Building %s in the background.", plugin.name))
+    local plugin_dir = M.config.plugin_root .. "/start/" .. plugin.name
+    local cmd = "cd " .. plugin_dir .. " && " .. plugin.build
+    run_shell_command_stream(cmd)
+end
+
+-- Install plugin
+-- This will install plugin and dependencies
 local function plugin_install()
   local plugins = M.config.plugins
   vim.inspect(plugins)
-  local path = M.config.path
+  local path = M.config.plugin_root
   local start_path = path .. "/start"
   local opt_path = path .. "/opt"
 
   -- Create base directories
   vim.fn.mkdir(start_path, "p")
   vim.fn.mkdir(opt_path, "p")
+  local has_build = false
 
-  -- Install start plugins
+  -- Install & build start plugins
   for _, plugin in ipairs(plugins.start or {}) do
-    -- Clone dependencies
     for _, dependency in ipairs(plugin.dependencies or {}) do
-      local should_build = clone(dependency, "start")
-      -- Check for build step
-      if dependency.build and should_build then
+      local installed = plugin_clone(dependency, "start")
+      if dependency.build and installed then
         build(dependency)
+        has_build = true
       end
     end
     -- Clone plugin
-    clone(plugin, "start")
+    local installed = plugin_clone(plugin, "start")
+    if plugin.build and installed then
+      build(plugin)
+      has_build = true
+    end
   end
 
   -- Install opt plugins
   -- for _, plugin in ipairs(plugins.opt or {}) do
-  --   clone(plugin, "opt")
+  --   plugin_clone(plugin, "opt")
   -- end
 
   log.success("Plugin installation complete.")
+  if has_build then
+    log.info("Build in progress. Please wait until done.")
+  end
 end
 
+-- Update plugin
+-- This will use git to pull the most recent changes
 local function plugin_update()
   for _, type in ipairs({ "start", "opt" }) do
-    local type_path = M.config.path .. "/" .. type
+    local type_path = M.config.plugin_root .. "/" .. type
     if vim.fn.isdirectory(type_path) == 1 then
       for _, dir in ipairs(vim.fn.readdir(type_path)) do
         local full_path = type_path .. "/" .. dir
@@ -101,9 +158,10 @@ local function plugin_update()
   log.success("Plugin update complete.")
 end
 
+-- List installed plugins
 local function plugin_list()
   for _, type in ipairs({ "start", "opt" }) do
-    local type_path = string.format("%s/%s", M.config.path, type)
+    local type_path = string.format("%s/%s", M.config.plugin_root, type)
     if vim.fn.isdirectory(type_path) == 1 then
       local plugins = vim.fn.readdir(type_path)
       if #plugins > 0 then
@@ -120,6 +178,7 @@ local function plugin_list()
   end
 end
 
+-- Clean plugin directory
 local function plugin_clean()
   local plugins = M.config.plugins
 
@@ -167,12 +226,14 @@ local function plugin_clean()
   end
 end
 
+-- Clean, Install, and Update existing plugins to latest version
 local function plugin_sync()
   plugin_clean()
   plugin_install()
   plugin_update()
 end
 
+-- Global setup
 function M.setup(user_config)
   M.config = vim.tbl_deep_extend("force", default_config, user_config or {})
   for _, plugin in ipairs(M.config.plugins.start or {}) do

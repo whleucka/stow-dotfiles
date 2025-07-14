@@ -15,7 +15,7 @@ local M = {
     warn = function(msg)
       vim.notify("⚠️" ..  msg, vim.log.levels.WARN)
     end,
-  }
+  },
 }
 
 return M
