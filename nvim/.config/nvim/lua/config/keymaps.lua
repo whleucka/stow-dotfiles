@@ -35,9 +35,9 @@ map("n", "<leader>gl",  ":G log<CR>", opts)                     -- git log
 map("n", "<leader>ga",  ":G add .<CR>", opts)                   -- git add all
 map("n", "<leader>gc",  ":G commit<Space>", opts)               -- git commit
 map("n", "<leader>gcm", ":G commit -m ''<Left>", opts)          -- commit with inline message
-map("n", "<leader>gw",  ":Gwrite<CR>", opts)                    -- stage file
-map("n", "<leader>gr",  ":Gread<CR>", opts)                     -- reset file
 map("n", "<leader>grb", ":G rebase -i HEAD~", opts)             -- rebase
+map("n", "<leader>gW",  ":Gwrite<CR>", opts)                    -- stage file
+map("n", "<leader>gR",  ":Gread<CR>", opts)                     -- reset file
 
 -- Buffers
 map("n", "H", function()
