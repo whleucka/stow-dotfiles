@@ -35,15 +35,16 @@ map("n", "L", function()
   buffer.switch(true)
 end, opts)
 map("n", "<leader>bd", ":bp | bd #<CR>", opts)
+-- Formatting
+map("n", "<leader>bf", function()
+  vim.lsp.buf.format()
+  vim.notify("Format complete")
+end, opts)
+
 
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR>", opts)
-map("n", "<leader>-", ":split<CR>",  opts)
-
--- Formatting
-map("n", "<F2>", function()
-  vim.lsp.format()
-end, opts)
+map("n", "<leader>-", ":split<CR>", opts)
 
 -- Terminal
 map("n", "<leader>th", function()
