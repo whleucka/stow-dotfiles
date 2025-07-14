@@ -1,11 +1,11 @@
 local plugin_list = {}
 
-local plugin_dir = vim.fn.stdpath("config") .. "/lua/whleucka/plugins"
+local plugin_dir = vim.fn.stdpath("config") .. "/lua/plugins"
 
 for _, file in ipairs(vim.fn.readdir(plugin_dir)) do
   if file ~= "init.lua" and file:match("%.lua$") then
     local name = file:gsub("%.lua$", "")
-    local ok, plugin = pcall(require, "whleucka.plugins." .. name)
+    local ok, plugin = pcall(require, "plugins." .. name)
     if ok and type(plugin) == "table" then
       table.insert(plugin_list, plugin)
     else

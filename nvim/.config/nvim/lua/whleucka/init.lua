@@ -1,5 +1,0 @@
-require("whleucka.core.plugin_manager").setup()
-require("whleucka.core.lsp")
-require("whleucka.config.options")
-require("whleucka.config.keymaps")
-require("whleucka.config.autocmds")

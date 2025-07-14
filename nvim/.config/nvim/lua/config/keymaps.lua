@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local opts = { silent = true, noremap = true }
-local explorer = require("whleucka.lib.explorer")
-local buffer = require("whleucka.lib.buffer")
-local terminal = require("whleucka.lib.terminal")
+local explorer = require("lib.explorer")
+local buffer = require("lib.buffer")
+local terminal = require("lib.terminal")
 
 vim.g.mapleader = " "
 

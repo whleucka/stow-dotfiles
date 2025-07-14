@@ -1,1 +1,5 @@
-require("whleucka") -- Load my config
+require("core.plugin_manager").setup()
+require("core.lsp")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")

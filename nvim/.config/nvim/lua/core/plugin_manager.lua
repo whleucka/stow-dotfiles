@@ -1,7 +1,7 @@
 local M = {}
-local log = require("whleucka.lib.utils").log
+local log = require("lib.utils").log
 local base_path = vim.fn.stdpath("data") .. "/site/pack/base"
-local base = require("whleucka.plugins")
+local base = require("plugins")
 
 -- Config
 local default_config = {

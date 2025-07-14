@@ -94,19 +94,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Reload config cmd
-vim.api.nvim_create_user_command("ReloadConfig", function()
-  for name, _ in pairs(package.loaded) do
-    if name:match("^whleucka") then
-      package.loaded[name] = nil
-    end
-  end
-
-  require("whleucka")
-
-  vim.notify("🔁 Reloaded config!")
-end, {})
-
 -- Autocomplete
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)

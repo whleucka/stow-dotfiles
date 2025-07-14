@@ -1,5 +1,5 @@
-require("whleucka.lib.bufferline")
-require("whleucka.lib.statusline")
+require("lib.bufferline")
+require("lib.statusline")
 
 local opt = vim.opt
 local g = vim.g
