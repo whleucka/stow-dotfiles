@@ -1,8 +1,8 @@
-vim.api.nvim_create_augroup("AllHopeIsGone", { clear = true })
+vim.api.nvim_create_augroup("default", { clear = true })
 
 -- Highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = "AllHopeIsGone",
+  group = "default",
   callback = function()
     vim.hl.on_yank({ timeout = 150 })
   end,
@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Restore cursor pos
 vim.api.nvim_create_autocmd("BufReadPost", {
-  group = "AllHopeIsGone",
+  group = "default",
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Bufferline
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
-  group = "AllHopeIsGone",
+  group = "default",
   callback = function()
     local bt = vim.bo.buftype
     local ft = vim.bo.filetype
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" 
 
 -- Handle close with quickfix
 vim.api.nvim_create_autocmd("WinEnter", {
-  group = "AllHopeIsGone",
+  group = "default",
   pattern = "*",
   callback = function()
     local wins = vim.api.nvim_list_wins()
@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Enhance term
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
-  group = "AllHopeIsGone",
+  group = "default",
   pattern = "term://*",
   callback = function()
     if vim.bo.buftype == "terminal" then
@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
 
 -- Use 'q' to close panels
 vim.api.nvim_create_autocmd("FileType", {
-  group = "AllHopeIsGone",
+  group = "default",
   pattern = {
     "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal", "gitblame", "gitdiff"
   },
@@ -96,6 +96,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Autocomplete
 vim.api.nvim_create_autocmd('LspAttach', {
+  group = "default",
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client:supports_method('textDocument/completion') then
