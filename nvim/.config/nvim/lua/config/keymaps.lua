@@ -15,14 +15,17 @@ map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
 map("n", "q", "<Nop>", { expr = true, silent = true })
 
--- Reload config
-map("n", "<F5>", ":ReloadConfig<CR>", opts)
-
 -- Yank entire file to system clipboard
 map("n", "<leader>Y", 'ggVG"+y', opts)
 -- Yank to system clipboard
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 
+
+-- Git
+map("n", "<leader>gs", ":G<CR>", opts)
+map("n", "<leader>gd", ":Gdiff<CR>", opts)
+map("n", "<leader>gb", ":G blame<CR>", opts)
+map("n", "<leader>gl", ":G log<CR>", opts)
 
 -- Buffers
 map("n", "H", function()
@@ -36,6 +39,7 @@ map("n", "<leader>bd", ":bp | bd #<CR>", opts)
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>",  opts)
+
 
 -- Terminal
 map("n", "<leader>th", function()
@@ -85,45 +89,6 @@ map("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
 map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
 map("t", "<C-c>", [[<C-\><C-n>:close<CR>]], opts)
-
--- Git
-map("n", "<leader>gb", function()
-  local file = vim.fn.expand("%:p")
-  local blame_cmd = string.format("git blame --color-by-age --date=short %s", file)
-  terminal.toggle({
-    key = "git-blame",
-    cmd = blame_cmd,
-  })
-end, opts)
-map("n", "<leader>gbl", function()
-  local file = vim.fn.expand("%:p")
-  local line = vim.fn.line(".")
-  local blame_cmd = string.format("git blame --color-by-age --date=short -L %d,%d %s", line, line, file)
-  terminal.toggle({
-    key = "git-blame-line",
-    cmd = blame_cmd,
-    direction = "horizontal",
-    size = 10
-  })
-end, opts)
-map("n", "<leader>gd", function()
-  terminal.toggle({
-    key = "git-diff",
-    cmd = "git diff HEAD --color=always",
-  })
-end, opts)
-map("n", "<leader>gs", function()
-  terminal.toggle({
-    key = "git-status",
-    cmd = "git status",
-  })
-end, opts)
-map("n", "<leader>gl", function()
-  terminal.toggle({
-    key = "git-log",
-    cmd = 'git log --graph --abbrev-commit --decorate --date=relative --format="%C(yellow)%h%Creset%C(auto)%d %Cgreen%ad %Cblue%an%Creset %s"',
-  })
-end, opts)
 
 -- AI
 map("n", "<leader>ai", function()
