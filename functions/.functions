@@ -137,8 +137,6 @@ nvim-update() {
     echo "$pull_output"
     
     if [[ "$pull_output" != *"Already up to date."* ]]; then
-        echo "Updating neovim plugins..."
-        nvim --headless "+Lazy! update" +UpdateRemotePlugins +TSUpdate +qa
         echo "Update complete!"
         exec zsh
     else
