@@ -13,7 +13,7 @@ map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", ":nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
-map("n", "q", "<Nop>", { expr = true, silent = true })
+map("n", "q", "<Nop>", opts)
 
 -- Yank entire file to system clipboard
 map("n", "<leader>Y", 'ggVG"+y', opts)
@@ -21,10 +21,23 @@ map("n", "<leader>Y", 'ggVG"+y', opts)
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 
 -- Git
-map("n", "<leader>gs", ":G<CR>", opts)
-map("n", "<leader>gd", ":Gdiff<CR>", opts)
-map("n", "<leader>gb", ":G blame<CR>", opts)
-map("n", "<leader>gl", ":G log<CR>", opts)
+map("n", "<leader>gs",  ":G<CR>", opts)                         -- git status
+map("n", "<leader>gdf", ":Gdiff<CR>", opts)                     -- diff current file
+map("n", "<leader>gdt", ":G difftool<CR>", opts)                -- external diff tool
+map("n", "<leader>gb",  ":G blame<CR>", opts)                   -- git blame
+map("n", "<leader>gpl", ":G pull<CR>", opts)                    -- git pull
+map("n", "<leader>gpu", ":G push<CR>", opts)                    -- git push
+map("n", "<leader>gco", ":G checkout<Space>", opts)            -- checkout branch
+map("n", "<leader>gbr", ":G branch<CR>", opts)                  -- list branches
+map("n", "<leader>gm",  ":G merge<Space>", opts)                -- git merge
+map("n", "<leader>gmt", ":G mergetool<CR>", opts)               -- git mergetool
+map("n", "<leader>gl",  ":G log<CR>", opts)                     -- git log
+map("n", "<leader>ga",  ":G add .<CR>", opts)                   -- git add all
+map("n", "<leader>gc",  ":G commit<Space>", opts)               -- git commit
+map("n", "<leader>gcm", ":G commit -m ''<Left>", opts)          -- commit with inline message
+map("n", "<leader>gw",  ":Gwrite<CR>", opts)                    -- stage file
+map("n", "<leader>gr",  ":Gread<CR>", opts)                     -- reset file
+map("n", "<leader>grb", ":G rebase -i HEAD~", opts)             -- rebase
 
 -- Buffers
 map("n", "H", function()
