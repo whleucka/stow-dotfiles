@@ -40,6 +40,10 @@ map("n", "<leader>bd", ":bp | bd #<CR>", opts)
 map("n", "<leader>\\", ":vsplit<CR>", opts)
 map("n", "<leader>-", ":split<CR>",  opts)
 
+-- Formatting
+map("n", "<F2>", function()
+  vim.lsp.format()
+end, opts)
 
 -- Terminal
 map("n", "<leader>th", function()
