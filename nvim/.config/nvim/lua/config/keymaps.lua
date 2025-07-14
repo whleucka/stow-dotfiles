@@ -144,7 +144,7 @@ map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
 -- File explorer
--- map("n", "<leader>e", explorer.toggle_netrw, opts)
+map("n", "<leader>e", explorer.toggle_netrw, opts)
 
 -- Search files
 map("n", "<leader>s", explorer.grep_files, opts)

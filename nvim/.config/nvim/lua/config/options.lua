@@ -88,10 +88,8 @@ opt.ruler = false
 opt.laststatus = 3                  -- global statusline (Neovim 0.7+)
 
 -- Netrw
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
--- g.netrw_browse_split = 4     -- Open files in previous window (the main one)
--- g.netrw_altv = 1             -- Vertical splits open to the right
--- g.netrw_winsize = 30         -- Sidebar width
--- g.netrw_liststyle = 3        -- Tree view style
--- g.netrw_banner = 0           -- No banner
+g.netrw_browse_split = 4     -- Open files in previous window (the main one)
+g.netrw_altv = 1             -- Vertical splits open to the right
+g.netrw_winsize = 30         -- Sidebar width
+g.netrw_liststyle = 3        -- Tree view style
+g.netrw_banner = 0           -- No banner
