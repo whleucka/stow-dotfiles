@@ -20,7 +20,6 @@ map("n", "<leader>Y", 'ggVG"+y', opts)
 -- Yank to system clipboard
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 
-
 -- Git
 map("n", "<leader>gs", ":G<CR>", opts)
 map("n", "<leader>gd", ":Gdiff<CR>", opts)
