@@ -13,7 +13,10 @@ local M = {
       vim.notify("🔥 " .. msg, vim.log.levels.ERROR)
     end,
     warn = function(msg)
-      vim.notify("⚠️" ..  msg, vim.log.levels.WARN)
+      vim.notify("⚠️ " ..  msg, vim.log.levels.WARN)
+    end,
+    system = function(msg)
+      vim.notify("📦 " ..  msg, vim.log.levels.INFO)
     end,
   },
 }

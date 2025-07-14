@@ -36,7 +36,7 @@ end
 local function plugin_clone(plugin, type)
   local path = get_plugin_path(type, plugin.name)
   if not plugin_exists(type, plugin.name) then
-    log.info(string.format("Installing [%s] (%s)...", plugin.name, type))
+    log.system(string.format("Installing [%s] (%s)...", plugin.name, type))
     os.execute(string.format("git clone --quiet %s %s", plugin.url, path))
     log.success(string.format("Installed %s → %s", plugin.name, path))
     return true
@@ -47,7 +47,7 @@ local function plugin_clone(plugin, type)
 end
 
 -- Stream cmd output to vim notify
-local function run_shell_command_stream(cmd)
+local function run_shell_command_stream(plugin, cmd)
   local stdout = vim.loop.new_pipe(false)
   local stderr = vim.loop.new_pipe(false)
 
@@ -62,9 +62,9 @@ local function run_shell_command_stream(cmd)
 
     vim.schedule(function()
       if code == 0 then
-        log.success("Done: " .. cmd)
+        log.success(string.format("[%s] Build complete", plugin.name))
       else
-        log.error("Exit code " .. code .. ": " .. cmd)
+        log.error(string.format("[%s] Exit code %s: %s", plugin.name, code, cmd))
       end
     end)
   end)
@@ -72,13 +72,13 @@ local function run_shell_command_stream(cmd)
   local function on_read(err, data)
     if err then
       vim.schedule(function()
-        log.error("ERROR: " .. err)
+        log.error(string.format("[%s] Error: %s", plugin.name, err))
       end)
     end
     if data then
       for line in string.gmatch(data, "[^\r\n]+") do
         vim.schedule(function()
-          vim.notify(line)
+          log.system(string.format("[%s] %s", plugin.name, line))
         end)
       end
     end
@@ -91,10 +91,10 @@ end
 -- Build plugin
 -- This will run the build command in a shell
 local function build(plugin)
-    log.info(string.format("Building %s in the background.", plugin.name))
+    log.system(string.format("Building %s in the background.", plugin.name))
     local plugin_dir = M.config.plugin_root .. "/start/" .. plugin.name
     local cmd = "cd " .. plugin_dir .. " && " .. plugin.build
-    run_shell_command_stream(cmd)
+    run_shell_command_stream(plugin, cmd)
 end
 
 -- Install plugin
@@ -135,7 +135,7 @@ local function plugin_install()
 
   log.success("Plugin installation complete.")
   if has_build then
-    log.info("Build in progress. Please wait until done.")
+    log.info("Build in progress. Please wait until complete.")
   end
 end
 
@@ -205,7 +205,7 @@ local function plugin_clean()
 
   -- Iterate over start and opt folders
   for _, type in ipairs({ "start", "opt" }) do
-    local type_path = M.config.path .. "/" .. type
+    local type_path = M.config.plugin_root .. "/" .. type
     for _, dir in ipairs(vim.fn.readdir(type_path)) do
       local key = type .. "/" .. dir
       if not expected[key] then
