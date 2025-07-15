@@ -1,6 +1,6 @@
 return {
   url = "https://github.com/akinsho/bufferline.nvim",
-  name = "bufferline-nvim",
+  name = "bufferline.nvim",
   priority = 100,
   dependencies = {
     {

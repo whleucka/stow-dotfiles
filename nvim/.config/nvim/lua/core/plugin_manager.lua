@@ -151,7 +151,7 @@ local function load_plugins(type, plugins)
     return a_p < b_p
   end)
   for _, plugin in ipairs(plugins or {}) do
-    table.insert(M.config.loaded, plugin.name)
+    table.insert(M.config.loaded, string.format("(%s) %s", type, plugin.name))
     if plugin_exists(type, plugin.name) then
       -- Load dependencies
       if plugin.dependencies then
@@ -192,8 +192,9 @@ end
 
 -- Plugin list command
 local function plugin_loaded()
-  for _, plugin in ipairs(M.config.loaded or {}) do
-    log.info("Loaded plugin: " .. plugin)
+  log.info("Loaded plugins")
+  for _, name in ipairs(M.config.loaded or {}) do
+    vim.notify("   └─ " .. name)
   end
 end
 
@@ -209,9 +210,44 @@ local function plugin_list()
   end
 end
 
+-- Recursively build list of expected plugins
+local function get_expected(plugins, expected)
+  for _, plugin in ipairs(plugins or {}) do
+    if plugin.dependencies then
+      expected = get_expected(plugin.dependencies, expected)
+    end
+    -- Insert into expected
+    local key = plugin.name
+    expected[key] = true
+  end
+  return expected
+end
+
 -- Plugin clean command
+-- Removes unused plugins
 local function plugin_clean()
-  log.warn("WIP")
+  local removed = {}
+  for _, type in ipairs({ "start", "opt" }) do
+    local expected = get_expected(M.config.plugins[type], {})
+    local path = get_plugin_type_path(type)
+    for _, name in ipairs(vim.fn.readdir(path)) do
+      local key = name
+      if not expected[key] then
+        local plugin_path = get_plugin_path(type, name)
+        vim.fn.delete(plugin_path, "rf")
+        table.insert(removed, key)
+      end
+    end
+  end
+
+  if #removed > 0 then
+    log.info("Removed unused plugins:")
+    for _, name in ipairs(removed) do
+      vim.notify("   └─ " .. name)
+    end
+  else
+    log.success("No unused plugins to clean.")
+  end
 end
 
 -- Plugin sync command
