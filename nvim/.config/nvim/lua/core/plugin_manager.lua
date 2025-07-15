@@ -171,7 +171,7 @@ local function load_plugins(type, plugins)
     return a_p > b_p
   end)
   for _, plugin in ipairs(plugins or {}) do
-    table.insert(M.config.loaded, string.format("(%s) %s", type, plugin.name))
+    table.insert(M.config.loaded, plugin)
     if plugin_exists(type, plugin.name) then
       -- Load dependencies
       if plugin.dependencies then
@@ -210,23 +210,36 @@ local function plugin_update()
   log.success("Plugin update complete.")
 end
 
--- Plugin list command
-local function plugin_loaded()
-  log.info("Loaded plugins")
-  for _, name in ipairs(M.config.loaded or {}) do
-    vim.notify("   └─ " .. name)
+-- Display installed plugin
+local function list(type, plugins, depth)
+  local spacer = string.rep(" ", depth)
+  for _, plugin in ipairs(plugins or {}) do
+    if plugin_exists(type, plugin.name) then
+      vim.notify(spacer .. "└─ " .. plugin.name)
+    end
+    if plugin.dependencies then
+      list(type, plugin.dependencies, depth + 3)
+    end
   end
 end
 
---- Plugin list command
-local function plugin_list()
+-- Plugin loaded command
+--- Display's loaded plugins
+local function plugin_loaded()
+  log.info("----- LOADED -----")
   for _, type in ipairs({ "start", "opt" }) do
     log.info(type .. " plugins:")
-    for _, plugin in ipairs(M.config.plugins[type] or {}) do
-      if plugin_exists(type, plugin.name) then
-        vim.notify("   └─ " .. plugin.name)
-      end
-    end
+    list(type, M.config.plugins[type], 0)
+  end
+end
+
+--- Plugin installed command
+--- Display's installed plugins
+local function plugin_installed()
+  log.info("----- INSTALLED -----")
+  for _, type in ipairs({ "start", "opt" }) do
+    log.info(type .. " plugins:")
+    list(type, M.config.plugins[type], 0)
   end
 end
 
@@ -287,7 +300,7 @@ end
 -- Commands
 vim.api.nvim_create_user_command("PluginInstall", plugin_install, {})
 vim.api.nvim_create_user_command("PluginUpdate", plugin_update, {})
-vim.api.nvim_create_user_command("PluginList", plugin_list, {})
+vim.api.nvim_create_user_command("PluginInstalled", plugin_installed, {})
 vim.api.nvim_create_user_command("PluginLoaded", plugin_loaded, {})
 vim.api.nvim_create_user_command("PluginClean", plugin_clean, {})
 vim.api.nvim_create_user_command("PluginSync", plugin_sync, {})
