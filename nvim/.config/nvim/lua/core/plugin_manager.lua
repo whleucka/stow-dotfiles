@@ -167,6 +167,7 @@ local function load_plugins(type, plugins)
   end
 end
 
+-- Update & build plugins recursively
 local function update(type, plugins)
   for _, plugin in ipairs(plugins or {}) do
     -- Update dependencies
@@ -196,7 +197,16 @@ local function plugin_loaded()
   end
 end
 
+--- Plugin list command
 local function plugin_list()
+  for _, type in ipairs({ "start", "opt" }) do
+    log.info(type .. " plugins:")
+    for _, plugin in ipairs(M.config.plugins[type] or {}) do
+      if plugin_exists(type, plugin.name) then
+        vim.notify("   └─ " .. plugin.name)
+      end
+    end
+  end
 end
 
 -- Plugin clean command
