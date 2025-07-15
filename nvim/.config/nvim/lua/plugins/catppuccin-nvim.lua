@@ -1,6 +1,7 @@
 return {
   url = "https://github.com/catppuccin/nvim",
   name = "catppuccin-nvim",
+  priority = 99,
   config = function()
     require("catppuccin").setup({
       flavour = "auto", -- latte, frappe, macchiato, mocha

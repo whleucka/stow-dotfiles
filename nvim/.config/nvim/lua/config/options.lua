@@ -1,6 +1,3 @@
-require("lib.bufferline")
-require("lib.statusline")
-
 local opt = vim.opt
 local g = vim.g
 local bo = vim.bo

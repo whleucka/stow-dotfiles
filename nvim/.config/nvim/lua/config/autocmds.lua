@@ -20,31 +20,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- Bufferline
-vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "BufWinEnter", "WinEnter" }, {
-  group = "default",
-  callback = function()
-    local bt = vim.bo.buftype
-    local ft = vim.bo.filetype
-    local exclude_ft = {
-      qf = true,
-      help = true,
-      lspinfo = true,
-      netrw = true,
-    }
-    local exclude_bt = {
-      terminal = true,
-    }
-
-    if exclude_ft[ft] or exclude_bt[bt] or vim.api.nvim_win_get_config(0).relative ~= "" then
-      vim.wo.winbar = ""
-    else
-      vim.wo.winbar = "%{%v:lua.bufferline()%}"
-    end
-    vim.cmd("redrawstatus")
-  end,
-})
-
 -- Handle close with quickfix
 vim.api.nvim_create_autocmd("WinEnter", {
   group = "default",
