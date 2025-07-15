@@ -1,14 +1,11 @@
 return {
   url = "https://github.com/Saghen/blink.cmp",
-  name = "blink.cmp",
   dependencies = {
     {
       url = "https://github.com/L3MON4D3/LuaSnip",
-      name = "luasnip",
     },
     {
       url = "https://github.com/rafamadriz/friendly-snippets",
-      name = "friendly-snippets",
     },
   },
   build = "cargo build --release",

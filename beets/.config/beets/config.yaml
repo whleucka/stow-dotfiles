@@ -2,23 +2,22 @@ directory: ~/Music  # Where the cleaned-up music will be stored
 library: ~/.config/beets/musiclibrary.db  # Database for tracking your collection
 
 import:
-  copy: yes       # Copy files to the beets library directory
+  copy: no       # Copy files to the beets library directory
   write: yes      # Write metadata to files
-  move: yes       # Move files instead of copying
+  move: no        # Move files instead of copying
   autotag: yes    # Automatically tag files using MusicBrainz
   timid: no       # Ask for confirmation on changes
 
 paths:
-  default: '%albumartist%/%album%/%track% - %title%'  # Folder structure
-  singleton: 'Singles/%title%'
-  comp: 'Compilations/%album%/%track% - %title%'
-  albumtype:soundtrack: 'Soundtracks/%album%/%track% - %title%'
+  default: '$albumartist/$album/$track - $title'
+  singleton: 'Singles/$artist - $title'
+  comp: 'Compilations/$album/$track - $title'
+  albumtype:soundtrack: 'Soundtracks/$album/$track - $title'
 
 plugins:
-  - fetchart  # Download album art
+#  - fetchart  # Download album art
   - embedart  # Embed album art into files
-  - id3v2     # Ensure ID3v2 tags for MP3 files
-  - convert   # Optional: Convert to a standard format (MP3, FLAC, etc.)
+#  - convert   # Optional: Convert to a standard format (MP3, FLAC, etc.)
   - scrub     # Remove unnecessary metadata
 
 fetchart:

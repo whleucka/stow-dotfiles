@@ -1,10 +1,8 @@
 return {
   url = "https://github.com/akinsho/bufferline.nvim",
-  name = "bufferline.nvim",
   dependencies = {
     {
       url = "https://github.com/nvim-tree/nvim-web-devicons",
-      name = "nvim-web-devicons",
     }
   },
   config = function()
