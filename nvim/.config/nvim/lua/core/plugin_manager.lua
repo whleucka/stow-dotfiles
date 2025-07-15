@@ -98,23 +98,43 @@ local function clone_plugin(type, plugin)
   local plugin_path = get_plugin_path(type, plugin.name)
   if not plugin_exists(type, plugin.name) then
     log.system(string.format("Installing [%s] (%s)...", plugin.name, type))
-    os.execute(string.format("git clone --quiet %s %s", plugin.url, plugin_path))
-    log.success(string.format("Installed %s → %s", plugin.name, plugin_path))
-    return true
+    local result = os.execute(string.format("git clone --quiet %s %s", plugin.url, plugin_path))
+    if result ~= 0 then
+      log.error(string.format("Git clone error %s", plugin.name, plugin_path))
+      return false
+    end
   else
     log.info(string.format("%s (%s) already installed.", plugin.name, type))
     return false
   end
+  log.success(string.format("Installed %s → %s", plugin.name, plugin_path))
+  return true
+end
+
+-- Get plugin SHA hash
+local function get_current_sha(path)
+  local handle = io.popen(string.format("git -C %s rev-parse HEAD", path))
+  local sha = handle:read("*l")
+  handle:close()
+  return sha
 end
 
 -- Pull plugin (git pull)
 local function pull_plugin(type, plugin)
   local plugin_path = get_plugin_path(type, plugin.name)
-  -- If a git directory exists, pull update
   if vim.fn.isdirectory(plugin_path .. "/.git") == 1 then
+    local old_sha = get_current_sha(plugin_path)
     log.system(string.format("Updating [%s] (%s)...", plugin.name, type))
     os.execute(string.format("git -C %s pull --quiet", plugin_path))
-    log.success(string.format("Updated %s → %s", plugin.name, plugin_path))
+
+    local new_sha = get_current_sha(plugin_path)
+    if old_sha ~= new_sha then
+      log.success(string.format("[%s] Updated to %s", plugin.name, new_sha:sub(1, 7)))
+      return true
+    else
+      log.info(string.format("[%s] Already up to date", plugin.name))
+      return false
+    end
   end
 end
 
@@ -144,11 +164,11 @@ end
 
 -- Load plugins
 local function load_plugins(type, plugins)
-  -- Sort the plugins by priority
+  -- Sort the plugins by priority (higher priority loads first)
   table.sort(plugins, function(a, b)
     local a_p = a.priority or 0
     local b_p = b.priority or 0
-    return a_p < b_p
+    return a_p > b_p
   end)
   for _, plugin in ipairs(plugins or {}) do
     table.insert(M.config.loaded, string.format("(%s) %s", type, plugin.name))
@@ -175,8 +195,8 @@ local function update(type, plugins)
       update(type, plugin.dependencies)
     end
     -- Update plugin
-    pull_plugin(type, plugin)
-    if plugin.build then
+    local pulled = pull_plugin(type, plugin)
+    if plugin.build and pulled then
       build(type, plugin)
     end
   end
