@@ -32,9 +32,9 @@ return {
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = 'super-tab' },
+      keymap = { preset = 'enter' },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer", "cmdline" },
         providers = {
           cmdline = {
             min_keyword_length = 2,
