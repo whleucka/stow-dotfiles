@@ -81,7 +81,7 @@ local function build(plugin)
     cmd = plugin.build.cmd,
     cwd = plugin.path,
     args = plugin.build.args,
-    on_exit = function(code, signal)
+    on_exit = function(code)
       if code == 0 then
         log.success(string.format("[%s] Successfully built %s", plugin.name, plugin.path))
       else
@@ -102,7 +102,7 @@ local function clone_plugin(plugin)
         plugin.url,
         plugin.path
       },
-      on_exit = function(code, signal)
+      on_exit = function(code)
         if code == 0 then
           log.success(string.format("[%s] Successfully installed %s", plugin.name, plugin.path))
           if plugin.build then
@@ -140,7 +140,7 @@ local function pull_plugin(plugin)
         "pull",
         "--quiet"
       },
-      on_exit = function(code, signal)
+      on_exit = function(code)
         if code == 0 then
           local new_sha = get_current_sha(plugin)
           if old_sha ~= new_sha then
@@ -173,7 +173,7 @@ local function install(plugins)
   end
 end
 
--- Run a plugin config
+-- Load a plugin and run config
 local function run_config(plugin)
   local ok, err = pcall(plugin.config)
   if not ok then
@@ -302,6 +302,7 @@ end
 function M.load_plugins()
   local plugins = get_plugins()
   load(plugins)
+  --log.system("Loaded " .. #plugins .. " plugins")
 end
 
 -- Commands

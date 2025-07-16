@@ -48,7 +48,7 @@ map("n", "L", function()
 end, opts)
 map("n", "<leader>bd", ":bp | bd #<CR>", opts)
 -- Formatting
-map("n", "<leader>bf", function()
+map({ "n", "v" }, "<leader>bf", function()
   vim.lsp.buf.format()
   vim.notify("Format complete")
 end, opts)
