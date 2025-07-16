@@ -21,7 +21,7 @@ end
 
 -- Create plugins path
 local function create_plugins_data_path(data_path)
-    vim.fn.mkdir(data_path, "p")
+  vim.fn.mkdir(data_path, "p")
 end
 
 -- Get the plugin path

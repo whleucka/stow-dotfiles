@@ -2,9 +2,9 @@ local M = {}
 
 local function is_real_buffer(buf)
   return vim.api.nvim_buf_is_valid(buf)
-    and vim.api.nvim_buf_is_loaded(buf)
-    and vim.api.nvim_buf_get_option(buf, "buftype") == ""
-    and vim.api.nvim_buf_get_option(buf, "filetype") ~= "netrw"
+      and vim.api.nvim_buf_is_loaded(buf)
+      and vim.api.nvim_buf_get_option(buf, "buftype") == ""
+      and vim.api.nvim_buf_get_option(buf, "filetype") ~= "netrw"
 end
 
 local function get_real_buffers()

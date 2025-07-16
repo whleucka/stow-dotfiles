@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = "default",
   pattern = {
     "qf", "help", "man", "lspinfo", "startuptime", "checkhealth", "netrw", "terminal", "git", "gitblame", "gitdiff", "gitcommit",
-    "fugitive", "fugitiveblame", "fugitivediff"
+    "fugitive", "fugitiveblame", "fugitivediff", "notifylog"
   },
   callback = function()
     vim.keymap.set("n", "q", function()

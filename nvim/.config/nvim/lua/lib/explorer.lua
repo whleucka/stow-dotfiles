@@ -1,5 +1,4 @@
 local M = {}
-local log = require("lib.utils").log
 
 function M.toggle_netrw()
   -- Close netrw if open
@@ -28,7 +27,7 @@ function M.grep_files()
     grep_cmd = { "rg", "--vimgrep", input }
   else
     if vim.fn.executable("grep") == 0 then
-      log.error("Neither ripgrep (rg) nor grep is installed")
+      vim.notify("Neither ripgrep (rg) nor grep is installed", vim.log.levels.ERROR)
       return
     end
     grep_cmd = { "grep", "-rInH", input, "." }
@@ -38,12 +37,12 @@ function M.grep_files()
 
   -- Show diagnostic output
   if not output then
-    log.error("Command failed: nil output")
+    vim.notify("Command failed: nil output", vim.log.levels.ERROR)
     return
   end
 
   if vim.tbl_isempty(output) then
-    log.info("Command returned empty output")
+    vim.notify("Command returned empty output", vim.log.levels.ERROR)
     return
   end
 
@@ -73,7 +72,7 @@ function M.find_files()
     files_cmd = string.format("rg --files | rg -Fi %q", input)
   else
     if vim.fn.executable("find") == 0 or vim.fn.executable("grep") == 0 then
-      log.error("Missing required commands: ripgrep or find+grep")
+      vim.notify("Missing required commands: ripgrep or find+grep", vim.log.levels.ERROR)
       return
     end
     files_cmd = string.format([[
@@ -88,7 +87,7 @@ function M.find_files()
   local output = vim.fn.systemlist(files_cmd)
 
   if vim.v.shell_error ~= 0 or vim.tbl_isempty(output) then
-    log.info("No files matched: " .. input)
+    vim.notify("No files matched: " .. input, vim.log.levels.INFO)
     return
   end
 

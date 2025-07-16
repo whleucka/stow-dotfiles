@@ -27,4 +27,3 @@ function M.smart_split(preference)
 end
 
 return M
-

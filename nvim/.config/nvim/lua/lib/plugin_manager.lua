@@ -1,4 +1,5 @@
 local log = require("lib.utils").log
+local cmd = require("lib.utils").command
 local M = {}
 
 -- Get plugins from config
@@ -16,71 +17,28 @@ local function plugin_exists(plugin)
   return vim.fn.isdirectory(plugin.path) == 1
 end
 
--- Run async shell command
-local function async_shell(opts)
-  local uv = vim.loop
-  local cmd = opts.cmd                -- e.g. "git"
-  local args = opts.args or {}        -- e.g. { "clone", "url", "dir" }
-  local cwd = opts.cwd or nil         -- optional working directory
-  local on_exit = opts.on_exit        -- optional callback(code, signal)
-
-  local stdout = uv.new_pipe(false)
-  local stderr = uv.new_pipe(false)
-
-  local handle
-  handle = uv.spawn(cmd, {
-    args = args,
-    cwd = cwd,
-    stdio = { nil, stdout, stderr },
-  }, function(code, signal)
-    stdout:close()
-    stderr:close()
-    handle:close()
-
-    vim.schedule(function()
-      if on_exit then
-        on_exit(code, signal)
-      else
-        if code == 0 then
-          log.success(cmd .. " finished successfully")
-        else
-          log.error(cmd .. " exited with code " .. code)
-        end
-      end
-    end)
-  end)
-
-  stdout:read_start(function(err, data)
-    if err then
-      vim.schedule(function()
-        log.error("STDOUT error: " .. err)
-      end)
-    elseif data then
-      vim.schedule(function()
-        log.package(data)
-      end)
-    end
-  end)
-
-  stderr:read_start(function(err, data)
-    if err then
-      vim.schedule(function()
-        log.error("STDERR error: " .. err)
-      end)
-    elseif data then
-      vim.schedule(function()
-        log.package(data)
-      end)
-    end
-  end)
-end
-
 -- Build plugin
 local function build(plugin)
-  async_shell({
+  cmd.async({
     cmd = plugin.build.cmd,
     cwd = plugin.path,
     args = plugin.build.args,
+    -- Output build in log
+    on_stdout = function(data, err)
+      if err then
+        log.error(string.format("[%s] build error: %s", plugin.name, err))
+      elseif data then
+        log.package(string.format("[%s] %s", plugin.name, data))
+      end
+    end,
+    -- Cargo output will be stderr, for eg.
+    on_stderr = function(data, err)
+      if err then
+        log.error(string.format("[%s] build error: %s", plugin.name, err))
+      elseif data then
+        log.package(string.format("[%s] %s", plugin.name, data))
+      end
+    end,
     on_exit = function(code)
       if code == 0 then
         log.success(string.format("[%s] Successfully built %s", plugin.name, plugin.path))
@@ -94,7 +52,7 @@ end
 -- Git clone plugin
 local function clone_plugin(plugin)
   if not plugin_exists(plugin) then
-    async_shell({
+    cmd.async({
       cmd = "git",
       args = {
         "clone",
@@ -132,7 +90,7 @@ end
 local function pull_plugin(plugin)
   if plugin_exists(plugin) then
     local old_sha = get_current_sha(plugin)
-    async_shell({
+    cmd.async({
       cmd = "git",
       args = {
         "-C",
@@ -163,7 +121,7 @@ end
 
 -- Install plugins recursively
 local function install(plugins)
-  for _,plugin in ipairs(plugins) do
+  for _, plugin in ipairs(plugins) do
     -- Install dependencies
     if plugin.dependencies then
       install(plugin.dependencies)
@@ -190,7 +148,7 @@ local function load(plugins)
     local b_p = b.priority or 0
     return a_p > b_p
   end)
-  for _,plugin in ipairs(plugins) do
+  for _, plugin in ipairs(plugins) do
     if plugin_exists(plugin) then
       -- Load dependencies
       if plugin.dependencies then
@@ -209,7 +167,7 @@ local function list(plugins, depth)
   local spacer = string.rep(" ", depth)
   for _, plugin in ipairs(plugins or {}) do
     if plugin_exists(plugin) then
-      vim.notify(spacer .. "└─ " .. plugin.name)
+      log.notify(spacer .. "└─ " .. plugin.name)
     end
     if plugin.dependencies then
       list(plugin.dependencies, depth + 3)
@@ -284,7 +242,7 @@ local function cmd_clean()
   if #removed > 0 then
     log.info("Removed unused plugins:")
     for _, name in ipairs(removed) do
-      vim.notify("   └─ " .. name)
+      log.notify("   └─ " .. name)
     end
   else
     log.success("No unused plugins to clean.")
