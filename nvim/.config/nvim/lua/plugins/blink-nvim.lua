@@ -3,13 +3,24 @@ return {
   dependencies = {
     {
       url = "https://github.com/L3MON4D3/LuaSnip",
-      build = "make install_jsregexp",
+      build = {
+        cmd = "make",
+        args = {
+          "install_jsregexp"
+        }
+      }
     },
     {
       url = "https://github.com/rafamadriz/friendly-snippets",
     },
   },
-  build = "cargo build --release",
+  build = {
+    cmd = "cargo",
+    args = {
+      "build",
+      "--release"
+    }
+  },
   config = function()
     require("blink.cmp").setup({
       snippets = { preset = "luasnip" },
