@@ -1,38 +1,24 @@
 local M = {}
 local log = require("lib.utils").log
-local plugin_root = vim.fn.stdpath("data") .. "/site/pack/plugins"
-local plugins = require("plugins")
 
 -- Extract basename from url
-function basename(url)
+local function basename(url)
   return url:match("([^/]+)$")
 end
 
 -- Massage plugins
 local function massage(plugins)
-  for i, plugin in ipairs(plugins or {}) do
+  for _, plugin in ipairs(plugins or {}) do
     if plugin.dependencies then
       plugin.dependencies = massage(plugin.dependencies)
     end
+    -- Use the basename if name is not set
     if plugin['name'] == nil then
       plugin.name = basename(plugin.url)
     end
   end
   return plugins
 end
-
-for _, type in ipairs({ "start", "opt" }) do
-  plugins[type] = massage(plugins[type])
-end
-
--- Configuration
-local default_config = {
-  plugin_root = plugin_root,
-  plugins = plugins,
-  loaded = {}
-}
-
-M.config = vim.deepcopy(default_config)
 
 -- This will run the config function in the plugin configuration
 local function run_config(plugin)
@@ -101,7 +87,7 @@ end
 
 -- Build plugin (run shell command)
 local function build(type, plugin)
-  log.info(string.format("Building %s in the background.", plugin.name))
+  log.info(string.format("Building %s in the background. Please wait...", plugin.name))
   local plugin_path = get_plugin_path(type, plugin.name)
   local cmd = string.format("cd %s && %s", plugin_path, plugin.build)
   run_shell_command_stream(plugin, cmd)
@@ -119,7 +105,7 @@ end
 local function clone_plugin(type, plugin)
   local plugin_path = get_plugin_path(type, plugin.name)
   if not plugin_exists(type, plugin.name) then
-    log.system(string.format("Installing [%s] (%s)...", plugin.name, type))
+    log.system(string.format("Installing [%s] (%s)", plugin.name, type))
     local result = os.execute(string.format("git clone --quiet %s %s", plugin.url, plugin_path))
     if result ~= 0 then
       log.error(string.format("Git clone error %s", plugin.name, plugin_path))
@@ -136,9 +122,11 @@ end
 -- Get plugin SHA hash
 local function get_current_sha(path)
   local handle = io.popen(string.format("git -C %s rev-parse HEAD", path))
-  local sha = handle:read("*l")
-  handle:close()
-  return sha
+  if handle ~= nil then
+    local sha = handle:read("*l")
+    handle:close()
+    return sha
+  end
 end
 
 -- Pull plugin (git pull)
@@ -146,7 +134,7 @@ local function pull_plugin(type, plugin)
   local plugin_path = get_plugin_path(type, plugin.name)
   if vim.fn.isdirectory(plugin_path .. "/.git") == 1 then
     local old_sha = get_current_sha(plugin_path)
-    log.system(string.format("Updating [%s] (%s)...", plugin.name, type))
+    log.system(string.format("Updating [%s] (%s)", plugin.name, type))
     os.execute(string.format("git -C %s pull --quiet", plugin_path))
 
     local new_sha = get_current_sha(plugin_path)
@@ -177,6 +165,7 @@ end
 
 -- Plugin install command
 local function plugin_install()
+  log.info("Starting plugin installation. Please wait...")
   create_plugin_directories()
   for _, type in ipairs({ "start", "opt" }) do
     install(type, M.config.plugins[type])
@@ -192,7 +181,7 @@ local function load_plugins(type, plugins)
     local b_p = b.priority or 0
     return a_p > b_p
   end)
-  for i, plugin in ipairs(plugins or {}) do
+  for _, plugin in ipairs(plugins or {}) do
     table.insert(M.config.loaded, plugin)
     if plugin_exists(type, plugin.name) then
       -- Load dependencies
@@ -226,6 +215,7 @@ end
 
 -- Update plugin command
 local function plugin_update()
+  log.info("Starting plugin update. Please wait...")
   for _, type in ipairs({ "start", "opt" }) do
     update(type, M.config.plugins[type])
   end
@@ -300,6 +290,23 @@ local function plugin_sync()
   plugin_install()
   plugin_update()
 end
+
+
+-- Configuration
+local plugin_root = vim.fn.stdpath("data") .. "/site/pack/plugins"
+local plugins = require("plugins")
+for _, type in ipairs({ "start", "opt" }) do
+  plugins[type] = massage(plugins[type])
+end
+
+local default_config = {
+  plugin_root = plugin_root,
+  plugins = plugins,
+  loaded = {}
+}
+
+M.config = vim.deepcopy(default_config)
+
 
 -- Global setup
 function M.setup(user_config)
