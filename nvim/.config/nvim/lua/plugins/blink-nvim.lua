@@ -3,6 +3,7 @@ return {
   dependencies = {
     {
       url = "https://github.com/L3MON4D3/LuaSnip",
+      build = "make install_jsregexp",
     },
     {
       url = "https://github.com/rafamadriz/friendly-snippets",
