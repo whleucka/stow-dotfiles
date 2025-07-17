@@ -3,6 +3,7 @@ return {
   dependencies = {
     {
       url = "https://github.com/L3MON4D3/LuaSnip",
+      event = { "InsertEnter", "CmdlineEnter" },
       build = {
         cmd = "make",
         args = {
@@ -12,8 +13,10 @@ return {
     },
     {
       url = "https://github.com/rafamadriz/friendly-snippets",
+      event = { "InsertEnter", "CmdlineEnter" }
     },
   },
+  event = { "InsertEnter", "CmdlineEnter" },
   build = {
     cmd = "cargo",
     args = {

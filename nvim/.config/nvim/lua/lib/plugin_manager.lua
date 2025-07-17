@@ -140,6 +140,23 @@ local function run_config(plugin)
   end
 end
 
+-- Load plugin on event
+local function run_event(plugin)
+  for _, event in ipairs(type(plugin.event) == "table" and plugin.event or { plugin.event }) do
+    local group = vim.api.nvim_create_augroup("plugin_event_" .. plugin.name, { clear = true })
+    vim.api.nvim_create_autocmd(event, {
+      group = group,
+      once = true,
+      callback = function()
+        vim.opt.runtimepath:append(plugin.path)
+        if plugin.config then
+          run_config(plugin)
+        end
+      end,
+    })
+  end
+end
+
 -- Load plugins recursively
 local function load(plugins)
   -- Sort the plugins by priority (higher priority loads first)
@@ -154,8 +171,11 @@ local function load(plugins)
       if plugin.dependencies then
         load(plugin.dependencies)
       end
-      -- Load plugin
-      if plugin.config then
+      if plugin.event then
+        -- Load plugin on event
+        run_event(plugin)
+      elseif plugin.config then
+        -- Load plugin immediately
         run_config(plugin)
       end
     end
