@@ -5,8 +5,8 @@ vim.lsp.enable({
 })
 
 vim.diagnostic.config({
-  -- virtual_lines = true,
-  virtual_text = { current_line = true },
+  virtual_lines = true,
+  -- virtual_text = { current_line = true },
   underline = true,
   update_in_insert = false,
   severity_sort = true,
