@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local opts = { silent = true, noremap = true }
-local explorer = require("lib.explorer")
-local buffer = require("lib.buffer")
-local terminal = require("lib.terminal")
+local explorer = require("lib.system.explorer")
+local terminal = require("lib.system.terminal")
+local buffer = require("lib.ui.buffer")
 
 vim.g.mapleader = " "
 

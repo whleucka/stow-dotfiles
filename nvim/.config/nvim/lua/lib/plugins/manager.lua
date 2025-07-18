@@ -1,5 +1,5 @@
-local log = require("lib.utils").log
-local cmd = require("lib.utils").command
+local log = require("lib.plugins.utils").log
+local cmd = require("lib.plugins.utils").command
 local M = {}
 
 -- Get plugins from config
