@@ -1,4 +1,4 @@
-local split = require("lib.split")
+local split = require("lib.ui.split")
 
 local M = {}
 

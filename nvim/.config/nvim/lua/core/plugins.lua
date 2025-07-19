@@ -1,6 +1,6 @@
 -- Core plugins module
 -- The goal of this file is to build the plugin manager config
-local log = require("lib.utils").log
+local log = require("lib.plugins.utils").log
 local data_path = vim.fn.stdpath("data") .. "/site/pack/plugins/start"
 local module_path = vim.fn.stdpath("config") .. "/lua/plugins"
 
@@ -73,7 +73,7 @@ local M = {
 }
 
 function M.setup(user_config)
-  local plugin_manager = require("lib.plugin_manager")
+  local plugin_manager = require("lib.plugins.manager")
   -- Merge the config
   M.config = vim.tbl_deep_extend("force", M.config, user_config or {})
 

@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Enhance term
+-- Start insert mode terminal
 vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter", "WinEnter" }, {
   group = "default",
   pattern = "term://*",
