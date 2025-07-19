@@ -210,10 +210,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # Resizing windows (just use $mod+r to set resize mode instead)
-bindsym shift+ctrl+l resize shrink width 10 px or 10 ppt
-bindsym shift+ctrl+j resize grow height 10 px or 10 ppt
-bindsym shift+ctrl+k resize shrink height 10 px or 10 ppt
-bindsym shift+ctrl+h resize grow width 11 px or 10 ppt
+bindsym $mod+Right resize shrink width 10 px or 10 ppt
+bindsym $mod+Down resize grow height 10 px or 10 ppt
+bindsym $mod+Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Left resize grow width 11 px or 10 ppt
 
 # Move focused window
 bindsym $mod+Shift+h move left
@@ -267,8 +267,8 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-bindsym $mod+Ctrl+Left workspace prev
-bindsym $mod+Ctrl+Right workspace next
+#bindsym $mod+Ctrl+Left workspace prev
+#bindsym $mod+Ctrl+Right workspace next
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1

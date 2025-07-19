@@ -136,10 +136,10 @@ map("n", "<leader>s", explorer.grep_files, opts)
 map("n", "<leader>f", explorer.find_files, opts)
 
 -- Splits
-map('n', '<A-Left>', require('smart-splits').resize_left)
-map('n', '<A-Down>', require('smart-splits').resize_down)
-map('n', '<A-Up>', require('smart-splits').resize_up)
-map('n', '<A-Right>', require('smart-splits').resize_right)
+map('n', '<A-S-Left>', require('smart-splits').resize_left)
+map('n', '<A-S-Down>', require('smart-splits').resize_down)
+map('n', '<A-S-Up>', require('smart-splits').resize_up)
+map('n', '<A-S-Right>', require('smart-splits').resize_right)
 
 map('n', '<C-h>', require('smart-splits').move_cursor_left)
 map('n', '<C-j>', require('smart-splits').move_cursor_down)
