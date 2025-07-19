@@ -1,7 +1,6 @@
 local map = vim.keymap.set
 local opts = { silent = true, noremap = true }
 local explorer = require("lib.explorer")
-local buffer = require("lib.buffer")
 local terminal = require("lib.terminal")
 
 vim.g.mapleader = " "
@@ -40,12 +39,8 @@ map("n", "<leader>gW",  ":Gwrite<CR>", opts)                    -- stage file
 map("n", "<leader>gR",  ":Gread<CR>", opts)                     -- reset file
 
 -- Buffers
-map("n", "H", function()
-  buffer.switch(false)
-end, opts)
-map("n", "L", function()
-  buffer.switch(true)
-end, opts)
+map("n", "H", ":BufferLineCyclePrev<CR>", opts)
+map("n", "L", ":BufferLineCycleNext<CR>", opts)
 map("n", "<leader>bd", ":bp | bd #<CR>", opts)
 -- Formatting
 map({ "n", "v" }, "<leader>bf", function()
