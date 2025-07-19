@@ -126,18 +126,6 @@ map('v', '>', '>gv', opts)
 map("v", "J", ":m '>+1<CR>gv-gv", opts)
 map("v", "K", ":m '<-2<CR>gv-gv", opts)
 
--- Resizing splits
-map("n", "<C-Up>", ":resize +2<CR>", opts)
-map("n", "<C-Down>", ":resize -2<CR>", opts)
-map("n", "<C-Left>", ":resize -2<CR>", opts)
-map("n", "<C-Right>", ":resize +2<CR>", opts)
-
--- Window nav
-map("n", "<C-j>", "<C-w>j", opts)
-map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-l>", "<C-w>l", opts)
-
 -- File explorer
 map("n", "<leader>e", explorer.toggle_netrw, opts)
 
@@ -146,3 +134,19 @@ map("n", "<leader>s", explorer.grep_files, opts)
 
 -- Find files
 map("n", "<leader>f", explorer.find_files, opts)
+
+-- Splits
+map('n', '<A-Left>', require('smart-splits').resize_left)
+map('n', '<A-Down>', require('smart-splits').resize_down)
+map('n', '<A-Up>', require('smart-splits').resize_up)
+map('n', '<A-Right>', require('smart-splits').resize_right)
+
+map('n', '<C-h>', require('smart-splits').move_cursor_left)
+map('n', '<C-j>', require('smart-splits').move_cursor_down)
+map('n', '<C-k>', require('smart-splits').move_cursor_up)
+map('n', '<C-l>', require('smart-splits').move_cursor_right)
+
+map('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
+map('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
+map('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
+map('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
