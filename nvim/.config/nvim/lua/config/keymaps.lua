@@ -41,7 +41,12 @@ map("n", "<leader>gR",  ":Gread<CR>", opts)                     -- reset file
 -- Buffers
 map("n", "H", ":BufferLineCyclePrev<CR>", opts)
 map("n", "L", ":BufferLineCycleNext<CR>", opts)
+map("n", "<C-,>", ":BufferLineMovePrev<CR>", opts)
+map("n", "<C-.>", ":BufferLineMoveNext<CR>", opts)
 map("n", "<leader>bd", ":bp | bd #<CR>", opts)
+map("n", "<leader>bo", ":BufferLineCloseOthers<CR>", opts)
+map("n", "<leader>bl", ":BufferLineCloseLeft<CR>", opts)
+map("n", "<leader>br", ":BufferLineCloseRight<CR>", opts)
 -- Formatting
 map({ "n", "v" }, "<leader>bf", function()
   vim.lsp.buf.format()
@@ -136,10 +141,10 @@ map("n", "<leader>s", explorer.grep_files, opts)
 map("n", "<leader>f", explorer.find_files, opts)
 
 -- Splits
-map('n', '<A-S-Left>', require('smart-splits').resize_left)
-map('n', '<A-S-Down>', require('smart-splits').resize_down)
-map('n', '<A-S-Up>', require('smart-splits').resize_up)
-map('n', '<A-S-Right>', require('smart-splits').resize_right)
+map('n', '<C-Left>', require('smart-splits').resize_left)
+map('n', '<C-Down>', require('smart-splits').resize_down)
+map('n', '<C-Up>', require('smart-splits').resize_up)
+map('n', '<C-Right>', require('smart-splits').resize_right)
 
 map('n', '<C-h>', require('smart-splits').move_cursor_left)
 map('n', '<C-j>', require('smart-splits').move_cursor_down)
