@@ -6,8 +6,9 @@ local terminal = require("lib.system.terminal")
 vim.g.mapleader = " "
 
 -- Basic shit
-map("n", "<leader>w", ":w<CR>", opts)
-map("n", "<leader>q", ":q<CR>", opts)
+map("n", "<leader>w", ":update<CR>", opts)
+map("n", "<C-w>", ":bp | bd #<CR>", opts)
+map("n", "<leader>q", ":wq<CR>", opts)
 map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", ":nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
