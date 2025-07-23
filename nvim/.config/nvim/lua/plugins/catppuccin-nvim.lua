@@ -39,6 +39,7 @@ return {
       custom_highlights = {},
       default_integrations = true,
       integrations = {
+        neotree = true,
         cmp = true,
         gitsigns = true,
         treesitter = true,

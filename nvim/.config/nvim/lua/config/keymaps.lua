@@ -127,7 +127,7 @@ map("v", "J", ":m '>+1<CR>gv-gv", opts)
 map("v", "K", ":m '<-2<CR>gv-gv", opts)
 
 -- File explorer
-map("n", "<leader>e", explorer.toggle_netrw, opts)
+map("n", "<leader>e", ":Neotree toggle<CR>", opts)
 
 -- Search files
 map("n", "<leader>s", explorer.grep_files, opts)
