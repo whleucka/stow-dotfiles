@@ -197,10 +197,10 @@ local function load(plugins)
       elseif plugin.config then
         -- Load plugin immediately
         run_config(plugin)
-        if plugin.keys then
-          -- Load plugin keymap
-          load_keymap(plugin)
-        end
+      end
+      if plugin.keys then
+        -- Load plugin keymap
+        load_keymap(plugin)
       end
     end
   end
