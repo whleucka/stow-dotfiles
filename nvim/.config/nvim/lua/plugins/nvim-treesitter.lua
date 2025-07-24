@@ -1,10 +1,18 @@
 return {
   url = "https://github.com/nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPost", "BufNewFile" },
   config = function()
     require 'nvim-treesitter.configs'.setup {
       ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "php", "javascript", "html", "css", "python", "bash" },
       auto_install = false,
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<Enter>", -- set to `false` to disable one of the mappings
+          node_incremental = "<Enter>",
+          scope_incremental = false,
+          node_decremental = "<BS>",
+        },
+      },
       indent = {
         enable = true
       },
