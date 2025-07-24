@@ -1,7 +1,8 @@
-local map = vim.keymap.set
-local opts = { silent = true, noremap = true }
+-- This file will contain all non-plugin specific keymaps
 local explorer = require("lib.system.explorer")
 local terminal = require("lib.system.terminal")
+local opts = require("lib.system.utils").keymap.opts
+local map = require("lib.system.utils").keymap.map
 
 vim.g.mapleader = " "
 
@@ -20,40 +21,11 @@ map("n", "<leader>Y", 'ggVG"+y', opts)
 -- Yank to system clipboard
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 
--- Git
-map("n", "<leader>gs",  ":G<CR>", opts)                         -- git status
-map("n", "<leader>gdf", ":Gdiff<CR>", opts)                     -- diff current file
-map("n", "<leader>gdt", ":G difftool<CR>", opts)                -- external diff tool
-map("n", "<leader>gb",  ":G blame<CR>", opts)                   -- git blame
-map("n", "<leader>gpl", ":G pull<CR>", opts)                    -- git pull
-map("n", "<leader>gpu", ":G push<CR>", opts)                    -- git push
-map("n", "<leader>gco", ":G checkout<Space>", opts)            -- checkout branch
-map("n", "<leader>gbr", ":G branch<CR>", opts)                  -- list branches
-map("n", "<leader>gm",  ":G merge<Space>", opts)                -- git merge
-map("n", "<leader>gmt", ":G mergetool<CR>", opts)               -- git mergetool
-map("n", "<leader>gl",  ":G log<CR>", opts)                     -- git log
-map("n", "<leader>ga",  ":G add .<CR>", opts)                   -- git add all
-map("n", "<leader>gc",  ":G commit<Space>", opts)               -- git commit
-map("n", "<leader>gcm", ":G commit -m ''<Left>", opts)          -- commit with inline message
-map("n", "<leader>grb", ":G rebase -i HEAD~", opts)             -- rebase
-map("n", "<leader>gW",  ":Gwrite<CR>", opts)                    -- stage file
-map("n", "<leader>gR",  ":Gread<CR>", opts)                     -- reset file
-
--- Buffers
-map("n", "H", ":BufferLineCyclePrev<CR>", opts)
-map("n", "L", ":BufferLineCycleNext<CR>", opts)
-map("n", "<C-,>", ":BufferLineMovePrev<CR>", opts)
-map("n", "<C-.>", ":BufferLineMoveNext<CR>", opts)
-map("n", "<leader>bd", ":bp | bd #<CR>", opts)
-map("n", "<leader>bo", ":BufferLineCloseOthers<CR>", opts)
-map("n", "<leader>bl", ":BufferLineCloseLeft<CR>", opts)
-map("n", "<leader>br", ":BufferLineCloseRight<CR>", opts)
 -- Formatting
 map({ "n", "v" }, "<leader>bf", function()
   vim.lsp.buf.format()
   vim.notify("Format complete")
 end, opts)
-
 
 -- Splits
 map("n", "<leader>\\", ":vsplit<CR>", opts)
@@ -132,28 +104,8 @@ map('v', '>', '>gv', opts)
 map("v", "J", ":m '>+1<CR>gv-gv", opts)
 map("v", "K", ":m '<-2<CR>gv-gv", opts)
 
--- File explorer
-map("n", "<leader>e", ":Neotree toggle<CR>", opts)
-
 -- Search files
 map("n", "<leader>s", explorer.grep_files, opts)
 
 -- Find files
 map("n", "<leader>f", explorer.find_files, opts)
-
--- Splits
-map('n', '<C-Left>', require('smart-splits').resize_left)
-map('n', '<C-Down>', require('smart-splits').resize_down)
-map('n', '<C-Up>', require('smart-splits').resize_up)
-map('n', '<C-Right>', require('smart-splits').resize_right)
-
-map('n', '<A-h>', require('smart-splits').move_cursor_left)
-map('n', '<A-j>', require('smart-splits').move_cursor_down)
-map('n', '<A-k>', require('smart-splits').move_cursor_up)
-map('n', '<A-l>', require('smart-splits').move_cursor_right)
--- map('n', '<A-\\>', require('smart-splits').move_cursor_previous)
-
-map('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
-map('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
-map('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
-map('n', '<leader><leader>l', require('smart-splits').swap_buf_right)

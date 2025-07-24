@@ -1,5 +1,8 @@
 local log = require("lib.plugins.utils").log
 local cmd = require("lib.plugins.utils").command
+local opts = require("lib.system.utils").keymap.opts
+local map = require("lib.system.utils").keymap.map
+
 local M = {}
 
 -- Get plugins from config
@@ -131,26 +134,43 @@ local function install(plugins)
   end
 end
 
+-- Load plugin keymap
+local function load_keymap(plugin)
+  if type(plugin.keys) == "function" then
+    local ok, err = pcall(function()
+      local key_opts = vim.tbl_extend("force", {}, opts) -- shallow copy
+      plugin.keys(map, key_opts)
+    end)
+    if not ok then
+      log.error(string.format("Error in keys for %s: %s", plugin.name or "unknown", err))
+      print(vim.inspect(plugin))
+    end
+  end
+end
+
 -- Load a plugin and run config
 local function run_config(plugin)
-  local ok, err = pcall(plugin.config)
-  if not ok then
-    log.error(string.format("Error in config for %s: %s", plugin.name, err))
-    print(vim.inspect(plugin.config))
+  vim.opt.runtimepath:append(plugin.path)
+  if plugin.config then
+    local ok, err = pcall(plugin.config)
+    if not ok then
+      log.error(string.format("Error in config for %s: %s", plugin.name, err))
+      print(vim.inspect(plugin.config))
+    end
   end
 end
 
 -- Load plugin on event
 local function run_event(plugin)
   for _, event in ipairs(type(plugin.event) == "table" and plugin.event or { plugin.event }) do
-    local group = vim.api.nvim_create_augroup("plugin_event_" .. plugin.name, { clear = true })
+    local group = vim.api.nvim_create_augroup("plugin_event_" .. (plugin.name or "anon"), { clear = true })
     vim.api.nvim_create_autocmd(event, {
       group = group,
       once = true,
       callback = function()
-        vim.opt.runtimepath:append(plugin.path)
-        if plugin.config then
-          run_config(plugin)
+        run_config(plugin)
+        if plugin.keys then
+          load_keymap(plugin)
         end
       end,
     })
@@ -177,6 +197,10 @@ local function load(plugins)
       elseif plugin.config then
         -- Load plugin immediately
         run_config(plugin)
+        if plugin.keys then
+          -- Load plugin keymap
+          load_keymap(plugin)
+        end
       end
     end
   end
@@ -222,7 +246,6 @@ end
 
 
 -- Command functions
-
 -- Install plugins command
 local function cmd_install()
   log.info("Installing plugins. Please wait...")

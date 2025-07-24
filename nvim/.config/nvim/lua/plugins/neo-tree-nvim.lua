@@ -1,5 +1,6 @@
 return {
   url = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+  event = "BufWinEnter",
   dependencies = {
     {
       url = "https://github.com/nvim-lua/plenary.nvim",
@@ -10,5 +11,8 @@ return {
     {
       url = "https://github.com/MunifTanjim/nui.nvim",
     }
-  }
+  },
+  keys = function(map, opts)
+    map("n", "<leader>e", ":Neotree toggle<CR>", opts)
+  end
 }
