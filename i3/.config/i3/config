@@ -9,8 +9,9 @@
 # Leader key
 #########################################################################################
 # Alt key
-set $mod Mod4
-#set $super Mod4
+#set $mod Mod4
+set $mod Mod1
+set $super Mod4
 
 
 #########################################################################################
@@ -205,16 +206,16 @@ bindsym $mod+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
 # Window Key Bindings
 #########################################################################################
 # Move focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+#bindsym $mod+h focus left
+#bindsym $mod+j focus down
+#bindsym $mod+k focus up
+#bindsym $mod+l focus right
 
 # Resizing windows (just use $mod+r to set resize mode instead)
-bindsym $mod+Right resize shrink width 10 px or 10 ppt
-bindsym $mod+Down resize grow height 10 px or 10 ppt
-bindsym $mod+Up resize shrink height 10 px or 10 ppt
-bindsym $mod+Left resize grow width 11 px or 10 ppt
+#bindsym $mod+Right resize shrink width 10 px or 10 ppt
+#bindsym $mod+Down resize grow height 10 px or 10 ppt
+#bindsym $mod+Up resize shrink height 10 px or 10 ppt
+#bindsym $mod+Left resize grow width 11 px or 10 ppt
 
 # Move focused window
 bindsym $mod+Shift+h move left
@@ -308,6 +309,20 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# easy-i3-neovim-nav
+# Move focus
+bindsym $mod+h exec --no-startup-id easy-i3-neovim-nav focus left
+bindsym $mod+j exec --no-startup-id easy-i3-neovim-nav focus down
+bindsym $mod+k exec --no-startup-id easy-i3-neovim-nav focus up
+bindsym $mod+l exec --no-startup-id easy-i3-neovim-nav focus right
+
+# Resizing                                                               
+bindsym $mod+Left  exec --no-startup-id easy-i3-neovim-nav resize shrink width  5 10 5
+bindsym $mod+Down  exec --no-startup-id easy-i3-neovim-nav resize shrink height 5 10 5
+bindsym $mod+Up    exec --no-startup-id easy-i3-neovim-nav resize grow   height 5 10 5
+bindsym $mod+Right exec --no-startup-id easy-i3-neovim-nav resize grow   width  5 10 5
+
 
 #########################################################################################
 # Mouse bindings
