@@ -21,8 +21,17 @@ map("n", "<leader>Y", 'ggVG"+y', opts)
 -- Yank to system clipboard
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 
--- Formatting
-map({ "n", "v" }, "<leader>bf", function()
+-- LSP
+map("n", "gd", vim.lsp.buf.definition, opts)
+map("n", "gD", vim.lsp.buf.declaration, opts)
+map("n", "gr", vim.lsp.buf.references, opts)
+map("n", "gi", vim.lsp.buf.implementation, opts)
+map("n", "gt", vim.lsp.buf.type_definition, opts)
+map("n", "K", vim.lsp.buf.hover, opts)
+map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+map({ "n", "v" }, "<C-p>", function()
   vim.lsp.buf.format()
   vim.notify("Format complete")
 end, opts)
