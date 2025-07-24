@@ -104,8 +104,8 @@ map('v', '>', '>gv', opts)
 map("v", "J", ":m '>+1<CR>gv-gv", opts)
 map("v", "K", ":m '<-2<CR>gv-gv", opts)
 
--- Search files
-map("n", "<leader>s", explorer.grep_files, opts)
+-- Grep files
+map("n", "<leader>g", explorer.grep_files, opts)
 
 -- Find files
 map("n", "<leader>f", explorer.find_files, opts)

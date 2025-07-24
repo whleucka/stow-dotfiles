@@ -1,7 +1,7 @@
 local M = {}
 
 function M.grep_files()
-  local input = vim.fn.input("🔎 Search for: ")
+  local input = vim.fn.input("🔎 Grep: ")
   if input == "" then return end
 
   local grep_cmd
@@ -44,7 +44,7 @@ end
 
 function M.find_files()
   local input = vim.fn.input({
-    prompt = "🔎 Find files: ",
+    prompt = "🔎 Find: ",
     completion = "file"
   })
   if input == "" then return end
