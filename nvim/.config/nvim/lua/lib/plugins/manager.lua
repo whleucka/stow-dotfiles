@@ -151,12 +151,10 @@ end
 -- Load a plugin and run config
 local function run_config(plugin)
   vim.opt.runtimepath:append(plugin.path)
-  if plugin.config then
-    local ok, err = pcall(plugin.config)
-    if not ok then
-      log.error(string.format("Error in config for %s: %s", plugin.name, err))
-      print(vim.inspect(plugin.config))
-    end
+  local ok, err = pcall(plugin.config)
+  if not ok then
+    log.error(string.format("Error in config for %s: %s", plugin.name, err))
+    print(vim.inspect(plugin.config))
   end
 end
 
@@ -168,7 +166,9 @@ local function run_event(plugin)
       group = group,
       once = true,
       callback = function()
-        run_config(plugin)
+        if plugin.config then
+          run_config(plugin)
+        end
         if plugin.keys then
           load_keymap(plugin)
         end
