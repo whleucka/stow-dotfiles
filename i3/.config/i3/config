@@ -9,8 +9,8 @@
 # Leader key
 #########################################################################################
 # Alt key
-set $mod Mod1
-set $super Mod4
+set $mod Mod4
+#set $super Mod4
 
 
 #########################################################################################
@@ -150,13 +150,13 @@ bindsym $mod+Return exec kitty
 # Note: i3-exit is a script in ~/.bin/scripts
 # Requires betterlockscreen
 # Lock the screen
-bindsym $super+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
+bindsym Ctrl+alt+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
 # Suspend the computer
-bindsym Ctrl+$mod+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
+bindsym Ctrl+alt+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
 # Shutdown
-bindsym Ctrl+$mod+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
+bindsym Ctrl+alt+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
 # NOP
-bindsym Ctrl+$mod+Backspace exec --no-startup-id NOP
+bindsym Ctrl+alt+Backspace exec --no-startup-id NOP
 
 
 # Make the currently focused window a scratchpad
@@ -184,12 +184,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # Screenshots
 # Screen to ~/Pictures
 bindsym Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
-# Screen to CLIPBOARD
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+# Selection TO CLIPBOARD
+bindsym $mod+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
 # Selection to ~/Pictures
 bindsym Shift+Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim --select "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
-# Selection TO CLIPBOARD
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+# Screen to CLIPBOARD
+bindsym $mod+Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 
 # Reload the configuration
 bindsym $mod+Shift+c reload
@@ -197,8 +198,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # Exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-# Dock (ctrl + `)
-bindsym Ctrl+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
+# Dock
+bindsym $mod+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
 
 #########################################################################################
 # Window Key Bindings
