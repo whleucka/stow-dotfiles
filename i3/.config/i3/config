@@ -9,7 +9,6 @@
 # Leader key
 #########################################################################################
 # Alt key
-#set $mod Mod4
 set $mod Mod1
 set $super Mod4
 
@@ -312,16 +311,16 @@ bindsym $mod+r mode "resize"
 
 # easy-i3-neovim-nav
 # Move focus
-bindsym $mod+h exec --no-startup-id easy-i3-neovim-nav focus left
-bindsym $mod+j exec --no-startup-id easy-i3-neovim-nav focus down
-bindsym $mod+k exec --no-startup-id easy-i3-neovim-nav focus up
-bindsym $mod+l exec --no-startup-id easy-i3-neovim-nav focus right
+bindsym $mod+h exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus left
+bindsym $mod+j exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus down
+bindsym $mod+k exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus up
+bindsym $mod+l exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav focus right
 
 # Resizing                                                               
-bindsym $mod+Left  exec --no-startup-id easy-i3-neovim-nav resize shrink width  5 10 5
-bindsym $mod+Down  exec --no-startup-id easy-i3-neovim-nav resize shrink height 5 10 5
-bindsym $mod+Up    exec --no-startup-id easy-i3-neovim-nav resize grow   height 5 10 5
-bindsym $mod+Right exec --no-startup-id easy-i3-neovim-nav resize grow   width  5 10 5
+bindsym $mod+Left  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink width  5 10 5
+bindsym $mod+Down  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink height 5 10 5
+bindsym $mod+Up    exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   height 5 10 5
+bindsym $mod+Right exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   width  5 10 5
 
 
 #########################################################################################
