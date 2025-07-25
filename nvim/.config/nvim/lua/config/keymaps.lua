@@ -8,9 +8,8 @@ vim.g.mapleader = " "
 
 -- Basic shit
 map("n", "<leader>w", ":update<CR>", opts)
-map("n", "<leader>q", ":bp | bd #<CR>", opts)
-map("n", "<leader>qq", ":q<CR>", opts)
-map("n", "<leader>Q", ":qa<CR>", opts)
+map("n", "<leader>wq", ":q<CR>", opts)
+map("n", "<leader>qq", ":qa<CR>", opts)
 map("n", "<Esc>", ":nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
