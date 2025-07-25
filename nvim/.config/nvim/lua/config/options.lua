@@ -82,7 +82,7 @@ opt.completeopt = { "menu", "menuone", "noselect" }
 -- UI Noise reduction
 opt.showmode = false -- we use a statusline instead
 opt.ruler = false
-opt.laststatus = 3   -- global statusline (Neovim 0.7+)
+opt.laststatus = 2
 
 -- Netrw
 g.netrw_browse_split = 4 -- Open files in previous window (the main one)
