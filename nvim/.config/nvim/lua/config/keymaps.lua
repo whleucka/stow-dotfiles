@@ -9,8 +9,7 @@ vim.g.mapleader = " "
 -- Basic shit
 map("n", "<leader>w", ":update<CR>", opts)
 map("n", "<leader>q", ":bp | bd #<CR>", opts)
-map("n", "<C-w>", ":q!<CR>", opts)
-map("n", "<leader>qq", ":qa<CR>", opts)
+map("n", "<leader>Q", ":q<CR>", opts)
 map("n", "<Esc>", ":nohlsearch<CR>", opts)
 map("i", "jk", "<Esc>", opts)
 map("i", "kj", "<Esc>", opts)
@@ -19,7 +18,7 @@ map("n", "q", "<Nop>", opts)
 -- Yank entire file to system clipboard
 map("n", "<leader>Y", 'ggVG"+y', opts)
 -- Yank to system clipboard
-map({ "n", "v" }, "<leader>y", '"+y', opts)
+map({ "n", "v" }, "y", '"+y', opts)
 
 -- LSP
 map("n", "gd", vim.lsp.buf.definition, opts)
@@ -35,10 +34,6 @@ map({ "n", "v" }, "<C-p>", function()
   vim.lsp.buf.format()
   vim.notify("Format complete")
 end, opts)
-
--- Splits
-map("n", "<leader>\\", ":vsplit<CR>", opts)
-map("n", "<leader>-", ":split<CR>", opts)
 
 -- Terminal
 map("n", "<leader>th", function()
