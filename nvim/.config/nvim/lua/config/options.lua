@@ -21,6 +21,8 @@ vim.opt.signcolumn = 'yes'        -- Always show signcolumn (gutter)
 vim.opt.scrolloff = 8             -- Context lines above/below cursor
 vim.opt.sidescrolloff = 8         -- Context on sides for horizontal movement
 vim.opt.wrap = false              -- Don't wrap long lines
+vim.opt.winborder = "rounded"     -- Rounded borders
+vim.cmd("set completeopt=menuone,noinsert,noselect")
 
 -- Searching and Navigation
 vim.opt.ignorecase = true         -- Ignore case when searching
@@ -43,7 +45,6 @@ vim.opt.timeoutlen = 300          -- Shorter delay for mapped sequences
 vim.opt.showmode = false          -- Don’t show mode (use statusline plugin)
 vim.opt.laststatus = 3            -- Global statusline (Neovim 0.7+)
 vim.opt.fillchars:append { eob = ' ' } -- No ~ at end of buffers
-vim.opt.winborder = "rounded"           -- or "single", "double", etc.
 
 -- Extra Ninja Options
 vim.opt.lazyredraw = true         -- Faster macro execution

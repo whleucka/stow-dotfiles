@@ -1,11 +1,11 @@
-vim.cmd[[call serverstart(tempname())]]
-vim.cmd[[let &titlestring="nvim %F -- [" . v:servername . "]"]]
-vim.cmd[[set title]]
-
+-- With great power comes great responsibility
 require('config.globals')
-require('config.options')
 require('config.keymap')
 require('config.autocmd')
 require('config.lsp')
+
+-- Plugins
 require('plugins.catppuccin')
 require('plugins.nvim-treesitter')
+require('plugins.blink-cmp')
+require('plugins.luasnip')
