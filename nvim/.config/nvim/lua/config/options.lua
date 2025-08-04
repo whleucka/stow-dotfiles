@@ -1,92 +1,62 @@
-local opt = vim.opt
-local g = vim.g
-local bo = vim.bo
-local wo = vim.wo
+-- General Essentials
+vim.opt.number = true               -- Show line numbers
+vim.opt.relativenumber = true      -- Relative line numbers for fast navigation
+vim.opt.mouse = 'a'                -- Enable mouse support
+vim.opt.clipboard = 'unnamedplus' -- System clipboard access
+vim.opt.swapfile = false          -- No swap files (less clutter)
+vim.opt.backup = false            -- No backups (Git got you)
+vim.opt.undofile = true           -- Persistent undo history
 
--- UI
-opt.number = true         -- show line numbers
-opt.relativenumber = true -- hybrid line numbers
-opt.cursorline = true     -- highlight current line
-opt.signcolumn = "yes"    -- always show sign column
-opt.termguicolors = true  -- 24-bit RGB
-opt.scrolloff = 8         -- keep lines above/below cursor
-opt.sidescrolloff = 8
-opt.wrap = false          -- no line wrapping
-opt.linebreak = true      -- wrap at word boundary if wrap is on
+-- Smarter Tabs & Indenting
+vim.opt.expandtab = true          -- Use spaces instead of tabs
+vim.opt.shiftwidth = 4            -- Indent size
+vim.opt.tabstop = 4               -- Display width of a tab
+vim.opt.smartindent = true        -- Auto-indent new lines
+vim.opt.autoindent = true         -- Copy indent from current line
 
--- Indentation
-bo.shiftwidth = 2
-bo.tabstop = 2
-bo.softtabstop = 2
-bo.expandtab = true -- use spaces instead of tabs
-bo.autoindent = true
-bo.smartindent = true
+-- UI/UX Improvements
+vim.opt.cursorline = true         -- Highlight current line
+vim.opt.termguicolors = true      -- 24-bit color support
+vim.opt.signcolumn = 'yes'        -- Always show signcolumn (gutter)
+vim.opt.scrolloff = 8             -- Context lines above/below cursor
+vim.opt.sidescrolloff = 8         -- Context on sides for horizontal movement
+vim.opt.wrap = false              -- Don't wrap long lines
 
--- Search
-opt.ignorecase = true -- case-insensitive by default
-opt.smartcase = true  -- but case-sensitive if uppercase used
-opt.incsearch = true  -- show matches as you type
-opt.hlsearch = true   -- highlight all matches
+-- Searching and Navigation
+vim.opt.ignorecase = true         -- Ignore case when searching
+vim.opt.smartcase = true          -- Case-sensitive if uppercase used
+vim.opt.incsearch = true          -- Search as you type
+vim.opt.hlsearch = true           -- Highlight matches
+vim.opt.inccommand = 'split'      -- Live preview of substitute
 
--- Files
-opt.swapfile = false   -- no .swp files
-opt.backup = false     -- no backup files
-opt.undofile = true    -- persistent undo
-opt.undolevels = 10000 -- lots of undo history
-
--- Folds
-wo.foldenable = true
-wo.foldlevel = 99
-opt.foldlevelstart = 99
-wo.foldmethod = 'expr'
-wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
---opt.foldcolumn = '1'  -- or 'auto'
-opt.fillchars = 'fold: '
-
--- Completion
-opt.wildmenu = true
-opt.wildmode = { "longest", "full" }
-
--- Clipboard
-if vim.fn.has("nvim-0.10") == 1 then
-  g.clipboard = {
-    name = 'osc52',
-    copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-    },
-    paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-    },
-  }
-else
-  vim.opt.clipboard = "unnamedplus"
-end
-
--- Splits
-opt.splitbelow = true
-opt.splitright = true
+-- File and Buffer Management
+vim.opt.splitbelow = true         -- Horizontal splits below
+vim.opt.splitright = true         -- Vertical splits to the right
+vim.opt.hidden = true             -- Keep buffers open in background
+vim.opt.confirm = true            -- Confirm to save before closing
 
 -- Performance
-opt.lazyredraw = true -- faster macro execution
-opt.updatetime = 2000 -- lower = faster CursorHold events
-opt.timeoutlen = 500  -- lower = snappier mappings
+vim.opt.updatetime = 200          -- Faster CursorHold, good for LSP
+vim.opt.timeoutlen = 300          -- Shorter delay for mapped sequences
 
--- Misc
-opt.mouse = "a"      -- enable mouse in all modes
-opt.hidden = true    -- allow unsaved buffers in background
-opt.conceallevel = 2 -- conceal markdown, json, etc.
-opt.completeopt = { "menu", "menuone", "noselect" }
+-- Aesthetics
+vim.opt.showmode = false          -- Don’t show mode (use statusline plugin)
+vim.opt.laststatus = 3            -- Global statusline (Neovim 0.7+)
+vim.opt.fillchars:append { eob = ' ' } -- No ~ at end of buffers
+vim.opt.winborder = "rounded"           -- or "single", "double", etc.
 
--- UI Noise reduction
-opt.showmode = false -- we use a statusline instead
-opt.ruler = false
-opt.laststatus = 2
+-- Extra Ninja Options
+vim.opt.lazyredraw = true         -- Faster macro execution
+vim.opt.virtualedit = 'block'     -- Allow cursor beyond EOL in visual block
+vim.opt.whichwrap:append('<,>,[,]') -- Left/right move across lines
 
--- Netrw
-g.netrw_browse_split = 4 -- Open files in previous window (the main one)
-g.netrw_altv = 1         -- Vertical splits open to the right
-g.netrw_winsize = 30     -- Sidebar width
-g.netrw_liststyle = 3    -- Tree view style
-g.netrw_banner = 0       -- No banner
+-- Folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
+-- Neovim 0.12+
+vim.opt.diffopt:append('linematch:60')  -- Better diffs with linematch algorithm
+vim.loader.enable()                    -- Fast startup via Lua module caching
