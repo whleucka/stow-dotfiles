@@ -80,5 +80,11 @@ return {
     'selene.yml',
     '.git',
   },
-  settings = { diagnostics = { globals = { "vim" } } }
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  }
 }
