@@ -7,6 +7,8 @@ require('config.lsp')
 
 -- Plugins
 require('plugins.catppuccin')
+require('plugins.lualine-nvim')
 require('plugins.nvim-treesitter')
 require('plugins.blink-cmp')
 require('plugins.luasnip')
+require('plugins.oil-nvim')

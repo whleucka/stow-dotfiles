@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader>q", ":quit<CR>", opts)
 vim.keymap.set("n", "<leader>w", ":write<CR>", opts)
 vim.keymap.set("n", "<leader>x", ":update<CR> :source<CR>", opts)
 
+-- Files
+vim.keymap.set("n", "<leader>o", ":Oil<CR>", opts)
+
 -- LSP
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)          -- Go to definition
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)         -- Go to declaration
