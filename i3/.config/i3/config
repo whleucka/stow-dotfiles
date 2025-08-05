@@ -185,12 +185,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 # Screen to ~/Pictures
 bindsym Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
 # Selection TO CLIPBOARD
-bindsym $mod+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym ctrl+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Selection to ~/Pictures
 bindsym Shift+Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim --select "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
 # Screen to CLIPBOARD
-bindsym $mod+Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym ctrl+Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 
 # Reload the configuration
 bindsym $mod+Shift+c reload
