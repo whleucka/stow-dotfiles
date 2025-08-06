@@ -72,3 +72,5 @@ require("catppuccin").setup({
 })
 
 vim.cmd.colorscheme "catppuccin"
+
+vim.cmd.highlight("WinSeparator guibg=NONE guifg=#737994")
