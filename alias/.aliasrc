@@ -177,7 +177,7 @@ elif command -v apt > /dev/null; then
 fi
 
 # nvim/vim
-alias v=$(which nvim || which vim)
+alias v='$(command -v nvim || command -v vim)'
 
 # transf files / folders
 if command -v rsync > /dev/null; then
