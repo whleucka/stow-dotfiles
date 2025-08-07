@@ -71,26 +71,26 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 # Bluetooth
 exec --no-startup-id blueberry-tray
-# Expressvpn
-#exec --no-startup-id sleep 4 && expressvpn-gui-gtk
 # For transparent backgrounds
 exec --no-startup-id picom -b --backend glx --config ~/.config/picom/picom.conf
 # Keyring
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
-# Polybar
+# Polybar (top)
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# Kitty + bpytop
-exec kitty bpytop
 # Keyboard repeat rate
 exec --no-startup-id xset r rate 350 100
 # Panel (requires .plank_toggle)
 exec --no-startup-id touch ~/.plank_toggle
+# Dock
 exec --no-startup-id plank
 # xscreensaver
 exec --no-startup-id xscreensaver
 
+# Other stuff
 # xmas!
 #exec --no-startup-id sh -c "sleep 3 && xsnow -snowflakes 100 -nowind -notrees -nosanta -norudolf"
+# Expressvpn
+#exec --no-startup-id sleep 4 && expressvpn-gui-gtk
 
 
 #########################################################################################
@@ -119,7 +119,7 @@ smart_borders on
 #########################################################################################
 default_border pixel 3
 default_floating_border pixel 3
-#for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
 
 for_window [window_role="pop-up"] floating enable
 for_window [class="feh"] floating enable
@@ -147,22 +147,39 @@ bindsym $mod+q kill
 # Kitty (terminal)
 bindsym $mod+Return exec kitty
 
+# Other apps
+# (N)eovim
+bindsym $super+N exec kitty nvim
+# Neo(V)im Config
+bindsym $super+V exec kitty nvim ~/.config/nvim
+# (W)eb
+bindsym $super+W exec google-chrome-stable
+# (E)mail
+bindsym $super+E exec google-chrome-stable https://mail.google.com/
+# (P)hotos
+bindsym $super+P exec google-chrome-stable https://photos.google.com/
+# (C)alculator
+bindsym $super+C exec gnome-calculator
+# (T)erminal
+bindsym $super+T exec kitty
+# System (M)onitor
+bindsym $super+M exec kitty bpytop
+# (G)imp
+bindsym $super+G exec gimp
+# (O)ffice
+bindsym $super+O exec libreoffice
+
+
 # Note: i3-exit is a script in ~/.bin/scripts
 # Requires betterlockscreen
 # Lock the screen
-bindsym Ctrl+alt+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
+bindsym $super+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
 # Suspend the computer
-bindsym Ctrl+alt+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
+bindsym Ctrl+$super+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
 # Shutdown
-bindsym Ctrl+alt+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
+bindsym Ctrl+$super+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
 # NOP
-bindsym Ctrl+alt+Backspace exec --no-startup-id NOP
-
-
-# Make the currently focused window a scratchpad
-bindsym $mod+minus move scratchpad
-# Show the first scratchpad window
-bindsym $mod+equal scratchpad show; focus tiling;
+bindsym Ctrl+$super+Backspace exec --no-startup-id NOP
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -182,15 +199,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Screenshots
-# Screen to ~/Pictures
-bindsym Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
-# Selection TO CLIPBOARD
-bindsym ctrl+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-
-# Selection to ~/Pictures
-bindsym Shift+Print exec --no-startup-id sh -c 'timestamp=$(date +%s) && maim --select "/home/$USER/Pictures/screenshot_${timestamp}.png" && feh "/home/$USER/Pictures/screenshot_${timestamp}.png"'
-# Screen to CLIPBOARD
-bindsym ctrl+Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id xfce4-screenshooter
 
 # Reload the configuration
 bindsym $mod+Shift+c reload
@@ -199,23 +208,11 @@ bindsym $mod+Shift+r restart
 # Exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # Dock
-bindsym $mod+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
+bindsym ctrl+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
 
 #########################################################################################
 # Window Key Bindings
 #########################################################################################
-# Move focus
-#bindsym $mod+h focus left
-#bindsym $mod+j focus down
-#bindsym $mod+k focus up
-#bindsym $mod+l focus right
-
-# Resizing windows (just use $mod+r to set resize mode instead)
-#bindsym $mod+Right resize shrink width 10 px or 10 ppt
-#bindsym $mod+Down resize grow height 10 px or 10 ppt
-#bindsym $mod+Up resize shrink height 10 px or 10 ppt
-#bindsym $mod+Left resize grow width 11 px or 10 ppt
-
 # Move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
