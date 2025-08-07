@@ -29,7 +29,7 @@ require("blink.cmp").setup({
 
       cmdline_position = function()
         if vim.g.ui_cmdline_pos ~= nil then
-          local pos = vim.g.ui_cmdline_pos               -- (1, 0)-indexed
+          local pos = vim.g.ui_cmdline_pos -- (1, 0)-indexed
           return { pos[1] - 1, pos[2] }
         end
         local height = (vim.o.cmdheight == 0) and 1 or vim.o.cmdheight
@@ -105,8 +105,8 @@ require("blink.cmp").setup({
     default = { "lsp", "path", "snippets", "buffer" },
     providers = {
       lsp = {
-        min_keyword_length = 2,             -- Number of characters to trigger porvider
-        score_offset = 0,                   -- Boost/penalize the score of the items
+        min_keyword_length = 2, -- Number of characters to trigger porvider
+        score_offset = 0,       -- Boost/penalize the score of the items
       },
       path = {
         min_keyword_length = 0,
