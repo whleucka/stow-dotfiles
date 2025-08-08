@@ -1,8 +1,10 @@
 local M = {}
 
 function M.grep_files()
-  local input = vim.fn.input("🔎 Grep: ")
-  if input == "" then return end
+  local ok, input = pcall(function()
+    return vim.fn.input("🔎 Grep: ")
+  end)
+  if not ok or input == "" then return end
 
   local grep_cmd
   local use_rg = vim.fn.executable("rg") == 1
@@ -43,11 +45,13 @@ function M.grep_files()
 end
 
 function M.find_files()
-  local input = vim.fn.input({
-    prompt = "🔎 Find: ",
-    completion = "file"
-  })
-  if input == "" then return end
+  local ok, input = pcall(function()
+    return vim.fn.input({
+      prompt = "🔎 Find: ",
+      completion = "file"
+    })
+  end)
+  if not ok or input == "" then return end
 
   local files_cmd
   local use_rg = vim.fn.executable("rg") == 1
