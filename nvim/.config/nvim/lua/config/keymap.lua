@@ -16,9 +16,9 @@ vim.keymap.set("n", "<leader>o", ":Oil<CR>", opts)
 -- Git
 vim.keymap.set('n', '<leader>gs', ':Git<CR>', opts) -- Git status
 vim.keymap.set('n', '<leader>gd', ':Gvdiffsplit!<CR>', opts) -- Git diff in split
-vim.keymap.set('n', '<leader>gp', ':Git push<CR>', opts) -- Git push
+vim.keymap.set('n', '<leader>gP', ':Git push<CR>', opts) -- Git push
 vim.keymap.set('n', '<leader>gf', ':Git fetch<CR>', opts) -- Git fetch
-vim.keymap.set('n', '<leader>gP', ':Git pull<CR>', opts) -- Git pull
+vim.keymap.set('n', '<leader>gp', ':Git pull<CR>', opts) -- Git pull
 vim.keymap.set('n', '<leader>gl', ':0Gclog<CR>', opts) -- Git log for current file
 vim.keymap.set("n", "<leader>ga", ":Git add %<CR>", opts) -- Stage current file
 vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", opts) -- Git blame current file
