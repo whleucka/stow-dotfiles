@@ -13,6 +13,9 @@ vim.keymap.set("i", "kj", "<esc>", opts)
 -- Files
 vim.keymap.set("n", "<leader>o", ":Oil<CR>", opts)
 
+-- Git
+vim.keymap.set('n', '<leader>gs', ':Git<CR>', opts)
+
 -- LSP
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)          -- Go to definition
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)         -- Go to declaration
