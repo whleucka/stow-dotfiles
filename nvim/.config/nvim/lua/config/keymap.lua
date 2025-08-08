@@ -15,6 +15,8 @@ vim.keymap.set("n", "<leader>o", ":Oil<CR>", opts)
 
 -- Git
 vim.keymap.set('n', '<leader>gs', ':Git<CR>', opts)
+vim.keymap.set('n', '<leader>gp', ':Git push<CR>', opts)
+vim.keymap.set('n', '<leader>gP', ':Git pull<CR>', opts)
 
 -- LSP
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)          -- Go to definition
