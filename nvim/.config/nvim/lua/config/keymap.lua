@@ -6,6 +6,7 @@ vim.keymap.set("n", "q", "<nop>", opts)
 vim.keymap.set("n", "<leader>q", ":quit<CR>", opts)
 vim.keymap.set("n", "<leader>w", ":write<CR>", opts)
 vim.keymap.set("n", "<leader>s", ":update<CR> :source<CR>", opts)
+vim.keymap.set("n", "<esc>", ":noh<CR>", opts)
 vim.keymap.set("i", "jk", "<esc>", opts)
 vim.keymap.set("i", "kj", "<esc>", opts)
 
