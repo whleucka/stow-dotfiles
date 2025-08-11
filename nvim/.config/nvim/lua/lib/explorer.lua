@@ -188,8 +188,8 @@ function M.find_files()
   for _, file in ipairs(candidates) do
     local score = fuzzy_score(input, file)
     if score > -math.huge then
-      if git_files[normalize(file)] then score = score + 5 end
-      if recent_files[normalize(file)] then score = score + 1 end
+      if git_files[normalize(file)] then score = score + 50 end
+      if recent_files[normalize(file)] then score = score + 20 end
       table.insert(scored, { score = score, file = file })
     end
   end
