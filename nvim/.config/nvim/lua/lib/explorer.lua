@@ -58,15 +58,35 @@ local function fuzzy_score(query, text)
   text = text:lower()
 
   local score = 0
-  local last_index = 0
+  local last_index = -1
   local consecutive = 0
+  local total_gap = 0
+
+  -- Filename part
+  local filename = text:match("[^/]+$")
+
+  -- Big boost if the *filename* starts with the query
+  if filename and filename:find(query, 1, true) == 1 then
+    score = score + 80
+  end
+
+  -- Smaller boost if the *full path* starts with the query
+  if text:find(query, 1, true) == 1 then
+    score = score + 50
+  end
 
   for i = 1, #query do
     local ch = query:sub(i, i)
     local idx = text:find(ch, last_index + 1, true)
     if not idx then
-      return -math.huge -- reject if character missing
+      return -math.huge
     end
+
+    if last_index ~= -1 then
+      local gap = idx - last_index - 1
+      total_gap = total_gap + gap
+    end
+
     if idx == last_index + 1 then
       consecutive = consecutive + 1
       score = score + (consecutive * 5)
@@ -74,9 +94,17 @@ local function fuzzy_score(query, text)
       consecutive = 1
       score = score + 1
     end
-    score = score + math.max(10 - idx, 0) -- early match bonus
+
+    -- Reduced early match bonus to avoid long-path bias
+    score = score + math.max(5 - idx, 0)
     last_index = idx
   end
+
+  -- Shorter filename/path bonus
+  score = score + math.max(0, 20 - (#text - last_index))
+
+  -- Penalize matches spread far apart
+  score = score - total_gap
 
   return score
 end
@@ -101,20 +129,20 @@ local function get_git_files()
   return files
 end
 
-local function get_git_root()
-  local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
-  if root == nil or root == '' or vim.v.shell_error ~= 0 then
-    return nil
-  end
-  return root
-end
-
 local function get_recent_files()
   local files = {}
   for _, f in ipairs(vim.v.oldfiles) do
     files[normalize(f)] = true
   end
   return files
+end
+
+local function get_git_root()
+  local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  if root == nil or root == '' or vim.v.shell_error ~= 0 then
+    return nil
+  end
+  return root
 end
 
 function M.find_files()
@@ -160,8 +188,8 @@ function M.find_files()
   for _, file in ipairs(candidates) do
     local score = fuzzy_score(input, file)
     if score > -math.huge then
-      if git_files[normalize(file)] then score = score + 100 end
-      if recent_files[normalize(file)] then score = score + 50 end
+      if git_files[normalize(file)] then score = score + 5 end
+      if recent_files[normalize(file)] then score = score + 1 end
       table.insert(scored, { score = score, file = file })
     end
   end
