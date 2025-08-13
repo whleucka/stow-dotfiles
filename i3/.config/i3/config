@@ -199,7 +199,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Screenshots
-bindsym Print exec --no-startup-id xfce4-screenshooter
+bindsym Print exec --no-startup-id flameshot gui
 
 # Reload the configuration
 bindsym $mod+Shift+c reload
