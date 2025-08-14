@@ -13,6 +13,26 @@ vim.keymap.set("i", "kj", "<esc>", opts)
 -- Files
 vim.keymap.set("n", "<leader>o", ":Oil<CR>", opts)
 
+-- Indent selected lines
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+
+-- Move selected lines
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
+
+-- Splits
+vim.keymap.set("n", "<leader>-", ":split<CR>", opts)
+vim.keymap.set("n", "<leader>\\", ":vsplit<CR>", opts)
+
+-- Find files / grep
+vim.keymap.set("n", "<leader>f", function()
+  explorer.find_files()
+end, opts)
+vim.keymap.set("n", "<leader>s", function()
+  explorer.grep_files()
+end, opts)
+
 -- Git
 vim.keymap.set('n', '<leader>gs', ':Git<CR>', opts) -- Git status
 vim.keymap.set('n', '<leader>gd', ':Gvdiffsplit!<CR>', opts) -- Git diff in split
@@ -41,16 +61,4 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)      -- Rename symbo
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) -- Code actions
 vim.keymap.set('n', '<leader>cf', function()
   vim.lsp.buf.format { async = true }                            -- Format file
-end, opts)
-
--- Splits
-vim.keymap.set("n", "<leader>-", ":split<CR>", opts)
-vim.keymap.set("n", "<leader>\\", ":vsplit<CR>", opts)
-
--- Find files / grep
-vim.keymap.set("n", "<leader>f", function()
-  explorer.find_files()
-end, opts)
-vim.keymap.set("n", "<leader>s", function()
-  explorer.grep_files()
 end, opts)
