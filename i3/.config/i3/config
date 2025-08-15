@@ -148,6 +148,8 @@ bindsym $mod+q kill
 bindsym $mod+Return exec kitty
 
 # Other apps
+# (K)itty Launcher
+bindsym $super+Return exec --no-startup-id $HOME/.bin/scripts/kitty-launcher
 # (N)eovim
 bindsym $super+N exec kitty nvim
 # Neo(V)im Config

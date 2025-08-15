@@ -16,11 +16,10 @@ fi
 #
 export FZF_DEFAULT_OPTS="-m"
 FZF_DEFAULT_OPTS+=" --color='dark'"
-FZF_DEFAULT_OPTS+=" --bind 'ctrl-i:toggle-preview'"
 FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
-FZF_DEFAULT_OPTS+=" --height=50%"
+FZF_DEFAULT_OPTS+=" --height=30%"
 FZF_DEFAULT_OPTS+=" --layout=reverse"
-#FZF_DEFAULT_OPTS+=" --border"
+FZF_DEFAULT_OPTS+=" --border"
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow -g "!{.git,vendor,node_modules}/*"'
 fi

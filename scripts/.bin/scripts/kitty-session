@@ -1,0 +1,222 @@
+#!/usr/bin/env python3
+import json
+import subprocess
+import sys
+import os
+from pathlib import Path
+from datetime import datetime
+
+SESSION_DIR = Path.home() / ".local/share/kitty-sessions"
+SESSION_DIR.mkdir(parents=True, exist_ok=True)
+
+def run_kitty_cmd(*args):
+    """Run a kitty remote-control command and return parsed JSON if possible."""
+    result = subprocess.run(["kitty", "@"] + list(args), capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Error: {result.stderr.strip()}")
+        sys.exit(1)
+    try:
+        return json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return result.stdout.strip()
+
+def save_session(name):
+    data = run_kitty_cmd("ls")
+    session_data = {
+        "created": datetime.now().isoformat(),
+        "windows": []
+    }
+
+    for win in data:  # OS windows
+        win_info = {"tabs": []}
+        for tab in win["tabs"]:
+            tab_info = {
+                "title": tab.get("title", ""),
+                "layout": tab.get("layout", ""),
+                "windows": []
+            }
+            for w in tab["windows"]:
+                tab_info["windows"].append({
+                    "title": w.get("title", ""),
+                    "cwd": w.get("cwd", ""),
+                    "cmdline": w.get("cmdline", []),
+                    "location": w.get("layout", "stack")
+                })
+            win_info["tabs"].append(tab_info)
+        session_data["windows"].append(win_info)
+
+    with open(SESSION_DIR / f"{name}.json", "w") as f:
+        json.dump(session_data, f, indent=2)
+    print(f"Session '{name}' saved.")
+
+def load_session(name):
+    session_file = SESSION_DIR / f"{name}.json"
+    if not session_file.exists():
+        print(f"Error: No session named '{name}'")
+        sys.exit(1)
+
+    with open(session_file) as f:
+        session_data = json.load(f)
+
+    for win in session_data["windows"]:
+        for tab in win["tabs"]:
+            # Set the tab layout if specified
+            tab_layout = tab.get("layout", "splits")
+            windows = tab["windows"]
+            
+            if not windows:
+                continue
+                
+            # Create first window
+            first_win = windows[0]
+            cwd = first_win.get("cwd", str(Path.home()))
+            cmd = first_win.get("cmdline", [])
+            title = first_win.get("title", "")
+            
+            args = ["kitty", "@", "new-window", "--title", title, "--cwd", cwd]
+            if cmd:
+                args.extend(cmd)
+            subprocess.run(args)
+            
+            # Set the layout
+            layout_result = subprocess.run(["kitty", "@", "goto-layout", tab_layout], 
+                                         capture_output=True, text=True)
+            if layout_result.returncode != 0:
+                print(f"Warning: Could not set layout '{tab_layout}': {layout_result.stderr.strip()}")
+            
+            # For your specific fat-like layout, let's manually create the arrangement
+            if len(windows) >= 3:
+                # Create second window (will split horizontally)
+                second_win = windows[1]
+                args = ["kitty", "@", "launch", "--location", "split", 
+                       "--title", second_win.get("title", ""), 
+                       "--cwd", second_win.get("cwd", str(Path.home()))]
+                if second_win.get("cmdline"):
+                    args.extend(second_win["cmdline"])
+                subprocess.run(args)
+                
+                # Create third window (will split the second window vertically)
+                third_win = windows[2]
+                args = ["kitty", "@", "launch", "--location", "vsplit",
+                       "--title", third_win.get("title", ""),
+                       "--cwd", third_win.get("cwd", str(Path.home()))]
+                if third_win.get("cmdline"):
+                    args.extend(third_win["cmdline"])
+                subprocess.run(args)
+                
+                # Now resize to get the fat layout - make top window bigger
+                subprocess.run(["kitty", "@", "resize-window", "--increment", "10"])
+                
+            else:
+                # Handle remaining windows normally
+                for w in windows[1:]:
+                    cwd = w.get("cwd", str(Path.home()))
+                    cmd = w.get("cmdline", [])
+                    title = w.get("title", "")
+                    location = w.get("location", "after")
+                    
+                    args = ["kitty", "@", "launch", "--location", location, "--title", title, "--cwd", cwd]
+                    if cmd:
+                        args.extend(cmd)
+                    subprocess.run(args)
+
+    print(f"Session '{name}' loaded.")
+
+def edit_session(name):
+    """Edit a session configuration file."""
+    session_file = SESSION_DIR / f"{name}.json"
+    if not session_file.exists():
+        print(f"Error: No session named '{name}'")
+        sys.exit(1)
+    
+    # Try to get editor from environment variables, fall back to sensible defaults
+    editor = os.environ.get('EDITOR') or os.environ.get('VISUAL')
+    if not editor:
+        # Try common editors in order of preference
+        for candidate in ['nvim', 'vim', 'nano', 'code', 'gedit']:
+            if subprocess.run(['which', candidate], capture_output=True).returncode == 0:
+                editor = candidate
+                break
+        else:
+            print("Error: No editor found. Set EDITOR environment variable or install vim/nano/code.")
+            sys.exit(1)
+    
+    try:
+        # Open the session file in the editor
+        subprocess.run([editor, str(session_file)])
+        print(f"Finished editing session '{name}'")
+        
+        # Validate the JSON after editing
+        try:
+            with open(session_file) as f:
+                json.load(f)
+            print("Session file is valid JSON.")
+        except json.JSONDecodeError as e:
+            print(f"Warning: Session file contains invalid JSON: {e}")
+            print("You may want to fix this before loading the session.")
+            
+    except subprocess.CalledProcessError as e:
+        print(f"Error running editor: {e}")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("\nEdit cancelled.")
+
+def list_sessions():
+    sessions = sorted(f.stem for f in SESSION_DIR.glob("*.json"))
+    if not sessions:
+        print("No saved sessions.")
+        return []
+    for s in sessions:
+        print(s)
+    return sessions
+
+def delete_session(name):
+    session_file = SESSION_DIR / f"{name}.json"
+    if session_file.exists():
+        session_file.unlink()
+        print(f"Deleted session '{name}'")
+    else:
+        print(f"No session named '{name}'")
+
+def pick_session():
+    sessions = list_sessions()
+    if not sessions:
+        return
+
+    preview_cmd = "python3 ~/.local/bin/kitty_preview {}"
+    try:
+        result = subprocess.run(
+            ["fzf", "--preview", preview_cmd],
+            input="\n".join(sessions),
+            text=True,
+            capture_output=True,
+            shell=True
+        )
+        chosen = result.stdout.strip()
+        if chosen:
+            load_session(chosen)
+    except FileNotFoundError:
+        print("Error: fzf not installed.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: kitty-session [save|load|list|delete|pick|edit] <name>")
+        sys.exit(1)
+
+    cmd = sys.argv[1]
+    if cmd == "save" and len(sys.argv) == 3:
+        save_session(sys.argv[2])
+    elif cmd == "load" and len(sys.argv) == 3:
+        load_session(sys.argv[2])
+    elif cmd == "list":
+        list_sessions()
+    elif cmd == "delete" and len(sys.argv) == 3:
+        delete_session(sys.argv[2])
+    elif cmd == "pick":
+        pick_session()
+    elif cmd == "edit" and len(sys.argv) == 3:
+        edit_session(sys.argv[2])
+    else:
+        print("Usage: kitty-session [save|load|list|delete|pick|edit] <name>")
+        sys.exit(1)

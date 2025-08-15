@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+selected=$(/home/whleucka/.bin/scripts/kitty-session list | rofi -dmenu -p "Select Kitty Session: " -matching fuzzy)
+
+if [ -z "$selected" ]; then
+    echo "See ya!"
+    exit 0
+fi
+
+kitty -e /home/whleucka/.bin/scripts/kitty-session load "$selected"
