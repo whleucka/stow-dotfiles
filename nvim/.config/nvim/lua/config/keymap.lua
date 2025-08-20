@@ -25,6 +25,17 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set("n", "<leader>-", ":split<CR>", opts)
 vim.keymap.set("n", "<leader>\\", ":vsplit<CR>", opts)
 
+--  Moving between splits
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+-- Resize splits
+vim.keymap.set("n", "<A-h>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<A-l>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<A-j>", ":resize -2<CR>")
+vim.keymap.set("n", "<A-k>", ":resize +2<CR>")
+
 -- Find files / grep
 vim.keymap.set("n", "<leader>f", function()
   explorer.find_files()
@@ -56,7 +67,7 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)         -- Go to declar
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)      -- Go to implementation
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)          -- Go to references
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)                -- Hover docs
-vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)   -- Signature help
+vim.keymap.set('n', '<C-,>', vim.lsp.buf.signature_help, opts)   -- Signature help
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)      -- Rename symbol
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) -- Code actions
 vim.keymap.set('n', '<leader>cf', function()
