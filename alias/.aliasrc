@@ -5,56 +5,54 @@
 
 alias h="history -E"
 
-if command -v udisksctl > /dev/null; then
-    alias mount-usb="udisksctl mount -b"
-    alias unmount-usb="udisksctl unmount -b"
+if command -v udisksctl >/dev/null; then
+  alias mount-usb="udisksctl mount -b"
+  alias unmount-usb="udisksctl unmount -b"
 fi
 
-if command -v docker > /dev/null; then
-    alias dcps="docker compose ps"
-    alias dclogs="docker compose logs -n 100 -f"
-    alias dcbuild="docker compose build"
-    alias dcexec="docker exec -it"
-    alias dcmysql="docker exec -it mysql mysql -u root -p"
-    alias dcrestart="docker compose restart"
-    alias dcup="docker compose up --detach"
-    alias dcdown="docker compose down"
+if command -v docker >/dev/null; then
+  alias dcps="docker compose ps"
+  alias dclogs="docker compose logs -n 100 -f"
+  alias dcbuild="docker compose build"
+  alias dcexec="docker exec -it"
+  alias dcmysql="docker exec -it mysql mysql -u root -p"
+  alias dcrestart="docker compose restart"
+  alias dcup="docker compose up --detach"
+  alias dcdown="docker compose down"
 fi
-
 
 # ncdu
-if command -v ncdu > /dev/null; then
-    alias du="ncdu -x "
+if command -v ncdu >/dev/null; then
+  alias du="ncdu -x "
 fi
 
 # tmux
-if command -v tmux > /dev/null; then
-    alias tmux="tmux -u"
-    alias mux="tmuxinator"
+if command -v tmux >/dev/null; then
+  alias tmux="tmux -u"
+  alias mux="tmuxinator"
 fi
 
 # composer
-if command -v composer > /dev/null; then
-    alias cu="composer update"
-    alias cr="composer require "
+if command -v composer >/dev/null; then
+  alias cu="composer update"
+  alias cr="composer require "
 fi
 
 # pnpm
-if command -v pnpm > /dev/null; then
-    alias npm="pnpm"
+if command -v pnpm >/dev/null; then
+  alias npm="pnpm"
 fi
 
-
 # npm
-if command -v npm > /dev/null; then
-    alias naf="npm audit fix"
-    alias npi="npm install"
-    alias npu="npm update"
-    alias nrw="npm run watch"
-    alias nrb="npm run build"
-    alias nrd="npm run dev"
-    alias nrp="npm run prod"
-    alias nrh="npm run hot"
+if command -v npm >/dev/null; then
+  alias naf="npm audit fix"
+  alias npi="npm install"
+  alias npu="npm update"
+  alias nrw="npm run watch"
+  alias nrb="npm run build"
+  alias nrd="npm run dev"
+  alias nrp="npm run prod"
+  alias nrh="npm run hot"
 fi
 
 # clear
@@ -102,13 +100,13 @@ alias untar='tar -zxvf '
 alias ping='ping -c 5'
 
 # prettier
-if command -v prettier > /dev/null; then
-    alias pw='prettier --write --ignore-unknown "{app,resources,src}/**/*"'
+if command -v prettier >/dev/null; then
+  alias pw='prettier --write --ignore-unknown "{app,resources,src}/**/*"'
 fi
 
 # md files
-if command -v grip > /dev/null; then
-    alias serve-md="grip -b "
+if command -v grip >/dev/null; then
+  alias serve-md="grip -b "
 fi
 
 # ssh
@@ -145,48 +143,48 @@ alias gpsu='git push -u origin'
 alias gstore="git config credential.helper store"
 
 # yay
-if command -v yay > /dev/null; then
-    alias upg='yay -Syu'
-elif command -v apt > /dev/null; then
-    alias upg='sudo apt update && sudo apt upgrade -y'
+if command -v yay >/dev/null; then
+  alias upg='yay -Syu'
+elif command -v apt >/dev/null; then
+  alias upg='sudo apt update && sudo apt upgrade -y'
 fi
-if command -v yay > /dev/null; then
-    alias upd='yay -Sy'
-elif command -v apt > /dev/null; then
-    alias upd='sudo apt update'
+if command -v yay >/dev/null; then
+  alias upd='yay -Sy'
+elif command -v apt >/dev/null; then
+  alias upd='sudo apt update'
 fi
-if command -v yay > /dev/null; then
-    alias install='yay -S '
-elif command -v apt > /dev/null; then
-    alias install='sudo apt install '
+if command -v yay >/dev/null; then
+  alias install='yay -S '
+elif command -v apt >/dev/null; then
+  alias install='sudo apt install '
 fi
-if command -v yay > /dev/null; then
-    alias uninstall='yay -R '
-elif command -v apt > /dev/null; then
-    alias uninstall='sudo apt remove '
+if command -v yay >/dev/null; then
+  alias uninstall='yay -R '
+elif command -v apt >/dev/null; then
+  alias uninstall='sudo apt remove '
 fi
-if command -v yay > /dev/null; then
-    alias purge='yay -Rcns '
-elif command -v apt > /dev/null; then
-    alias purge='sudo apt remove --purge '
+if command -v yay >/dev/null; then
+  alias purge='yay -Rcns '
+elif command -v apt >/dev/null; then
+  alias purge='sudo apt remove --purge '
 fi
-if command -v yay > /dev/null; then
-    alias clr='yay -Sc '
-elif command -v apt > /dev/null; then
-    alias clr='sudo apt autoremove && sudo apt autoclean '
+if command -v yay >/dev/null; then
+  alias clr='yay -Sc '
+elif command -v apt >/dev/null; then
+  alias clr='sudo apt autoremove && sudo apt autoclean '
 fi
 
 # nvim/vim
 alias v='$(command -v nvim || command -v vim)'
 
 # transf files / folders
-if command -v rsync > /dev/null; then
-    alias rs='rsync -rzvhP '
+if command -v rsync >/dev/null; then
+  alias rs='rsync -rzvhP '
 fi
 
 # list directories
-if command -v lsd > /dev/null; then
-    alias ls='lsd --config-file ~/.config/lsd'
+if command -v lsd >/dev/null; then
+  alias ls='lsd --config-file ~/.config/lsd'
 fi
 alias l='ls -l'
 alias la='ls -a'
