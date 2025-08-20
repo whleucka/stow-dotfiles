@@ -1,8 +1,5 @@
 export TMPDIR="/tmp"
 
-# Custom nvim
-export NVIM_APPNAME=nvim12
-
 # SSH gpg key
 export GPG_TTY=$(tty)
 
