@@ -51,12 +51,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Auto-resize splits
-vim.api.nvim_create_autocmd("VimResized", {
-  group = vim.api.nvim_create_augroup('auto-resize-splits', { clear = true }),
-  command = "tabdo wincmd ="
-})
-
 -- Clear search
 vim.api.nvim_create_autocmd("CursorMoved", {
   group = vim.api.nvim_create_augroup('clear-search-cursor-move', { clear = true }),
