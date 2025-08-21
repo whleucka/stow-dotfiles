@@ -143,16 +143,16 @@ nnoremap H :tabprev<CR>
 nnoremap L :tabnext<CR>
 
 " Window nav
-nnoremap <C-h> <C-w>h<CR>
-nnoremap <C-j> <C-w>j<CR>
-nnoremap <C-k> <C-w>k<CR>
-nnoremap <C-l> <C-w>l<CR>
+nnoremap <A-h> <C-w>h<CR>
+nnoremap <A-j> <C-w>j<CR>
+nnoremap <A-k> <C-w>k<CR>
+nnoremap <A-l> <C-w>l<CR>
 
 " Window resize
-nnoremap <A-h> :vertical resize -2<CR>
-nnoremap <A-l> :vertical resize +2<CR>
-nnoremap <A-j> :resize -2<CR>
-nnoremap <A-k> :resize +2<CR>
+nnoremap <C-h> :vertical resize -2<CR>
+nnoremap <C-l> :vertical resize +2<CR>
+nnoremap <C-j> :resize -2<CR>
+nnoremap <C-k> :resize +2<CR>
 
 " Splits
 nnoremap <leader><Bslash> :vsplit<CR>
