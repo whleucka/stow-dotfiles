@@ -155,7 +155,7 @@ nnoremap <A-j> :resize -2<CR>
 nnoremap <A-k> :resize +2<CR>
 
 " Splits
-nnoremap <leader>\| :vs<CR>
+nnoremap <leader><Bar> :vs<CR>
 nnoremap <leader>- :sp<CR>
 
 " Fixes
