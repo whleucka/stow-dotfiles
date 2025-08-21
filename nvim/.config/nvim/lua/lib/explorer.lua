@@ -175,11 +175,6 @@ function M.find_files()
     ]])
   end
 
-  if vim.tbl_isempty(candidates) then
-    vim.notify("No files found", vim.log.levels.INFO)
-    return
-  end
-
   local git_files = get_git_files()
   local recent_files = get_recent_files()
 
@@ -192,6 +187,10 @@ function M.find_files()
       if recent_files[normalize(file)] then score = score + 20 end
       table.insert(scored, { score = score, file = file })
     end
+  end
+  if vim.tbl_isempty(scored) then
+    vim.notify("No files found", vim.log.levels.INFO)
+    return
   end
   table.sort(scored, function(a, b) return a.score > b.score end)
 
