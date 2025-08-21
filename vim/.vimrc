@@ -148,6 +148,11 @@ nnoremap <C-j> <C-w>j<CR>
 nnoremap <C-k> <C-w>k<CR>
 nnoremap <C-l> <C-w>l<CR>
 
+" Window resize
+nnoremap <A-h> :vertical resize -2<CR>
+nnoremap <A-l> :vertical resize +2<CR>
+nnoremap <A-j> :resize -2<CR>
+nnoremap <A-k> :resize +2<CR>
 
 " Splits
 nnoremap <leader>\| :vs<CR>
