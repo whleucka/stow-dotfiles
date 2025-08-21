@@ -11,7 +11,7 @@ vim.keymap.set("i", "jk", "<esc>", opts)
 vim.keymap.set("i", "kj", "<esc>", opts)
 
 -- Open config
-vim.keymap.set("n", "<leader>c", function()
+vim.keymap.set("n", "<C-Enter>", function()
   vim.cmd("edit " .. vim.fn.stdpath("config"))
 end, opts)
 
@@ -31,15 +31,16 @@ vim.keymap.set("n", "<leader>-", ":split<CR>", opts)
 vim.keymap.set("n", "<leader>\\", ":vsplit<CR>", opts)
 
 --  Moving between splits
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<A-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<A-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<A-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<A-l>", "<C-w>l", opts)
 -- Resize splits
-vim.keymap.set("n", "<A-h>", ":vertical resize -2<CR>")
-vim.keymap.set("n", "<A-l>", ":vertical resize +2<CR>")
-vim.keymap.set("n", "<A-j>", ":resize -2<CR>")
-vim.keymap.set("n", "<A-k>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-h>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<C-l>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<C-j>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-k>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-=>", "<C-w>=<CR>")
 
 -- Find files / grep
 vim.keymap.set("n", "<leader>f", function()
