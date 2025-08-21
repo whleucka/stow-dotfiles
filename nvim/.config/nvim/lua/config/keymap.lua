@@ -10,6 +10,11 @@ vim.keymap.set("n", "<esc>", ":noh<CR>", opts)
 vim.keymap.set("i", "jk", "<esc>", opts)
 vim.keymap.set("i", "kj", "<esc>", opts)
 
+-- Open config
+vim.keymap.set("n", "<F2>", function()
+  vim.cmd("edit " .. vim.fn.stdpath("config"))
+end, opts)
+
 -- Files
 vim.keymap.set("n", "<leader>o", ":Oil<CR>", opts)
 
