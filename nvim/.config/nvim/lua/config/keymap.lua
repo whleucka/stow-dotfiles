@@ -2,7 +2,7 @@ local explorer = require("lib.explorer")
 local opts = { noremap = true, silent = true }
 
 -- Essentials
-vim.keymap.set("n", "<F5>", ":update<CR> :source<CR>", opts)
+vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>", opts)
 vim.keymap.set("n", "q", "<nop>", opts)
 vim.keymap.set("n", "<leader>q", ":quit<CR>", opts)
 vim.keymap.set("n", "<leader>w", ":write<CR>", opts)
@@ -11,7 +11,7 @@ vim.keymap.set("i", "jk", "<esc>", opts)
 vim.keymap.set("i", "kj", "<esc>", opts)
 
 -- Open config
-vim.keymap.set("n", "<F2>", function()
+vim.keymap.set("n", "<leader>c", function()
   vim.cmd("edit " .. vim.fn.stdpath("config"))
 end, opts)
 
