@@ -144,9 +144,9 @@ nnoremap L :tabnext<CR>
 
 " Window nav
 nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>j
-nnoremap <C-j> <C-w>k
-nnoremap <C-k> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Window resize
 nnoremap <M-h> :vertical resize -2<CR>
