@@ -8,8 +8,9 @@
 #########################################################################################
 # Leader key
 #########################################################################################
-# Alt key
-set $mod Mod1
+#set $mod Mod1
+set $alt Mod1
+set $mod Mod4
 set $super Mod4
 
 
@@ -111,7 +112,6 @@ gaps outer 0
 gaps top 0
 gaps bottom 0
 smart_gaps on
-smart_borders on
 
 
 #########################################################################################
@@ -140,48 +140,48 @@ for_window [title="Crafy"] floating enable
 # Misc Key Bindings
 #########################################################################################
 # Dmenu
-bindcode $mod+40 exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji -a copy --selector rofi' -show drun"
+bindsym $mod+space exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji -a copy --selector rofi' -show drun"
 
 # Kill focused window
 bindsym $mod+q kill
 # Kitty (terminal)
 bindsym $mod+Return exec kitty
 
-# Other apps
-# (K)itty Launcher
-bindsym $super+Return exec --no-startup-id $HOME/.bin/scripts/kitty-launcher
-# (N)eovim
+# # Other apps
+# # (K)itty Launcher
+# bindsym $super+Return exec --no-startup-id $HOME/.bin/scripts/kitty-launcher
+# # (N)eovim
 bindsym $super+N exec kitty nvim
-# Neo(V)im Config
-bindsym $super+V exec kitty nvim ~/.config/nvim
-# (W)eb
+# # Neo(V)im Config
+# bindsym $super+V exec kitty nvim ~/.config/nvim
+# # (W)eb
 bindsym $super+W exec google-chrome-stable
-# (E)mail
+# # (E)mail
 bindsym $super+E exec google-chrome-stable https://mail.google.com/
-# (P)hotos
-bindsym $super+P exec google-chrome-stable https://photos.google.com/
-# (C)alculator
-bindsym $super+C exec gnome-calculator
-# (T)erminal
-bindsym $super+T exec kitty
-# System (M)onitor
-bindsym $super+M exec kitty bpytop
-# (G)imp
-bindsym $super+G exec gimp
-# (O)ffice
-bindsym $super+O exec libreoffice
+# # (P)hotos
+# bindsym $super+P exec google-chrome-stable https://photos.google.com/
+# # (C)alculator
+# bindsym $super+C exec gnome-calculator
+# # (T)erminal
+# bindsym $super+T exec kitty
+# # System (M)onitor
+# bindsym $super+M exec kitty bpytop
+# # (G)imp
+# bindsym $super+G exec gimp
+# # (O)ffice
+# bindsym $super+O exec libreoffice
 
 
 # Note: i3-exit is a script in ~/.bin/scripts
 # Requires betterlockscreen
 # Lock the screen
-bindsym $super+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
+bindsym Ctrl+$alt+L exec --no-startup-id $HOME/.bin/scripts/i3-exit lock
 # Suspend the computer
-bindsym Ctrl+$super+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
+bindsym Ctrl+$alt+Delete exec --no-startup-id $HOME/.bin/scripts/i3-exit suspend
 # Shutdown
-bindsym Ctrl+$super+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
+bindsym Ctrl+$alt+Escape exec --no-startup-id $HOME/.bin/scripts/i3-exit shutdown
 # NOP
-bindsym Ctrl+$super+Backspace exec --no-startup-id NOP
+bindsym Ctrl+$alt+BackSpace exec --no-startup-id NOP
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
