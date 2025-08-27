@@ -121,12 +121,12 @@ let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 
 " Mappings
 nnoremap <ESC><ESC> :noh<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader><Space> :w<CR>
+nnoremap <leader>ff :FZF<CR>
 
 " Quit
-nnoremap <leader>q :q<CR>
-nnoremap <leader>qq :qa<CR>
+nnoremap <leader>wq :q<CR>
+nnoremap <leader>wQ :qa<CR>
 
 " Tabs
 nnoremap <leader>1 1gt
@@ -155,8 +155,8 @@ nnoremap <M-j> :resize -2<CR>
 nnoremap <M-k> :resize +2<CR>
 
 " Splits
-nnoremap <leader><Bslash> :vsplit<CR>
-nnoremap <leader>- :sp<CR>
+nnoremap <leader>wv :vsplit<CR>
+nnoremap <leader>ws :sp<CR>
 
 " Fixes
 nnoremap j gj
@@ -192,4 +192,5 @@ endif
 " Filetype
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html       setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType css        setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType python     setlocal shiftwidth=4 softtabstop=4 expandtab

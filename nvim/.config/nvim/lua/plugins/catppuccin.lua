@@ -44,6 +44,7 @@ require("catppuccin").setup({
     gitsigns = true,
     treesitter = true,
     notify = false,
+    fzf = true,
     blink_cmp = {
       style = 'bordered',
     },
