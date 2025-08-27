@@ -7,7 +7,7 @@ wk.add({
   { "<leader>?", function()
     require("which-key").show({ global = false })
   end, desc = "Help", },
-  { "<leader>o", ":Oil<CR>", desc = "Oil (files)" },
+  { "<leader>o", ":Oil<CR>", desc = "Oil" },
   { "<leader>f", group = "Find",
     { "<leader>ff", explorer.find_files, desc = "Files"},
   },
