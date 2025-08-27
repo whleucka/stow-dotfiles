@@ -51,7 +51,7 @@ wk.add({
       else
         vim.o.background = "dark"
       end
-    end, desc = "Toggle light/dark background" }
+    end, desc = "Toggle light/dark background" },
   },
   {
     "<leader>w", group = "Window",
