@@ -1,7 +1,7 @@
-local explorer = require("lib.explorer")
 local gitsigns = require("gitsigns")
 local flash = require("flash")
 local wk = require("which-key")
+local fzf = require("fzf-lua")
 
 wk.add({
   { "<leader>?", function()
@@ -9,10 +9,22 @@ wk.add({
   end, desc = "Help", },
   { "<leader>o", ":Oil<CR>", desc = "Oil" },
   { "<leader>f", group = "Find",
-    { "<leader>ff", explorer.find_files, desc = "Files"},
+    { "<leader>ff", fzf.files, desc = "Files"},
+    { "<leader>fh", fzf.helptags, desc = "Help"},
+    { "<leader>fc", fzf.commands, desc = "Commands"},
+    { "<leader>fm", fzf.manpages, desc = "Manpages"},
+    { "<leader>fk", fzf.keymaps, desc = "Keymap"},
+    { "<leader>fg", fzf.git_files, desc = "Git files"},
+    { "<leader>fo", fzf.oldfiles, desc = "Opened files"},
+    { "<leader>fb", fzf.buffers, desc = "Buffers"},
+    { "<leader>ft", fzf.tabs, desc = "Tabs"},
+    { "<leader>f/", fzf.blines, desc = "Lines"},
+    { "<leader>fq", fzf.quickfix, desc = "Quickfix"},
+    { "<leader>fl", fzf.loclist, desc = "Location list"},
   },
   { "<leader>s", group = "Search",
-    { "<leader>sg", explorer.grep_files, desc = "Grep"},
+    { "<leader>sg", fzf.grep, desc = "Grep"},
+    { "<leader>s/", fzf.live_grep, desc = "Live grep"},
   },
   {
     "<leader>u", group = "UI",
