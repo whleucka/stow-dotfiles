@@ -13,7 +13,7 @@ vim.keymap.set("i", "jk", "<esc>", opts)
 vim.keymap.set("i", "kj", "<esc>", opts)
 
 -- Open config
-vim.keymap.set("n", "<C-Enter>", function()
+vim.keymap.set("n", "<leader>C", function()
   vim.cmd("edit " .. vim.fn.stdpath("config"))
 end, opts)
 
