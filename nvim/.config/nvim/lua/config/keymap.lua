@@ -33,6 +33,13 @@ wk.add({
     { "<leader>ud", function()
       vim.diagnostic.enable(not vim.diagnostic.is_enabled())
     end, desc = "Toggle diagnostics" },
+    { "<leader>ub", function()
+      if vim.o.background == "dark" then
+        vim.o.background = "light"
+      else
+        vim.o.background = "dark"
+      end
+    end, desc = "Toggle light/dark background" }
   },
   {
     "<leader>w", group = "Window",
