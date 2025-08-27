@@ -103,6 +103,7 @@ wk.add({
     }
   },
   {
+    { "q", "<nop>" },
     { "<C-s>", ":write<CR>", desc = "Save", },
     { "<F5>", ":update<CR> :source<CR>", desc = "Source file", },
     { "<C-h>", "<C-w>h", desc = "Move to left window" },
