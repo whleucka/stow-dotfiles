@@ -1,10 +1,17 @@
-[user]
-    email = william.hleucka@gmail.com
-    name = William Hleucka
-[init]
-    defaultBranch = main
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[pull]
+	rebase = true
 [push]
     autoSetupRemote = true
+[init]
+	defaultBranch = master
+[user]
+	name = William Hleucka
+	email = william.hleucka@gmail.com
 [color]
     branch = always
     diff = always
