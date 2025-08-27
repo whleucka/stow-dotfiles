@@ -15,12 +15,40 @@ wk.add({
     { "<leader>sg", explorer.grep_files, desc = "Grep"},
   },
   {
+    "<leader>u", group = "UI",
+    { "<leader>un", ":set number!<CR>", desc = "Toggle line numbers" },
+    { "<leader>ur", ":set relativenumber!<CR>", desc = "Toggle relative numbers" },
+    { "<leader>uw", ":set wrap!<CR>", desc = "Toggle line wrap" },
+    { "<leader>us", ":set spell!<CR>", desc = "Toggle spell check" },
+    { "<leader>ul", ":set list!<CR>", desc = "Toggle invisible characters" },
+    { "<leader>uh", ":set hlsearch!<CR>", desc = "Toggle search highlight" },
+    { "<leader>ui", ":set cursorline!<CR>", desc = "Toggle cursorline" },
+    { "<leader>uc", function()
+      if vim.wo.colorcolumn == "" then
+        vim.wo.colorcolumn = "80"
+      else
+        vim.wo.colorcolumn = ""
+      end
+    end, desc = "Toggle colorcolumn" },
+    { "<leader>ud", function()
+      vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    end, desc = "Toggle diagnostics" },
+  },
+  {
     "<leader>w", group = "Window",
     { "<leader>wn", ":new<CR>", desc = "New" },
     { "<leader>wq", ":q<CR>", desc = "Close" },
     { "<leader>wQ", ":qall<CR>", desc = "Close all" },
     { "<leader>ws", ":split<CR>", desc = "Split" },
     { "<leader>wv", ":vsplit<CR>", desc = "Vertical split" },
+  },
+  {
+    "<leader>t", group = "Tab",
+    { "<leader>tn", ":tabnew<CR>", desc = "New" },
+    { "<leader>tn", ":tabnext<CR>", desc = "Next" },
+    { "<leader>tp", ":tabprev<CR>", desc = "Prev" },
+    { "<leader>tf", ":tabfirst<CR>", desc = "First" },
+    { "<leader>tl", ":tablast<CR>", desc = "Last" },
   },
   {
     "<leader>b", group = "Buffer",
