@@ -157,6 +157,8 @@ nnoremap <M-k> :resize +2<CR>
 " Splits
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>ws :sp<CR>
+:set fillchars+=vert:\│
+:set fillchars+=horiz:\─
 
 " Fixes
 nnoremap j gj
