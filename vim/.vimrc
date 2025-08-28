@@ -157,8 +157,7 @@ nnoremap <M-k> :resize +2<CR>
 " Splits
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>ws :sp<CR>
-:set fillchars+=vert:\│
-:set fillchars+=horiz:\─
+highlight VertSplit guifg=#585b70 guibg=#1e1e2e ctermfg=grey ctermbg=black
 
 " Fixes
 nnoremap j gj
