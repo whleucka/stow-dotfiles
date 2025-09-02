@@ -110,12 +110,12 @@ set mouse=a
 " Color scheme (terminal)
 set t_Co=256
 
-colorscheme catppuccin_machiatto
+colorscheme catppuccin_macchiatto
 
 " Status Bar
 set laststatus=2
 set cmdheight=1
-let g:lightline = {'colorscheme': 'catppuccin_machiatto'}
+let g:lightline = {'colorscheme': 'catppuccin_macchiatto'}
 
 "hi Normal guibg=NONE ctermbg=NONE
 
