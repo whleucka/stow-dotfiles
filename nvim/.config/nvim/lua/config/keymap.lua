@@ -1,41 +1,7 @@
-local gitsigns = require("gitsigns")
-local flash = require("flash")
 local wk = require("which-key")
-local fzf = require("fzf-lua")
-local is_transparent = false
 local folds_enabled = vim.opt.foldenable
 
 wk.add({
-  {
-    "<leader>?",
-    function()
-      require("which-key").show({ global = false })
-    end,
-    desc = "Help",
-  },
-  { "<leader>o", ":Oil<CR>", desc = "Oil" },
-  {
-    "<leader>f",
-    group = "Find",
-    { "<leader>ff", fzf.files,     desc = "Files" },
-    { "<leader>fh", fzf.helptags,  desc = "Help" },
-    { "<leader>fc", fzf.commands,  desc = "Commands" },
-    { "<leader>fm", fzf.manpages,  desc = "Manpages" },
-    { "<leader>fk", fzf.keymaps,   desc = "Keymap" },
-    { "<leader>fg", fzf.git_files, desc = "Git files" },
-    { "<leader>fo", fzf.oldfiles,  desc = "Opened files" },
-    { "<leader>fb", fzf.buffers,   desc = "Buffers" },
-    { "<leader>ft", fzf.tabs,      desc = "Tabs" },
-    { "<leader>f/", fzf.blines,    desc = "Lines" },
-    { "<leader>fq", fzf.quickfix,  desc = "Quickfix" },
-    { "<leader>fl", fzf.loclist,   desc = "Location list" },
-  },
-  {
-    "<leader>s",
-    group = "Search",
-    { "<leader>sg", fzf.grep,      desc = "Grep" },
-    { "<leader>s/", fzf.live_grep, desc = "Live grep" },
-  },
   {
     "<leader>c",
     group = "Code",
@@ -71,7 +37,6 @@ wk.add({
     { "<leader>ul", ":set list!<CR>",           desc = "Toggle invisible characters" },
     { "<leader>uh", ":set hlsearch!<CR>",       desc = "Toggle search highlight" },
     { "<leader>ui", ":set cursorline!<CR>",     desc = "Toggle cursorline" },
-    { "<leader>ui", ":set cursorline!<CR>",     desc = "Toggle cursorline" },
     {
       "<leader>uc",
       function()
@@ -104,10 +69,9 @@ wk.add({
     {
       "<leader>ut",
       function()
-        is_transparent = not is_transparent
-        require("catppuccin").setup({
-          transparent_background = is_transparent,
-        })
+        local config = require("config.catppuccin")
+        config.transparent_background = not config.transparent_background
+        require("catppuccin").setup(config)
         vim.cmd.colorscheme("catppuccin")
       end,
       desc = "Toggle transparency"
@@ -154,37 +118,6 @@ wk.add({
     { "<leader>bl", ":blast<CR>",  desc = "Last" },
   },
   {
-    "<leader>g",
-    group = "Git (fugitive)",
-    { "<leader>gs", ":Git<CR>",           desc = "Status" },
-    { "<leader>gb", ":Git blame<CR>",     desc = "Blame" },
-    { "<leader>gl", ":0Gclog<CR>",        desc = "Log" },
-    { "<leader>gO", ":Git checkout ",     desc = "Checkout" },
-    { "<leader>gP", ":Git push<CR>",      desc = "Push" },
-    { "<leader>gp", ":Git pull<CR>",      desc = "Pull" },
-    { "<leader>gf", ":Git fetch<CR>",     desc = "Fetch" },
-    { "<leader>ga", ":Git add %<CR>",     desc = "Add current file" },
-    { "<leader>gC", ":Git commit -v<CR>", desc = "Commit" },
-    { "<leader>gm", ":Git merge ",        desc = "Merge" },
-    { "<leader>gd", ":Gvdiffsplit!<CR>",  desc = "Diff" },
-    { "<leader>gD", ":diffoff!<CR>",      desc = "Quit diff mode" },
-    {
-      "<leader>gh",
-      group = "Hunk",
-      { "<leader>ghs", gitsigns.stage_hunk,          desc = "Stage" },
-      { "<leader>ghr", gitsigns.reset_hunk,          desc = "Reset" },
-      { "<leader>ghp", gitsigns.preview_hunk,        desc = "Preview" },
-      { "<leader>ghi", gitsigns.preview_hunk_inline, desc = "Preview inline" },
-      {
-        "<leader>ghb",
-        function()
-          gitsigns.blame_line({ full = true })
-        end,
-        desc = "Blame line"
-      },
-    }
-  },
-  {
     { "q",     "<nop>" },
     { "<C-s>", ":write<CR>",                desc = "Save", },
     { "<F5>",  ":update<CR> :source<CR>",   desc = "Source file", },
@@ -203,12 +136,13 @@ wk.add({
     { "gr",    vim.lsp.buf.references,      desc = "Go to references" },
     { "gT",    vim.lsp.buf.type_definition, desc = "Go to type definition" },
     { "g0",    vim.lsp.buf.document_symbol, desc = "Go to table of contents" },
-    { "<C-s>", vim.lsp.buf.signature_help,  desc = "Signature help" },
+    { "gs", vim.lsp.buf.signature_help,  desc = "Signature help" },
   },
   {
     mode = "i",
-    { "jk", "<esc>" },
-    { "kj", "<esc>" }
+    { "jk",    "<esc>" },
+    { "kj",    "<esc>" },
+    { "<C-s>", ":write<CR>", desc = "Save", },
   },
   {
     mode = "v",
@@ -216,20 +150,5 @@ wk.add({
     { ">", ">gv",              desc = "Indent selected >" },
     { "J", ":m '>+1<CR>gv=gv", desc = "Move selected line down" },
     { "K", ":m '<-2<CR>gv=gv", desc = "Move selected line up" },
-  },
-  {
-    mode = "o",
-    {
-      "r", flash.remote, desc = "Remote flash",
-    },
-  },
-  {
-    mode = { "n", "x", "o" },
-    { "s", flash.jump,       desc = "Flash" },
-    { "S", flash.treesitter, desc = "Flash treesitter" },
-  },
-  {
-    mode = { "o", "x" },
-    { "R", flash.treesitter_search, desc = "Treesitter search" },
   },
 })

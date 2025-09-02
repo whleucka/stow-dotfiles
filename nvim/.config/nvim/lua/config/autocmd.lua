@@ -60,3 +60,32 @@ vim.api.nvim_create_autocmd("CursorMoved", {
     end
   end,
 })
+
+-- Plugins
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    require('plugins.catppuccin')
+    require("plugins.which-key-nvim")
+    require("plugins.lualine-nvim")
+    require('plugins.vim-repeat')
+    require("plugins.oil-nvim")
+    require('plugins.vim-fugitive')
+    require('plugins.fzf-lua')
+    require("config.keymap")
+  end
+})
+
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
+  callback = function()
+    require("plugins.nvim-treesitter")
+    require('plugins.flash-nvim')
+    require("plugins.gitsigns")
+  end
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function()
+    require("plugins.blink-cmp")
+    require("plugins.luasnip")
+  end
+})

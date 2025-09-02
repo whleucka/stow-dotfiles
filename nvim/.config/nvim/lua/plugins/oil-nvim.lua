@@ -8,3 +8,8 @@ vim.pack.add({
 })
 
 require("oil").setup()
+
+local wk = require("which-key")
+wk.add({
+  { "<leader>o", ":Oil<CR>", desc = "Oil" },
+})
