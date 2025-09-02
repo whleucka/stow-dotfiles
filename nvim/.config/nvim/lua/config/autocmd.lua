@@ -72,7 +72,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     require("plugins.oil-nvim")
     require('plugins.vim-fugitive')
     require('plugins.fzf-lua')
-    require("config.keymap")
   end
 })
 
