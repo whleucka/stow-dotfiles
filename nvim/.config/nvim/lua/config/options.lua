@@ -15,6 +15,7 @@ vim.opt.smartindent = true -- Auto-indent new lines
 vim.opt.autoindent = true  -- Copy indent from current line
 
 -- UI/UX Improvements
+vim.opt.cmdheight = 0         -- No command height
 vim.opt.cursorline = true     -- Highlight current line
 vim.opt.termguicolors = true  -- 24-bit color support
 vim.opt.signcolumn = 'yes'    -- Always show signcolumn (gutter)
@@ -55,8 +56,8 @@ vim.opt.whichwrap:append('<,>,[,]') -- Left/right move across lines
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+vim.opt.foldlevelstart = 1
+vim.opt.foldenable = false
 
 -- Neovim 0.12+
 vim.opt.diffopt:append('linematch:60') -- Better diffs with linematch algorithm

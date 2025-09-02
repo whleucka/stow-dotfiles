@@ -2,6 +2,8 @@ local gitsigns = require("gitsigns")
 local flash = require("flash")
 local wk = require("which-key")
 local fzf = require("fzf-lua")
+local is_transparent = false
+local folds_enabled = vim.opt.foldenable
 
 wk.add({
   {
@@ -69,6 +71,7 @@ wk.add({
     { "<leader>ul", ":set list!<CR>",           desc = "Toggle invisible characters" },
     { "<leader>uh", ":set hlsearch!<CR>",       desc = "Toggle search highlight" },
     { "<leader>ui", ":set cursorline!<CR>",     desc = "Toggle cursorline" },
+    { "<leader>ui", ":set cursorline!<CR>",     desc = "Toggle cursorline" },
     {
       "<leader>uc",
       function()
@@ -97,6 +100,29 @@ wk.add({
         end
       end,
       desc = "Toggle light/dark background"
+    },
+    {
+      "<leader>ut",
+      function()
+        is_transparent = not is_transparent
+        require("catppuccin").setup({
+          transparent_background = is_transparent,
+        })
+        vim.cmd.colorscheme("catppuccin")
+      end,
+      desc = "Toggle transparency"
+    },
+    {
+      "<leader>uf",
+      function()
+        folds_enabled = not folds_enabled
+        if folds_enabled then
+          vim.wo.foldenable = false
+        else
+          vim.wo.foldenable = true
+        end
+      end,
+      desc = "Toggle folds"
     },
   },
   {
@@ -159,25 +185,25 @@ wk.add({
     }
   },
   {
-    { "q",               "<nop>" },
-    { "<leader><space>", ":write<CR>",                desc = "Save", },
-    { "<F5>",            ":update<CR> :source<CR>",   desc = "Source file", },
-    { "<C-h>",           "<C-w>h",                    desc = "Move to left window" },
-    { "<C-j>",           "<C-w>j",                    desc = "Move to bottom window" },
-    { "<C-k>",           "<C-w>k",                    desc = "Move to top window" },
-    { "<C-l>",           "<C-w>l",                    desc = "Move to right window" },
-    { "<A-h>",           ":vertical resize -2<CR>",   desc = "Decrease window width" },
-    { "<A-l>",           ":vertical resize +2<CR>",   desc = "Increase window width" },
-    { "<A-j>",           ":resize -2<CR>",            desc = "Decrease window height" },
-    { "<A-k>",           ":resize +2<CR>",            desc = "Increase window height" },
-    { "<A-=>",           "<C-w>=<CR>",                desc = "Automatically resize windows" },
-    { "gd",              vim.lsp.buf.definition,      desc = "Go to definition" },
-    { "gD",              vim.lsp.buf.declaration,     desc = "Go to declaration" },
-    { "gi",              vim.lsp.buf.implementation,  desc = "Go to implementation" },
-    { "gr",              vim.lsp.buf.references,      desc = "Go to references" },
-    { "gT",              vim.lsp.buf.type_definition, desc = "Go to type definition" },
-    { "g0",              vim.lsp.buf.document_symbol, desc = "Go to table of contents" },
-    { "<C-s>",           vim.lsp.buf.signature_help,  desc = "Signature help" },
+    { "q",     "<nop>" },
+    { "<C-s>", ":write<CR>",                desc = "Save", },
+    { "<F5>",  ":update<CR> :source<CR>",   desc = "Source file", },
+    { "<C-h>", "<C-w>h",                    desc = "Move to left window" },
+    { "<C-j>", "<C-w>j",                    desc = "Move to bottom window" },
+    { "<C-k>", "<C-w>k",                    desc = "Move to top window" },
+    { "<C-l>", "<C-w>l",                    desc = "Move to right window" },
+    { "<A-h>", ":vertical resize -2<CR>",   desc = "Decrease window width" },
+    { "<A-l>", ":vertical resize +2<CR>",   desc = "Increase window width" },
+    { "<A-j>", ":resize -2<CR>",            desc = "Decrease window height" },
+    { "<A-k>", ":resize +2<CR>",            desc = "Increase window height" },
+    { "<A-=>", "<C-w>=<CR>",                desc = "Automatically resize windows" },
+    { "gd",    vim.lsp.buf.definition,      desc = "Go to definition" },
+    { "gD",    vim.lsp.buf.declaration,     desc = "Go to declaration" },
+    { "gi",    vim.lsp.buf.implementation,  desc = "Go to implementation" },
+    { "gr",    vim.lsp.buf.references,      desc = "Go to references" },
+    { "gT",    vim.lsp.buf.type_definition, desc = "Go to type definition" },
+    { "g0",    vim.lsp.buf.document_symbol, desc = "Go to table of contents" },
+    { "<C-s>", vim.lsp.buf.signature_help,  desc = "Signature help" },
   },
   {
     mode = "i",
