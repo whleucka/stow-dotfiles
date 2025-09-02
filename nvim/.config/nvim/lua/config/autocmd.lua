@@ -62,10 +62,11 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 })
 
 -- Plugins
+require('plugins.catppuccin')
+require("plugins.which-key-nvim")
+
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    require('plugins.catppuccin')
-    require("plugins.which-key-nvim")
     require("plugins.lualine-nvim")
     require('plugins.vim-repeat')
     require("plugins.oil-nvim")
