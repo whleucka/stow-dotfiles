@@ -1,5 +1,6 @@
 vim.lsp.enable({
   "intelephense",
+  "clangd",
   "bashls",
   "lua_ls",
 })
