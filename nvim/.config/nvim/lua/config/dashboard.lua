@@ -14,7 +14,7 @@ return {
       },
       {
         desc = 'Update Plugins',
-        group = '@property',
+        group = 'Label',
         action = function()
           vim.pack.update()
         end,
@@ -22,13 +22,21 @@ return {
       },
       {
         desc = 'Config',
-        group = 'Number',
+        group = 'Label',
         action = function()
           require('fzf-lua').files({
             cwd = vim.fn.stdpath('config')
           })
         end,
         key = 'c',
+      },
+      {
+        desc = 'Quit',
+        group = 'Number',
+        action = function()
+          vim.cmd[[quit]]
+        end,
+        key = 'q',
       },
     },
     footer = {

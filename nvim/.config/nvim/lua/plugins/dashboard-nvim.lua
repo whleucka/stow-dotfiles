@@ -5,4 +5,9 @@ vim.pack.add({
 })
 
 local config = require("config.dashboard")
+local wk = require("which-key")
 require('dashboard').setup(config)
+
+wk.add({
+  '<leader>d', ":Dashboard<CR>", desc = "Dashboard"
+})
