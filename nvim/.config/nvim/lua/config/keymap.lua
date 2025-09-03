@@ -142,7 +142,6 @@ wk.add({
     mode = "i",
     { "jk",    "<esc>" },
     { "kj",    "<esc>" },
-    { "<C-s>", ":write<CR>", desc = "Save", },
   },
   {
     mode = "v",
