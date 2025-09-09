@@ -7,6 +7,12 @@ return {
     packages = { enable = false },
     shortcut = {
       {
+        desc = 'New',
+        group = 'Label',
+        action = ':enew',
+        key = 'n',
+      },
+      {
         desc = 'Files',
         group = 'Label',
         action = 'FzfLua files',
