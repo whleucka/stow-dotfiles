@@ -120,7 +120,14 @@ wk.add({
   {
     { "q",          "<nop>" },
     { "<esc><esc>", ":noh<CR>" },
-    { "<leader>q", ":bd<CR>", desc = "Close buffer" },
+    { "<leader>q", function()
+      local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+      if #bufs > 1 then
+        vim.cmd("bd")
+      else
+        vim.cmd("Dashboard")
+      end
+    end, desc = "Close buffer" },
     { "<leader>Q", ":q<CR>", desc = "Close Neovim" },
     { "H", ":bprev<CR>", desc = "Previous Buffer" },
     { "L", ":bnext<CR>", desc = "Previous Buffer" },
