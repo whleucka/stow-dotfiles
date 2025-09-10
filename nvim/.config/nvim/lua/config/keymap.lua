@@ -30,13 +30,13 @@ wk.add({
   {
     "<leader>u",
     group = "UI",
-    { "<leader>un", ":set number!<CR>",         desc = "Toggle line numbers" },
-    { "<leader>ur", ":set relativenumber!<CR>", desc = "Toggle relative numbers" },
-    { "<leader>uw", ":set wrap!<CR>",           desc = "Toggle line wrap" },
-    { "<leader>us", ":set spell!<CR>",          desc = "Toggle spell check" },
-    { "<leader>ul", ":set list!<CR>",           desc = "Toggle invisible characters" },
-    { "<leader>uh", ":set hlsearch!<CR>",       desc = "Toggle search highlight" },
-    { "<leader>ui", ":set cursorline!<CR>",     desc = "Toggle cursorline" },
+    { "<leader>un", ":set relativenumber!<CR> :set number!<CR>", desc = "Toggle line numbers" },
+    { "<leader>ur", ":set relativenumber!<CR>",                  desc = "Toggle relative numbers" },
+    { "<leader>uw", ":set wrap!<CR>",                            desc = "Toggle line wrap" },
+    { "<leader>us", ":set spell!<CR>",                           desc = "Toggle spell check" },
+    { "<leader>ul", ":set list!<CR>",                            desc = "Toggle invisible characters" },
+    { "<leader>uh", ":set hlsearch!<CR>",                        desc = "Toggle search highlight" },
+    { "<leader>ui", ":set cursorline!<CR>",                      desc = "Toggle cursorline" },
     {
       "<leader>uc",
       function()
@@ -120,38 +120,42 @@ wk.add({
   {
     { "q",          "<nop>" },
     { "<esc><esc>", ":noh<CR>" },
-    { "<leader>q", function()
-      local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-      if #bufs > 1 then
-        vim.cmd("bd")
-      else
-        vim.cmd("bd")
-        vim.cmd("Dashboard")
-      end
-    end, desc = "Close buffer" },
-    { "<leader>Q", ":q<CR>", desc = "Close Neovim" },
-    { "H", ":bprev<CR>", desc = "Previous Buffer" },
-    { "L", ":bnext<CR>", desc = "Previous Buffer" },
-    { "<C-s>",      ":write<CR>",                desc = "Save", },
-    { "<F5>",       ":update<CR> :source<CR>",   desc = "Source file", },
-    { "<C-h>",      "<C-w>h",                    desc = "Move to left window" },
-    { "<C-j>",      "<C-w>j",                    desc = "Move to bottom window" },
-    { "<C-k>",      "<C-w>k",                    desc = "Move to top window" },
-    { "<C-l>",      "<C-w>l",                    desc = "Move to right window" },
-    { "<A-h>",      ":vertical resize -2<CR>",   desc = "Decrease window width" },
-    { "<A-l>",      ":vertical resize +2<CR>",   desc = "Increase window width" },
-    { "<A-j>",      ":resize -2<CR>",            desc = "Decrease window height" },
-    { "<A-k>",      ":resize +2<CR>",            desc = "Increase window height" },
-    { "<A-=>",      "<C-w>=<CR>",                desc = "Automatically resize windows" },
-    { "gd",         vim.lsp.buf.definition,      desc = "Go to definition" },
-    { "gD",         vim.lsp.buf.declaration,     desc = "Go to declaration" },
-    { "gi",         vim.lsp.buf.implementation,  desc = "Go to implementation" },
-    { "gr",         vim.lsp.buf.references,      desc = "Go to references" },
-    { "gT",         vim.lsp.buf.type_definition, desc = "Go to type definition" },
-    { "g0",         vim.lsp.buf.document_symbol, desc = "Go to table of contents" },
-    { "gs",         vim.lsp.buf.signature_help,  desc = "Signature help" },
-    { "]t",         ":tabnext<CR>",              desc = "Tab next" },
-    { "[t",         ":tabprev<CR>",              desc = "Tab prev" },
+    {
+      "<leader>q",
+      function()
+        local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+        if #bufs > 1 then
+          vim.cmd("bd")
+        else
+          vim.cmd("bd")
+          vim.cmd("Dashboard")
+        end
+      end,
+      desc = "Close buffer"
+    },
+    { "<leader>Q", ":q<CR>",                    desc = "Close Neovim" },
+    { "H",         ":bprev<CR>",                desc = "Previous Buffer" },
+    { "L",         ":bnext<CR>",                desc = "Previous Buffer" },
+    { "<C-s>",     ":write<CR>",                desc = "Save", },
+    { "<F5>",      ":update<CR> :source<CR>",   desc = "Source file", },
+    { "<C-h>",     "<C-w>h",                    desc = "Move to left window" },
+    { "<C-j>",     "<C-w>j",                    desc = "Move to bottom window" },
+    { "<C-k>",     "<C-w>k",                    desc = "Move to top window" },
+    { "<C-l>",     "<C-w>l",                    desc = "Move to right window" },
+    { "<A-h>",     ":vertical resize -2<CR>",   desc = "Decrease window width" },
+    { "<A-l>",     ":vertical resize +2<CR>",   desc = "Increase window width" },
+    { "<A-j>",     ":resize -2<CR>",            desc = "Decrease window height" },
+    { "<A-k>",     ":resize +2<CR>",            desc = "Increase window height" },
+    { "<A-=>",     "<C-w>=<CR>",                desc = "Automatically resize windows" },
+    { "gd",        vim.lsp.buf.definition,      desc = "Go to definition" },
+    { "gD",        vim.lsp.buf.declaration,     desc = "Go to declaration" },
+    { "gi",        vim.lsp.buf.implementation,  desc = "Go to implementation" },
+    { "gr",        vim.lsp.buf.references,      desc = "Go to references" },
+    { "gT",        vim.lsp.buf.type_definition, desc = "Go to type definition" },
+    { "g0",        vim.lsp.buf.document_symbol, desc = "Go to table of contents" },
+    { "gs",        vim.lsp.buf.signature_help,  desc = "Signature help" },
+    { "]t",        ":tabnext<CR>",              desc = "Tab next" },
+    { "[t",        ":tabprev<CR>",              desc = "Tab prev" },
   },
   {
     mode = "i",
