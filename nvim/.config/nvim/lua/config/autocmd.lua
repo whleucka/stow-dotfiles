@@ -66,6 +66,7 @@ require('plugins.catppuccin')
 require("plugins.which-key-nvim")
 
 vim.api.nvim_create_autocmd("VimEnter", {
+  group = vim.api.nvim_create_augroup('lazy-vim-enter', { clear = true }),
   callback = function()
     require("plugins.dashboard-nvim")
     require("plugins.bufferline-nvim")
@@ -78,6 +79,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
+  group = vim.api.nvim_create_augroup('lazy-buf-read', { clear = true }),
   callback = function()
     require("plugins.nvim-treesitter")
     require('plugins.flash-nvim')
@@ -86,6 +88,7 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
+  group = vim.api.nvim_create_augroup('lazy-insert-enter', { clear = true }),
   callback = function()
     require("plugins.blink-cmp")
     require("plugins.luasnip")

@@ -125,6 +125,7 @@ wk.add({
       if #bufs > 1 then
         vim.cmd("bd")
       else
+        vim.cmd("bd")
         vim.cmd("Dashboard")
       end
     end, desc = "Close buffer" },
