@@ -120,6 +120,10 @@ wk.add({
   {
     { "q",          "<nop>" },
     { "<esc><esc>", ":noh<CR>" },
+    { "<leader>q", ":bd<CR>", desc = "Close buffer" },
+    { "<leader>Q", ":q<CR>", desc = "Close Neovim" },
+    { "H", ":bprev<CR>", desc = "Previous Buffer" },
+    { "L", ":bnext<CR>", desc = "Previous Buffer" },
     { "<C-s>",      ":write<CR>",                desc = "Save", },
     { "<F5>",       ":update<CR> :source<CR>",   desc = "Source file", },
     { "<C-h>",      "<C-w>h",                    desc = "Move to left window" },

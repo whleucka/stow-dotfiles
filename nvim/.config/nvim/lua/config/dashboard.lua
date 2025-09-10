@@ -13,6 +13,12 @@ return {
         key = 'n',
       },
       {
+        desc = 'Oil',
+        group = 'Label',
+        action = ':Oil',
+        key = 'o',
+      },
+      {
         desc = 'Files',
         group = 'Label',
         action = 'FzfLua files',

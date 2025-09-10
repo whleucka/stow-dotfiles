@@ -68,6 +68,7 @@ require("plugins.which-key-nvim")
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     require("plugins.dashboard-nvim")
+    require("plugins.bufferline-nvim")
     require("plugins.lualine-nvim")
     require('plugins.vim-repeat')
     require("plugins.oil-nvim")
