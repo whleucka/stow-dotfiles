@@ -161,10 +161,8 @@ bindsym $super+E exec google-chrome-stable https://mail.google.com/
 # # (P)hotos
 # bindsym $super+P exec google-chrome-stable https://photos.google.com/
 # # (C)alculator
-# bindsym $super+C exec gnome-calculator
-# # (T)erminal
-# bindsym $super+T exec kitty
-# # System (M)onitor
+bindsym $super+C exec gnome-calculator
+# # (T)op
 # bindsym $super+M exec kitty bpytop
 # # (G)imp
 # bindsym $super+G exec gimp
@@ -232,16 +230,16 @@ bindsym $mod+t layout tabbed
 bindsym $mod+m split toggle
 
 # Enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+v fullscreen toggle
 
 # Toggle between tiling / floating
-bindsym $mod+v floating toggle
+bindsym $mod+p floating toggle
 
 # Focus the parent container
-bindsym $mod+p focus parent
+#bindsym $mod+p focus parent
 
 # Focus the child container
-bindsym $mod+c focus child
+#bindsym $mod+c focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
