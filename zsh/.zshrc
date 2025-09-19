@@ -138,7 +138,13 @@ bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
 bindkey '^[OB'  down-line-or-beginning-search
 
 # Preferred editor for local and remote sessions
-export VISUAL=$(which nvim || which vim)
+if command -v nvim >/dev/null; then
+    export VISUAL="nvim"
+elif command -v vim >/dev/null; then
+    export VISUAL="vim"
+else
+    export VISUAL="vi"
+fi
 export EDITOR="$VISUAL"
 
 # Compilation flags

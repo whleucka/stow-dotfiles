@@ -52,8 +52,8 @@ nvim-update() {
     local build=${1:-nightly}
     local current=$(pwd)
     local nvim_dir=$HOME/.neovim
-    local stow_dir=$HOME/stow-dotfiles
-    local stow_dir_hidden=$HOME/.stow-dotfiles
+    local stow_dir=$HOME/.dotfiles
+    local stow_dir_alt=$HOME/.stow-dotfiles
     local directory=""
     local filename=""
     local target=""
@@ -115,10 +115,10 @@ nvim-update() {
     local dotfiles_dir=""
     if [ -d "$stow_dir" ]; then
         dotfiles_dir="$stow_dir"
-    elif [ -d "$stow_dir_hidden" ]; then
-        dotfiles_dir="$stow_dir_hidden"
+    elif [ -d "$stow_dir_alt" ]; then
+        dotfiles_dir="$stow_dir_alt"
     else
-        echo "Stow dotfiles directory not found"
+        echo "Dotfiles directory not found"
         cd "$current" || return 1
         return 1
     fi
