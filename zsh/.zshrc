@@ -158,8 +158,8 @@ export EDITOR="$VISUAL"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source $HOME/.aliasrc
-source $HOME/.functions
+[[ ! -f $HOME/.aliasrc ]] || source $HOME/.aliasrc
+[[ ! -f $HOME/.functions ]] || source $HOME/.functions
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
