@@ -1,5 +1,7 @@
 local wk = require("which-key")
 local folds_enabled = vim.opt.foldenable
+local current_colorscheme = vim.g.colors_name
+local transparent_background = false
 
 wk.add({
   {
@@ -69,10 +71,27 @@ wk.add({
     {
       "<leader>ut",
       function()
-        local config = require("config.catppuccin")
-        config.transparent_background = not config.transparent_background
-        require("catppuccin").setup(config)
-        vim.cmd.colorscheme("catppuccin")
+        transparent_enabled = not transparent_enabled
+        if transparent_enabled then
+          -- Clear Normal and related highlight groups
+          vim.cmd [[
+            hi Normal guibg=NONE ctermbg=NONE
+            hi NormalNC guibg=NONE ctermbg=NONE
+            hi SignColumn guibg=NONE ctermbg=NONE
+            hi LineNr guibg=NONE ctermbg=NONE
+            hi EndOfBuffer guibg=NONE ctermbg=NONE
+          ]]
+        else
+          -- Reset highlights back to default
+          vim.cmd [[
+            hi Normal guibg=NONE ctermbg=NONE
+            hi NormalNC guibg=NONE ctermbg=NONE
+            hi SignColumn guibg=NONE ctermbg=NONE
+            hi LineNr guibg=NONE ctermbg=NONE
+            hi EndOfBuffer guibg=NONE ctermbg=NONE
+          ]]
+          vim.cmd.colorscheme(current_colorscheme)
+        end
       end,
       desc = "Toggle transparency"
     },
