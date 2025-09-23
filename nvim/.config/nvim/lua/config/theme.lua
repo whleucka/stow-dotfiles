@@ -1,0 +1,1 @@
+/home/whleucka/.config/omarchy/current/theme/neovim.lua

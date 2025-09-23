@@ -62,7 +62,6 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 })
 
 -- Plugins
-require('plugins.catppuccin')
 require("plugins.which-key-nvim")
 
 vim.api.nvim_create_autocmd("VimEnter", {
