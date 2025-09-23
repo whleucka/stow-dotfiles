@@ -1,7 +1,7 @@
 local wk = require("which-key")
 local folds_enabled = vim.opt.foldenable
 local current_colorscheme = vim.g.colors_name
-local transparent_background = false
+local transparent_background = true
 
 wk.add({
   {
