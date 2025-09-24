@@ -1,6 +1,13 @@
 return {
   theme = 'hyper',
   config = {
+    project = {
+      enable = true,
+      action = function(path)
+        -- use fzf-lua instead of telescope
+        require('fzf-lua').files({ cwd = path })
+      end,
+    },
     week_header = {
       enable = true,
     },
@@ -46,7 +53,7 @@ return {
         desc = 'Quit',
         group = 'Number',
         action = function()
-          vim.cmd[[quit]]
+          vim.cmd [[quit]]
         end,
         key = 'q',
       },
