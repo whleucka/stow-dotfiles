@@ -61,6 +61,31 @@ vim.api.nvim_create_autocmd("CursorMoved", {
   end,
 })
 
+-- Close with q
+-- one group, created once
+local close_grp = vim.api.nvim_create_augroup("close-with-q", { clear = true })
+
+-- option A: single autocmd with list pattern
+vim.api.nvim_create_autocmd("FileType", {
+  group = close_grp,
+  pattern = { "help", "man", "qf", "oil" },
+  callback = function(ev)
+    -- buffer-local mapping so it doesn't steal "q" globally
+    vim.keymap.set("n", "q", function()
+      -- close floats or regular windows
+      local cfg = vim.api.nvim_win_get_config(0)
+      if cfg and cfg.relative ~= "" then
+        vim.api.nvim_win_close(0, true)
+      else
+        vim.cmd.close()
+      end
+    end, { buffer = ev.buf, silent = true, desc = "Close window with q" })
+
+    -- optional: don't list these buffers
+    vim.bo[ev.buf].buflisted = false
+  end,
+})
+
 -- Plugins
 require("plugins.which-key-nvim")
 
@@ -81,6 +106,7 @@ vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
   group = vim.api.nvim_create_augroup('lazy-buf-read', { clear = true }),
   callback = function()
     require("plugins.nvim-treesitter")
+    require("plugins.nvim-dap")
     require('plugins.flash-nvim')
     require("plugins.gitsigns")
   end

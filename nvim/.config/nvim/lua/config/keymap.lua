@@ -152,7 +152,7 @@ wk.add({
       end,
       desc = "Close buffer"
     },
-    { "<leader>Q", ":q<CR>",                    desc = "Close Neovim" },
+    { "<leader>Q", ":qa<CR>",                    desc = "Close Neovim" },
     { "H",         ":bprev<CR>",                desc = "Previous Buffer" },
     { "L",         ":bnext<CR>",                desc = "Previous Buffer" },
     { "<C-s>",     ":write<CR>",                desc = "Save", },
