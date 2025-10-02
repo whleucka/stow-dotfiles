@@ -8,9 +8,13 @@ vim.pack.add({
   {
     src = "https://github.com/rcarriga/nvim-dap-ui"
   },
+  {
+    src = "https://github.com/theHamsta/nvim-dap-virtual-text"
+  },
 })
 
 require("dapui").setup()
+require("nvim-dap-virtual-text").setup({})
 
 local dap = require("dap")
 local dapui = require("dapui")
