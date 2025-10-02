@@ -8,6 +8,6 @@ local config = require("config.dashboard")
 local wk = require("which-key")
 require('dashboard').setup(config)
 
--- wk.add({
---   '<leader>D', ":Dashboard<CR>", desc = "Dashboard"
--- })
+wk.add({
+  '<leader><leader>', ":Dashboard<CR>", desc = "Dashboard"
+})
