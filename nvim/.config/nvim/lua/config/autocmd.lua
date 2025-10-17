@@ -23,6 +23,16 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end,
 })
 
+-- ensure bufferline & friends recolor once Neovim has fully loaded
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    pcall(require, "plugins.bufferline-nvim")
+    pcall(require, "plugins.lualine-nvim")
+    pcall(require, "plugins.gitsigns")
+  end,
+})
+
 -- Restore last cursor pos
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = vim.api.nvim_create_augroup('restore-cursor-pos', { clear = true }),
@@ -86,36 +96,3 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Plugins
-require("plugins.which-key-nvim")
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  group = vim.api.nvim_create_augroup('lazy-vim-enter', { clear = true }),
-  callback = function()
-    require("plugins.dashboard-nvim")
-    require("plugins.bufferline-nvim")
-    require("plugins.lualine-nvim")
-    require('plugins.vim-repeat')
-    require("plugins.oil-nvim")
-    require('plugins.vim-fugitive')
-    require('plugins.fzf-lua')
-  end
-})
-
-vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
-  group = vim.api.nvim_create_augroup('lazy-buf-read', { clear = true }),
-  callback = function()
-    require("plugins.nvim-treesitter")
-    require("plugins.nvim-dap")
-    require('plugins.flash-nvim')
-    require("plugins.gitsigns")
-  end
-})
-
-vim.api.nvim_create_autocmd("InsertEnter", {
-  group = vim.api.nvim_create_augroup('lazy-insert-enter', { clear = true }),
-  callback = function()
-    require("plugins.blink-cmp")
-    require("plugins.luasnip")
-  end
-})

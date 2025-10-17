@@ -1,0 +1,13 @@
+-- Plugins
+require("plugins.which-key-nvim")
+require("plugins.dashboard-nvim")
+require('plugins.vim-repeat')
+require("plugins.oil-nvim")
+require('plugins.vim-fugitive')
+require('plugins.fzf-lua')
+require("plugins.nvim-treesitter")
+require("plugins.nvim-dap")
+require('plugins.flash-nvim')
+require("plugins.blink-cmp")
+require("plugins.luasnip")
+require("plugins.omarchy")
