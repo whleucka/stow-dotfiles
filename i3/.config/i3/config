@@ -151,7 +151,7 @@ bindsym $mod+Return exec kitty
 # # (K)itty Launcher
 # bindsym $super+Return exec --no-startup-id $HOME/.bin/scripts/kitty-launcher
 # # (F)iles
-bindsym $super+F exec nemo
+bindsym $super+X exec nemo
 # # (N)eovim
 bindsym $super+N exec kitty nvim
 # # Neo(V)im Config
@@ -232,7 +232,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+m split toggle
 
 # Enter fullscreen mode for the focused container
-bindsym $mod+v fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # Toggle between tiling / floating
 bindsym $mod+p floating toggle
