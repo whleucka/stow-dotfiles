@@ -85,18 +85,6 @@ local function apply_theme()
         return
       end
     end
-
-    -- refresh UI plugins after theme change
-    local function refresh_ui()
-      pcall(require, "plugins.lualine-nvim")
-      pcall(require, "plugins.gitsigns")
-    end
-
-    refresh_ui()
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      once = true,
-      callback = refresh_ui,
-    })
   end, 50)
 end
 
