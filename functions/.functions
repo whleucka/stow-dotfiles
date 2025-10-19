@@ -154,6 +154,79 @@ nvim-update() {
     cd "$current" || return 1
 }
 
+# --- UNIVERSAL EXTRACTION ---
+extract() {
+  local file="$1"
+  [[ -z "$file" ]] && { echo "Usage: extract <file>"; return 1; }
+  [[ ! -f "$file" ]] && { echo "Error: '$file' not found"; return 1; }
+
+  # derive directory name (remove .tar.*, .gz, .bz2, .xz, .zst extensions)
+  local base="${file%%.*}"
+  base="${file%%.tar.*}"
+  base="${base%%.*}"
+  local dir="${base%.*}"
+  dir="${dir:-${file%.*}}"
+
+  # ensure we don't overwrite existing folder
+  if [[ -d "$dir" ]]; then
+    dir="${dir}_extracted_$(date +%s)"
+  fi
+  mkdir -p "$dir"
+
+  echo "→ Extracting into '$dir/' ..."
+  case "$file" in
+    *.tar.bz2)  tar -xvjf "$file" -C "$dir" ;;
+    *.tar.gz)   tar -xvzf "$file" -C "$dir" ;;
+    *.tar.xz)   tar -xvJf "$file" -C "$dir" ;;
+    *.tar.zst)  tar --use-compress-program=unzstd -xvf "$file" -C "$dir" ;;
+    *.tar)      tar -xvf "$file" -C "$dir" ;;
+    *.bz2)      bunzip2 -k "$file" && mv "${file%.bz2}" "$dir/" ;;
+    *.gz)       gunzip -k "$file" && mv "${file%.gz}" "$dir/" ;;
+    *.xz)       unxz -k "$file" && mv "${file%.xz}" "$dir/" ;;
+    *.zst)      unzstd -k "$file" && mv "${file%.zst}" "$dir/" ;;
+    *)          echo "Cannot extract '$file': unsupported format"; return 1 ;;
+  esac
+  echo "✔ Done."
+}
+
+# --- UNIVERSAL ARCHIVER ---
+archive() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: archive <output_name> <file_or_dir> [more_files...]"
+    return 1
+  fi
+
+  local output="$1"; shift
+  local compressor
+
+  case "$output" in
+    *.tar.gz)
+      compressor=$(command -v pigz >/dev/null && echo "pigz" || echo "gzip")
+      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
+      ;;
+    *.tar.bz2)
+      compressor=$(command -v pbzip2 >/dev/null && echo "pbzip2" || echo "bzip2")
+      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
+      ;;
+    *.tar.xz)
+      compressor=$(command -v pxz >/dev/null && echo "pxz" || echo "xz")
+      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
+      ;;
+    *.tar.zst)
+      compressor=$(command -v zstd >/dev/null && echo "zstd" || echo "gzip")
+      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
+      ;;
+    *.tar)
+      tar -cvf "$output" "$@"
+      ;;
+    *)
+      echo "Error: output must end with .tar, .tar.gz, .tar.bz2, .tar.xz, or .tar.zst"
+      return 1
+      ;;
+  esac
+  echo "✔ Archive created: $output"
+}
+
 # Backup a drive to a target
 # example) backup_drive /dev/sda /mnt/drive/backup.tar.gz
 backup_drive() {
