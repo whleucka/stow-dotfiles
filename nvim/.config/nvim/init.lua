@@ -1,6 +1,6 @@
 -- With great power comes great responsibility
-require('config.globals')
 require("config.plugins")
+require('config.globals')
 require('config.options')
 
 require('config.autocmd')

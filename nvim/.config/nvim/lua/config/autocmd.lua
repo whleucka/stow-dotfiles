@@ -27,7 +27,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.api.nvim_create_autocmd("VimEnter", {
   once = true,
   callback = function()
-    pcall(require, "plugins.bufferline-nvim")
     pcall(require, "plugins.lualine-nvim")
     pcall(require, "plugins.gitsigns")
   end,

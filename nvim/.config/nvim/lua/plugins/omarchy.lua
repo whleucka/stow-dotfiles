@@ -88,7 +88,6 @@ local function apply_theme()
 
     -- refresh UI plugins after theme change
     local function refresh_ui()
-      pcall(require, "plugins.bufferline-nvim")
       pcall(require, "plugins.lualine-nvim")
       pcall(require, "plugins.gitsigns")
     end
@@ -98,7 +97,7 @@ local function apply_theme()
       once = true,
       callback = refresh_ui,
     })
-  end, 100)
+  end, 50)
 end
 
 -- --- Watcher logic --- --
