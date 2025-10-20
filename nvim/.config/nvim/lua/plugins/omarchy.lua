@@ -1,13 +1,17 @@
--- Omarchy dynamic theme loader + watcher
-local ok, theme = pcall(require, "config.theme")
-if not ok then
-  vim.notify("No Omarchy theme detected.", vim.log.levels.WARN)
-  require('plugins.catppuccin')
-  return
-end
-
+--[[
+ ██████╗ ███╗   ███╗ █████╗ ██████╗  ██████╗██╗  ██╗██╗   ██╗
+██╔═══██╗████╗ ████║██╔══██╗██╔══██╗██╔════╝██║  ██║╚██╗ ██╔╝
+██║   ██║██╔████╔██║███████║██████╔╝██║     ███████║ ╚████╔╝ 
+██║   ██║██║╚██╔╝██║██╔══██║██╔══██╗██║     ██╔══██║  ╚██╔╝  
+╚██████╔╝██║ ╚═╝ ██║██║  ██║██║  ██║╚██████╗██║  ██║   ██║   
+ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   
+ Omarchy dynamic theme loader + watcher
+ Created by: william.hleucka@gmail.com
+]]--
 local uv = vim.loop
-local SYMLINK = vim.fn.stdpath("config") .. "/lua/config/theme.lua"
+
+-- Direct path to your theme file
+local THEME_FILE = os.getenv("HOME") .. "/.config/omarchy/current/theme/neovim.lua"
 
 -- --- Fallback to Catppuccin --- --
 local function fallback_theme()
@@ -17,11 +21,18 @@ end
 
 -- --- Safe load of theme.lua --- --
 local function load_theme()
-  local ok, theme = pcall(require, "config.theme")
-  if not ok or not theme then
+  local ok, theme_chunk = pcall(loadfile, THEME_FILE)
+  if not ok or not theme_chunk then
     fallback_theme()
     return nil
   end
+
+  local ok_run, theme = pcall(theme_chunk)
+  if not ok_run or not theme then
+    fallback_theme()
+    return nil
+  end
+
   return theme
 end
 
@@ -32,7 +43,6 @@ local known_schemes = {
 }
 
 local function apply_theme()
-  package.loaded["config.theme"] = nil
   local theme = load_theme()
   if not theme then return end
 
@@ -41,14 +51,12 @@ local function apply_theme()
   local colorscheme
   local applied_via_config = false
 
-  -- load plugins and detect config/colorscheme
   for _, spec in ipairs(specs) do
     local repo = spec[1]
     if type(repo) == "string" and not repo:match("LazyVim/LazyVim") then
       local src = "https://github.com/" .. repo
       vim.pack.add({ { src = src } })
 
-      -- If the theme handles its own setup, run it and mark applied
       if type(spec.config) == "function" then
         pcall(spec.config)
         applied_via_config = true
@@ -60,7 +68,6 @@ local function apply_theme()
     end
   end
 
-  -- add special known repos (like catppuccin/tokyonight)
   if colorscheme then
     local base = colorscheme:match("^[^%-]+")
     local special_repo = known_schemes[base]
@@ -69,7 +76,6 @@ local function apply_theme()
     end
   end
 
-  -- apply theme if not handled by config
   vim.defer_fn(function()
     if not applied_via_config then
       if colorscheme then
@@ -82,23 +88,22 @@ local function apply_theme()
       else
         vim.notify("Omarchy: no colorscheme found, using fallback", vim.log.levels.WARN)
         fallback_theme()
-        return
       end
     end
   end, 50)
 end
 
 -- --- Watcher logic --- --
-_G._omarchy_state = _G._omarchy_state or { target_poll = nil, file_poll = nil, current_real = nil }
+_G._omarchy_state = _G._omarchy_state or { file_poll = nil }
 local W = _G._omarchy_state
 
-local function restart_file_poll(new_real)
+local function restart_file_poll()
   if W.file_poll then
     pcall(W.file_poll.stop, W.file_poll)
     pcall(W.file_poll.close, W.file_poll)
   end
   W.file_poll = uv.new_fs_poll()
-  W.file_poll:start(new_real, 500, function(err, prev, curr)
+  W.file_poll:start(THEME_FILE, 500, function(err, prev, curr)
     if err then
       vim.schedule(function()
         vim.notify("Omarchy file poll error: " .. err, vim.log.levels.ERROR)
@@ -109,35 +114,18 @@ local function restart_file_poll(new_real)
       vim.schedule(apply_theme)
     end
   end)
-  W.current_real = new_real
-end
-
-local function start_target_poll()
-  if W.target_poll then return end
-  W.target_poll = uv.new_fs_poll()
-  W.target_poll:start(SYMLINK, 700, function()
-    local now_real = vim.fn.resolve(SYMLINK)
-    if now_real ~= W.current_real then
-      vim.schedule(function()
-        restart_file_poll(now_real)
-        apply_theme()
-      end)
-    end
-  end)
 end
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
     if W.file_poll then pcall(W.file_poll.stop, W.file_poll) end
-    if W.target_poll then pcall(W.target_poll.stop, W.target_poll) end
   end,
 })
 
-if vim.fn.filereadable(SYMLINK) == 1 then
+if vim.fn.filereadable(THEME_FILE) == 1 then
   apply_theme()
-  start_target_poll()
-  restart_file_poll(vim.fn.resolve(SYMLINK))
+  restart_file_poll()
 else
-  vim.notify("Omarchy: theme.lua missing", vim.log.levels.WARN)
+  vim.notify("Omarchy: theme missing at " .. THEME_FILE, vim.log.levels.WARN)
   fallback_theme()
 end
