@@ -15,7 +15,6 @@ local THEME_FILE = os.getenv("HOME") .. "/.config/omarchy/current/theme/neovim.l
 
 -- --- Fallback to Catppuccin --- --
 local function fallback_theme()
-  vim.notify("Omarchy: fallback to Catppuccin", vim.log.levels.WARN)
   require("plugins.catppuccin")
 end
 
