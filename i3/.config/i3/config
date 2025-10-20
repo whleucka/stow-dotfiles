@@ -148,28 +148,24 @@ bindsym $mod+q kill
 bindsym $mod+Return exec kitty
 
 # # Other apps
-# # (K)itty Launcher
-# bindsym $super+Return exec --no-startup-id $HOME/.bin/scripts/kitty-launcher
-# # (F)iles
-bindsym $super+X exec nemo
+# # (F)ile
+bindsym $super+shift+F exec nemo
 # # (N)eovim
-bindsym $super+N exec kitty nvim
-# # Neo(V)im Config
-# bindsym $super+V exec kitty nvim ~/.config/nvim
+bindsym $super+shift+N exec kitty nvim
 # # (W)eb
-bindsym $super+W exec google-chrome-stable
+bindsym $super+shift+W exec google-chrome-stable
 # # (E)mail
-bindsym $super+E exec google-chrome-stable https://mail.google.com/
+bindsym $super+shift+E exec google-chrome-stable https://mail.google.com/
 # # (P)hotos
-# bindsym $super+P exec google-chrome-stable https://photos.google.com/
+bindsym $super+shift+P exec google-chrome-stable https://photos.google.com/
 # # (C)alculator
-bindsym $super+C exec gnome-calculator
+bindsym $super+shift+C exec gnome-calculator
 # # (T)op
-# bindsym $super+M exec kitty bpytop
+bindsym $super+shift+T exec kitty bpytop
 # # (G)imp
-# bindsym $super+G exec gimp
+#bindsym $super+shift+G exec gimp
 # # (O)ffice
-# bindsym $super+O exec libreoffice
+bindsym $super+shift+O exec libreoffice
 
 
 # Note: i3-exit is a script in ~/.bin/scripts
@@ -204,11 +200,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 bindsym Print exec --no-startup-id flameshot gui
 
 # Reload the configuration
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+F6 reload
 # Restart i3 inplace
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+F5 restart
 # Exit i3
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+F4 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # Dock
 bindsym ctrl+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
 
