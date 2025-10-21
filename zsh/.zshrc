@@ -24,6 +24,7 @@ FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
 FZF_DEFAULT_OPTS+=" --height=30%"
 FZF_DEFAULT_OPTS+=" --layout=reverse"
 FZF_DEFAULT_OPTS+=" --border"
+FZF_DEFAULT_OPTS+=" --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow -g "!{.git,vendor,node_modules}/*"'
 fi
