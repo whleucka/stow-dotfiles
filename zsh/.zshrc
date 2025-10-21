@@ -3,6 +3,10 @@ export TMPDIR="/tmp"
 # SSH gpg key
 export GPG_TTY=$(tty)
 
+if command -v fastfetch >/dev/null; then
+    sh -c $(which fastfetch)
+fi
+
 if type kitty &> /dev/null; then
     export TERM="xterm-kitty"
 else
@@ -193,3 +197,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
