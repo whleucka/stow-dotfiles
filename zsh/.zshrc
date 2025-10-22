@@ -3,9 +3,9 @@ export TMPDIR="/tmp"
 # SSH gpg key
 export GPG_TTY=$(tty)
 
-if command -v fastfetch >/dev/null; then
-    sh -c $(which fastfetch)
-fi
+# if command -v fastfetch >/dev/null; then
+#     sh -c $(which fastfetch)
+# fi
 
 if type kitty &> /dev/null; then
     export TERM="xterm-kitty"
