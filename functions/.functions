@@ -26,11 +26,11 @@ tsm-startall () { transmission-remote -tall -s; }
 tsm-search () { echo "================================="; transmission-remote -l | grep -i $1; }
 
 portal-up() {
-    wg-quick up will_p43s
+    wg-quick up will_laptop
 }
 
 portal-down() {
-    wg-quick down will_p43s
+    wg-quick down will_laptop
 }
 
 what() {
