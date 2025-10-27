@@ -86,6 +86,8 @@ exec --no-startup-id touch ~/.plank_toggle
 exec --no-startup-id plank
 # xscreensaver
 exec --no-startup-id xscreensaver
+# notifications
+exec --no-startup-id dunst
 
 # Other stuff
 # xmas!
@@ -147,6 +149,9 @@ bindsym $mod+q kill
 # Kitty (terminal)
 bindsym $mod+Return exec kitty
 
+# Youtube mpv
+bindsym $mod+Ctrl+Y exec --no-startup-id ~/.bin/scripts/ytmpv
+
 # # Other apps
 # # (F)ile
 bindsym $super+shift+F exec nemo
@@ -166,7 +171,6 @@ bindsym $super+shift+T exec kitty bpytop
 #bindsym $super+shift+G exec gimp
 # # (O)ffice
 bindsym $super+shift+O exec libreoffice
-
 
 # Note: i3-exit is a script in ~/.bin/scripts
 # Requires betterlockscreen

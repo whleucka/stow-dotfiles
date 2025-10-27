@@ -13,23 +13,22 @@ else
     export TERM="xterm-256color"
 fi
 
-#export FZF_DEFAULT_OPTS="--height 40% --ansi --layout reverse"
-#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.svn,.git,node_modules,vendor}/*"'
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#
-#
-export FZF_DEFAULT_OPTS="-m"
-FZF_DEFAULT_OPTS+=" --color='dark'"
-FZF_DEFAULT_OPTS+=" --bind=alt-k:up,alt-j:down"
-FZF_DEFAULT_OPTS+=" --height=30%"
-FZF_DEFAULT_OPTS+=" --layout=reverse"
-FZF_DEFAULT_OPTS+=" --border"
-FZF_DEFAULT_OPTS+=" --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+# global defaults
+export FZF_DEFAULT_OPTS="-m --color=dark --bind=alt-k:up,alt-j:down --height=30% --layout=reverse --border"
+
+# only for Ctrl-T (file picker)
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+
+# define the file command
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow -g "!{.git,vendor,node_modules}/*"'
 fi
+
+FZF_ALT_C_OPTS="--preview 'exa -1 --color=always {}'"
+#FZF_CTRL_R_OPTS="--preview 'echo {}'"
+
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_TMUX=1
+# export FZF_TMUX=1  # optional
 
 # Caps lock is not needed..
 # xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
