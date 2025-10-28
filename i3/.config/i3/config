@@ -89,6 +89,9 @@ exec --no-startup-id xscreensaver
 # notifications
 exec --no-startup-id dunst
 
+# Swap alt and super
+exec setxkbmap -option altwin:swap_alt_win
+
 # Other stuff
 # xmas!
 #exec --no-startup-id sh -c "sleep 3 && xsnow -snowflakes 100 -nowind -notrees -nosanta -norudolf"
@@ -143,6 +146,7 @@ for_window [title="Crafy"] floating enable
 #########################################################################################
 # Dmenu
 bindsym $mod+space exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji -a copy --selector rofi' -show drun"
+bindsym $mod+d exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji -a copy --selector rofi' -show drun"
 
 # Kill focused window
 bindsym $mod+q kill
