@@ -322,8 +322,8 @@ bindsym $mod+l exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav
 # Resizing                                                               
 bindsym $mod+minus  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink width  5 10 5
 bindsym $mod+equal exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   width  5 10 5
-bindsym $mod+Shift+minus    exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   height 5 10 5
-bindsym $mod+Shift+equal  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink height 5 10 5
+bindsym $mod+Shift+equal    exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize grow   height 5 10 5
+bindsym $mod+Shift+minus  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3-neovim-nav resize shrink height 5 10 5
 
 
 #########################################################################################
