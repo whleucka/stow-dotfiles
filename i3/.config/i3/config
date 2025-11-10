@@ -153,9 +153,6 @@ bindsym $mod+q kill
 # Kitty (terminal)
 bindsym $mod+Return exec kitty
 
-# Youtube mpv
-bindsym $mod+Ctrl+Y exec --no-startup-id ~/.bin/scripts/ytmpv
-
 # # Other apps
 # # (F)ile
 bindsym $super+shift+F exec nemo
