@@ -1,0 +1,32 @@
+{
+  "plugins": {
+    "LuaSnip": [],
+    "amp": {
+      "rev": "621f1ca",
+      "src": "https://github.com/sourcegraph/amp.nvim"
+    },
+    "blink.cmp": {
+      "version": "'v1.6.0'"
+    },
+    "catppuccin": [],
+    "dashboard-nvim": [],
+    "flash.nvim": [],
+    "friendly-snippets": [],
+    "fzf-lua": [],
+    "gitsigns.nvim": [],
+    "lspkind.nvim": [],
+    "lualine.nvim": [],
+    "nvim-dap": [],
+    "nvim-dap-ui": [],
+    "nvim-dap-virtual-text": [],
+    "nvim-nio": [],
+    "nvim-treesitter": {
+      "version": "'master'"
+    },
+    "nvim-web-devicons": [],
+    "oil.nvim": [],
+    "vim-fugitive": [],
+    "vim-repeat": [],
+    "which-key.nvim": []
+  }
+}
