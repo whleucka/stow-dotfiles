@@ -117,7 +117,7 @@ wk.add({
   {
     "<leader>w",
     group = "Window",
-    { "<leader>wn", ":new<CR>",    desc = "New" },
+    { "<leader>wc", ":new<CR>",    desc = "Create New" },
     { "<leader>wq", ":q<CR>",      desc = "Close" },
     { "<leader>wQ", ":qall<CR>",   desc = "Close all" },
     { "<leader>ws", ":split<CR>",  desc = "Split" },
@@ -126,7 +126,8 @@ wk.add({
   {
     "<leader>t",
     group = "Tab",
-    { "<leader>tn", ":tabnew<CR>",   desc = "New" },
+    { "<leader>tc", ":tabnew<CR>",   desc = "Create New" },
+    { "<leader>tq", ":tabclose<CR>", desc = "Close" },
     { "<leader>tn", ":tabnext<CR>",  desc = "Next" },
     { "<leader>tp", ":tabprev<CR>",  desc = "Prev" },
     { "<leader>tf", ":tabfirst<CR>", desc = "First" },
@@ -135,7 +136,7 @@ wk.add({
   {
     "<leader>b",
     group = "Buffer",
-    { "<leader>bb", ":enew<CR>",   desc = "New" },
+    { "<leader>bc", ":enew<CR>",   desc = "Create New" },
     { "<leader>bq", ":bd<CR>",     desc = "Close" },
     { "<leader>bn", ":bnext<CR>",  desc = "Next" },
     { "<leader>bp", ":bprev<CR>",  desc = "Prev" },
@@ -158,7 +159,7 @@ wk.add({
       end,
       desc = "Close buffer"
     },
-    { "<leader>Q", ":qa<CR>",                    desc = "Close Neovim" },
+    { "<leader>Q", ":qa<CR>",                   desc = "Close Neovim" },
     { "H",         ":bprev<CR>",                desc = "Previous Buffer" },
     { "L",         ":bnext<CR>",                desc = "Previous Buffer" },
     { "<C-s>",     ":write<CR>",                desc = "Save", },

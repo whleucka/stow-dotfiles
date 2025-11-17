@@ -6,14 +6,21 @@
       "src": "https://github.com/sourcegraph/amp.nvim"
     },
     "blink.cmp": {
-      "version": "'v1.6.0'"
+      "rev": "b19413d",
+      "version": "'v1.8.0'"
     },
-    "catppuccin": [],
+    "catppuccin": {
+      "rev": "da33755"
+    },
     "dashboard-nvim": [],
     "flash.nvim": [],
     "friendly-snippets": [],
-    "fzf-lua": [],
-    "gitsigns.nvim": [],
+    "fzf-lua": {
+      "rev": "6db3677"
+    },
+    "gitsigns.nvim": {
+      "rev": "cdafc32"
+    },
     "lspkind.nvim": [],
     "lualine.nvim": [],
     "nvim-dap": [],
