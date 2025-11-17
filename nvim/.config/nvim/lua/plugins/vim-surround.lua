@@ -1,5 +1,3 @@
-vim.pack.add({
-  {
-    src = "https://github.com/tpope/vim-surround",
-  }
-})
+vim.pack.add {
+  "https://github.com/tpope/vim-surround"
+}

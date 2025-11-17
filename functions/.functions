@@ -117,40 +117,6 @@ nvim-update() {
         echo "Neovim is up-to-date"
     fi
 
-    # Update dotfiles from the appropriate directory
-    echo "Pulling stow-dotfiles..."
-    
-    local dotfiles_dir=""
-    if [ -d "$stow_dir" ]; then
-        dotfiles_dir="$stow_dir"
-    elif [ -d "$stow_dir_alt" ]; then
-        dotfiles_dir="$stow_dir_alt"
-    else
-        echo "Dotfiles directory not found"
-        cd "$current" || return 1
-        return 1
-    fi
-    
-    cd "$dotfiles_dir" || { echo "Failed to change directory to $dotfiles_dir"; return 1; }
-    
-    # Check and reset lazy-lock.json if it exists
-    local lazy_lock="$dotfiles_dir/nvim/.config/nvim/lazy-lock.json"
-    if [ -f "$lazy_lock" ]; then
-        git checkout "$lazy_lock"
-    fi
-
-    # Update neovim plugins
-    local pull_output
-    pull_output=$(git pull -v)
-    echo "$pull_output"
-    
-    if [[ "$pull_output" != *"Already up to date."* ]]; then
-        echo "Update complete!"
-        exec zsh
-    else
-        echo "All good, no updates are necessary!"
-    fi
-    
     cd "$current" || return 1
 }
 
@@ -326,4 +292,3 @@ backup_rsync() {
     echo "Failed to remove temporary tarball at $(date)" | sudo tee -a $logfile
   fi
 }
-

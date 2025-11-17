@@ -1,17 +1,9 @@
-vim.pack.add({
-  {
-    src = "https://github.com/mfussenegger/nvim-dap"
-  },
-  {
-    src = "https://github.com/nvim-neotest/nvim-nio"
-  },
-  {
-    src = "https://github.com/rcarriga/nvim-dap-ui"
-  },
-  {
-    src = "https://github.com/theHamsta/nvim-dap-virtual-text"
-  },
-})
+vim.pack.add {
+  "https://github.com/mfussenegger/nvim-dap",
+  "https://github.com/nvim-neotest/nvim-nio",
+  "https://github.com/rcarriga/nvim-dap-ui",
+  "https://github.com/theHamsta/nvim-dap-virtual-text"
+}
 
 require("dapui").setup()
 require("nvim-dap-virtual-text").setup({})

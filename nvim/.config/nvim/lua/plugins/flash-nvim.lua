@@ -1,8 +1,6 @@
-vim.pack.add({
-  {
-    src = "https://github.com/folke/flash.nvim",
-  }
-})
+vim.pack.add {
+  "https://github.com/folke/flash.nvim",
+}
 
 local flash = require("flash")
 local wk = require("which-key")

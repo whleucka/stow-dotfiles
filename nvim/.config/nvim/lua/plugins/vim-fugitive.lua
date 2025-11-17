@@ -1,8 +1,6 @@
-vim.pack.add({
-  {
-    src = "https://github.com/tpope/vim-fugitive",
-  }
-})
+vim.pack.add {
+  "https://github.com/tpope/vim-fugitive"
+}
 
 local wk = require("which-key")
 wk.add({
