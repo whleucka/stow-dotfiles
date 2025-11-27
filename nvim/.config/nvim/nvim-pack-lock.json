@@ -9,7 +9,7 @@
       "src": "https://github.com/sourcegraph/amp.nvim"
     },
     "bamboo.nvim": {
-      "rev": "6ec224a4fcf0970fce262fc5bb51048721d464f6",
+      "rev": "1309bc88bffcf1bedc3e84e7fa9004de93da774a",
       "src": "https://github.com/ribru17/bamboo.nvim"
     },
     "blink.cmp": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
     "catppuccin": {
-      "rev": "da33755",
+      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
       "src": "https://github.com/catppuccin/nvim"
     },
     "dashboard-nvim": {
@@ -30,7 +30,7 @@
       "src": "https://github.com/nvimdev/dashboard-nvim"
     },
     "everforest-nvim": {
-      "rev": "d2936185a6d266def29fd7b523d296384580ef08",
+      "rev": "557bce922401e247a596583679bc181d4d688554",
       "src": "https://github.com/neanias/everforest-nvim"
     },
     "flash.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "6db3677",
+      "rev": "9a0704e8af8f8442110ff22a83b5608366b235df",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -58,7 +58,7 @@
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "kanagawa.nvim": {
-      "rev": "debe91547d7fb1eef34ce26a5106f277fbfdd109",
+      "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "lspkind.nvim": {
@@ -66,11 +66,11 @@
       "src": "https://github.com/onsails/lspkind.nvim"
     },
     "lualine.nvim": {
-      "rev": "3946f0122255bc377d14a59b27b609fb3ab25768",
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "matteblack.nvim": {
-      "rev": "3bfd406f3b2e41eb3458fe735e06447c08b67d03",
+      "rev": "a8a039f5d6189b28d76fa0221e64965efec7e996",
       "src": "https://github.com/tahayvr/matteblack.nvim"
     },
     "monokai-pro.nvim": {
@@ -78,7 +78,7 @@
       "src": "https://github.com/gthelding/monokai-pro.nvim"
     },
     "neovim": {
-      "rev": "72a04c4065345b51b56aed4859ea1d884f734097",
+      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
       "src": "https://github.com/rose-pine/neovim"
     },
     "nightfox.nvim": {
@@ -86,7 +86,7 @@
       "src": "https://github.com/EdenEast/nightfox.nvim"
     },
     "nvim": {
-      "rev": "f19cab18ec4dc86d415512c7a572863b2adbcc18",
+      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
       "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-dap": {
@@ -115,7 +115,7 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
-      "rev": "7e1cd7703ff2924d7038476dcbc04b950203b902",
+      "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "tokyonight.nvim": {
