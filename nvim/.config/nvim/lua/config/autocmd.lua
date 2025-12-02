@@ -6,25 +6,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- autosave nvim session
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    local session = vim.fn.getcwd() .. "/.nvim-session.vim"
-    vim.cmd("mksession! " .. session)
-  end
-})
-
--- autoload session when inside project dir
-vim.api.nvim_create_autocmd("VimEnter", {
-  once = true,
-  callback = function()
-    local session = vim.fn.getcwd() .. "/.nvim-session.vim"
-    if vim.fn.filereadable(session) == 1 then
-      vim.cmd("source " .. session)
-    end
-  end
-})
-
 -- Treesitter update
 vim.api.nvim_create_autocmd('PackChanged', {
     group = vim.api.nvim_create_augroup('nvim-treesitter-pack-changed-update-handler', { clear = true }),

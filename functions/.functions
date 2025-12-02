@@ -57,238 +57,243 @@ check-url() {
 }
 
 nvim-update() {
-    local build=${1:-nightly}
-    local current=$(pwd)
-    local nvim_dir=$HOME/.neovim
-    local stow_dir=$HOME/.dotfiles
-    local stow_dir_alt=$HOME/.stow-dotfiles
+    local build="${1:-nightly}"
+    local nvim_dir="$HOME/.neovim"
+    local cwd=$(pwd)
     local directory=""
     local filename=""
     local target=""
 
     echo "One moment..."
-    
-    # Check if neovim is installed and compare versions
-    if command -v nvim > /dev/null; then
-        local nvim_version=$(nvim -v | cut -d' ' -f2 | head -n1)
-        if [[ "$nvim_version" != "$build" ]]; then
-            echo "You requested a different Neovim version ($build)"
-            echo "The current version ($nvim_version) will be replaced."
-            rm -rf "$nvim_dir"
-        else
-            echo "You already have the current Neovim version: $nvim_version"
+
+    # Detect installed version
+    if command -v nvim >/dev/null; then
+        local current_version
+        current_version=$(nvim -v | awk 'NR==1{print $2}')
+        if [[ "$current_version" == "$build" ]]; then
+            echo "You already have Neovim $current_version"
             return 0
         fi
+        echo "Updating Neovim: $current_version → $build"
+        rm -rf "$nvim_dir"
     else
-        echo "A new version of Neovim will be installed: $build"
+        echo "Installing Neovim $build"
     fi
 
-    # Make the neovim directory
-    echo "Fetching neovim if necessary..."
     mkdir -p "$nvim_dir"
-    cd "$nvim_dir" || { echo "Failed to change directory to $nvim_dir"; return 1; }
+    cd "$nvim_dir" || { echo "Failed to enter $nvim_dir"; return 1; }
 
-    # Determine correct release URL
-    local URL1="https://github.com/neovim/neovim/releases/download/$build/nvim-linux-x86_64.tar.gz"
-    local URL2="https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
-    
-    if curl -Ifs "$URL1" > /dev/null; then
-        echo "Download succeeded from primary neovim URL."
-        target=$URL1
-        directory="nvim-linux-x86_64"
-    elif curl -Ifs "$URL2" > /dev/null; then
-        echo "Download succeeded from fallback neovim URL."
-        target=$URL2
-        directory="nvim-linux64"
-    else
-        echo "Both neovim URLs failed."
+    # Try URLs in order
+    local URLs=(
+        "https://github.com/neovim/neovim/releases/download/$build/nvim-linux-x86_64.tar.gz"
+        "https://github.com/neovim/neovim/releases/download/$build/nvim-linux64.tar.gz"
+    )
+
+    for url in "${URLs[@]}"; do
+        if curl -Ifs "$url" >/dev/null; then
+            target="$url"
+            filename="${url##*/}"
+            directory="${filename%.tar.gz}"
+            echo "Download target: $filename"
+            break
+        fi
+    done
+
+    if [[ -z "$target" ]]; then
+        echo "Failed to find a working Neovim download URL."
         return 1
     fi
-    
-    filename="$directory.tar.gz"
 
-    # Check if the file exists and is older than 1 day
-    if [ ! -f "$filename" ] || [ "$(find "$filename" -mtime +0 2>/dev/null)" ]; then
-        echo "Downloading Neovim..."
+    # Download if missing or older than 1 day
+    if [[ ! -f "$filename" || "$(find "$filename" -mtime +1 2>/dev/null)" ]]; then
+        echo "Fetching latest Neovim build..."
         rm -rf "$directory" "$filename"
         curl -LO "$target" || { echo "Download failed"; return 1; }
         tar -xzf "$filename" || { echo "Extraction failed"; return 1; }
     else
-        echo "Neovim is up-to-date"
+        echo "Neovim tarball is less than 1 day old; skipping download."
     fi
 
-    cd "$current" || return 1
+    cd "$cwd" || return 1
+    echo "Done!"
 }
 
-# --- UNIVERSAL EXTRACTION ---
 extract() {
-  local file="$1"
-  [[ -z "$file" ]] && { echo "Usage: extract <file>"; return 1; }
-  [[ ! -f "$file" ]] && { echo "Error: '$file' not found"; return 1; }
+    local file="$1"
 
-  # derive directory name (remove .tar.*, .gz, .bz2, .xz, .zst extensions)
-  local base="${file%%.*}"
-  base="${file%%.tar.*}"
-  base="${base%%.*}"
-  local dir="${base%.*}"
-  dir="${dir:-${file%.*}}"
+    [[ -z "$file" ]]     && { echo "Usage: extract <file>"; return 1; }
+    [[ ! -f "$file" ]]   && { echo "Error: '$file' not found"; return 1; }
 
-  # ensure we don't overwrite existing folder
-  if [[ -d "$dir" ]]; then
-    dir="${dir}_extracted_$(date +%s)"
-  fi
-  mkdir -p "$dir"
+    # Strip known extensions to derive folder name
+    local dir="$file"
+    dir="${dir%.tar.bz2}"
+    dir="${dir%.tar.gz}"
+    dir="${dir%.tar.xz}"
+    dir="${dir%.tar.zst}"
+    dir="${dir%.tar}"
+    dir="${dir%.bz2}"
+    dir="${dir%.gz}"
+    dir="${dir%.xz}"
+    dir="${dir%.zst}"
 
-  echo "→ Extracting into '$dir/' ..."
-  case "$file" in
-    *.tar.bz2)  tar -xvjf "$file" -C "$dir" ;;
-    *.tar.gz)   tar -xvzf "$file" -C "$dir" ;;
-    *.tar.xz)   tar -xvJf "$file" -C "$dir" ;;
-    *.tar.zst)  tar --use-compress-program=unzstd -xvf "$file" -C "$dir" ;;
-    *.tar)      tar -xvf "$file" -C "$dir" ;;
-    *.bz2)      bunzip2 -k "$file" && mv "${file%.bz2}" "$dir/" ;;
-    *.gz)       gunzip -k "$file" && mv "${file%.gz}" "$dir/" ;;
-    *.xz)       unxz -k "$file" && mv "${file%.xz}" "$dir/" ;;
-    *.zst)      unzstd -k "$file" && mv "${file%.zst}" "$dir/" ;;
-    *)          echo "Cannot extract '$file': unsupported format"; return 1 ;;
-  esac
-  echo "✔ Done."
+    # Clean up directory name if needed
+    dir="${dir##*/}" # strip path
+
+    # Avoid overwrite
+    if [[ -d "$dir" ]]; then
+        dir="${dir}_extracted_$(date +%s)"
+    fi
+
+    mkdir -p "$dir"
+
+    echo "→ Extracting '$file' → '$dir/'"
+
+    case "$file" in
+        *.tar.bz2)  tar -xjf "$file" -C "$dir" ;;
+        *.tar.gz)   tar -xzf "$file" -C "$dir" ;;
+        *.tar.xz)   tar -xJf "$file" -C "$dir" ;;
+        *.tar.zst)  tar --use-compress-program=unzstd -xf "$file" -C "$dir" ;;
+        *.tar)      tar -xf "$file" -C "$dir" ;;
+        *.bz2)      bunzip2 -k "$file"; mv "${file%.bz2}" "$dir/" ;;
+        *.gz)       gunzip -k "$file";  mv "${file%.gz}" "$dir/" ;;
+        *.xz)       unxz -k "$file";    mv "${file%.xz}" "$dir/" ;;
+        *.zst)      unzstd -k "$file";  mv "${file%.zst}" "$dir/" ;;
+        *)          echo "Unsupported file type: $file"; return 1 ;;
+    esac
+
+    echo "✔ Done."
 }
 
-# --- UNIVERSAL ARCHIVER ---
 archive() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: archive <output_name> <file_or_dir> [more_files...]"
-    return 1
-  fi
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: archive <output_name> <file_or_dir> [more_files...]"
+        return 1
+    fi
 
-  local output="$1"; shift
-  local compressor
+    local output="$1"; shift
+    local compressor=""
+    local tar_ext=""
 
-  case "$output" in
-    *.tar.gz)
-      compressor=$(command -v pigz >/dev/null && echo "pigz" || echo "gzip")
-      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
-      ;;
-    *.tar.bz2)
-      compressor=$(command -v pbzip2 >/dev/null && echo "pbzip2" || echo "bzip2")
-      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
-      ;;
-    *.tar.xz)
-      compressor=$(command -v pxz >/dev/null && echo "pxz" || echo "xz")
-      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
-      ;;
-    *.tar.zst)
-      compressor=$(command -v zstd >/dev/null && echo "zstd" || echo "gzip")
-      tar -cv --use-compress-program="$compressor" -f "$output" "$@"
-      ;;
-    *.tar)
-      tar -cvf "$output" "$@"
-      ;;
-    *)
-      echo "Error: output must end with .tar, .tar.gz, .tar.bz2, .tar.xz, or .tar.zst"
-      return 1
-      ;;
-  esac
-  echo "✔ Archive created: $output"
+    # Mapping of extensions → best compressor
+    declare -A COMPRESSORS=(
+        [gz]="$(command -v pigz >/dev/null && echo pigz || echo gzip)"
+        [bz2]="$(command -v pbzip2 >/dev/null && echo pbzip2 || echo bzip2)"
+        [xz]="$(command -v pxz >/dev/null && echo pxz || echo xz)"
+        [zst]="$(command -v zstd >/dev/null && echo zstd || echo gzip)"
+        [tar]=""
+    )
+
+    case "$output" in
+        *.tar.gz)   tar_ext="gz" ;;
+        *.tar.bz2)  tar_ext="bz2" ;;
+        *.tar.xz)   tar_ext="xz" ;;
+        *.tar.zst)  tar_ext="zst" ;;
+        *.tar)      tar_ext="tar" ;;
+        *)
+            echo "Error: output must end in .tar, .tar.gz, .tar.bz2, .tar.xz, or .tar.zst"
+            return 1
+            ;;
+    esac
+
+    compressor="${COMPRESSORS[$tar_ext]}"
+
+    echo "→ Creating archive '$output'..."
+
+    if [[ "$tar_ext" == "tar" ]]; then
+        tar -cf "$output" "$@" || { echo "Archive failed"; return 1; }
+    else
+        tar --use-compress-program="$compressor" -cf "$output" "$@" \
+            || { echo "Archive failed"; return 1; }
+    fi
+
+    echo "✔ Archive created: $output"
 }
 
-# Backup a drive to a target
-# example) backup_drive /dev/sda /mnt/drive/backup.tar.gz
 backup_drive() {
-  # Check if both source and target are provided
-  if [[ $# -ne 2 ]]; then
-    echo "Usage: backup_drive <source_device> <target_image>"
+  if [[ $# -lt 1 || $# -gt 2 ]]; then
+    printf "Usage: backup_drive <source_device> [target.img]\n"
     return 1
   fi
 
-  # Define the source and target from the arguments
   local source="$1"
   local target="$2"
-
-  # Set the log file path in /var/log
   local logfile="/var/log/backup_drive.log"
 
-  # Check if the source device exists
+  # Logging helper
+  log() {
+    printf "%s\n" "$1" | sudo tee -a "$logfile" > /dev/null
+  }
+
+  # Check source device
   if [[ ! -e "$source" ]]; then
-    echo "Error: Source device $source does not exist" | tee -a $logfile
+    log "Error: Source device '$source' does not exist."
     return 1
   fi
 
-  # Start the backup process
-  echo "Starting backup of $source to $target at $(date)" | sudo tee -a $logfile
+  # Auto-generate target if missing
+  if [[ -z "$target" ]]; then
+    local name="$(basename "$source")"
+    local stamp="$(date +%Y%m%d_%H%M%S)"
+    target="./${name}_${stamp}.img"
+    printf "No target provided — using: %s\n" "$target"
+  fi
 
-  # Create the backup using dd
-  sudo dd if="$source" of="$target" bs=4M status=progress conv=noerror,sync
+  log "Starting backup of '$source' to '$target' at $(date)"
 
-  # Check if the dd command was successful
-  if [[ $? -eq 0 ]]; then
-    echo "Backup completed successfully at $(date)" | sudo tee -a $logfile
+  # Perform the dd backup
+  if sudo dd if="$source" of="$target" bs=4M status=progress conv=noerror,sync; then
+    log "Backup completed successfully at $(date)"
   else
-    echo "Backup failed at $(date)" | sudo tee -a $logfile
+    log "Backup FAILED at $(date)"
     return 1
   fi
 }
 
-# Backup a directory to a target
-# example) backup_rsync $HOME/.ssh somewhere:/mnt/drive/backup.tar.gz
-backup_rsync() {
-  # Check if both source and target are provided
-  if [[ $# -ne 2 ]]; then
-    echo "Usage: backup_rsync <source_directory_or_file> <remote_target_tar_file>"
+cc() {
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+    printf "Usage: compress_copy <source> [target.tar.gz]\n"
     return 1
   fi
 
-  # Define the source and target from the arguments
   local source="$1"
   local target="$2"
 
-  # Get the current date in YYYY-MM-DD format
-  local current_date=$(date +'%Y-%m-%d')
+  # Validate source
+  if [[ ! -e "$source" ]]; then
+    printf "Error: Source '%s' does not exist.\n" "$source"
+    return 1
+  fi
 
-  # Get the log file path in /var/log
-  local logfile="/var/log/rsync_backup.log"
+  # Auto-generate target if missing
+  if [[ -z "$target" ]]; then
+    local name="$(basename "$source")"
+    local stamp="$(date +%Y%m%d_%H%M%S)"
+    target="./${name}_${stamp}.tar.gz"
+    printf "No target provided — using: %s\n" "$target"
+  fi
 
-  # Ensure the target ends with .tar.gz
+  # Validate extension
   if [[ "$target" != *.tar.gz ]]; then
-    echo "Error: Target file must end with .tar.gz" | sudo tee -a $logfile
+    printf "Error: Target must end with .tar.gz\n"
     return 1
   fi
 
-  # Create a temporary tarball
-  local temp_tarball="/tmp/backup_${current_date}.tar.gz"
+  # Temporary tarball
+  local tmp="/tmp/$(basename "$source")_$(date +%Y%m%d_%H%M%S).tar.gz"
 
-  # Start the backup process
-  echo "Creating tarball of $source at $(date)" | sudo tee -a $logfile
-
-  # Create the tarball
-  tar -czvf "$temp_tarball" -C "$(dirname "$source")" "$(basename "$source")"
-
-  # Check if tar was successful
-  if [[ $? -ne 0 ]]; then
-    echo "Tar creation failed at $(date)" | sudo tee -a $logfile
+  printf "→ Compressing '%s'...\n" "$source"
+  if ! tar -czf "$tmp" -C "$(dirname "$source")" "$(basename "$source")"; then
+    printf "Compression failed!\n"
     return 1
   fi
 
-  # Transfer the tarball to the remote server using rsync
-  echo "Transferring $temp_tarball to $target at $(date)" | sudo tee -a $logfile
-  rsync -avh --progress "$temp_tarball" "$target"
-
-  # Check if rsync was successful
-  if [[ $? -eq 0 ]]; then
-    echo "Backup completed successfully and transferred to $target at $(date)" | sudo tee -a $logfile
-  else
-    echo "Backup transfer failed at $(date)" | sudo tee -a $logfile
+  printf "→ Copying to '%s'...\n" "$target"
+  if ! rsync -ah "$tmp" "$target"; then
+    printf "Copy failed!\n"
+    rm -f "$tmp"
     return 1
   fi
 
-  # Clean up the temporary tarball
-  rm -f "$temp_tarball"
-
-  # Check if cleanup was successful
-  if [[ $? -eq 0 ]]; then
-    echo "Temporary tarball removed successfully at $(date)" | sudo tee -a $logfile
-  else
-    echo "Failed to remove temporary tarball at $(date)" | sudo tee -a $logfile
-  fi
+  rm -f "$tmp"
+  printf "✔ Done! Saved compressed archive to %s\n" "$target"
 }

@@ -213,8 +213,6 @@ bindsym $mod+Shift+F12 exec "i3-nagbar -t warning -m 'You pressed the exit short
 # Dock
 #bindsym ctrl+grave exec --no-startup-id $HOME/.bin/scripts/dash_toggle
 
-bindsym ctrl+grave exec --no-startup-id kitty -- $HOME/.bin/scripts/kitty-session
-
 #########################################################################################
 # Window Key Bindings
 #########################################################################################
