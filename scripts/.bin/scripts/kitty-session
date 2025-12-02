@@ -8,8 +8,8 @@ SESSIONS=$(ls "$SESSION_DIR"/*.conf 2>/dev/null | sed 's#.*/##; s#.conf$##')
 
 SESSION_NAME=$(printf "%s\n" $SESSIONS | \
   fzf --prompt="Sessions > " --height=50% --border --reverse \
-      --bind "alt-c:execute(echo -n '{q}' > /tmp/kitty-new-session)+abort" \
-      --header="Press ALT-C to create a new session")
+      --bind "f2:execute(echo -n '{q}' > /tmp/kitty-new-session)+abort" \
+      --header="Press F2 to create a new session")
 
 # ALT-C pressed → user typed a new name
 if [ -f "/tmp/kitty-new-session" ]; then
