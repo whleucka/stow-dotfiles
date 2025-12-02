@@ -125,6 +125,5 @@ if vim.fn.filereadable(THEME_FILE) == 1 then
   apply_theme()
   restart_file_poll()
 else
-  vim.notify("Omarchy: theme missing at " .. THEME_FILE, vim.log.levels.WARN)
   fallback_theme()
 end

@@ -4,7 +4,7 @@ vim.lsp.enable({
   "clangd",
   "bashls",
   "lua_ls",
-  "basedpyright",
+  "ruff",
 })
 
 vim.diagnostic.config({
