@@ -151,7 +151,7 @@ bindsym $mod+d exec "rofi -modi drun,run,filebrowser,emoji:'rofimoji -a copy --s
 # Kill focused window
 bindsym $mod+q kill
 # Kitty (terminal)
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec kitty -o allow_remote_control=yes --single-instance --listen-on unix:/tmp/mykitty
 
 # # Other apps
 # # (F)ile

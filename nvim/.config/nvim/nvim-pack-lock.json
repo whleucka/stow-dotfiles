@@ -118,6 +118,10 @@
       "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "smart-splits": {
+      "rev": "e892a5da963813119d053af5b2260e3cd9d9f037",
+      "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
     "tokyonight.nvim": {
       "rev": "5da1b76e64daf4c5d410f06bcb6b9cb640da7dfd",
       "src": "https://github.com/folke/tokyonight.nvim"

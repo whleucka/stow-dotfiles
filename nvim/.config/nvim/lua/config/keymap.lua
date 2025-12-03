@@ -146,19 +146,6 @@ wk.add({
   {
     { "q",          "<nop>" },
     { "<esc><esc>", ":noh<CR>" },
-    {
-      "<leader>q",
-      function()
-        local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-        if #bufs > 1 then
-          vim.cmd("bd")
-        else
-          vim.cmd("bd")
-          vim.cmd("Dashboard")
-        end
-      end,
-      desc = "Close buffer"
-    },
     { "<leader>Q", ":qa<CR>",                   desc = "Close Neovim" },
     { "H",         ":bprev<CR>",                desc = "Previous Buffer" },
     { "L",         ":bnext<CR>",                desc = "Previous Buffer" },
@@ -168,10 +155,6 @@ wk.add({
     { "<C-j>",     "<C-w>j",                    desc = "Move to bottom window" },
     { "<C-k>",     "<C-w>k",                    desc = "Move to top window" },
     { "<C-l>",     "<C-w>l",                    desc = "Move to right window" },
-    { "<A-h>",     ":vertical resize -2<CR>",   desc = "Decrease window width" },
-    { "<A-l>",     ":vertical resize +2<CR>",   desc = "Increase window width" },
-    { "<A-j>",     ":resize -2<CR>",            desc = "Decrease window height" },
-    { "<A-k>",     ":resize +2<CR>",            desc = "Increase window height" },
     { "<A-=>",     "<C-w>=<CR>",                desc = "Automatically resize windows" },
     { "gd",        vim.lsp.buf.definition,      desc = "Go to definition" },
     { "gD",        vim.lsp.buf.declaration,     desc = "Go to declaration" },
