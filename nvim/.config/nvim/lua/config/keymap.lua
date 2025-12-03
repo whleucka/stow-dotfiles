@@ -159,8 +159,6 @@ wk.add({
     { "gT",        vim.lsp.buf.type_definition, desc = "Go to type definition" },
     { "g0",        vim.lsp.buf.document_symbol, desc = "Go to table of contents" },
     { "gs",        vim.lsp.buf.signature_help,  desc = "Signature help" },
-    { "]t",        ":tabnext<CR>",              desc = "Tab next" },
-    { "[t",        ":tabprev<CR>",              desc = "Tab prev" },
   },
   {
     mode = "i",
