@@ -16,7 +16,11 @@ wk.add({
     group = "Find",
     { "<leader>ff", ":FzfLua files<cr>",     desc = "Files" },
     { "<leader>fh", ":FzfLua helptags<cr>",  desc = "Help" },
-    { "<leader>fc", ":FzfLua commands<cr>",  desc = "Commands" },
+    { "<leader>fc", function()
+        require('fzf-lua').files({
+          cwd = vim.fn.stdpath('config')
+        })
+    end,  desc = "Config" },
     { "<leader>fm", ":FzfLua manpages<cr>",  desc = "Manpages" },
     { "<leader>fk", ":FzfLua keymaps<cr>",   desc = "Keymap" },
     { "<leader>fg", ":FzfLua git_files<cr>", desc = "Git files" },

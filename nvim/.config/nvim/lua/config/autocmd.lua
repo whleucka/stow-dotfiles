@@ -115,7 +115,6 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 -- one group, created once
 local close_grp = vim.api.nvim_create_augroup("close-with-q", { clear = true })
 
--- option A: single autocmd with list pattern
 vim.api.nvim_create_autocmd("FileType", {
   group = close_grp,
   pattern = { "help", "man", "qf", "oil" },
@@ -131,7 +130,7 @@ vim.api.nvim_create_autocmd("FileType", {
       end
     end, { buffer = ev.buf, silent = true, desc = "Close window with q" })
 
-    -- optional: don't list these buffers
+    -- don't list these buffers
     vim.bo[ev.buf].buflisted = false
   end,
 })
