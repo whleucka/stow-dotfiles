@@ -101,6 +101,7 @@ wk.add({
     { "<C-j>", require('smart-splits').move_cursor_down, desc = "Split Move Cursor Down" },
     { "<C-k>", require('smart-splits').move_cursor_up, desc = "Split Move Cursor Up" },
     { "<C-l>", require('smart-splits').move_cursor_right, desc = "Split Move Cursor Right" },
+    { "<C-p>", require('smart-splits').move_cursor_previous, desc = "Split Move Cursor Previous" },
 
     { "<leader><leader>h", require('smart-splits').swap_buf_left, desc = "Split Swap Buffer Left" },
     { "<leader><leader>j", require('smart-splits').swap_buf_down, desc = "Split Swap Buffer Down" },
