@@ -18,6 +18,7 @@ vim.opt.autoindent = true  -- Copy indent from current line
 vim.opt.cmdheight = 0         -- No command height
 vim.opt.cursorline = true     -- Highlight current line
 vim.opt.termguicolors = true  -- 24-bit color support
+vim.opt.guicursor = "a:"
 vim.opt.signcolumn = 'yes'    -- Always show signcolumn (gutter)
 vim.opt.scrolloff = 8         -- Context lines above/below cursor
 vim.opt.sidescrolloff = 8     -- Context on sides for horizontal movement

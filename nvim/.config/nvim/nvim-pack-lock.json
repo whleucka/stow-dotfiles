@@ -29,6 +29,10 @@
       "rev": "0775e567b6c0be96d01a61795f7b64c1758262f6",
       "src": "https://github.com/nvimdev/dashboard-nvim"
     },
+    "ethereal.nvim": {
+      "rev": "a0ec73332e537228981b6a4f465cef82bb3e1d36",
+      "src": "https://github.com/bjarneo/ethereal.nvim"
+    },
     "everforest-nvim": {
       "rev": "557bce922401e247a596583679bc181d4d688554",
       "src": "https://github.com/neanias/everforest-nvim"
@@ -46,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "9a0704e8af8f8442110ff22a83b5608366b235df",
+      "rev": "cae96b04f6cad98a3ad24349731df5e56b384c3c",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -56,6 +60,10 @@
     "gruvbox.nvim": {
       "rev": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"
+    },
+    "hackerman.nvim": {
+      "rev": "8134000fa4de5036d1af519774c3e373887226e3",
+      "src": "https://github.com/bjarneo/hackerman.nvim"
     },
     "kanagawa.nvim": {
       "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
@@ -84,6 +92,14 @@
     "nightfox.nvim": {
       "rev": "ba47d4b4c5ec308718641ba7402c143836f35aa9",
       "src": "https://github.com/EdenEast/nightfox.nvim"
+    },
+    "noice": {
+      "rev": "7bfd942445fb63089b59f97ca487d605e715f155",
+      "src": "https://github.com/folke/noice.nvim"
+    },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim": {
       "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
@@ -115,7 +131,7 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
-      "rev": "01cb3a8ad7d5e8707041edc775af83dbf33838f4",
+      "rev": "cbcb3f997f6f261c577b943ec94e4ef55108dd95",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "smart-splits": {

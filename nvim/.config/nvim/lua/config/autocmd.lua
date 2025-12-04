@@ -23,56 +23,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end,
 })
 
--- Smart Winbar: file icon + name + git branch/status
-local devicons = require("nvim-web-devicons")
-
-local function get_git_info()
-  local branch = vim.b.gitsigns_head or ""
-  local status = vim.b.gitsigns_status or ""
-
-  if branch ~= "" then
-    branch = " " .. branch
-  end
-
-  if status and status ~= "" then
-    status = " " .. status
-  end
-
-  return branch .. status
-end
-
-local function get_file_info()
-  local file = vim.fn.expand("%:t")
-  if file == "" then
-    return ""
-  end
-
-  local ext = vim.fn.expand("%:e")
-  local icon, icon_hl = devicons.get_icon(file, ext, { default = true })
-
-  return "%#" .. icon_hl .. "#" .. icon .. "%* " .. file
-end
-
-local function set_winbar()
-  vim.cmd([[
-    hi WinBar guibg=NONE guifg=#a6adc8
-    hi WinBarNC guibg=NONE guifg=#6c7086
-  ]])
-  local file_info = get_file_info()
-  local git_info = get_git_info()
-
-  vim.wo.winbar = table.concat({
-    file_info,
-    "%=",
-    "%#LineNr#", -- subtle color for right side
-    git_info,
-  })
-end
-
-vim.api.nvim_create_autocmd({ "BufReadPost", "CursorHold" }, {
-  callback = set_winbar,
-})
-
 -- Restore last cursor pos
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = vim.api.nvim_create_augroup('restore-cursor-pos', { clear = true }),
