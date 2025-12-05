@@ -22,7 +22,7 @@
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
     "catppuccin": {
-      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
+      "rev": "193e123cdbc4dd3e86db883d55349e9587f0ded6",
       "src": "https://github.com/catppuccin/nvim"
     },
     "dashboard-nvim": {
@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "cae96b04f6cad98a3ad24349731df5e56b384c3c",
+      "rev": "f6d949549cc43fb5d35ef43db56f03131da469a7",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -102,7 +102,7 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim": {
-      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
+      "rev": "193e123cdbc4dd3e86db883d55349e9587f0ded6",
       "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-dap": {
@@ -135,7 +135,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "smart-splits": {
-      "rev": "e892a5da963813119d053af5b2260e3cd9d9f037",
+      "rev": "076426b93a0654b6e1467258514dd9021a5e33e2",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "tokyonight.nvim": {

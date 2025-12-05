@@ -70,6 +70,12 @@ wk.add({
           vim.o.background = "light"
         else
           vim.o.background = "dark"
+          transparent_enabled = true
+          vim.cmd("hi! Normal guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! NormalNC guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! SignColumn guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! LineNr guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! EndOfBuffer guibg=NONE ctermbg=NONE")
         end
       end,
       desc = "Toggle light/dark background"
@@ -79,23 +85,17 @@ wk.add({
       function()
         transparent_enabled = not transparent_enabled
         if transparent_enabled then
-          -- Clear Normal and related highlight groups
-          vim.cmd [[
-            hi Normal guibg=NONE ctermbg=NONE
-            hi NormalNC guibg=NONE ctermbg=NONE
-            hi SignColumn guibg=NONE ctermbg=NONE
-            hi LineNr guibg=NONE ctermbg=NONE
-            hi EndOfBuffer guibg=NONE ctermbg=NONE
-          ]]
+          vim.cmd("hi! Normal guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! NormalNC guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! SignColumn guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! LineNr guibg=NONE ctermbg=NONE")
+          vim.cmd("hi! EndOfBuffer guibg=NONE ctermbg=NONE")
         else
-          -- Reset highlights back to default
-          vim.cmd [[
-            hi Normal guibg=NONE ctermbg=NONE
-            hi NormalNC guibg=NONE ctermbg=NONE
-            hi SignColumn guibg=NONE ctermbg=NONE
-            hi LineNr guibg=NONE ctermbg=NONE
-            hi EndOfBuffer guibg=NONE ctermbg=NONE
-          ]]
+          vim.cmd("hi clear Normal")
+          vim.cmd("hi clear NormalNC")
+          vim.cmd("hi clear SignColumn")
+          vim.cmd("hi clear LineNr")
+          vim.cmd("hi clear EndOfBuffer")
           vim.cmd.colorscheme(current_colorscheme)
         end
       end,
@@ -112,6 +112,55 @@ wk.add({
         end
       end,
       desc = "Toggle folds"
+    },
+    { "<leader>uS", ":set showtabline=0<CR>", desc = "Hide tabline" },
+    { "<leader>uT", ":set showtabline=2<CR>", desc = "Show tabline" },
+
+    {
+      "<leader>ug",
+      function()
+        vim.o.signcolumn = (vim.o.signcolumn == "yes" and "no") or "yes"
+      end,
+      desc = "Toggle signcolumn"
+    },
+
+    {
+      "<leader>uH",
+      function()
+        vim.o.laststatus = (vim.o.laststatus == 3 and 2) or 3
+      end,
+      desc = "Toggle global statusline"
+    },
+
+    {
+      "<leader>uB",
+      function()
+        vim.o.scrolloff = (vim.o.scrolloff == 0 and 8) or 0
+      end,
+      desc = "Toggle scrolloff padding"
+    },
+    { "<leader>ua", ":set autoindent!<CR>", desc = "Toggle autoindent" },
+    { "<leader>uP", ":set paste!<CR>",      desc = "Toggle paste mode" },
+    { "<leader>ue", ":set expandtab!<CR>",  desc = "Toggle expandtab vs tabs" },
+    {
+      "<leader>uz",
+      function()
+        vim.wo.conceallevel = (vim.wo.conceallevel == 0 and 2) or 0
+      end,
+      desc = "Toggle conceal level"
+    },
+
+    {
+      "<leader>ux",
+      function()
+        vim.o.relativenumber = false
+        vim.o.number = false
+        vim.o.signcolumn = "no"
+        vim.o.foldenable = false
+        vim.o.cursorline = false
+        vim.o.list = false
+      end,
+      desc = "Zen mode lite"
     },
   },
   {
@@ -144,14 +193,14 @@ wk.add({
     { "<leader>bl", ":blast<CR>",  desc = "Last" },
   },
   {
-    { "q",               "<nop>" },
-    { "<esc><esc>",      ":noh<CR>" },
-    { "<leader>Q",       ":qa<CR>",                   desc = "Close Neovim" },
-    { "H",               ":bprev<CR>",                desc = "Previous Buffer" },
-    { "L",               ":bnext<CR>",                desc = "Previous Buffer" },
-    { "<leader><space>", ":write<CR>",                desc = "Save", },
-    { "<F5>",            ":update<CR> :source<CR>",   desc = "Source file", },
-    { "<A-=>",           "<C-w>=<CR>",                desc = "Automatically resize windows" },
+    { "q",          "<nop>" },
+    { "<esc><esc>", ":noh<CR>" },
+    { "<leader>Q",  ":qa<CR>",                 desc = "Close Neovim" },
+    { "H",          ":bprev<CR>",              desc = "Previous Buffer" },
+    { "L",          ":bnext<CR>",              desc = "Previous Buffer" },
+    { "<leader>a",  ":write<CR>",              desc = "Save", },
+    { "<F5>",       ":update<CR> :source<CR>", desc = "Source file", },
+    { "<A-=>",      "<C-w>=<CR>",              desc = "Automatically resize windows" },
     { "gd",              vim.lsp.buf.definition,      desc = "Go to definition" },
     { "gD",              vim.lsp.buf.declaration,     desc = "Go to declaration" },
     { "gi",              vim.lsp.buf.implementation,  desc = "Go to implementation" },
@@ -162,8 +211,8 @@ wk.add({
   },
   {
     mode = "i",
-    { "jk",    "<esc>" },
-    { "kj",    "<esc>" },
+    { "jk", "<esc>" },
+    { "kj", "<esc>" },
   },
   {
     mode = "v",
