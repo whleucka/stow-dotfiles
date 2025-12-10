@@ -22,7 +22,9 @@ require("sshfs").setup({
     auto_change_dir_on_mount = false, -- auto-change current directory to mount point (default: false)
   },
   host_specific_mounts = {
-    ['cl-alpha'] = '/var/www/alpha.chainlogic.net/web/will/cms',
+    ['cl-alpha'] = '/var/www/alpha.chainlogic.net/web/will/cms/',
+    ['ic-atm'] = '/var/www/dev.chainlogic.net/',
+    ['elitedesk'] = '/home/whleucka/Projects/',
   },
   handlers = {
     on_disconnect = {

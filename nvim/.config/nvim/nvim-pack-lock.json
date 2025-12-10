@@ -142,6 +142,10 @@
       "rev": "86dbdcc1dee39da17b78491bb4f563311d343baf",
       "src": "https://github.com/whleucka/sshfs.nvim"
     },
+    "sshfs.nvim": {
+      "rev": "2f29d0edc56a5b5c0bb52377f7bab45a362771cb",
+      "src": "https://github.com/uhs-robert/sshfs.nvim"
+    },
     "tokyonight.nvim": {
       "rev": "5da1b76e64daf4c5d410f06bcb6b9cb640da7dfd",
       "src": "https://github.com/folke/tokyonight.nvim"
