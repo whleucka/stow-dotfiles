@@ -24,6 +24,7 @@ require("sshfs").setup({
   host_specific_mounts = {
     ['cl-alpha'] = '/var/www/alpha.chainlogic.net/web/will/cms/',
     ['ic-atm'] = '/var/www/dev.chainlogic.net/',
+    ['chainlogic'] = '/mnt/enc/chainlogic-dev',
     ['elitedesk'] = '/home/whleucka/Projects/',
   },
   handlers = {
