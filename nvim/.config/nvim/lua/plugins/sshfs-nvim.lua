@@ -1,7 +1,7 @@
 vim.pack.add({
   {
-    src = "https://github.com/uhs-robert/sshfs.nvim",
-    name = "sshfs"
+    src = "https://github.com/whleucka/sshfs.nvim",
+    name = "sshfs",
   }
 })
 
@@ -20,6 +20,9 @@ require("sshfs").setup({
     base_dir = vim.fn.expand("$HOME") .. "/.mount", -- where remote mounts are created
     unmount_on_exit = true, -- auto-disconnect all mounts on :q or exit
     auto_change_dir_on_mount = false, -- auto-change current directory to mount point (default: false)
+  },
+  host_specific_mounts = {
+    ['cl-alpha'] = '/var/www/alpha.chainlogic.net/web/will/cms',
   },
   handlers = {
     on_disconnect = {
