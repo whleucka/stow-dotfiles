@@ -17,7 +17,7 @@ require("sshfs").setup({
     },
   },
   mounts = {
-    base_dir = vim.fn.expand("$HOME") .. "/Projects/mount", -- where remote mounts are created
+    base_dir = vim.fn.expand("$HOME") .. "/.mount", -- where remote mounts are created
     unmount_on_exit = true, -- auto-disconnect all mounts on :q or exit
     auto_change_dir_on_mount = false, -- auto-change current directory to mount point (default: false)
   },
