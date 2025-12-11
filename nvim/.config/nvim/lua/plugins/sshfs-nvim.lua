@@ -1,6 +1,6 @@
 vim.pack.add({
   {
-    src = "https://github.com/whleucka/sshfs.nvim",
+    src = "https://github.com/uhs-robert/sshfs.nvim",
     name = "sshfs",
   }
 })

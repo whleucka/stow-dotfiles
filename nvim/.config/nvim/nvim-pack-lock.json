@@ -143,8 +143,8 @@
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "sshfs": {
-      "rev": "91e85b37156dd3cafa51c37a5428be76c7fee40f",
-      "src": "https://github.com/whleucka/sshfs.nvim"
+      "rev": "62978916914ef9b783e23f9639b02a515674ad01",
+      "src": "https://github.com/uhs-robert/sshfs.nvim"
     },
     "tokyonight.nvim": {
       "rev": "5da1b76e64daf4c5d410f06bcb6b9cb640da7dfd",
