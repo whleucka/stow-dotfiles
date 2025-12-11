@@ -18,7 +18,7 @@
       "version": "'v1.8.0'"
     },
     "bodybuilder-nvim": {
-      "rev": "f2ab1ff3f7d29adafff01d7193bf2ec6667c157b",
+      "rev": "8a8fa1f2c9634e1e3db9a63299882e8e68c1b371",
       "src": "https://github.com/whleucka/bodybuilder-nvim"
     },
     "bufferline.nvim": {
