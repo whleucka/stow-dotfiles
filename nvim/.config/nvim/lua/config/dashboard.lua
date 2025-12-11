@@ -13,8 +13,7 @@ return {
     project = {
       enable = true,
       action = function(path)
-        -- use fzf-lua instead of telescope
-        require('fzf-lua').files({ cwd = path })
+        require('fff').find_files_in_dir(path)
       end,
     },
     week_header = {
@@ -37,7 +36,9 @@ return {
       {
         desc = 'Files',
         group = 'Label',
-        action = 'FzfLua files',
+        action = function()
+          require('fff').find_files()
+        end,
         key = 'f',
       },
       {
@@ -52,9 +53,8 @@ return {
         desc = 'Config',
         group = 'Label',
         action = function()
-          require('fzf-lua').files({
-            cwd = vim.fn.stdpath('config')
-          })
+          local path = vim.fn.stdpath('config')
+          require('fff').find_files_in_dir(path)
         end,
         key = 'c',
       },

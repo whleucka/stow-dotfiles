@@ -5,7 +5,7 @@
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
     "amp": {
-      "rev": "621f1ca375fc2887d30a4ac32a8b6c582d28f9c0",
+      "rev": "48af7fd795f8ff763b45a63472d3a390a990c011",
       "src": "https://github.com/sourcegraph/amp.nvim"
     },
     "bamboo.nvim": {
@@ -36,6 +36,10 @@
     "everforest-nvim": {
       "rev": "557bce922401e247a596583679bc181d4d688554",
       "src": "https://github.com/neanias/everforest-nvim"
+    },
+    "fff.nvim": {
+      "rev": "53acaf90abb7d187ac9ac32b9536592e6d5ee10f",
+      "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
