@@ -6,7 +6,7 @@ vim.pack.add({
 
 -- See https://github.com/ollama/ollama
 require("bodybuilder").setup({
-  model = "llama3.2",
+  model = "llama3.1",
   url = "http://192.168.0.103:11434/api/generate",
   keymap = "<leader>af",
 })
