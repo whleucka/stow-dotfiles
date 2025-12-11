@@ -22,6 +22,9 @@ vim.api.nvim_create_autocmd("BufRead", {
       require("plugins.smart-splits-nvim")
       require("plugins.luasnip")
       require("plugins.gitsigns")
+      require("plugins.bodybuilder-nvim")
     end
   end
 })
+
+
