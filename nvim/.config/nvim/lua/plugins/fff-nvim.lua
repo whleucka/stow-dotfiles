@@ -1,22 +1,8 @@
 vim.pack.add({ 'https://github.com/dmtrKovalenko/fff.nvim' })
 
-vim.api.nvim_create_autocmd("PackChanged", {
-  group = vim.api.nvim_create_augroup('fff-pack-changed', { clear = true }),
-  callback = function(event)
-    local data = event.data or {}
-
-    if data.updated or data.installed then
-      -- Reload module in case pack just pulled new code
-      package.loaded["fff.download"] = nil
-      local ok, mod = pcall(require, "fff.download")
-      if ok then
-        mod.download_or_build_binary()
-      else
-        print("Failed to load fff.download:", mod)
-      end
-    end
-  end,
-})
+-- download the binary if it doesn't exist
+-- maybe switch to autocmd when PackChanged works
+require("fff.download").download_or_build_binary()
 
 -- the plugin will automatically lazy load
 vim.g.fff = {
@@ -32,7 +18,7 @@ wk.add({
   {
     "<leader>f",
     group = "Find",
-    { "<leader>ff", function() require('fff').find_files() end, desc = "Files" },
+    { "<leader>ff", function() require('fff').find_files() end,       desc = "Files" },
     {
       "<leader>fc",
       function()

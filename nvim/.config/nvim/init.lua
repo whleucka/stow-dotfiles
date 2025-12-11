@@ -1,7 +1,6 @@
 -- This will record startup time
 vim.g.__nvim_start_time = vim.loop.hrtime()
 
--- With great power comes great responsibility
 require("config.plugins")
 require('config.globals')
 require('config.options')

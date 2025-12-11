@@ -44,9 +44,9 @@ vim.opt.updatetime = 200 -- Faster CursorHold, good for LSP
 vim.opt.timeoutlen = 300 -- Shorter delay for mapped sequences
 
 -- Aesthetics
-vim.opt.showmode = false               -- Don’t show mode (use statusline plugin)
-vim.opt.laststatus = 3                 -- Global statusline (Neovim 0.7+)
-vim.opt.fillchars:append { eob = ' ' } -- No ~ at end of buffers
+vim.opt.showmode = false                -- Don’t show mode (use statusline plugin)
+vim.opt.laststatus = 3                  -- Global statusline (Neovim 0.7+)
+vim.opt.fillchars:append { eob = ' ' }  -- No ~ at end of buffers
 
 -- Extra Ninja Options
 vim.opt.lazyredraw = true           -- Faster macro execution
