@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "de0fd4a21ee29cf6532d0c3bcae08a0b25d99b6a",
+      "rev": "c7ff27deae5b8966b0764bde962d0855e6e2db93",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -139,7 +139,7 @@
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "sshfs": {
-      "rev": "86dbdcc1dee39da17b78491bb4f563311d343baf",
+      "rev": "91e85b37156dd3cafa51c37a5428be76c7fee40f",
       "src": "https://github.com/whleucka/sshfs.nvim"
     },
     "tokyonight.nvim": {

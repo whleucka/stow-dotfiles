@@ -1,3 +1,12 @@
+local startup_ms = nil
+
+-- Compute startup time
+if vim.g.__nvim_start_time then
+  startup_ms = (vim.loop.hrtime() - vim.g.__nvim_start_time) / 1e6
+else
+  startup_ms = 0
+end
+
 return {
   theme = 'hyper',
   config = {
@@ -60,7 +69,9 @@ return {
     },
     footer = {
       "",
-      "With great power comes great responsibility"
+      "With great power comes great responsibility",
+      "",
+      string.format("⚡ Startup time: %.2f ms", startup_ms)
     }
   }
 }
