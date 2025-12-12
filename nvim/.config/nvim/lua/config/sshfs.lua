@@ -16,7 +16,7 @@ return {
       "-o compression=yes",        -- Enable compression to reduce bandwidth usage
       "-o ServerAliveInterval=15", -- Send a keepalive packet every 15 seconds to prevent timeouts
       "-o ServerAliveCountMax=3",  -- Number of missed keepalive packets before disconnecting
-      "-o IdentityFile=~/.ssh/id_rsa"
+      --"-o IdentityFile=~/.ssh/id_rsa"
     },
   },
   mounts = {
