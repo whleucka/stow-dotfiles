@@ -195,11 +195,12 @@ wk.add({
   {
     { "q",               "<nop>" },
     { "<esc><esc>",      ":noh<CR>" },
+    { "<C-s>",           ":update<CR>",               desc = "Save" },
     { "<leader>Q",       ":qa<CR>",                   desc = "Close Neovim" },
     { "H",               ":bprev<CR>",                desc = "Previous Buffer" },
     { "L",               ":bnext<CR>",                desc = "Previous Buffer" },
     { "<F5>",            ":update<CR> :source<CR>",   desc = "Source file", },
-    { "<A-=>",           "<C-w>=<CR>",                desc = "Automatically resize windows" },
+    { "<A-=>",           "  <C-w>=<CR>",                desc = "Automatically resize windows" },
     { "gd",              vim.lsp.buf.definition,      desc = "Go to definition" },
     { "gD",              vim.lsp.buf.declaration,     desc = "Go to declaration" },
     { "gi",              vim.lsp.buf.implementation,  desc = "Go to implementation" },
@@ -211,8 +212,9 @@ wk.add({
   },
   {
     mode = "i",
-    { "jk", "<esc>" },
-    { "kj", "<esc>" },
+    { "jk",    "<esc>" },
+    { "kj",    "<esc>" },
+    { "<C-s>", "<esc>:update<CR>", desc = "Save" },
   },
   {
     mode = "v",

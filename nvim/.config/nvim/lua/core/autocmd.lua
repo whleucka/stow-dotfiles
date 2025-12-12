@@ -6,12 +6,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd({"InsertLeave", "TextChanged", "TextChangedI"}, {
-  group = vim.api.nvim_create_augroup('save-on-insert-leave', { clear = true }),
-  pattern = "*",
-  command = "silent! write"
-})
-
 -- Restore last cursor pos
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = vim.api.nvim_create_augroup('restore-cursor-pos', { clear = true }),
