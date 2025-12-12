@@ -78,16 +78,15 @@ exec --no-startup-id picom -b --backend glx --config ~/.config/picom/picom.conf
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 # Polybar (top)
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# Keyboard repeat rate
-exec --no-startup-id xset r rate 350 100
-# Panel (requires .plank_toggle)
-exec --no-startup-id touch ~/.plank_toggle
-# Dock
-exec --no-startup-id plank
 # xscreensaver
 exec --no-startup-id xscreensaver
 # notifications
 exec --no-startup-id dunst
+
+# Panel (requires .plank_toggle)
+#exec --no-startup-id touch ~/.plank_toggle
+# Dock
+#exec --no-startup-id plank
 
 # Swap alt and super
 exec setxkbmap -option altwin:swap_alt_win
@@ -327,3 +326,6 @@ bindsym $mod+Shift+minus  exec --no-startup-id /home/whleucka/.cargo/bin/easy-i3
 # Mouse bindings
 #########################################################################################
 bindsym --whole-window $mod+button2 kill
+
+# Keyboard repeat rate
+exec --no-startup-id xset r rate 350 100
