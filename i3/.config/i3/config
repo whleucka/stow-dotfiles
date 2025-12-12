@@ -47,7 +47,7 @@ set $crust     #11111b
 set $inactive  #21232e
 
 # target                 title          bg              text       indicator       border
-client.focused           $text          $selection      $text      $blue           $active
+client.focused           $text          $selection      $text      $blue           $green
 client.focused_inactive  $overlay0      $base           $text      $rosewater      $surface1
 client.unfocused         $overlay0      $base           $text      $rosewater      $surface1
 client.urgent            $peach         $base           $peach     $overlay0       $peach
