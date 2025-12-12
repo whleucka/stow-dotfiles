@@ -1,8 +1,28 @@
 return {
+  connections = {
+    sshfs_args = {
+      "-o dir_cache=yes",          -- Enable directory entry caching
+      "-o dcache_max_size=100000", -- Max number of cached entries
+      "-o dcache_timeout=600",     -- Seconds entries are cached
+      "-o dcache_stat_timeout=600",
+      "-o dcache_link_timeout=600",
+      "-o dcache_dir_timeout=600",
+      --"-o large_read",             -- Reads more data per network roundtrip
+      --"-o no_readahead",           -- don’t speculatively read more than requested
+      --"-o sync_readdir",           -- For speed, probably leave off.
+      "-o max_conns=3",            -- Lets SSHFS use multiple SSH sessions for simultaneous reads
+      "-o reconnect",              -- Automatically reconnect if the connection drops
+      "-o ConnectTimeout=5",       -- Time (in seconds) to wait before failing a connection attempt
+      "-o compression=yes",        -- Enable compression to reduce bandwidth usage
+      "-o ServerAliveInterval=15", -- Send a keepalive packet every 15 seconds to prevent timeouts
+      "-o ServerAliveCountMax=3",  -- Number of missed keepalive packets before disconnecting
+      "-o IdentityFile=~/.ssh/id_rsa"
+    },
+  },
   mounts = {
-    base_dir = vim.fn.expand("$HOME") .. "/.mount", -- where remote mounts are created
-    unmount_on_exit = true, -- auto-disconnect all mounts on :q or exit
-    auto_change_dir_on_mount = false, -- auto-change current directory to mount point (default: false)
+    base_dir = vim.fn.expand("$HOME") .. "/.mount",
+    unmount_on_exit = true,
+    auto_change_dir_on_mount = true,
   },
   host_paths = {
     ['cl-alpha'] = '/var/www/alpha.chainlogic.net/web/will/cms/',
