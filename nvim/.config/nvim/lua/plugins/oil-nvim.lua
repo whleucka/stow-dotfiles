@@ -3,11 +3,8 @@ vim.pack.add {
   "https://github.com/nvim-tree/nvim-web-devicons"
 }
 
-require("oil").setup({
-  view_options = {
-    show_preview = false,
-  },
-})
+local config = require("config.oil")
+require("oil").setup()
 
 local wk = require("which-key")
 wk.add({

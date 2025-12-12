@@ -5,8 +5,5 @@ vim.pack.add({
 })
 
 -- See https://github.com/ollama/ollama
-require("bodybuilder").setup({
-  model = "qwen2.5:3b",
-  url = "http://192.168.0.103:11434/api/generate",
-  keymap = "<leader>ab",
-})
+local config = require("config.bodybuilder")
+require("bodybuilder").setup(config)

@@ -1,10 +1,9 @@
 -- This will record startup time
 vim.g.__nvim_start_time = vim.loop.hrtime()
 
-require("config.plugins")
-require('config.globals')
-require('config.options')
-
-require('config.autocmd')
-require('config.lsp')
-require("config.keymap")
+require("core.plugins")
+require("core.globals")
+require("core.options")
+require("core.autocmd")
+require("core.lsp")
+require("core.keymap")
