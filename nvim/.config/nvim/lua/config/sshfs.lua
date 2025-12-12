@@ -7,7 +7,7 @@ return {
       "-o dcache_stat_timeout=600",
       "-o dcache_link_timeout=600",
       "-o dcache_dir_timeout=600",
-      --"-o large_read",             -- Reads more data per network roundtrip
+      --="-o large_read",             -- Reads more data per network roundtrip
       --"-o no_readahead",           -- don’t speculatively read more than requested
       --"-o sync_readdir",           -- For speed, probably leave off.
       --"-o max_conns=3",            -- Lets SSHFS use multiple SSH sessions for simultaneous reads
