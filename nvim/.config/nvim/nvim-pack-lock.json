@@ -18,8 +18,12 @@
       "version": "'v1.8.0'"
     },
     "bodybuilder-nvim": {
-      "rev": "8a8fa1f2c9634e1e3db9a63299882e8e68c1b371",
+      "rev": "bd7e84b59c18c6ee0cf1369013739b870cc42dd3",
       "src": "https://github.com/whleucka/bodybuilder-nvim"
+    },
+    "bodybuilder.nvim": {
+      "rev": "bd7e84b59c18c6ee0cf1369013739b870cc42dd3",
+      "src": "https://github.com/whleucka/bodybuilder.nvim"
     },
     "bufferline.nvim": {
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
@@ -58,7 +62,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "c7ff27deae5b8966b0764bde962d0855e6e2db93",
+      "rev": "bd69cbae60eeb4589fbd285cb112265530fe1a5e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
