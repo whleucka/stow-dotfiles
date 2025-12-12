@@ -2,11 +2,7 @@ vim.pack.add {
   "https://github.com/ibhagwan/fzf-lua",
 }
 
-require("fzf-lua").setup({
-   files = {
-    cmd = "fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude vendor --print0",
-  },
-})
+require("fzf-lua").setup({ 'fzf-native' })
 local wk = require("which-key")
 wk.add({
   {
