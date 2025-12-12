@@ -18,11 +18,11 @@
       "version": "'v1.8.0'"
     },
     "bodybuilder-nvim": {
-      "rev": "bd7e84b59c18c6ee0cf1369013739b870cc42dd3",
+      "rev": "9ffaf9885eba86e070857e15db83e944a17cd47c",
       "src": "https://github.com/whleucka/bodybuilder-nvim"
     },
     "bodybuilder.nvim": {
-      "rev": "bd7e84b59c18c6ee0cf1369013739b870cc42dd3",
+      "rev": "9ffaf9885eba86e070857e15db83e944a17cd47c",
       "src": "https://github.com/whleucka/bodybuilder.nvim"
     },
     "bufferline.nvim": {
@@ -154,7 +154,7 @@
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "sshfs": {
-      "rev": "62978916914ef9b783e23f9639b02a515674ad01",
+      "rev": "553611ca41d6d32b5a0060daa689e6d60ebd2c15",
       "src": "https://github.com/uhs-robert/sshfs.nvim"
     },
     "tokyonight.nvim": {
